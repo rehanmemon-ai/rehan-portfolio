@@ -1,252 +1,29 @@
-<!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Rehan Memon - Third-year Artificial Intelligence student building high-impact AI and software products." />
-  <title>Rehan Memon | AI Portfolio</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          },
-          colors: {
-            base: {
-              950: '#06080f',
-              900: '#0b1020',
-              800: '#111936'
-            },
-            neon: {
-              cyan: '#22d3ee',
-              violet: '#8b5cf6'
-            }
-          },
-          boxShadow: {
-            glow: '0 0 35px rgba(34,211,238,0.22)',
-            glowviolet: '0 0 40px rgba(139,92,246,0.22)'
-          }
-        }
-      }
-    }
-  </script>
-
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rehan Juned Memon is a B.Sc. Artificial Intelligence student working across machine learning, Python and software engineering.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rehan Juned Memon — Applied AI &amp; Software Engineering">
+  <meta property="og:description" content="Rehan Juned Memon is a B.Sc. Artificial Intelligence student working across machine learning, Python and software engineering.">
+  <meta name="theme-color" content="#f7f7f2">
+  <title>Rehan Juned Memon — Applied AI &amp; Software Engineering</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
 </head>
-<body class="bg-slate-100 text-slate-900 dark:bg-base-950 dark:text-slate-100 selection:bg-cyan-300/30">
-  <div class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_20%_10%,rgba(34,211,238,0.16),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(139,92,246,0.14),transparent_35%),linear-gradient(to_bottom,transparent,rgba(99,102,241,0.06))]"></div>
-
-  <header class="sticky top-0 z-50 border-b border-slate-200/50 bg-slate-100/80 backdrop-blur-xl dark:border-white/10 dark:bg-base-950/70">
-    <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-8">
-      <a href="#hero" class="font-mono text-sm font-semibold tracking-widest text-cyan-500">&lt;REHAN&gt;</a>
-      <div class="hidden items-center gap-7 text-sm md:flex">
-        <a href="#about" class="hover:text-cyan-400">About</a>
-        <a href="#skills" class="hover:text-cyan-400">Skills</a>
-        <a href="#projects" class="hover:text-cyan-400">Projects</a>
-        <a href="#experience" class="hover:text-cyan-400">Experience</a>
-        <a href="#contact" class="hover:text-cyan-400">Contact</a>
-      </div>
-      <div class="flex items-center gap-3">
-        <button id="themeToggle" class="rounded-xl border border-slate-300 bg-white p-2 text-slate-700 transition hover:scale-105 dark:border-white/10 dark:bg-white/5 dark:text-slate-200" aria-label="Toggle theme">
-          <span id="themeIcon">L</span>
-        </button>
-        <button id="mobileMenuBtn" class="rounded-xl border border-slate-300 bg-white p-2 md:hidden dark:border-white/10 dark:bg-white/5" aria-label="Open menu">L</button>
-      </div>
-    </nav>
-    <div id="mobileMenu" class="mx-5 mb-4 hidden rounded-2xl border border-slate-300 bg-white p-4 dark:border-white/10 dark:bg-white/5 md:hidden">
-      <div class="flex flex-col gap-3 text-sm">
-        <a href="#about" class="mobile-link">About</a>
-        <a href="#skills" class="mobile-link">Skills</a>
-        <a href="#projects" class="mobile-link">Projects</a>
-        <a href="#experience" class="mobile-link">Experience</a>
-        <a href="#contact" class="mobile-link">Contact</a>
-      </div>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Rehan Memon, home">RM<span>.</span></a>
+      <nav class="desktop-nav" aria-label="Primary"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions"><button id="themeToggle" class="icon-button" type="button" aria-label="Switch to dark theme"><span id="themeIcon" aria-hidden="true">Dark</span></button><button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button></div>
     </div>
-
-
-    
+    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
   </header>
-
-  <main>
-    <section id="hero" class="mx-auto grid min-h-[92vh] max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-2 md:px-8">
-      <div class="terminal-card reveal rounded-2xl border border-slate-300 bg-white/80 p-4 shadow-2xl dark:border-white/10 dark:bg-white/5">
-        <div class="mb-4 flex items-center justify-between border-b border-slate-300 pb-3 dark:border-white/10">
-          <div class="flex gap-2">
-            <span class="h-2.5 w-2.5 rounded-full bg-rose-400"></span>
-            <span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span>
-            <span class="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
-          </div>
-          <span class="font-mono text-xs text-slate-500 dark:text-slate-400">rehan@impact-machine:~</span>
-        </div>
-        <div class="font-mono text-sm leading-7">
-          <div><span class="text-emerald-500">..</span> <span id="typingLine"></span><span class="blink">..</span></div>
-          <div id="terminalOutput" class="mt-2 space-y-1 text-slate-600 dark:text-slate-300"></div>
-        </div>
-      </div>
-
-      <div>
-        <p class="reveal mb-3 font-mono text-sm text-cyan-500">Third-Year Artificial Intelligence Student</p>
-        <h1 class="reveal text-4xl font-extrabold leading-tight md:text-6xl">I build <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">AI products</span> that create measurable impact.</h1>
-        <p class="reveal mt-6 max-w-xl text-base text-slate-600 dark:text-slate-300 md:text-lg">I am Rehan Memon. I combine machine learning, backend engineering, and product thinking to ship systems recruiters trust in production.</p>
-        <div class="reveal mt-8 flex flex-wrap gap-4">
-          <a href="#projects" class="rounded-xl bg-gradient-to-r from-cyan-400 to-violet-500 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-1 hover:shadow-glow">See Projects</a>
-          <a href="#contact" class="rounded-xl border border-slate-300 px-6 py-3 text-sm font-semibold transition hover:-translate-y-1 dark:border-white/20">Contact Me</a>
-        </div>
-        <div class="reveal mt-8 grid grid-cols-3 gap-4 text-center">
-          <div class="rounded-xl border border-slate-300 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5"><p class="text-2xl font-bold" data-counter="12">0</p><p class="text-xs text-slate-500">Projects</p></div>
-          <div class="rounded-xl border border-slate-300 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5"><p class="text-2xl font-bold" data-counter="3">0</p><p class="text-xs text-slate-500">Years Coding</p></div>
-          <div class="rounded-xl border border-slate-300 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5"><p class="text-2xl font-bold" data-counter="5">0</p><p class="text-xs text-slate-500">Core Skills</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="mx-auto max-w-6xl px-5 py-20 md:px-8">
-      <div class="reveal mb-10">
-        <p class="font-mono text-sm text-cyan-500">  // About</p>
-        <h2 class="mt-2 text-3xl font-bold md:text-4xl">A personal brand built on outcomes, not buzzwords.</h2>
-      </div>
-      <div class="grid gap-8 md:grid-cols-2">
-        <article class="reveal rounded-2xl border border-slate-300 bg-white/70 p-7 dark:border-white/10 dark:bg-white/5">
-          <p class="text-slate-700 dark:text-slate-300">I design and engineer AI-first software that solves practical business problems. My edge is shipping full-stack systems end-to-end: model pipeline, API layer, and user experience that people actually use.</p>
-          <p class="mt-4 text-slate-700 dark:text-slate-300">Beyond projects, I contribute in college tech teams, mentor peers, and consistently translate complex ideas into clear execution. I am currently focused on retrieval systems, AI agents, and scalable backend architecture.</p>
-        </article>
-        <article class="reveal rounded-2xl border border-slate-300 bg-white/70 p-7 dark:border-white/10 dark:bg-white/5">
-          <h3 class="text-lg font-semibold">What I am currently learning</h3>
-          <ul class="mt-4 space-y-3 text-slate-700 dark:text-slate-300">
-            <li>Production RAG evaluation and observability</li>
-            <li>Multi-agent orchestration patterns</li>
-            <li>C++ optimization for inference workloads</li>
-            <li>System design for AI-powered SaaS</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="skills" class="mx-auto max-w-6xl px-5 py-20 md:px-8">
-      <div class="reveal mb-10">
-        <p class="font-mono text-sm text-cyan-500">   // Skills</p>
-        <h2 class="mt-2 text-3xl font-bold md:text-4xl">Core technical stack</h2>
-      </div>
-      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="skill-card reveal"><h3>Languages</h3><p>Python, C++, JavaScript, SQL</p></div>
-        <div class="skill-card reveal"><h3>AI/ML</h3><p>Scikit-learn, TensorFlow, PyTorch, NLP</p></div>
-        <div class="skill-card reveal"><h3>Backend</h3><p>FastAPI, Node.js, REST APIs, PostgreSQL</p></div>
-        <div class="skill-card reveal"><h3>Frontend</h3><p>HTML, Tailwind CSS, JavaScript, UI animation</p></div>
-        <div class="skill-card reveal"><h3>Tools</h3><p>Git, Docker, Linux, VS Code</p></div>
-        <div class="skill-card reveal"><h3>Soft Skills</h3><p>Leadership, communication, team execution</p></div>
-      </div>
-    </section>
-
-    <section id="projects" class="mx-auto max-w-6xl px-5 py-20 md:px-8">
-      <div class="reveal mb-10 flex items-end justify-between gap-4 flex-wrap">
-        <div>
-          <p class="font-mono text-sm text-cyan-500">   // Projects</p>
-          <h2 class="mt-2 text-3xl font-bold md:text-4xl">Case-study style project showcase</h2>
-        </div>
-        <a href="https://github.com/rehanmemon-ai" target="_blank" rel="noopener" class="rounded-xl border border-slate-300 px-4 py-2 text-sm dark:border-white/20">View GitHub</a>
-      </div>
-
-      <div class="grid gap-6 md:grid-cols-2">
-        <article class="project-card reveal" data-tilt>
-          <h3>AI Research Assistant</h3>
-          <p>Built a retrieval assistant that parses long-form documents and answers questions with citations, reducing manual analysis time.</p>
-          <p class="tech">Tech: Python, FastAPI, LangChain, Vector DB, JavaScript</p>
-          <a href="https://github.com/rehanmemon-ai" target="_blank" rel="noopener">GitHub</a>
-        </article>
-
-        <article class="project-card reveal" data-tilt>
-          <h3>Smart Attendance with Face Recognition</h3>
-          <p>Designed a computer vision pipeline that automates attendance logging with confidence filtering and analytics dashboard.</p>
-          <p class="tech">Tech: Python, OpenCV, TensorFlow, SQL, Flask</p>
-          <a href="https://github.com/rehanmemon-ai" target="_blank" rel="noopener">GitHub</a>
-        </article>
-
-        <article class="project-card reveal" data-tilt>
-          <h3>Fraud Detection API</h3>
-          <p>Implemented a real-time anomaly scoring API with feature engineering and model monitoring for transaction risk signals.</p>
-          <p class="tech">Tech: Python, Scikit-learn, FastAPI, PostgreSQL</p>
-          <a href="https://github.com/rehanmemon-ai" target="_blank" rel="noopener">GitHub</a>
-        </article>
-
-        <article class="project-card reveal" data-tilt>
-          <h3>Student Collaboration Platform</h3>
-          <p>Shipped a full-stack platform for collaborative tasks, team updates, and productivity insights for college tech groups.</p>
-          <p class="tech">Tech: JavaScript, Node.js, SQL, Tailwind CSS</p>
-          <a href="https://github.com/rehanmemon-ai" target="_blank" rel="noopener">GitHub</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="experience" class="mx-auto max-w-6xl px-5 py-20 md:px-8">
-      <div class="reveal mb-10">
-        <p class="font-mono text-sm text-cyan-500">   // Experience</p>
-        <h2 class="mt-2 text-3xl font-bold md:text-4xl">Extracurricular leadership and execution</h2>
-      </div>
-      <div class="grid gap-5 md:grid-cols-2">
-        <article class="reveal rounded-2xl border border-slate-300 bg-white/70 p-6 dark:border-white/10 dark:bg-white/5">
-          <h3 class="font-semibold">AI/Tech Team Contributor</h3>
-          <p class="mt-2 text-slate-700 dark:text-slate-300">Collaborated on rapid prototyping, hackathons, and cross-functional builds. Led feature delivery and model integration workflows.</p>
-        </article>
-        <article class="reveal rounded-2xl border border-slate-300 bg-white/70 p-6 dark:border-white/10 dark:bg-white/5">
-          <h3 class="font-semibold">Campus Problem-Solving Initiatives</h3>
-          <p class="mt-2 text-slate-700 dark:text-slate-300">Built practical tools for student communities, from workflow automations to data-backed decision dashboards.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="mx-auto max-w-6xl px-5 py-10 md:px-8">
-      <div class="reveal rounded-2xl border border-slate-300 bg-white/70 p-6 dark:border-white/10 dark:bg-white/5">
-        <div class="flex flex-wrap items-center justify-between gap-3">
-          <h3 class="text-lg font-semibold">Live GitHub Snapshot</h3>
-          <a href="https://github.com/rehanmemon-ai" target="_blank" rel="noopener" class="text-sm text-cyan-500">Open profile</a>
-        </div>
-        <div id="githubStats" class="mt-4 grid gap-3 sm:grid-cols-3"></div>
-      </div>
-    </section>
-
-    <section id="contact" class="mx-auto max-w-6xl px-5 py-20 md:px-8">
-      <div class="reveal mb-10">
-        <p class="font-mono text-sm text-cyan-500">   // Contact</p>
-        <h2 class="mt-2 text-3xl font-bold md:text-4xl">Let us build something meaningful.</h2>
-      </div>
-      <div class="grid gap-8 md:grid-cols-2">
-        <div class="reveal rounded-2xl border border-slate-300 bg-white/70 p-7 dark:border-white/10 dark:bg-white/5">
-          <p class="text-slate-700 dark:text-slate-300">Open to AI engineering internships, software roles, and high-impact projects.</p>
-          <div class="mt-5 space-y-2 text-sm">
-            <p>Email: <a class="text-cyan-500" href="mailto:memon18rehan@gmail.com">Rehan Memon</a></p>
-            <p>GitHub: <a class="text-cyan-500" target="_blank" rel="noopener" href="https://github.com/rehanmemon-ai">rehanmemon-ai</a></p>
-            <p>LinkedIn: <a class="text-cyan-500" target="_blank" rel="noopener" href="https://www.linkedin.com/in/rehan-memon-b1803b334 ">linkedin.com/in/rehanmemon</a></p>
-          </div>
-        </div>
-        <form class="reveal rounded-2xl border border-slate-300 bg-white/70 p-7 dark:border-white/10 dark:bg-white/5" id="contactForm">
-          <label class="mb-2 block text-sm">Name</label>
-          <input required class="input" type="text" name="name" placeholder="Your name" />
-          <label class="mb-2 mt-4 block text-sm">Email</label>
-          <input required class="input" type="email" name="email" placeholder="your@email.com" />
-          <label class="mb-2 mt-4 block text-sm">Message</label>
-          <textarea required class="input min-h-[130px]" name="message" placeholder="Tell me about your opportunity"></textarea>
-          <button class="mt-5 w-full rounded-xl bg-gradient-to-r from-cyan-400 to-violet-500 px-5 py-3 font-semibold text-slate-950 transition hover:-translate-y-1" type="submit">Send Message</button>
-          <p id="formNote" class="mt-3 text-xs text-slate-500"></p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="border-t border-slate-300/70 py-8 text-center text-sm text-slate-500 dark:border-white/10">
-    <p>Built by Rehan Memon - AI engineered for impact.</p>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="js/main.js"></script>
+  <main id="main"><section class="hero container"><div><p class="eyebrow">Applied AI · Python · Software engineering</p><h1>Rehan Juned Memon<span class="accent">.</span></h1><p class="hero-lead">I build and investigate practical AI and software systems, from computer vision baselines to document retrieval and web applications.</p><p class="meta">B.Sc. Artificial Intelligence · VESASC (Autonomous) · 2024–2027 (in progress)</p><div class="actions"><a class="button" href="projects.html">Explore projects</a><a class="button button-quiet" href="experience.html">Experience</a><a class="text-link" href="contact.html">Contact me →</a></div></div><aside class="hero-aside" aria-label="Featured work"><p class="eyebrow">Start with the evidence</p><h2>Two public technical case studies</h2><p>Inspect implementation details, scope and open limitations before drawing conclusions.</p><a class="text-link" href="signature-verification.html">Signature Verification →</a><a class="text-link" href="ai-research-assistant.html">AI Research Assistant →</a></aside></section><section class="section container" id="selected-work"><h2>Selected engineering work</h2><div class="grid two"><article class="card project-card" data-filter-card data-category="Computer vision"><p class="eyebrow">Computer vision</p><h3>Signature Verification AI</h3><p>An offline signature classification baseline built with image preprocessing, handcrafted features and a support vector machine.</p><p class="meta">Research baseline</p><div class="card-actions"><a class="button button-small" href="signature-verification.html">Read case study</a><a class="text-link" href="https://github.com/rehanmemon-ai/signature-verification" target="_blank" rel="noopener noreferrer">View repository ↗</a></div></article><article class="card project-card" data-filter-card data-category="Generative AI / RAG"><p class="eyebrow">Generative AI / RAG</p><h3>AI Research Assistant</h3><p>A document question-answering system with ingestion, chunking, Chroma retrieval and citation mapping components. End-to-end evaluation remains open.</p><p class="meta">In progress</p><div class="card-actions"><a class="button button-small" href="ai-research-assistant.html">Read case study</a><a class="text-link" href="https://github.com/rehanmemon-ai/Assistant_Bot-Research" target="_blank" rel="noopener noreferrer">View repository ↗</a></div></article></div></section><section class="section container"><h2>Experience in context</h2><div class="grid three"><article class="card"><p class="eyebrow">Apr–Sep 2026 · concurrent tracks</p><h3>Advfiction Private Limited</h3><p class="meta">Web Development Intern · AI Automation Developer Intern</p><p>Contributed to collaborative website and lead-API work while separately developing and prototyping n8n automation stages.</p><a class="text-link" href="advfiction.html">Explore contribution →</a></article><article class="card"><p class="eyebrow">May–Aug 2026 · certified phase</p><h3>AlgoDevOpss</h3><p class="meta">Full-Stack Development Intern</p><p>Worked on KJSIEIT EXTC Pedagogy and Result Analysis pages and a separate PHP/CMS prototype.</p><a class="text-link" href="algodevopss.html">Explore contribution →</a></article><article class="card"><p class="eyebrow">Sep–Oct 2026 · documented pilot period</p><h3>AwareWolf</h3><p class="meta">Content Operating System Intern</p><p>Contributed to a JSONL media and storyboard pilot and investigated separate Legacy rendering and image-import workflows.</p><a class="text-link" href="awarewolf.html">Explore contribution →</a></article></div><p class="section-end"><a class="text-link" href="experience.html">View all experience →</a> · <a class="text-link" href="client-work.html">Selected client deployments →</a> · <a class="text-link" href="automation.html">AI &amp; workflow automation →</a></p></section><section class="section container"><h2>Learning and recognition</h2><div class="grid two"><article class="card"><h3>Academic work</h3><p>B.Sc. Artificial Intelligence in progress. Semester IV SGPA: 9.27/10; cumulative CGPA through Semester IV: 8.14/10.</p><a class="text-link" href="about.html">About my background →</a></article><article class="card"><h3>Selected training</h3><p>IIRS workshop participation and a BCG X job simulation via Forage are listed with their exact credential types.</p><a class="text-link" href="credentials.html">Browse credentials →</a></article></div></section></main>
+  <footer class="site-footer"><div class="container footer-inner"><p>Rehan Juned Memon · Applied AI &amp; software engineering</p><div><a class="text-link" href="projects.html">Projects</a><a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a></div></div></footer>
 </body>
 </html>

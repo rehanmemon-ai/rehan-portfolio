@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Classical computer vision signature verification baseline using OpenCV features and an RBF SVM.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Signature Verification AI — case study">
+  <meta property="og:description" content="Classical computer vision signature verification baseline using OpenCV features and an RBF SVM.">
+  <meta name="theme-color" content="#f7f7f2">
+  <title>Signature Verification AI — case study</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Rehan Memon, home">RM<span>.</span></a>
+      <nav class="desktop-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions"><button id="themeToggle" class="icon-button" type="button" aria-label="Switch to dark theme"><span id="themeIcon" aria-hidden="true">Dark</span></button><button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button></div>
+    </div>
+    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+  </header>
+  <main id="main"><section class="page-intro container"><p class="eyebrow">Case study / Computer vision</p><h1>Signature Verification AI</h1><p class="lead">A classical offline handwritten-signature baseline. The public repository contains implementation and a README-reported evaluation; this page describes the method without claiming a reproduced score.</p></section><section class="section container"><h2>My role and scope</h2><p class="prose">Academic project implementation in the public `signature-verification` repository. The repository owner and code provenance do not by themselves partition every line of personal versus AI-assisted work. This page describes the inspected system, not sole authorship of every dependency or dataset.</p></section><section class="section container"><h2>Processing architecture</h2><figure class="diagram"><img src="diagrams/signature-pipeline.svg" width="1000" height="172" loading="lazy" alt="Signature images flow through OpenCV preprocessing, 331 features, a scaled RBF SVM and writer-disjoint evaluation."><figcaption>Method shown in the public repository; evaluation results were not reproduced here.</figcaption></figure><ol class="flow"><li><strong>Input</strong><span>Genuine and forged signature images are loaded from an external CEDAR-format dataset.</span></li><li><strong>Preprocess</strong><span>OpenCV grayscale, blur, Otsu binarization, crop and 256 × 256 normalization.</span></li><li><strong>Represent</strong><span>331 handcrafted geometric, ink-density, projection and Hu-moment features.</span></li><li><strong>Classify</strong><span>StandardScaler and an RBF-kernel SVM are packaged in a model pipeline.</span></li><li><strong>Evaluate</strong><span>Writer-disjoint split logic is present in source; the dataset and reported metrics were not reproduced for this portfolio.</span></li></ol></section><section class="section container"><h2>Application surface</h2><p class="prose">The repository also contains a FastAPI backend and a React/TypeScript frontend for an interactive demonstration. The existence of these components is not evidence of a deployed service or a validated security review.</p></section><section class="section container"><h2>Validation and limits</h2><div class="prose"><p>The repository includes dataset/split tests and an evaluation runner. The CEDAR data is external; dataset access and licensing were not assumed. The README lists accuracy and F1 values, but this portfolio does not present them as independently reproduced results.</p><p>The code and documented method are the evidence here. A repeatable evaluation with dataset provenance, pinned environment and test output would strengthen the case study.</p></div></section><section class="section container"><h2>Source</h2><a class="button" href="https://github.com/rehanmemon-ai/signature-verification" target="_blank" rel="noopener noreferrer">Inspect the public repository ↗</a></section></main>
+  <footer class="site-footer"><div class="container footer-inner"><p>Rehan Juned Memon · Applied AI &amp; software engineering</p><div><a class="text-link" href="projects.html">Projects</a><a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a></div></div></footer>
+</body>
+</html>
