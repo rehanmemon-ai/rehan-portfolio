@@ -1,8 +1,40 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="172" viewBox="0 0 1000 172" role="img" aria-labelledby="title desc">
-  <title id="title">Partially exercised company research workflow</title>
-  <desc id="desc">Manual start, PostgreSQL company fetch, batch and deduplication, search, AI request, and proposed save. The last two stages were not verified as successful.</desc>
-  <rect width="1000" height="172" rx="18" fill="#f1f7f4"/>
-  <g fill="#fff" stroke="#8ab6b2" stroke-width="2"><rect x="18" y="48" width="124" height="76" rx="10"/><rect x="177" y="48" width="124" height="76" rx="10"/><rect x="336" y="48" width="124" height="76" rx="10"/><rect x="495" y="48" width="124" height="76" rx="10"/><rect x="654" y="48" width="124" height="76" rx="10"/><rect x="813" y="48" width="169" height="76" rx="10" stroke-dasharray="7 5"/></g>
-  <g fill="#142029" font-family="system-ui,sans-serif" font-size="15" font-weight="650" text-anchor="middle"><text x="80" y="79">Manual</text><text x="80" y="101">start</text><text x="239" y="79">Fetch from</text><text x="239" y="101">Postgres</text><text x="398" y="79">Batch &amp;</text><text x="398" y="101">dedupe</text><text x="557" y="79">Search</text><text x="716" y="79">AI request</text><text x="897" y="79">Save &amp; delay</text><text x="897" y="101">unverified</text></g>
-  <g fill="none" stroke="#087b83" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M149 86h19m-8-8 8 8-8 8"/><path d="M308 86h19m-8-8 8 8-8 8"/><path d="M467 86h19m-8-8 8 8-8 8"/><path d="M626 86h19m-8-8 8 8-8 8"/><path d="M785 86h19m-8-8 8 8-8 8"/></g>
+  <title id="title">Company Research &amp; AI Enrichment Architecture</title>
+  <desc id="desc">PostgreSQL candidate retrieval, batch chunking, deduplication check, search query with fallback, LLM enrichment request, and PostgreSQL storage loop.</desc>
+  <style>
+    .bg { fill: #f1f7f4; }
+    .box { fill: #ffffff; stroke: #8ab6b2; stroke-width: 2px; }
+    .label { fill: #142029; font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 650; text-anchor: middle; }
+    .arrow { stroke: #087b83; stroke-width: 4px; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #132228; }
+      .box { fill: #1c2e35; stroke: #45676e; }
+      .label { fill: #eef4f0; }
+      .arrow { stroke: #70d8d0; }
+    }
+  </style>
+  <rect class="bg" width="1000" height="172" rx="18"/>
+  <g class="box">
+    <rect x="18" y="48" width="124" height="76" rx="10"/>
+    <rect x="177" y="48" width="124" height="76" rx="10"/>
+    <rect x="336" y="48" width="124" height="76" rx="10"/>
+    <rect x="495" y="48" width="124" height="76" rx="10"/>
+    <rect x="654" y="48" width="124" height="76" rx="10"/>
+    <rect x="813" y="48" width="169" height="76" rx="10"/>
+  </g>
+  <g class="label">
+    <text x="80" y="79">Trigger</text><text x="80" y="101">start</text>
+    <text x="239" y="79">Fetch from</text><text x="239" y="101">PostgreSQL</text>
+    <text x="398" y="79">Batch &amp;</text><text x="398" y="101">deduplicate</text>
+    <text x="557" y="79">Search API</text><text x="557" y="101">&amp; fallback</text>
+    <text x="716" y="79">AI enrichment</text><text x="716" y="101">prompt</text>
+    <text x="897" y="79">Database save</text><text x="897" y="101">&amp; loop</text>
+  </g>
+  <g class="arrow">
+    <path d="M149 86h19m-8-8 8 8-8 8"/>
+    <path d="M308 86h19m-8-8 8 8-8 8"/>
+    <path d="M467 86h19m-8-8 8 8-8 8"/>
+    <path d="M626 86h19m-8-8 8 8-8 8"/>
+    <path d="M785 86h19m-8-8 8 8-8 8"/>
+  </g>
 </svg>

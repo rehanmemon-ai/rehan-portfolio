@@ -1,15 +1,39 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="KJSIEIT EXTC page contributions and a separate PHP/CMS prototype during an AlgoDevOpss internship.">
+  <meta name="description" content="Next.js and TypeScript departmental portal development during the AlgoDevOpss internship.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AlgoDevOpss experience — Rehan Memon">
-  <meta property="og:description" content="KJSIEIT EXTC page contributions and a separate PHP/CMS prototype during an AlgoDevOpss internship.">
-  <meta name="theme-color" content="#f7f7f2">
-  <title>AlgoDevOpss experience — Rehan Memon</title>
+  <meta property="og:title" content="Rehan Memon | AlgoDevOpss Experience">
+  <meta property="og:description" content="Next.js and TypeScript departmental portal development during the AlgoDevOpss internship.">
+  <meta property="og:url" content="https://rehanmemon-ai.github.io/rehan-portfolio/algodevopss.html">
+  <meta property="og:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="canonical" href="https://rehanmemon-ai.github.io/rehan-portfolio/algodevopss.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rehan Memon | AlgoDevOpss Experience">
+  <meta name="twitter:description" content="Next.js and TypeScript departmental portal development during the AlgoDevOpss internship.">
+  <meta name="twitter:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta name="theme-color" content="#0d171c">
+  <title>Rehan Memon | AlgoDevOpss Experience</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', '#f7f7f2');
+        }
+      } catch(e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="site.css">
   <script src="site.js" defer></script>
 </head>
@@ -17,13 +41,34 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Rehan Memon, home">RM<span>.</span></a>
-      <nav class="desktop-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
-      <div class="header-actions"><button id="themeToggle" class="icon-button" type="button" aria-label="Switch to dark theme"><span id="themeIcon" aria-hidden="true">Dark</span></button><button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button></div>
+      <a class="brand" href="index.html" aria-label="Rehan Memon, home"><svg class="brand-monogram" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0b1317"/><rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-opacity="0.85"/><path d="M14 47V17H25C29.5 17 32 19.5 32 24.5C32 29.5 29.5 32 25 32H14" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 32L32 47" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 47V17L44.5 31L52 17V47" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-text">REHAN MEMON</span></a>
+      <nav class="desktop-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions">
+        <a class="button button-small resume-nav-btn" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Switch to light theme"><span id="themeIcon" aria-hidden="true">Light</span></button>
+        <button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button>
+      </div>
     </div>
-    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden>
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a>
+      <div class="mobile-menu-cta">
+        <a class="button" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">View Resume (Google Doc) ↗</a>
+      </div>
+    </nav>
   </header>
-  <main id="main"><section class="page-intro container"><p class="eyebrow">Experience / AlgoDevOpss</p><h1>Department pages and a PHP prototype</h1><p class="lead">Full-Stack Development Intern · certified phase 1 May–31 Aug 2026. Work after the certificate period has not been presented as independently certified.</p></section><section class="section container"><h2>KJSIEIT EXTC contribution</h2><div class="prose"><p>Worked within a team repository on the <strong>Pedagogy</strong> and <strong>Result Analysis</strong> department pages. The local Next.js/TypeScript source contains dedicated `page.tsx` routes and a typed `results-data.ts` module for result tables and examination cards.</p><p>The pages import shared navigation, footer and heading components. Authorship headers name Rehan, while the broader site remains a collaborative institutional project. The short commit IDs cited in older reports remain unresolved as contribution proof.</p></div></section><section class="section container"><h2>Separate PHP/CMS prototype</h2><p class="prose">A university field report describes modular PHP pages and a database-backed admin/CMS prototype. This is separate from the KJSIEIT Next.js work. The available evidence does not justify describing it as a complete deployed client system.</p></section><section class="section container"><h2>Boundaries</h2><p class="prose">No claim is made that I built or deployed the full KJSIEIT site. Institutional screenshots, production links and private source are withheld pending attribution and publication review.</p></section></main>
-  <footer class="site-footer"><div class="container footer-inner"><p>Rehan Juned Memon · Applied AI &amp; software engineering</p><div><a class="text-link" href="projects.html">Projects</a><a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a></div></div></footer>
+  <main id="main"><section class="page-intro container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="experience.html">← Back to Commercial Experience</a></nav><p class="eyebrow">Experience / AlgoDevOpss</p><h1>Departmental Web Portal Engineering</h1><p class="lead">Full-Stack Development Intern · May–December 2026. Appointment letter: May–October 2026. Completion certificate: May–August 2026. Extension communicated through December 2026; updated extension offer letter pending. Developing production routes for the KJSIEIT EXTC academic platform.</p></section><section class="section container"><h2>KJSIEIT EXTC Platform Engineering</h2><div class="prose"><p>Contributed as part of a collaborative engineering team to the departmental web portal for the Electronics & Telecommunication Engineering (EXTC) department at K. J. Somaiya Institute of Engineering & Information Technology (KJSIEIT).</p><p><strong>Key Technical Contributions:</strong></p><ul class="prose-list"><li><strong>Pedagogy Route:</strong> Developed the dedicated departmental pedagogy showcase route in Next.js and TypeScript, presenting instructional frameworks and lab coursework.</li><li><strong>Result Analysis System:</strong> Engineered the typed <code>results-data.ts</code> data transformation module and interactive examination performance dashboard.</li><li><strong>Modular Components:</strong> Integrated reusable institutional navigation headers, typed data cards, and responsive tables.</li></ul></div></section><section class="section container"><h2>CMS &amp; Administration Prototyping</h2><div class="prose"><p>Researched and prototyped modular administrative panels for dynamic department updates, exploring database-backed content management workflows and role-based access schemas.</p></div></section><section class="section container"><h2>Technical Stack Deployed</h2><div class="tags-row"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span><span class="tag">Data Structures</span><span class="tag">Component Design</span></div></section><nav class="explore-more-nav container" aria-label="Explore Portfolio"><div class="explore-more-card"><p class="eyebrow">Continue Exploring</p><div class="explore-grid"><a href="projects.html" class="explore-link"><span class="explore-title">Technical Projects →</span><span class="explore-desc">Computer Vision, RAG &amp; Full-Stack Systems</span></a><a href="experience.html" class="explore-link"><span class="explore-title">Internship Experience →</span><span class="explore-desc">AwareWolf, Advfiction &amp; AlgoDevOpss</span></a><a href="automation-evidence.html" class="explore-link"><span class="explore-title">Automation Evidence Gallery →</span><span class="explore-desc">8 Documented n8n Systems</span></a><a href="client-work.html" class="explore-link"><span class="explore-title">Client Deployments →</span><span class="explore-desc">LMS, Corporate Portals &amp; Web APIs</span></a></div></div></nav></main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Rehan Juned Memon · Applied AI &amp; Software Engineering</p>
+      <div class="footer-links">
+        <a class="text-link" href="projects.html">Projects</a>
+        <a class="text-link" href="experience.html">Experience</a>
+        <a class="text-link" href="automation-evidence.html">Evidence Gallery</a>
+        <a class="text-link" href="credentials.html">Credentials</a>
+        <a class="text-link" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# GSD Planning & Agent Orchestration Files
+.planning/
+AGENTS.md
+
+# Private Unapproved Workflow Execution Assets (Strict Confidentiality)
+assets/n8n/
+
+# Quarantined / Third-party clones
+modern-web-guidance/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,15 +1,39 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Sanitised account of JSONL pilot and separate Legacy media workflow investigations.">
+  <meta name="description" content="Software engineering and applied AI evaluation for media workflows at AwareWolf: React/FastAPI storyboards, image ingestion, FFmpeg diagnostics, and video model evaluation.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AwareWolf experience — Rehan Memon">
-  <meta property="og:description" content="Sanitised account of JSONL pilot and separate Legacy media workflow investigations.">
-  <meta name="theme-color" content="#f7f7f2">
-  <title>AwareWolf experience — Rehan Memon</title>
+  <meta property="og:title" content="Rehan Memon | AwareWolf Experience">
+  <meta property="og:description" content="Software engineering and applied AI evaluation for media workflows at AwareWolf: React/FastAPI storyboards, image ingestion, FFmpeg diagnostics, and video model evaluation.">
+  <meta property="og:url" content="https://rehanmemon-ai.github.io/rehan-portfolio/awarewolf.html">
+  <meta property="og:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="canonical" href="https://rehanmemon-ai.github.io/rehan-portfolio/awarewolf.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rehan Memon | AwareWolf Experience">
+  <meta name="twitter:description" content="Software engineering and applied AI evaluation for media workflows at AwareWolf: React/FastAPI storyboards, image ingestion, FFmpeg diagnostics, and video model evaluation.">
+  <meta name="twitter:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta name="theme-color" content="#0d171c">
+  <title>Rehan Memon | AwareWolf Experience</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', '#f7f7f2');
+        }
+      } catch(e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="site.css">
   <script src="site.js" defer></script>
 </head>
@@ -17,13 +41,34 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Rehan Memon, home">RM<span>.</span></a>
-      <nav class="desktop-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
-      <div class="header-actions"><button id="themeToggle" class="icon-button" type="button" aria-label="Switch to dark theme"><span id="themeIcon" aria-hidden="true">Dark</span></button><button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button></div>
+      <a class="brand" href="index.html" aria-label="Rehan Memon, home"><svg class="brand-monogram" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0b1317"/><rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-opacity="0.85"/><path d="M14 47V17H25C29.5 17 32 19.5 32 24.5C32 29.5 29.5 32 25 32H14" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 32L32 47" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 47V17L44.5 31L52 17V47" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-text">REHAN MEMON</span></a>
+      <nav class="desktop-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions">
+        <a class="button button-small resume-nav-btn" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Switch to light theme"><span id="themeIcon" aria-hidden="true">Light</span></button>
+        <button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button>
+      </div>
     </div>
-    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden>
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a>
+      <div class="mobile-menu-cta">
+        <a class="button" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">View Resume (Google Doc) ↗</a>
+      </div>
+    </nav>
   </header>
-  <main id="main"><section class="page-intro container"><p class="eyebrow">Experience / AwareWolf</p><h1>A media workflow pilot, with limits</h1><p class="lead">Content Operating System Intern · documented Sep–Oct 2026 workstream. Formal end or continuation status remains unresolved.</p></section><section class="section container"><h2>JSONL pilot</h2><p class="prose">Contributed to a React/TypeScript and FastAPI pilot around media-library search, authenticated previews and editable five-scene storyboards with revisions. This was collaborative pilot work, not a claim that the entire operating system was delivered or deployed.</p></section><section class="section container"><h2>Legacy workflow</h2><p class="prose">Separately investigated FFmpeg/API render, trim, poll and save behavior, and validated JPEG/PNG image-import paths with focused checks. These investigations do not establish end-to-end renderer acceptance or live publishing.</p></section><section class="section container"><h2>Evaluation and disclosure</h2><p class="prose">Reviewed generative-video approaches; evaluating tools is distinct from developing the underlying models. No private repository, client media, screenshots, database contents or internal endpoints are published here.</p></section></main>
-  <footer class="site-footer"><div class="container footer-inner"><p>Rehan Juned Memon · Applied AI &amp; software engineering</p><div><a class="text-link" href="projects.html">Projects</a><a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a></div></div></footer>
+  <main id="main"><section class="page-intro container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="experience.html">← Back to Commercial Experience</a></nav><p class="eyebrow">Experience / AwareWolf</p><h1>Media Workflows, Persistence &amp; AI Evaluation</h1><p class="lead">Content Operating System Intern · Sep 2026–Present (Engineering Pause Reported Nov 2026) · Offer: 17 Sep 2026–16 Mar 2027 · Remote · Paid Internship. Software development for media workflow prototyping and applied AI evaluation, spanning interactive React/TypeScript storyboards, FastAPI APIs, media validation pipelines, FFmpeg stream diagnostics, and generative-video benchmarking.</p></section><section class="section container"><h2>Media Library &amp; Five-Scene Storyboard Pilot</h2><div class="prose"><p>Contributed to development and validation of a full-stack media management pilot built with <strong>React, TypeScript, and FastAPI</strong>, designed to help content teams organize approved media and prepare editable storyboards:</p><ul class="prose-list"><li><strong>Deterministic Retrieval & Browsing:</strong> Connected immutable metadata catalogs with deterministic lexical search, category browsing, and explicit asset selection across approved media units.</li><li><strong>Authenticated Media Previews:</strong> Engineered browser video and photo preview handlers decoding 7 photo previews and 3 distinct video streams returning HTTP 206 Partial Content byte-range responses for smooth timeline scrubbing.</li><li><strong>Five-Scene Storyboard Editor:</strong> Implemented responsive scene organization allowing real-time timeline sequencing, media replacement, and bounded start/end trimming.</li><li><strong>Revisioned Atomic Persistence:</strong> Built owner-scoped JSON board persistence with revision tokens and atomic write guarantees, verified through save/refresh/reopen cycles and two-tab HTTP 409 conflict detection protecting unsaved local edits.</li><li><strong>Validation Snapshot:</strong> The verified pilot snapshot passed <strong>263 backend tests</strong> and <strong>27 frontend tests</strong>, alongside successful local builds (<code>build:jsonl</code> and <code>build:legacy</code>) and multi-viewport responsive checks (390px to 1512px).</li></ul></div></section><section class="section container"><h2>Validated Image Ingestion Service</h2><div class="prose"><p>Engineered a reusable, resilient image-import service ensuring incoming JPEG and PNG assets comply with strict platform specifications:</p><ul class="prose-list"><li><strong>Pillow Format & Geometry Validation:</strong> Enforced file integrity checks, format verification, and safety limits (10 MiB file cap, 40 million decoded pixels, and 8,192-pixel edge maximum).</li><li><strong>Content-Addressed Identity:</strong> Derived unique asset identities from SHA-256 byte hashes, using exclusive file destination creation to prevent filesystem races.</li><li><strong>Concurrency & Duplicate Protection:</strong> Implemented database integrity constraints to handle duplicate uploads. Verified through <strong>7 focused integration tests</strong>, including three simultaneous identical uploads resolving cleanly to a single unique database record.</li></ul></div></section><section class="section container"><h2>FFmpeg Renderer &amp; API Diagnostics</h2><div class="prose"><p>Investigated complex stream synchronization, process lifecycle, and API consistency issues within automated rendering pipelines:</p><ul class="prose-list"><li><strong>Audio/Video Stream Synchronization:</strong> Traced a critical rendering defect where an exported MP4 showed a 15-second video stream alongside a 38.5-second audio track. Root-caused the mismatch to incorrect catalog durations and harness trim field discrepancies.</li><li><strong>Targeted Remediation:</strong> Authored targeted fixes and validation checks resulting in a corrected 5-scene, 29-second reproduction verified with matching streams and clean decoder exit.</li><li><strong>API & Persistence Reconciliation:</strong> Traced UI polling failures, missing route handlers, and stale process port conflicts, verifying stability across a 57-test regression snapshot.</li></ul></div></section><section class="section container"><h2>Applied Generative-Video Evaluation</h2><div class="prose"><p>Conducted a controlled, objective benchmark of six generative-video routes using a unified visual brief to evaluate technical delivery, motion quality, hardware constraints, and production economics:</p><ul class="prose-list"><li><strong>Open-Model Inference on Kaggle:</strong> Executed hands-on inference experiments with open-weights models. Successfully ran the Wan model on Kaggle T4 hardware (5.06-second clip at 480×832 in 55.37 minutes, utilizing 12.73 GB peak GPU memory).</li><li><strong>Hardware Limit Documentation:</strong> Documented exact CUDA memory boundaries and BF16 constraints, capturing failure bounds such as Hunyuan requesting a 43.28 GB block against available 14.56 GB T4 VRAM.</li><li><strong>Hosted Route Comparisons:</strong> Evaluated outputs across commercial hosted endpoints (Flow, Hailuo, Adobe-hosted Veo, PixVerse, LTX), comparing prompt adherence, camera motion fidelity, and cost per usable shot.</li></ul></div></section><section class="section container"><h2>Architecture Research &amp; Feasibility</h2><div class="prose"><p>Contributed to architectural feasibility studies and proof-of-concept integrations:</p><ul class="prose-list"><li><strong>Architecture Decision Report:</strong> Contributed research across a 25-page report analyzing publishing APIs, Google Photos Picker acquisition, stable asset identity, and portable storage options.</li><li><strong>Buffer Publishing Experiment:</strong> Built connection testing and adapter modules to validate remote draft generation, observing a text-only X draft in Buffer's remote interface.</li></ul></div></section><section class="section container"><h2>Technical Stack Deployed</h2><div class="tags-row"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Vite</span><span class="tag">SQLite</span><span class="tag">JSONL</span><span class="tag">FFmpeg</span><span class="tag">FFprobe</span><span class="tag">Pillow</span><span class="tag">pytest</span><span class="tag">REST APIs</span><span class="tag">HTTP 206 Byte Ranges</span><span class="tag">Kaggle</span><span class="tag">Hugging Face</span><span class="tag">Generative AI Evaluation</span></div></section><nav class="explore-more-nav container" aria-label="Explore Portfolio"><div class="explore-more-card"><p class="eyebrow">Continue Exploring</p><div class="explore-grid"><a href="projects.html" class="explore-link"><span class="explore-title">Technical Projects →</span><span class="explore-desc">Computer Vision, RAG &amp; Full-Stack Systems</span></a><a href="experience.html" class="explore-link"><span class="explore-title">Internship Experience →</span><span class="explore-desc">AwareWolf, Advfiction &amp; AlgoDevOpss</span></a><a href="automation-evidence.html" class="explore-link"><span class="explore-title">Automation Evidence Gallery →</span><span class="explore-desc">8 Documented n8n Systems</span></a><a href="client-work.html" class="explore-link"><span class="explore-title">Client Deployments →</span><span class="explore-desc">LMS, Corporate Portals &amp; Web APIs</span></a></div></div></nav></main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Rehan Juned Memon · Applied AI &amp; Software Engineering</p>
+      <div class="footer-links">
+        <a class="text-link" href="projects.html">Projects</a>
+        <a class="text-link" href="experience.html">Experience</a>
+        <a class="text-link" href="automation-evidence.html">Evidence Gallery</a>
+        <a class="text-link" href="credentials.html">Credentials</a>
+        <a class="text-link" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

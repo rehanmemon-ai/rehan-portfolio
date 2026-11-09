@@ -3,33 +3,59 @@ const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
-const form = document.getElementById('contactForm');
-const formNote = document.getElementById('formNote');
 const typingLine = document.getElementById('typingLine');
 const terminalOutput = document.getElementById('terminalOutput');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+const setTheme = (isDark) => {
+  root.classList.toggle('dark', isDark);
+  const nextTheme = isDark ? 'light' : 'dark';
+  themeIcon.textContent = nextTheme === 'light' ? 'Light' : 'Dark';
+  themeToggle.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
+};
 
 const initTheme = () => {
-  const saved = localStorage.getItem('theme');
+  let saved = null;
+  try {
+    saved = localStorage.getItem('theme');
+  } catch {
+    // Browsers may block storage; the system preference remains available.
+  }
   const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
   const useLight = saved ? saved === 'light' : prefersLight;
-  root.classList.toggle('dark', !useLight);
-  themeIcon.textContent = useLight ? '??' : '??';
+  setTheme(!useLight);
 };
 
 const toggleTheme = () => {
-  const isDark = root.classList.toggle('dark');
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  themeIcon.textContent = isDark ? '??' : '??';
+  const isDark = !root.classList.contains('dark');
+  setTheme(isDark);
+  try {
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  } catch {
+    // The selected theme still works for this page view.
+  }
 };
 
 themeToggle.addEventListener('click', toggleTheme);
 initTheme();
 
+const setMenuOpen = (open) => {
+  mobileMenu.classList.toggle('hidden', !open);
+  mobileMenuBtn.setAttribute('aria-expanded', String(open));
+  mobileMenuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+};
+
 mobileMenuBtn.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
+  setMenuOpen(mobileMenu.classList.contains('hidden'));
 });
 document.querySelectorAll('.mobile-link').forEach((link) => {
-  link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+  link.addEventListener('click', () => setMenuOpen(false));
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+    setMenuOpen(false);
+    mobileMenuBtn.focus();
+  }
 });
 
 const cmdSet = [
@@ -61,54 +87,16 @@ function runTerminal() {
   if (terminalOutput.children.length > 8) terminalOutput.innerHTML = '';
   setTimeout(runTerminal, 900);
 }
-setTimeout(runTerminal, 650);
-
-const counterObserver = new IntersectionObserver((entries, obs) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    entry.target.querySelectorAll('[data-counter]').forEach((el) => {
-      const target = Number(el.dataset.counter);
-      gsap.fromTo(el, { innerText: 0 }, {
-        innerText: target,
-        duration: 1.4,
-        snap: { innerText: 1 },
-        ease: 'power2.out'
-      });
-    });
-    obs.unobserve(entry.target);
-  });
-});
-counterObserver.observe(document.getElementById('hero'));
-
-if (window.gsap) {
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.from('header', { y: -80, opacity: 0, duration: 0.8, ease: 'power3.out' });
-
-  gsap.utils.toArray('.reveal').forEach((el, i) => {
-    gsap.to(el, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      delay: i * 0.02,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%'
-      }
-    });
-  });
-
-  // Smooth page transitions feel
-  gsap.from('main', { opacity: 0, duration: 0.7, ease: 'power1.out' });
-
-  // Text reveal for hero heading
-  gsap.from('#hero h1', { y: 30, opacity: 0, duration: 1, ease: 'power4.out' });
+if (reducedMotion.matches) {
+  typingLine.textContent = cmdSet[0].cmd;
+  terminalOutput.textContent = cmdSet[0].out;
+} else {
+  setTimeout(runTerminal, 650);
 }
 
 // Premium hover interaction: 3D tilt
 const tiltCards = document.querySelectorAll('[data-tilt]');
-tiltCards.forEach((card) => {
+if (!reducedMotion.matches) tiltCards.forEach((card) => {
   card.addEventListener('mousemove', (e) => {
     const r = card.getBoundingClientRect();
     const x = e.clientX - r.left;
@@ -125,7 +113,7 @@ tiltCards.forEach((card) => {
 // Live GitHub stats integration
 async function loadGitHubStats() {
   const container = document.getElementById('githubStats');
-  const username = 'rehanmemon';
+  const username = 'rehanmemon-ai';
   try {
     const res = await fetch(`https://api.github.com/users/${username}`);
     if (!res.ok) throw new Error('GitHub API unavailable');
@@ -135,20 +123,21 @@ async function loadGitHubStats() {
       ['Public Repos', data.public_repos ?? 0],
       ['Following', data.following ?? 0]
     ];
-    container.innerHTML = fields.map(([label, value]) => `
-      <div class="stat">
-        <p class="text-xs text-slate-500">${label}</p>
-        <p class="mt-1 text-2xl font-bold">${value}</p>
-      </div>
-    `).join('');
+    container.replaceChildren();
+    fields.forEach(([label, value]) => {
+      const card = document.createElement('div');
+      card.className = 'stat';
+      const caption = document.createElement('p');
+      caption.className = 'text-xs text-slate-500';
+      caption.textContent = label;
+      const number = document.createElement('p');
+      number.className = 'mt-1 text-2xl font-bold';
+      number.textContent = String(value);
+      card.append(caption, number);
+      container.append(card);
+    });
   } catch {
-    container.innerHTML = '<p class="text-sm text-rose-400">GitHub stats could not be loaded right now.</p>';
+    container.textContent = 'GitHub stats could not be loaded right now.';
   }
 }
 loadGitHubStats();
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  formNote.textContent = 'Thanks. Your message is captured in this demo UI. Connect Formspree/Web3Forms to make it live.';
-  form.reset();
-});

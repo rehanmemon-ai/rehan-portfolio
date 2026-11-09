@@ -1,7 +1,14 @@
 .blink { animation: blink 1.1s step-end infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
-.reveal { opacity: 0; transform: translateY(24px); }
+section[id] { scroll-margin-top: 5rem; }
+
+:focus-visible {
+  outline: 3px solid #0e7490;
+  outline-offset: 3px;
+}
+
+.dark :focus-visible { outline-color: #67e8f9; }
 
 .skill-card {
   border: 1px solid rgba(148, 163, 184, 0.35);
@@ -59,23 +66,6 @@
 .dark .mobile-link { color: rgb(226 232 240); }
 .mobile-link:hover { color: rgb(14 116 144); }
 .dark .mobile-link:hover { color: rgb(34 211 238); }
-
-.input {
-  width: 100%;
-  border-radius: 0.8rem;
-  border: 1px solid rgba(148, 163, 184, 0.4);
-  background: rgba(255,255,255,0.8);
-  padding: 0.8rem 0.95rem;
-  outline: none;
-}
-.dark .input {
-  border-color: rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.03);
-}
-.input:focus {
-  border-color: rgba(34, 211, 238, 0.45);
-  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
-}
 
 #githubStats .stat {
   border: 1px solid rgba(148, 163, 184, 0.35);

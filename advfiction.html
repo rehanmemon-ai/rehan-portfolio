@@ -1,15 +1,39 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Two concurrent Advfiction internship workstreams: collaborative web development and scoped AI automation.">
+  <meta name="description" content="Two concurrent engineering tracks at Advfiction: Full-Stack Web Development and AI Workflow Automation.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Advfiction experience — Rehan Memon">
-  <meta property="og:description" content="Two concurrent Advfiction internship workstreams: collaborative web development and scoped AI automation.">
-  <meta name="theme-color" content="#f7f7f2">
-  <title>Advfiction experience — Rehan Memon</title>
+  <meta property="og:title" content="Rehan Memon | Advfiction Experience">
+  <meta property="og:description" content="Two concurrent engineering tracks at Advfiction: Full-Stack Web Development and AI Workflow Automation.">
+  <meta property="og:url" content="https://rehanmemon-ai.github.io/rehan-portfolio/advfiction.html">
+  <meta property="og:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="canonical" href="https://rehanmemon-ai.github.io/rehan-portfolio/advfiction.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rehan Memon | Advfiction Experience">
+  <meta name="twitter:description" content="Two concurrent engineering tracks at Advfiction: Full-Stack Web Development and AI Workflow Automation.">
+  <meta name="twitter:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta name="theme-color" content="#0d171c">
+  <title>Rehan Memon | Advfiction Experience</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', '#f7f7f2');
+        }
+      } catch(e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="site.css">
   <script src="site.js" defer></script>
 </head>
@@ -17,13 +41,34 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Rehan Memon, home">RM<span>.</span></a>
-      <nav class="desktop-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
-      <div class="header-actions"><button id="themeToggle" class="icon-button" type="button" aria-label="Switch to dark theme"><span id="themeIcon" aria-hidden="true">Dark</span></button><button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button></div>
+      <a class="brand" href="index.html" aria-label="Rehan Memon, home"><svg class="brand-monogram" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0b1317"/><rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-opacity="0.85"/><path d="M14 47V17H25C29.5 17 32 19.5 32 24.5C32 29.5 29.5 32 25 32H14" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 32L32 47" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 47V17L44.5 31L52 17V47" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-text">REHAN MEMON</span></a>
+      <nav class="desktop-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions">
+        <a class="button button-small resume-nav-btn" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Switch to light theme"><span id="themeIcon" aria-hidden="true">Light</span></button>
+        <button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button>
+      </div>
     </div>
-    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden>
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a>
+      <div class="mobile-menu-cta">
+        <a class="button" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">View Resume (Google Doc) ↗</a>
+      </div>
+    </nav>
   </header>
-  <main id="main"><section class="page-intro container"><p class="eyebrow">Experience / Advfiction</p><h1>Two workstreams, one internship period</h1><p class="lead">Apr–Sep 2026 · Web Development Intern and AI Automation Developer Intern. The tracks overlap; they do not represent twice the experience duration.</p></section><section class="section container"><h2>Contribution overview</h2><div class="grid two"><article class="card"><p class="eyebrow">01 / Web development</p><h3>Interface and lead API work</h3><p>Contributed layouts to a collaborative website revamp and worked on an Express lead API with validation and Supabase insertion. The source review identifies specific commits; it does not prove sole ownership of the site or successful live contact submissions.</p><p class="meta">Team context: company web team. Other LMS and client-site assignments require project-specific attribution before publication.</p></article><article class="card"><p class="eyebrow">02 / AI automation</p><h3>n8n workflow stages</h3><p>Developed lead-capture and reporting stages using Apify, filtering, Google Sheets and PDF-oriented steps. Human-review, Telegram and publishing API canvases were prototypes or designs in the available evidence.</p><p class="meta">The screenshot index describes an Apify/Sheets editor test of five items. It does not establish production deployment, distinct workflow count or unique leads.</p></article></div></section><section class="section container"><h2>Automation flow and evidence</h2><ol class="flow"><li><strong>Collect</strong><span>Apify-based capture is described in the editor index.</span></li><li><strong>Transform</strong><span>Filter and map fields before a Google Sheets test append.</span></li><li><strong>Report</strong><span>PDF dossier stages are documented as workflow designs; successful end-to-end output remains unverified.</span></li><li><strong>Review</strong><span>Telegram approval and Meta publishing canvases are prototypes, not proven live publishing.</span></li></ol></section><section class="section container"><h2>Related work</h2><p class="prose">The collaborative LMS, company website and selected client deployments are grouped on the client work page. Automation experiments are described in their own collection, with evidence status attached to each stage.</p><a class="text-link" href="client-work.html">Explore client work →</a> · <a class="text-link" href="automation.html">Explore automation →</a></section><section class="section container"><h2>Boundaries</h2><p class="prose">No client records, unredacted workflow screenshots, credentials or private source links are shown. A derivative screenshot index is weaker than original exports and run logs. These would be needed for a deeper public technical walkthrough.</p></section></main>
-  <footer class="site-footer"><div class="container footer-inner"><p>Rehan Juned Memon · Applied AI &amp; software engineering</p><div><a class="text-link" href="projects.html">Projects</a><a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a></div></div></footer>
+  <main id="main"><section class="page-intro container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="experience.html">← Back to Commercial Experience</a></nav><p class="eyebrow">Experience / Advfiction Private Limited</p><h1>Two Concurrent Engineering Workstreams</h1><p class="lead">Apr–Sep 2026 · Web Development Intern &amp; AI Automation Developer Intern · Initial 3-month term (30 Apr–30 Jul 2026) extended for two additional months through 30 Sep 2026. Bridging frontend/backend web infrastructure with multi-node workflow orchestration.</p></section><section class="section container"><h2>Concurrent Engineering Tracks</h2><div class="grid two track-comparison"><article class="card track-card" id="web-track"><p class="eyebrow">Track 1 · Web Development</p><h3>Interface & API Engineering</h3><p>Collaborated with the web engineering team on core platforms:</p><ul class="prose-list"><li><strong>Advfiction Enterprise Lead LMS (<a class="text-link" href="client-work.html#advfiction-lms">Case Study</a>):</strong> Collaborated on Node/Express REST API endpoints handling public lead ingestion, input validation schemas, and Supabase PostgreSQL insertion.</li><li><strong>CORS & Security Policies:</strong> Configured multi-origin CORS enabling secure communication between Vercel-hosted frontends and Render backend services.</li><li><strong>Corporate Website Revamp (<a class="text-link" href="client-work.html#advfiction-website">Live Deployment</a>):</strong> Built responsive UI components and hooked contact forms directly into the backend lead pipeline. Live at <a class="text-link" href="https://advfiction.vercel.app/" target="_blank" rel="noopener noreferrer">advfiction.vercel.app ↗</a>.</li></ul><div class="card-actions"><a class="button button-small" href="client-work.html#advfiction-lms">Inspect LMS Client Deployment →</a><a class="button button-small button-quiet" href="https://advfiction.vercel.app/" target="_blank" rel="noopener noreferrer">Corporate Site ↗</a></div></article><article class="card track-card" id="automation-track"><p class="eyebrow">Track 2 · AI &amp; Automation</p><h3>n8n Workflow Orchestration</h3><p>Engineered automated business pipelines using n8n and AI APIs:</p><ul class="prose-list"><li><strong>Map-Based Scraping:</strong> Automated Apify map scraper actor orchestration and Google Sheets dataset synchronization with confirmed editor runs.</li><li><strong>Company Research Engine:</strong> Built batch-processing workflows querying PostgreSQL, checking deduplication, and enriching profiles via AI prompts.</li><li><strong>Document Dossier Pipelines:</strong> Prototyped automated PDF report generation from spreadsheet records.</li><li><strong>Specialized Automation Canvases:</strong> Built Instagram Graph API publishing, Telegram bot approvals, and news prompt generators.</li></ul><div class="card-actions"><a class="button button-small" href="automation.html">Featured Automation Workflows →</a><a class="button button-small button-accent-outline" href="automation-evidence.html">View 8-Workflow Evidence Gallery →</a></div></article></div></section><section class="section container"><h2>Client Boundary &amp; Workstream Integrity</h2><div class="prose"><p><strong>Important Clarification on Project Attribution:</strong></p><ul class="prose-list"><li><strong>Advfiction Engagements:</strong> Advfiction work was strictly divided into the internal Enterprise Lead LMS and the Advfiction Corporate Website Revamp, alongside internal n8n automation pipelines.</li><li><strong>Independent Client Work:</strong> External projects such as the <em>LMS Girls Higher Secondary School Portal</em> and <em>Marthandam Star Honey Platform</em> were delivered as separate independent client deployments and are not corporate properties of Advfiction.</li><li><strong>Personal Portfolio:</strong> This personal engineering portfolio is an independent open-source publication and is not classified as commercial client work.</li></ul></div></section><section class="section container"><h2>Technical Stack Deployed</h2><div class="tags-row"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">n8n</span><span class="tag">Apify Actors</span><span class="tag">REST API</span><span class="tag">Vercel</span><span class="tag">Render</span><span class="tag">Google Sheets API</span></div></section><nav class="explore-more-nav container" aria-label="Explore Portfolio"><div class="explore-more-card"><p class="eyebrow">Continue Exploring</p><div class="explore-grid"><a href="projects.html" class="explore-link"><span class="explore-title">Technical Projects →</span><span class="explore-desc">Computer Vision, RAG &amp; Full-Stack Systems</span></a><a href="experience.html" class="explore-link"><span class="explore-title">Internship Experience →</span><span class="explore-desc">AwareWolf, Advfiction &amp; AlgoDevOpss</span></a><a href="automation-evidence.html" class="explore-link"><span class="explore-title">Automation Evidence Gallery →</span><span class="explore-desc">8 Documented n8n Systems</span></a><a href="client-work.html" class="explore-link"><span class="explore-title">Client Deployments →</span><span class="explore-desc">LMS, Corporate Portals &amp; Web APIs</span></a></div></div></nav></main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Rehan Juned Memon · Applied AI &amp; Software Engineering</p>
+      <div class="footer-links">
+        <a class="text-link" href="projects.html">Projects</a>
+        <a class="text-link" href="experience.html">Experience</a>
+        <a class="text-link" href="automation-evidence.html">Evidence Gallery</a>
+        <a class="text-link" href="credentials.html">Credentials</a>
+        <a class="text-link" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

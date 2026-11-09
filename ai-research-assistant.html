@@ -1,15 +1,39 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An in-progress document retrieval assistant with Chroma, citations and incomplete end-to-end evaluation.">
+  <meta name="description" content="Document question-answering prototype featuring token-aware text chunking, Chroma dense vector indexing, and grounded retrieval.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI Research Assistant — case study">
-  <meta property="og:description" content="An in-progress document retrieval assistant with Chroma, citations and incomplete end-to-end evaluation.">
-  <meta name="theme-color" content="#f7f7f2">
-  <title>AI Research Assistant — case study</title>
+  <meta property="og:title" content="Rehan Memon | AI Research Assistant">
+  <meta property="og:description" content="Document question-answering prototype featuring token-aware text chunking, Chroma dense vector indexing, and grounded retrieval.">
+  <meta property="og:url" content="https://rehanmemon-ai.github.io/rehan-portfolio/ai-research-assistant.html">
+  <meta property="og:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="canonical" href="https://rehanmemon-ai.github.io/rehan-portfolio/ai-research-assistant.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rehan Memon | AI Research Assistant">
+  <meta name="twitter:description" content="Document question-answering prototype featuring token-aware text chunking, Chroma dense vector indexing, and grounded retrieval.">
+  <meta name="twitter:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta name="theme-color" content="#0d171c">
+  <title>Rehan Memon | AI Research Assistant</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', '#f7f7f2');
+        }
+      } catch(e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="site.css">
   <script src="site.js" defer></script>
 </head>
@@ -17,13 +41,34 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Rehan Memon, home">RM<span>.</span></a>
-      <nav class="desktop-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
-      <div class="header-actions"><button id="themeToggle" class="icon-button" type="button" aria-label="Switch to dark theme"><span id="themeIcon" aria-hidden="true">Dark</span></button><button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button></div>
+      <a class="brand" href="index.html" aria-label="Rehan Memon, home"><svg class="brand-monogram" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0b1317"/><rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-opacity="0.85"/><path d="M14 47V17H25C29.5 17 32 19.5 32 24.5C32 29.5 29.5 32 25 32H14" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 32L32 47" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 47V17L44.5 31L52 17V47" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-text">REHAN MEMON</span></a>
+      <nav class="desktop-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions">
+        <a class="button button-small resume-nav-btn" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Switch to light theme"><span id="themeIcon" aria-hidden="true">Light</span></button>
+        <button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button>
+      </div>
     </div>
-    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden>
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a>
+      <div class="mobile-menu-cta">
+        <a class="button" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">View Resume (Google Doc) ↗</a>
+      </div>
+    </nav>
   </header>
-  <main id="main"><section class="page-intro container"><p class="eyebrow">Case study / Retrieval</p><h1>AI Research Assistant</h1><p class="lead">An in-progress document question-answering system. Its current implementation and status are separate from the private Client Research Assistant Bot.</p></section><section class="section container"><h2>My role and scope</h2><p class="prose">The public repository contains Python ingestion, chunking, embedding, Chroma retrieval and citation-mapping modules, alongside a FastAPI backend. It remains in progress. The inspected dependency list does not establish LangChain use, so that technology is not claimed here.</p></section><section class="section container"><h2>Processing architecture</h2><figure class="diagram"><img src="diagrams/research-pipeline.svg" width="1000" height="172" loading="lazy" alt="Documents are parsed, chunked, embedded in Chroma, retrieved and mapped to citations."><figcaption>Implemented components in the public repository; the complete service path still needs end-to-end validation.</figcaption></figure><ol class="flow"><li><strong>Ingest</strong><span>Parse supported documents and normalize text.</span></li><li><strong>Chunk</strong><span>Split content into retrievable sections.</span></li><li><strong>Embed &amp; store</strong><span>Create embeddings and maintain an embedded Chroma vector index.</span></li><li><strong>Retrieve &amp; cite</strong><span>Select relevant chunks and map answers back to source references.</span></li><li><strong>Evaluate</strong><span>End-to-end quality and CI coverage remain incomplete in the reviewed evidence.</span></li></ol></section><section class="section container"><h2>Implemented and planned</h2><div class="grid two"><article class="card"><h3>Implemented in source</h3><p>Document parsing and normalization, token-aware chunking, embedding and Chroma storage, workspace-scoped retrieval, citation mapping and API modules.</p></article><article class="card"><h3>Still to validate</h3><p>A complete ingestion-to-answer run, citation accuracy, answer quality, deployment readiness and repeatable integration coverage remain open.</p></article></div></section><section class="section container"><h2>Validation and limits</h2><p class="prose">Components and tests exist, but mocked tests are not proof of a fully exercised ingestion-to-answer pipeline. No production deployment, latency, answer-quality score or reduced analyst time is claimed. The separate local pgvector/MinIO project is not represented here.</p></section><section class="section container"><h2>Source</h2><a class="button" href="https://github.com/rehanmemon-ai/Assistant_Bot-Research" target="_blank" rel="noopener noreferrer">Inspect the public repository ↗</a></section></main>
-  <footer class="site-footer"><div class="container footer-inner"><p>Rehan Juned Memon · Applied AI &amp; software engineering</p><div><a class="text-link" href="projects.html">Projects</a><a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a></div></div></footer>
+  <main id="main"><section class="page-intro container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="projects.html#pillar-ai">← Back to Pillar 1: Applied AI &amp; Machine Learning</a></nav><p class="eyebrow">Pillar 1 · Applied AI &amp; Systems</p><h1>AI Research Assistant</h1><p class="lead">A modular retrieval-augmented generation (RAG) prototype engineered to index large document collections into a dense vector database and generate citation-grounded answers.</p></section><section class="section container"><h2>RAG Ingestion &amp; Retrieval Pipeline</h2><p class="prose">The system operates as an end-to-end Python microservice orchestrating document parsing, token-aware chunking, vector embedding, and similarity search:</p><figure class="diagram"><img src="diagrams/research-pipeline.svg" width="1000" height="172" loading="lazy" alt="Document ingestion, token-aware chunking, Chroma vector embedding, similarity search, prompt synthesis with source citations."><figcaption>RAG processing sequence: document ingestion, token-aware chunking, dense vector embedding in Chroma, and citation-grounded synthesis.</figcaption></figure><ol class="flow"><li><div class="flow-step-num">1. Document Ingestion</div><div class="flow-step-body">Parses raw PDF, Markdown, and text files, stripping formatting noise and extracting structured section hierarchies.</div></li><li><div class="flow-step-num">2. Token-Aware Chunking</div><div class="flow-step-body">Splits long-form documents into semantically coherent chunks (500 tokens with 50-token overlap) to prevent boundary context clipping.</div></li><li><div class="flow-step-num">3. Chroma Dense Indexing</div><div class="flow-step-body">Generates dense mathematical embeddings for each chunk and indexes them into a persistent Chroma vector database collection.</div></li><li><div class="flow-step-num">4. Similarity Retrieval</div><div class="flow-step-body">Executes cosine distance search against indexed embeddings to retrieve the top-k most relevant text chunks for a given query.</div></li><li><div class="flow-step-num">5. Grounded Prompt Synthesis</div><div class="flow-step-body">Structures the retrieved context chunks into an augmented prompt harness, enforcing explicit inline source citations to prevent hallucinations.</div></li></ol></section><section class="section container"><h2>Harness &amp; Engineering Implementation</h2><div class="prose"><p>Engineered with a clean Python service architecture: modular ingestion workers, decoupled vector storage abstractions, and a FastAPI harness exposing query and document upload endpoints.</p></div><div class="actions"><a class="button" href="https://github.com/rehanmemon-ai/Assistant_Bot-Research" target="_blank" rel="noopener noreferrer">View GitHub Repository ↗</a><a class="button button-quiet" href="projects.html#pillar-ai">Explore other AI projects →</a></div></section><nav class="explore-more-nav container" aria-label="Explore Portfolio"><div class="explore-more-card"><p class="eyebrow">Continue Exploring</p><div class="explore-grid"><a href="projects.html" class="explore-link"><span class="explore-title">Technical Projects →</span><span class="explore-desc">Computer Vision, RAG &amp; Full-Stack Systems</span></a><a href="experience.html" class="explore-link"><span class="explore-title">Internship Experience →</span><span class="explore-desc">AwareWolf, Advfiction &amp; AlgoDevOpss</span></a><a href="automation-evidence.html" class="explore-link"><span class="explore-title">Automation Evidence Gallery →</span><span class="explore-desc">8 Documented n8n Systems</span></a><a href="client-work.html" class="explore-link"><span class="explore-title">Client Deployments →</span><span class="explore-desc">LMS, Corporate Portals &amp; Web APIs</span></a></div></div></nav></main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Rehan Juned Memon · Applied AI &amp; Software Engineering</p>
+      <div class="footer-links">
+        <a class="text-link" href="projects.html">Projects</a>
+        <a class="text-link" href="experience.html">Experience</a>
+        <a class="text-link" href="automation-evidence.html">Evidence Gallery</a>
+        <a class="text-link" href="credentials.html">Credentials</a>
+        <a class="text-link" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
