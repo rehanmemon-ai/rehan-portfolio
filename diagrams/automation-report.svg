@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="172" viewBox="0 0 1000 172" role="img" aria-labelledby="title desc">
-  <title id="title">Automated Lead Dossier &amp; PDF Report Architecture</title>
-  <desc id="desc">Spreadsheet row or subworkflow event trigger, format and filter data, dynamic HTML document compilation, PDF file export, and automated email dispatch.</desc>
+  <title id="title">Lead Brief Document Flow</title>
+  <desc id="desc">Spreadsheet row or subworkflow trigger, format and filter data, create a Google Doc, export PDF, then route to a Gmail notification node. The diagram does not indicate successful execution.</desc>
   <style>
     .bg { fill: #f1f7f4; }
     .box { fill: #ffffff; stroke: #8ab6b2; stroke-width: 2px; }
@@ -24,9 +24,9 @@
   <g class="label">
     <text x="95" y="79">Sheet event</text><text x="95" y="103">or subflow</text>
     <text x="295" y="79">Format &amp;</text><text x="295" y="103">filter data</text>
-    <text x="495" y="79">Dynamic HTML</text><text x="495" y="103">template</text>
-    <text x="695" y="79">Compile</text><text x="695" y="103">PDF dossier</text>
-    <text x="900" y="79">Automated</text><text x="900" y="103">dispatch</text>
+    <text x="495" y="79">Create</text><text x="495" y="103">Google Doc</text>
+    <text x="695" y="79">Export</text><text x="695" y="103">PDF</text>
+    <text x="900" y="79">Gmail</text><text x="900" y="103">node</text>
   </g>
   <g class="arrow">
     <path d="M180 86h28m-9-9 9 9-9 9"/>

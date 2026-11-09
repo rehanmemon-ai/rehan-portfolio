@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="172" viewBox="0 0 1000 172" role="img" aria-labelledby="title desc">
   <title id="title">Company Research &amp; AI Enrichment Architecture</title>
-  <desc id="desc">PostgreSQL candidate retrieval, batch chunking, deduplication check, search query with fallback, LLM enrichment request, and PostgreSQL storage loop.</desc>
+  <desc id="desc">PostgreSQL retrieval, batching, deduplication check, search fallback, AI request, and PostgreSQL save node. Downstream completion was not shown in the editor capture.</desc>
   <style>
     .bg { fill: #f1f7f4; }
     .box { fill: #ffffff; stroke: #8ab6b2; stroke-width: 2px; }
@@ -27,8 +27,8 @@
     <text x="239" y="79">Fetch from</text><text x="239" y="101">PostgreSQL</text>
     <text x="398" y="79">Batch &amp;</text><text x="398" y="101">deduplicate</text>
     <text x="557" y="79">Search API</text><text x="557" y="101">&amp; fallback</text>
-    <text x="716" y="79">AI enrichment</text><text x="716" y="101">prompt</text>
-    <text x="897" y="79">Database save</text><text x="897" y="101">&amp; loop</text>
+    <text x="716" y="79">AI request</text><text x="716" y="101">node</text>
+    <text x="897" y="79">Database save</text><text x="897" y="101">node</text>
   </g>
   <g class="arrow">
     <path d="M149 86h19m-8-8 8 8-8 8"/>

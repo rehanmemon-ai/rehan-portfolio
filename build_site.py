@@ -43,9 +43,10 @@ def breadcrumb(href, label):
     return f'<nav class="breadcrumb" aria-label="Breadcrumb"><a href="{escape(href, quote=True)}">← Back to {escape(label)}</a></nav>'
 
 
-def intro(label, title, summary, back_href="", back_label=""):
+def intro(label, title, summary, back_href="", back_label="", css_class=""):
     back_html = breadcrumb(back_href, back_label) if back_href and back_label else ""
-    return f'<section class="page-intro container">{back_html}{eyebrow(label)}<h1>{escape(title)}</h1><p class="lead">{escape(summary)}</p></section>'
+    classes = f"page-intro container {css_class}".strip()
+    return f'<section class="{classes}">{back_html}{eyebrow(label)}<h1>{escape(title)}</h1><p class="lead">{escape(summary)}</p></section>'
 
 
 def section(title, body, sid="", extra_attrs=""):
@@ -62,7 +63,7 @@ def explore_more(current=""):
     items = [
         ("projects.html", "Technical Projects →", "Computer Vision, RAG & Full-Stack Systems"),
         ("experience.html", "Internship Experience →", "AwareWolf, Advfiction & AlgoDevOpss"),
-        ("automation-evidence.html", "Automation Evidence Gallery →", "8 Documented n8n Systems"),
+        ("automation-evidence.html", "Automation Workflow Gallery →", "Selected n8n canvas examples"),
         ("client-work.html", "Client Deployments →", "LMS, Corporate Portals & Web APIs"),
         ("credentials.html", "Credential Library →", "ISRO, Nasscom, PW Skills & Academic Certs"),
         ("contact.html", "Get In Touch →", "Direct Email, LinkedIn & GitHub"),
@@ -203,41 +204,41 @@ PROJECTS = [
     {
         "name": "Apify-to-Sheets Lead Pipeline",
         "pillar": "AI & Workflow Automation",
-        "category": "Autonomous Scraping & Ingestion",
-        "status": "Editor-Tested Pipeline",
-        "summary": "Automated data harvesting and ingestion workflow in n8n. Orchestrates Apify map-scraper actors, extracts dataset records, executes attribute-based deduplication and filtering, and appends structured leads into Google Sheets.",
+        "category": "Map Data Ingestion",
+        "status": "Editor Run Shown",
+        "summary": "An n8n canvas connects an Apify map scraper to dataset retrieval, a filter, and Google Sheets row insertion. A private editor capture shows five items at the final append node.",
         "route": "automation.html#map-lead-capture",
         "repo": "",
         "live": "",
         "evidence": "automation-evidence.html#wf-maps-scraper",
-        "highlight": "Complete multi-node execution flow verified in n8n canvas editor with confirmed data pass-through and live screenshots.",
+        "highlight": "One small editor run is visible; ongoing deployment and larger-scale output are not established.",
         "tags": ["n8n", "Apify Actors", "Google Sheets API", "Data Filtering", "ETL"],
     },
     {
-        "name": "Company Research & AI Enrichment Engine",
+        "name": "Company Research & AI Enrichment Canvas",
         "pillar": "AI & Workflow Automation",
-        "category": "Database Ingestion & LLM Enrichment",
-        "status": "Partially Executed Pipeline",
-        "summary": "Multi-stage enrichment workflow querying PostgreSQL company records, batching input rows, executing deduplication checks, calling external search APIs with fallback branches, and formatting records for AI-assisted profiling.",
+        "category": "Database Research Canvas",
+        "status": "Partial Editor Run",
+        "summary": "A PostgreSQL research canvas fetches rows, batches them, checks prior processing and routes search results toward an AI request and database save step.",
         "route": "automation.html#company-research",
         "repo": "",
         "live": "",
         "evidence": "automation-evidence.html#wf-postgres-research",
-        "highlight": "PostgreSQL batch processing with conditional API search fallbacks and AI enrichment stages verified in canvas.",
+        "highlight": "Early nodes completed in the editor; the AI request shows a warning and the save step is not shown completing.",
         "tags": ["n8n", "PostgreSQL", "AI Prompts", "SerpApi", "Batch Processing"],
     },
     {
-        "name": "Automated Lead Dossier & PDF Generator",
+        "name": "Lead Brief & PDF Workflow Design",
         "pillar": "AI & Workflow Automation",
-        "category": "Document Automation & Dispatch",
+        "category": "Document Automation Design",
         "status": "Design-Stage Pipeline",
-        "summary": "Automated intelligence reporting pipeline transforming tabular lead records into formatted PDF dossiers. Formats record fields, populates structured document templates, compiles PDF exports, and configures automated email routing.",
+        "summary": "Two n8n canvas views show a sheet-triggered lead brief: format fields, create a Google Doc, export a PDF and route a Gmail notification. A later view adds a filter.",
         "route": "automation.html#lead-report",
         "repo": "",
         "live": "",
         "evidence": "automation-evidence.html#wf-lead-dossier",
-        "highlight": "End-to-end document compilation flow converting spreadsheet data into structured executive briefs.",
-        "tags": ["n8n", "PDF Generation", "HTML Templating", "Google Docs API", "Gmail API"],
+        "highlight": "The captures show design/configuration, without a completed PDF or delivered email.",
+        "tags": ["n8n", "Google Sheets", "Google Docs", "PDF Export", "Gmail"],
     },
 ]
 
@@ -992,7 +993,7 @@ PAGES["about.html"] = (
         + link("automation.html#company-research", "PostgreSQL Batch ETL", "skill-chip")
         + link("automation.html#lead-report", "PDF Compilation", "skill-chip")
         + link("automation-evidence.html", "Webhook Handlers", "skill-chip")
-        + link("automation-evidence.html", "8 n8n Architecture Systems", "skill-chip")
+        + link("automation-evidence.html", "n8n Canvas Examples", "skill-chip")
         + '</div>'
         '</div>'
         '<div class="skill-card">'
@@ -1100,16 +1101,16 @@ PAGES["advfiction.html"] = (
         '<article class="card track-card" id="automation-track">'
         + eyebrow("Track 2 · AI & Automation")
         + '<h3>n8n Workflow Orchestration</h3>'
-        '<p>Engineered automated business pipelines using n8n and AI APIs:</p>'
+        '<p>Worked with n8n canvases and API integrations during the automation track. The linked examples separate visible editor tests from designs:</p>'
         '<ul class="prose-list">'
-        '<li><strong>Map-Based Scraping:</strong> Automated Apify map scraper actor orchestration and Google Sheets dataset synchronization with confirmed editor runs.</li>'
-        '<li><strong>Company Research Engine:</strong> Built batch-processing workflows querying PostgreSQL, checking deduplication, and enriching profiles via AI prompts.</li>'
-        '<li><strong>Document Dossier Pipelines:</strong> Prototyped automated PDF report generation from spreadsheet records.</li>'
-        '<li><strong>Specialized Automation Canvases:</strong> Built Instagram Graph API publishing, Telegram bot approvals, and news prompt generators.</li>'
+        '<li><strong>Map-Based Scraping:</strong> An Apify-to-Sheets canvas shows a completed editor run for five items.</li>'
+        '<li><strong>Company Research:</strong> A PostgreSQL/search canvas shows partial execution; downstream AI and save steps are not shown completing.</li>'
+        '<li><strong>Lead Brief Design:</strong> Sheet-to-Google-Docs/PDF canvases show a configured route, without proof of document delivery.</li>'
+        '<li><strong>Other Designs:</strong> Private canvas views show scheduled publishing, Telegram review and AI-assisted content stages; live use is unverified.</li>'
         '</ul>'
         '<div class="card-actions">'
         + link("automation.html", "Featured Automation Workflows →", "button button-small")
-        + link("automation-evidence.html", "View 8-Workflow Evidence Gallery →", "button button-small button-accent-outline")
+        + link("automation-evidence.html", "View Workflow Gallery →", "button button-small button-accent-outline")
         + '</div>'
         '</article>'
         '</div>',
@@ -1261,14 +1262,15 @@ PAGES["projects.html"] = (
     "Comprehensive technical catalog across Applied AI & ML, Selected Client Deployments, and AI Workflow Automation.",
     intro(
         "Projects",
-        "Three Engineering Pillars",
-        "A balanced showcase spanning applied machine learning baselines, production client deployments, and autonomous workflow engineering.",
+        "Selected Projects",
+        "Explore 12 projects across applied AI, client deployments and workflow automation.",
+        css_class="page-intro-compact",
     )
-    + '<section class="section container">'
-    '<div class="filter-pills" aria-label="Jump to engineering pillar">'
-    '<a class="filter-pill" href="#pillar-ai">1. Applied AI & Machine Learning (4) ↓</a>'
-    '<a class="filter-pill" href="#pillar-client">2. Selected Client Deployments (5) ↓</a>'
-    '<a class="filter-pill" href="#pillar-automation">3. AI & Workflow Automation (3) ↓</a>'
+    + '<section class="section section-directory-tools container">'
+    '<div class="filter-pills" role="group" aria-label="Filter projects by engineering pillar">'
+    '<button type="button" class="filter-pill" data-filter-pillar-button="Applied AI & Machine Learning" aria-pressed="false" aria-controls="projectResults">1. Applied AI & Machine Learning (4)</button>'
+    '<button type="button" class="filter-pill" data-filter-pillar-button="Selected Client Deployments" aria-pressed="false" aria-controls="projectResults">2. Selected Client Deployments (5)</button>'
+    '<button type="button" class="filter-pill" data-filter-pillar-button="AI & Workflow Automation" aria-pressed="false" aria-controls="projectResults">3. AI & Workflow Automation (3)</button>'
     '</div>'
     '<div class="filter-bar">'
     '<label for="projectSearch">Search all 12 projects</label>'
@@ -1281,9 +1283,9 @@ PAGES["projects.html"] = (
     '<option>AI & Workflow Automation</option>'
     '</select>'
     '</div>'
-    '<p class="filter-count" data-filter-count aria-live="polite">12 projects shown</p>'
+    '<p class="filter-count" data-filter-count role="status" aria-live="polite" aria-atomic="true">12 projects shown</p>'
     '</section>'
-    '<div data-filter-list data-noun-singular="project" data-noun-plural="projects">'
+    '<div id="projectResults" data-filter-list data-noun-singular="project" data-noun-plural="projects">'
     + section(
         "Pillar 1: Applied AI & Machine Learning Systems",
         '<p class="section-lead">Algorithmic baselines evaluated under rigorous evaluation protocols and reproducible benchmarks.</p>'
@@ -1305,14 +1307,14 @@ PAGES["projects.html"] = (
     )
     + section(
         "Pillar 3: AI & Workflow Automation Systems",
-        '<p class="section-lead">Autonomous pipelines orchestrated in n8n integrating web scraping actors, PostgreSQL databases, AI prompts, and automated reporting.</p>'
+        '<p class="section-lead">Selected n8n canvases covering map-data capture, company research and document automation. Editor-test and design status are shown on each card.</p>'
         '<div class="grid two">'
         + "".join(project_card(p) for p in PROJECTS if p["pillar"] == "AI & Workflow Automation")
         + '</div>'
         '<p class="section-end">'
         + link("automation.html", "Explore Featured Automation Case Studies →")
         + ' · '
-        + link("automation-evidence.html", "View Dedicated 8-Workflow Evidence Gallery →")
+        + link("automation-evidence.html", "View Selected Workflow Examples →")
         + '</p>',
         "pillar-automation",
         'data-pillar-section',
@@ -1537,319 +1539,151 @@ PAGES["client-work.html"] = (
 PAGES["automation.html"] = (
     "Automation",
     "Rehan Memon | Automation Systems",
-    "Multi-stage autonomous pipelines in n8n integrating web scrapers, PostgreSQL, AI APIs, and PDF reporting.",
+    "Selected n8n workflow examples from lead capture, research, and document automation.",
     intro(
         "Pillar 3 · Workflow Automation",
-        "Autonomous Data & AI Pipelines",
-        "Multi-stage orchestration architectures built in n8n, connecting automated web scraping actors, relational databases, AI enrichment prompts, and document compilation services.",
+        "n8n Automation Work",
+        "Editor-tested and design-stage n8n examples from my Advfiction internship archive, with execution limits stated for each.",
         "projects.html#pillar-automation",
         "Pillar 3: AI & Workflow Automation",
+        "page-intro-compact",
     )
-    + '<section class="section container">'
-    '<div class="status-banner">'
-    '<p class="eyebrow">Curated Canvas Evidence</p>'
-    '<h2>Looking for All 8 Documented Workflow Systems?</h2>'
-    '<p class="status-desc">In addition to the 3 featured primary pipelines below, inspect our complete dedicated gallery featuring 12 original n8n canvas screenshots across 8 distinct automation families (configured pipelines & architectural blueprints).</p>'
-    '<div class="card-actions" style="margin-top: 1rem;">'
-    + link("automation-evidence.html", "Open 8-Workflow Evidence Gallery →", "button")
-    + '</div>'
-    '</div>'
-    '</section>'
     + section(
-        "Map-Based Lead Capture Pipeline",
+        "Map-based lead capture",
         '<article class="card" id="map-lead-capture">'
         '<div class="card-top">'
-        + eyebrow("01 / Lead Capture & Ingestion")
-        + badge("Configured Canvas")
+        + eyebrow("01 / Lead Capture")
+        + badge("Editor run shown")
         + '</div>'
-        '<h3>Apify Map Scraper to Google Sheets Pipeline</h3>'
-        '<p class="prose"><strong>Business Objective:</strong> Automate the extraction, sanitization, and structured storage of targeted business records from online map directories without manual copy-paste overhead.</p>'
-        '<figure class="diagram">'
-        '<img src="diagrams/automation-map-to-sheet.svg" width="1000" height="172" loading="lazy" alt="Illustrative architecture: Map scraper trigger, Apify actor, dataset retrieval, filter node, Google Sheets append.">'
-        '<figcaption>Illustrative architecture diagram: Apify actor extraction, attribute filtering, and automated Google Sheets row insertion.</figcaption>'
-        '</figure>'
-        '<ol class="flow">'
-        + case_row("1. Trigger", "Maps Scraper initiation node starts the scheduled or manual extraction run.")
-        + case_row("2. Extraction", "Calls an Apify actor specialized in geographical business directory scraping.")
-        + case_row("3. Ingestion", "Retrieves returned dataset items containing business name, address, contact coordinates, and category metadata.")
-        + case_row("4. Transformation", "Executes regex validation and attribute filtering to remove incomplete or duplicate entries.")
-        + case_row("5. Persistence", "Google Sheets node appends clean records into structured operational spreadsheets.")
-        + '</ol>'
-        '<p class="card-highlight"><strong>Evidence Status:</strong> Configured n8n workflow architecture demonstrating node structure, data transformations, and Google Sheets field mapping.</p>'
+        '<h3>Apify Map Scraper to Google Sheets</h3>'
+        '<p class="prose">A map-scraping canvas connects an Apify actor to dataset retrieval, a filter and a Google Sheets append step. The private editor capture shows green completion indicators through the final node, with five items displayed as appended.</p>'
+        '<figure class="diagram"><img src="diagrams/automation-map-to-sheet.svg" width="1000" height="172" loading="lazy" alt="Illustrative sequence: map scraper, Apify actor, dataset retrieval, filter and Google Sheets append."><figcaption>Public diagram of the visible node sequence. The original canvas capture remains private.</figcaption></figure>'
+        '<p class="card-highlight"><strong>Evidence limit:</strong> The screenshot supports an editor run for this small sample. It does not establish an active schedule, production deployment or a larger lead count.</p>'
         '</article>',
     )
     + section(
-        "Company Research & AI Enrichment Engine",
+        "Company research and enrichment",
         '<article class="card" id="company-research">'
         '<div class="card-top">'
-        + eyebrow("02 / Data Enrichment & LLM Processing")
-        + badge("Configured ETL Blueprint")
+        + eyebrow("02 / Research Pipeline")
+        + badge("Partial editor run")
         + '</div>'
-        '<h3>High-Volume PostgreSQL & AI Research Pipeline</h3>'
-        '<p class="prose"><strong>Business Objective:</strong> Enrich high-volume company databases with verified business intelligence, executive contacts, and domain classification using external search and AI reasoning.</p>'
-        '<figure class="diagram">'
-        '<img src="diagrams/automation-research.svg" width="1000" height="172" loading="lazy" alt="Illustrative architecture: PostgreSQL fetch, batch chunking, deduplication, search query with fallback, AI prompt, PostgreSQL save.">'
-        '<figcaption>Illustrative architecture diagram: Relational database fetching, batch chunking, search queries with fallbacks, and AI enrichment loops.</figcaption>'
-        '</figure>'
-        '<ol class="flow">'
-        + case_row("1. Data Retrieval", "Queries candidate company rows from a PostgreSQL database table staging input records.")
-        + case_row("2. Batching & Dedup", "Splits large datasets into manageable batches (e.g., 30 records/batch) and executes deduplication checks against existing indices.")
-        + case_row("3. Search Query", "Dispatches search queries to identify official company domains and public profiles, with built-in SerpApi fallback routing.")
-        + case_row("4. AI Synthesis", "Sends structured prompts to an LLM API to extract key industry tags, company size, and executive summaries.")
-        + case_row("5. Storage Loop", "Prepares enriched attributes for batch updates back into the relational database.")
-        + '</ol>'
-        '<p class="card-highlight"><strong>Evidence Status:</strong> Configured canvas demonstrating PostgreSQL batch query splitting, memory buffer parameters, and SerpApi/LLM prompt nodes.</p>'
+        '<h3>PostgreSQL Research with Search Fallback</h3>'
+        '<p class="prose">The captured canvas fetches company rows from PostgreSQL, splits a batch, checks prior processing and routes a search request toward an AI request and database save step.</p>'
+        '<figure class="diagram"><img src="diagrams/automation-research.svg" width="1000" height="172" loading="lazy" alt="Illustrative sequence: PostgreSQL fetch, batching, deduplication, search fallback, AI request and database save."><figcaption>Illustrative path through the visible canvas; downstream completion is unverified.</figcaption></figure>'
+        '<p class="card-highlight"><strong>Evidence limit:</strong> The editor shows early nodes and a search branch completing, followed by a warning at the AI request. It does not prove that the batch was enriched or saved.</p>'
         '</article>',
     )
     + section(
-        "Automated Lead Dossier & PDF Compilation",
+        "Lead report generation",
         '<article class="card" id="lead-report">'
         '<div class="card-top">'
-        + eyebrow("03 / Document Generation & Dispatch")
-        + badge("Design-Stage Pipeline")
+        + eyebrow("03 / Document Automation")
+        + badge("Design shown")
         + '</div>'
-        '<h3>Dynamic HTML & PDF Intelligence Dossier Flow</h3>'
-        '<p class="prose"><strong>Business Objective:</strong> Transform raw tabular lead rows into polished executive briefings and downloadable PDF dossiers for commercial sales teams.</p>'
-        '<figure class="diagram">'
-        '<img src="diagrams/automation-report.svg" width="1000" height="172" loading="lazy" alt="Illustrative architecture: Spreadsheet event trigger, data formatting, HTML template compilation, PDF export, automated dispatch.">'
-        '<figcaption>Illustrative architecture diagram: Event-driven document generation converting spreadsheet rows into compiled PDF reports.</figcaption>'
-        '</figure>'
-        '<ol class="flow">'
-        + case_row("1. Event Trigger", "Monitors Google Sheets for newly approved lead status rows or subworkflow execution signals.")
-        + case_row("2. Template Population", "Maps lead attributes into dynamic HTML document templates with custom styling and branding.")
-        + case_row("3. PDF Compilation", "Routes compiled HTML through a document-rendering service to generate standardized PDF files.")
-        + case_row("4. Notification & Dispatch", "Dispatches the generated PDF to team members via automated email notifications.")
-        + '</ol>'
+        '<h3>Google Sheets to PDF Lead Brief</h3>'
+        '<p class="prose">Two private canvas views show a lead-row trigger, data formatting, Google Docs creation and text insertion, PDF export through Drive, and a Gmail notification. The later view adds a filter before document creation.</p>'
+        '<figure class="diagram"><img src="diagrams/automation-report.svg" width="1000" height="172" loading="lazy" alt="Illustrative sequence: spreadsheet row, formatting and filter, document creation, PDF export and email notification."><figcaption>Public abstraction of the captured document workflow.</figcaption></figure>'
+        '<p class="card-highlight"><strong>Evidence limit:</strong> The screenshots show design/configuration, not a completed PDF or delivered email.</p>'
         '</article>',
     )
     + section(
-        "Explore All 8 Automation Workflow Families",
-        '<p class="prose">Beyond the 3 primary pipelines detailed above, my work at Advfiction encompassed 5 additional automation systems including Instagram Graph API publishing, Telegram bot approval interfaces, AI news aggregation, automated image generation pipelines, and modular subworkflow routing:</p>'
+        "More workflow examples",
+        '<p class="prose">The accompanying gallery documents other visible canvas designs, including scheduled publishing, human approval, news processing, image creation and an outreach test harness. Related views are grouped rather than counted as separate deployments.</p>'
         '<div class="card-actions">'
-        + link("automation-evidence.html", "Inspect Full 8-Workflow Evidence Gallery →", "button")
+        + link("automation-evidence.html", "Explore the Workflow Gallery →", "button")
         + '</div>',
     )
     + explore_more("automation.html"),
 )
 
-# 12. AUTOMATION EVIDENCE GALLERY: automation-evidence.html (NEW ROUTE)
+
+def workflow_example(number, anchor, category, status, title, description, steps, evidence):
+    step_html = "".join(
+        f'<div class="evidence-node-col"><h4>{escape(label)}</h4><p>{escape(value)}</p></div>'
+        for label, value in steps
+    )
+    body = (
+        f'<article class="card evidence-card" id="{anchor}">'
+        f'<div class="card-top">{eyebrow(f"Workflow example {number}")}{badge(status)}</div>'
+        f'<h3>{escape(title)}</h3>'
+        f'<p class="prose">{escape(description)}</p>'
+        f'<div class="evidence-node-grid">{step_html}</div>'
+        f'<p class="card-highlight"><strong>What the evidence shows:</strong> {escape(evidence)}</p>'
+        '</article>'
+    )
+    return section(f'{number}. {category}', body)
+
+
+# Eight selected public descriptions. The count refers to cards, not independently
+# established production systems. Original n8n captures remain outside the build.
 PAGES["automation-evidence.html"] = (
     "Automation Evidence Gallery",
-    "Rehan Memon | Automation Evidence Gallery",
-    "Architectural audit and verified node topologies of 8 n8n workflow systems from the Advfiction AI Automation internship.",
+    "Rehan Memon | Automation Workflow Gallery",
+    "Selected n8n canvas examples, with editor-test and design status kept distinct.",
     intro(
-        "Pillar 3 · Workflow Architecture",
-        "n8n Automation Architecture Gallery",
-        "Technical documentation, verified node topologies, and execution specifications across 8 distinct automation workflow families engineered during the Advfiction AI Automation internship.",
+        "Pillar 3 · Workflow Examples",
+        "n8n Workflow Gallery",
+        "Selected examples from my Advfiction internship archive. Each card describes visible canvas steps and states the limit of the available evidence; the original screenshots remain private.",
         "automation.html",
         "Workflow Automation Overview",
+        "page-intro-compact",
     )
-    + '<section class="section container">'
-    '<div class="status-banner">'
-    '<p class="eyebrow">Audit & Architecture Governance</p>'
-    '<h2>8 Audited Workflow Architectures & Node Topologies</h2>'
-    '<p class="status-desc">Every workflow below is documented from verified engineering records and node configurations from the Advfiction AI Automation internship archive. Status badges distinguish verified execution pipelines from architectural blueprints and templates. Visual canvas screenshots are preserved in private archives in strict compliance with client confidentiality standards.</p>'
-    '</div>'
-    '</section>'
-    + section(
-        "1. Map-Based Lead Scraper & Google Sheets Pipeline",
-        '<article class="card evidence-card" id="wf-maps-scraper">'
-        '<div class="card-top">'
-        + eyebrow("Workflow Family 01 · Data Ingestion")
-        + badge("Configured Canvas")
-        + '</div>'
-        '<h3>Apify Google Maps Scraper to Google Sheets</h3>'
-        '<p class="prose">Automates targeted B2B lead harvesting from Google Maps using Apify actor execution, dataset extraction, attribute filtering, and automated Google Sheets appending.</p>'
-        '<div class="architecture-diagram-card">'
-        '<div class="arch-card-header">'
-        '<span class="arch-icon">⚙️</span>'
-        '<div><strong>System Architecture Specification & Dataflow Pipeline</strong>'
-        '<p class="meta" style="margin:0;">Verified Node Topology · Internship Archive Protocol</p></div>'
-        '</div>'
-        '<p class="confidentiality-notice">🔒 <em>Visual canvas execution screenshots are retained in private project archives in accordance with client confidentiality protocols. Complete multi-stage node topologies and execution specifications are documented below.</em></p>'
-        '</div>'
-        '<div class="evidence-node-grid">'
-        '<div class="evidence-node-col"><h4>Trigger & Ingestion</h4><ul><li>Manual / Schedule Trigger</li><li>Apify Actor Scraper</li><li>Dataset Retrieval Node</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Processing & Filter</h4><ul><li>Item List Normalizer</li><li>Regex Phone/Email Filter</li><li>Deduplication Check</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Destination</h4><ul><li>Google Sheets API</li><li>Auto-Appended Row Output</li><li>Status Log Webhook</li></ul></div>'
-        '</div>'
-        '<p class="card-highlight"><strong>Execution Status:</strong> Configured n8n workflow architecture showing the node structure and Google Sheets field mapping. Successful end-to-end live execution is documented in internship project records.</p>'
-        '</article>',
+    + workflow_example(
+        1, "wf-maps-scraper", "Lead Capture", "Editor run shown",
+        "Apify Maps to Google Sheets",
+        "A map-scraping flow obtains an Apify dataset, filters items and appends rows to a sheet.",
+        [("Start", "Maps Scraper and Apify actor"), ("Transform", "Get dataset items and Filter"), ("Output", "Append row in sheet")],
+        "The editor capture shows green indicators through the append node and five output items. Deployment and repeat runs are not established.",
     )
-    + section(
-        "2. PostgreSQL High-Volume Company Research & AI Enrichment",
-        '<article class="card evidence-card" id="wf-postgres-research">'
-        '<div class="card-top">'
-        + eyebrow("Workflow Family 02 · Relational ETL & AI")
-        + badge("Configured ETL Blueprint")
-        + '</div>'
-        '<h3>PostgreSQL Batch Enrichment & Search Intelligence</h3>'
-        '<p class="prose">Large-scale database enrichment workflow: queries batches of company records from PostgreSQL, checks existing indices, dispatches web searches with SerpApi fallback, and formats structured prompts for LLM synthesis.</p>'
-        '<div class="architecture-diagram-card">'
-        '<div class="arch-card-header">'
-        '<span class="arch-icon">⚙️</span>'
-        '<div><strong>System Architecture Specification & Dataflow Pipeline</strong>'
-        '<p class="meta" style="margin:0;">Verified Node Topology · Internship Archive Protocol</p></div>'
-        '</div>'
-        '<p class="confidentiality-notice">🔒 <em>Visual canvas execution screenshots are retained in private project archives in accordance with client confidentiality protocols. Complete multi-stage node topologies and execution specifications are documented below.</em></p>'
-        '</div>'
-        '<div class="evidence-node-grid">'
-        '<div class="evidence-node-col"><h4>Trigger & Query</h4><ul><li>PostgreSQL Read Node</li><li>Batch Splitter (30 rows)</li><li>Memory Buffer</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Search & AI</h4><ul><li>SerpApi Fallback Branch</li><li>LLM Enrichment Prompt</li><li>JSON Output Parser</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Persistence</h4><ul><li>PostgreSQL Update Node</li><li>Error Catching Router</li><li>Execution Audit Log</li></ul></div>'
-        '</div>'
-        '<p class="card-highlight"><strong>Execution Status:</strong> Configured ETL blueprint demonstrating PostgreSQL batch query splitting, memory buffer parameters, and SerpApi/LLM prompt nodes. Production database persistence is an architectural design documented in engineering specifications.</p>'
-        '</article>',
+    + workflow_example(
+        2, "wf-postgres-research", "Company Research", "Partial editor run",
+        "PostgreSQL Search and AI Enrichment",
+        "A company-research canvas fetches database rows, batches them, checks for prior processing and sends a search result toward an AI request.",
+        [("Start", "Manual trigger and PostgreSQL fetch"), ("Transform", "Batch, deduplication and search fallback"), ("Output", "AI request followed by PostgreSQL save node")],
+        "Early nodes and one search branch show completed indicators; the AI request has a warning and downstream save is not shown as completed.",
     )
-    + section(
-        "3. Automated Lead Dossier & PDF Generation",
-        '<article class="card evidence-card" id="wf-lead-dossier">'
-        '<div class="card-top">'
-        + eyebrow("Workflow Family 03 · Document Automation")
-        + badge("Design-Stage Pipeline")
-        + '</div>'
-        '<h3>Dynamic HTML & PDF Lead Intelligence Dossier</h3>'
-        '<p class="prose">Transforms tabular lead spreadsheets into formatted PDF executive briefs: monitors row changes, maps data into responsive HTML document templates, compiles PDF binaries, and dispatches via automated email.</p>'
-        '<div class="architecture-diagram-card">'
-        '<div class="arch-card-header">'
-        '<span class="arch-icon">⚙️</span>'
-        '<div><strong>System Architecture Specification & Dataflow Pipeline</strong>'
-        '<p class="meta" style="margin:0;">Verified Node Topology · Internship Archive Protocol</p></div>'
-        '</div>'
-        '<p class="confidentiality-notice">🔒 <em>Visual canvas execution screenshots are retained in private project archives in accordance with client confidentiality protocols. Complete multi-stage node topologies and execution specifications are documented below.</em></p>'
-        '</div>'
-        '<div class="evidence-node-grid">'
-        '<div class="evidence-node-col"><h4>Event Trigger</h4><ul><li>Google Sheets Webhook</li><li>Status Filter = "Approved"</li><li>Lead Record Extractor</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Template Engine</h4><ul><li>Dynamic HTML Compiler</li><li>CSS Branding Injector</li><li>PDF Binary Exporter</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Delivery</h4><ul><li>Gmail API Dispatcher</li><li>Attachment Handler</li><li>Internal Team Alert</li></ul></div>'
-        '</div>'
-        '<p class="card-highlight"><strong>Execution Status:</strong> Architectural blueprint and template formatting schema. Dynamic HTML compilation and automated PDF delivery dispatch represent designed pipeline configurations.</p>'
-        '</article>',
+    + workflow_example(
+        3, "wf-lead-dossier", "Document Automation", "Design shown",
+        "Lead Row to PDF Brief",
+        "Two canvas views show a sheet-triggered lead-report flow; the later view adds a filter before document generation.",
+        [("Start", "Sheet row or subworkflow trigger"), ("Transform", "Format lead data and create Google Doc"), ("Output", "Export PDF and Gmail notification nodes")],
+        "The screenshots show a configured route, not a generated document, delivered email or production run.",
     )
-    + section(
-        "4. Instagram Graph API Publishing Pipeline",
-        '<article class="card evidence-card" id="wf-instagram-api">'
-        '<div class="card-top">'
-        + eyebrow("Workflow Family 04 · Social Media API")
-        + badge("Configured API Flow")
-        + '</div>'
-        '<h3>Instagram Graph API Automated Image Publishing</h3>'
-        '<p class="prose">Automated publishing workflow leveraging Meta Graph API container creation, image upload verification, and timed publication to company Instagram profiles.</p>'
-        '<div class="architecture-diagram-card">'
-        '<div class="arch-card-header">'
-        '<span class="arch-icon">⚙️</span>'
-        '<div><strong>System Architecture Specification & Dataflow Pipeline</strong>'
-        '<p class="meta" style="margin:0;">Verified Node Topology · Internship Archive Protocol</p></div>'
-        '</div>'
-        '<p class="confidentiality-notice">🔒 <em>Visual canvas execution screenshots are retained in private project archives in accordance with client confidentiality protocols. Complete multi-stage node topologies and execution specifications are documented below.</em></p>'
-        '</div>'
-        '<div class="evidence-node-grid">'
-        '<div class="evidence-node-col"><h4>Input Trigger</h4><ul><li>Scheduled Publish Trigger</li><li>Asset URL Resolver</li><li>Caption Formatter</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Meta API Flow</h4><ul><li>Container ID Creation</li><li>Upload Status Poller</li><li>Rate Limit Guard</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Publish</h4><ul><li>Media Publish Endpoint</li><li>Live Post Verification</li><li>Audit Confirmation</li></ul></div>'
-        '</div>'
-        '<p class="card-highlight"><strong>Execution Status:</strong> API pipeline layout detailing Meta Graph API container creation, poller loops, and publish endpoints in accordance with sandbox integration protocols.</p>'
-        '</article>',
+    + workflow_example(
+        4, "wf-instagram-api", "Scheduled Publishing", "Design shown",
+        "Instagram Scheduling Canvas",
+        "A publishing design reads approved scheduled posts, checks timing, creates an Instagram media container and routes toward publish and status-update nodes.",
+        [("Start", "Schedule or subworkflow trigger"), ("Transform", "Approved-post lookup and eligibility check"), ("Output", "Meta publish, sheet update and notification nodes")],
+        "The editor view shows the design and a warning on a notification node. A successful post or connected client account is not established.",
     )
-    + section(
-        "5. Telegram Bot Approval & Multi-Platform Dispatch",
-        '<article class="card evidence-card" id="wf-telegram-bot">'
-        '<div class="card-top">'
-        + eyebrow("Workflow Family 05 · Human-in-the-Loop")
-        + badge("Configured Webhook Flow")
-        + '</div>'
-        '<h3>Telegram Bot Interactive Approval Flow</h3>'
-        '<p class="prose">Human-in-the-loop governance system: posts draft content to a private Telegram channel with inline interactive "Approve" and "Reject" callback buttons before dispatching to public channels.</p>'
-        '<div class="architecture-diagram-card">'
-        '<div class="arch-card-header">'
-        '<span class="arch-icon">⚙️</span>'
-        '<div><strong>System Architecture Specification & Dataflow Pipeline</strong>'
-        '<p class="meta" style="margin:0;">Verified Node Topology · Internship Archive Protocol</p></div>'
-        '</div>'
-        '<p class="confidentiality-notice">🔒 <em>Visual canvas execution screenshots are retained in private project archives in accordance with client confidentiality protocols. Complete multi-stage node topologies and execution specifications are documented below.</em></p>'
-        '</div>'
-        '<div class="evidence-node-grid">'
-        '<div class="evidence-node-col"><h4>Draft Intake</h4><ul><li>Content Staging Node</li><li>Preview Image Fetcher</li><li>Telegram Message Node</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Interactive Callback</h4><ul><li>Inline Keyboard Markup</li><li>Webhook Response Handler</li><li>Decision Router (Approve/Deny)</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Action</h4><ul><li>Downstream Publishing Flow</li><li>Rejection Notification</li><li>Audit Trail Log</li></ul></div>'
-        '</div>'
-        '<p class="card-highlight"><strong>Execution Status:</strong> Pipeline architecture detailing inline keyboard markup, callback response webhooks, and conditional approval branches for human-in-the-loop governance.</p>'
-        '</article>',
+    + workflow_example(
+        5, "wf-telegram-bot", "Human Approval", "Design shown",
+        "Telegram Review and Approval",
+        "A review flow reads candidate items from a sheet, sends a Telegram message, waits for an approval decision and branches to sheet status updates.",
+        [("Start", "Schedule or subworkflow trigger"), ("Transform", "Loop, Telegram message and Wait"), ("Output", "Approve/reject branches and confirmation")],
+        "Two supplied captures are byte-identical views of this design. Neither proves that a reviewer responded or that a downstream publication occurred.",
     )
-    + section(
-        "6. AI News Aggregator & Video Prompt Generator",
-        '<article class="card evidence-card" id="wf-news-prompt">'
-        '<div class="card-top">'
-        + eyebrow("Workflow Family 06 · Content Ingestion & AI")
-        + badge("Configured Ingestion Graph")
-        + '</div>'
-        '<h3>Automated News Ingestion & Visual Prompt Synthesis</h3>'
-        '<p class="prose">Aggregates technical AI headlines from external RSS feeds, extracts key narrative points with an LLM prompt, and synthesizes structured visual prompts tailored for generative-video systems.</p>'
-        '<div class="architecture-diagram-card">'
-        '<div class="arch-card-header">'
-        '<span class="arch-icon">⚙️</span>'
-        '<div><strong>System Architecture Specification & Dataflow Pipeline</strong>'
-        '<p class="meta" style="margin:0;">Verified Node Topology · Internship Archive Protocol</p></div>'
-        '</div>'
-        '<p class="confidentiality-notice">🔒 <em>Visual canvas execution screenshots are retained in private project archives in accordance with client confidentiality protocols. Complete multi-stage node topologies and execution specifications are documented below.</em></p>'
-        '</div>'
-        '<div class="evidence-node-grid">'
-        '<div class="evidence-node-col"><h4>News Ingestion</h4><ul><li>RSS / Feed Trigger</li><li>HTML Content Stripper</li><li>Deduplication Filter</li></ul></div>'
-        '<div class="evidence-node-col"><h4>AI Processing</h4><ul><li>LLM News Summarizer</li><li>Video Scene Prompt Generator</li><li>Style Constraint Injector</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Output</h4><ul><li>Content Staging Sheet</li><li>Video Queue Webhook</li><li>Editorial Review Slack Alert</li></ul></div>'
-        '</div>'
-        '<p class="card-highlight"><strong>Execution Status:</strong> Content ingestion and transformation pipeline detailing RSS feed parsing, text stripping, and structured LLM prompt chaining.</p>'
-        '</article>',
+    + workflow_example(
+        6, "wf-news-prompt", "News Processing", "Design shown",
+        "News Sources to AI Summary",
+        "A canvas combines two news-search requests, merges results, transforms them with JavaScript and routes an AI-generated result to a sheet.",
+        [("Start", "Schedule or subworkflow trigger"), ("Transform", "Two HTTP sources, merge, JavaScript and AI request"), ("Output", "Append row in sheet")],
+        "A design view shows the node sequence; there are no visible execution indicators or verified generated outputs.",
     )
-    + section(
-        "7. Automated AI Image Generation & Drive Asset Pipeline",
-        '<article class="card evidence-card" id="wf-social-orchestrator">'
-        '<div class="card-top">'
-        + eyebrow("Workflow Family 07 · Generative Media Pipeline")
-        + badge("Configured Asset Pipeline")
-        + '</div>'
-        '<h3>Stability AI Image Generation & Cloud Asset Staging</h3>'
-        '<p class="prose">Generative media pipeline coordinating webhook intake, prompt sanitization, automated image synthesis via Stability AI, and structured asset archival to Google Drive.</p>'
-        '<div class="architecture-diagram-card">'
-        '<div class="arch-card-header">'
-        '<span class="arch-icon">⚙️</span>'
-        '<div><strong>System Architecture Specification & Dataflow Pipeline</strong>'
-        '<p class="meta" style="margin:0;">Verified Node Topology · Internship Archive Protocol</p></div>'
-        '</div>'
-        '<p class="confidentiality-notice">🔒 <em>Visual canvas execution screenshots are retained in private project archives in accordance with client confidentiality protocols. Complete multi-stage node topologies and execution specifications are documented below.</em></p>'
-        '</div>'
-        '<div class="evidence-node-grid">'
-        '<div class="evidence-node-col"><h4>Prompt Intake</h4><ul><li>Webhook Trigger</li><li>Prompt Sanitizer</li><li>Parameter Controls</li></ul></div>'
-        '<div class="evidence-node-col"><h4>AI Generation</h4><ul><li>Stability AI API Node</li><li>Seed & Dimension Settings</li><li>Binary Image Output</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Asset Storage</h4><ul><li>Google Drive Upload</li><li>Folder Staging Node</li><li>Completion Notification</li></ul></div>'
-        '</div>'
-        '<p class="card-highlight"><strong>Execution Status:</strong> Generative asset pipeline detailing webhook intake, Stability AI prompt parameters, and Google Drive upload nodes.</p>'
-        '</article>',
+    + workflow_example(
+        7, "wf-social-orchestrator", "Generative Media", "Design shown",
+        "Caption to Image Asset",
+        "A related canvas reads captions from a sheet, calls an image-generation API, uploads the result to Drive and writes its URL back to the sheet.",
+        [("Start", "Manual or subworkflow trigger"), ("Transform", "Caption loop and image-generation request"), ("Output", "Drive upload and sheet update nodes")],
+        "The design is visible, but successful image generation and asset sharing are not shown. It may be a stage of a larger content workflow.",
     )
-    + section(
-        "8. Modular Subworkflow Architecture (Router & Worker)",
-        '<article class="card evidence-card" id="wf-subworkflow-router">'
-        '<div class="card-top">'
-        + eyebrow("Workflow Family 08 · Distributed Automation")
-        + badge("Architectural Blueprint")
-        + '</div>'
-        '<h3>Decoupled Subworkflow Routing & Execution Harness</h3>'
-        '<p class="prose">An advanced modular architecture separating high-level orchestration from isolated execution workers: master router parses input batches and triggers dedicated worker subworkflows via executeWorkflow nodes.</p>'
-        '<div class="architecture-diagram-card">'
-        '<div class="arch-card-header">'
-        '<span class="arch-icon">⚙️</span>'
-        '<div><strong>System Architecture Specification & Dataflow Pipeline</strong>'
-        '<p class="meta" style="margin:0;">Verified Node Topology · Internship Archive Protocol</p></div>'
-        '</div>'
-        '<p class="confidentiality-notice">🔒 <em>Visual canvas execution screenshots are retained in private project archives in accordance with client confidentiality protocols. Complete multi-stage node topologies and execution specifications are documented below.</em></p>'
-        '</div>'
-        '<div class="evidence-node-grid">'
-        '<div class="evidence-node-col"><h4>Master Router</h4><ul><li>Job Batch Ingestion</li><li>Workload Partitioning</li><li>Subworkflow Dispatch Node</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Worker Execution</h4><ul><li>Subworkflow Input Node</li><li>Isolated Task Processing</li><li>Subworkflow Output Node</li></ul></div>'
-        '<div class="evidence-node-col"><h4>Reconciliation</h4><ul><li>Aggregation Node</li><li>Worker Success Poller</li><li>Global Job Status Updater</li></ul></div>'
-        '</div>'
-        '<p class="card-highlight"><strong>Execution Status:</strong> Architectural blueprint demonstrating modular router orchestration and dedicated worker subworkflows via executeWorkflow nodes. Structural documentation defines modular routing and worker task interfaces.</p>'
-        '</article>',
+    + workflow_example(
+        8, "wf-subworkflow-router", "Outreach Prototype", "Test harness design",
+        "AI Outreach and Team Notification Skeleton",
+        "A mock-lead test canvas branches on qualification and sketches an AI outreach message, email action and team notification.",
+        [("Start", "Manual trigger with mock lead data"), ("Transform", "Qualification branch and AI request"), ("Output", "Gmail and Slack nodes")],
+        "The canvas labels itself a skeleton; communication nodes show configuration warnings. No live outreach or sent messages are established.",
     )
     + explore_more("automation-evidence.html"),
 )

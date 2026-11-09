@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="172" viewBox="0 0 1000 172" role="img" aria-labelledby="title desc">
   <title id="title">Map-Based Lead Capture to Google Sheets Flow</title>
-  <desc id="desc">Map scraper start trigger, Apify actor execution, dataset items retrieval, regex and attribute filter, then automated Google Sheets row insertion.</desc>
+  <desc id="desc">Map scraper start, Apify actor, dataset items retrieval, filter, then Google Sheets append node. An editor capture shows five items at the final node.</desc>
   <style>
     .bg { fill: #f1f7f4; }
     .box { fill: #ffffff; stroke: #8ab6b2; stroke-width: 2px; }
@@ -25,7 +25,7 @@
     <text x="95" y="79">Map scraper</text><text x="95" y="103">trigger</text>
     <text x="295" y="79">Execute Apify</text><text x="295" y="103">actor</text>
     <text x="495" y="79">Get dataset</text><text x="495" y="103">records</text>
-    <text x="695" y="90">Filter &amp; clean</text>
+    <text x="695" y="90">Filter items</text>
     <text x="900" y="79">Append to</text><text x="900" y="103">Google Sheets</text>
   </g>
   <g class="arrow">
