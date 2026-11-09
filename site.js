@@ -48,12 +48,29 @@ const filterList = document.querySelector('[data-filter-list]');
 if (filterList) {
   const cards = [...filterList.querySelectorAll('[data-filter-card]')];
   const controls = [...document.querySelectorAll('[data-filter-search],[data-filter-pillar],[data-filter-category],[data-filter-type],[data-filter-issuer],[data-filter-subject]')];
+  const projectPillar = document.querySelector('[data-filter-pillar]');
+  const pillarButtons = [...document.querySelectorAll('[data-filter-pillar-button]')];
   const pills = [...document.querySelectorAll('.filter-pill[data-filter-domain]')];
   const count = document.querySelector('[data-filter-count]');
   const noResults = document.querySelector('[data-no-results]');
   const nounSingular = filterList.dataset.nounSingular || 'project';
   const nounPlural = filterList.dataset.nounPlural || 'projects';
   let activeDomain = '';
+
+  function syncPillarButtons() {
+    pillarButtons.forEach((button) => {
+      button.setAttribute('aria-pressed', String(button.dataset.filterPillarButton === projectPillar?.value));
+    });
+  }
+
+  pillarButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      if (!projectPillar) return;
+      projectPillar.value = button.dataset.filterPillarButton || '';
+      updateFilters();
+      filterList.scrollIntoView({ block: 'start', behavior: 'auto' });
+    });
+  });
 
   pills.forEach((pill) => {
     pill.addEventListener('click', () => {
@@ -65,6 +82,7 @@ if (filterList) {
   });
 
   function updateFilters() {
+    syncPillarButtons();
     const value = (name) => document.querySelector(`[data-filter-${name}]`)?.value.trim().toLowerCase() || '';
     const query = value('search');
     let shown = 0;

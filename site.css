@@ -321,12 +321,6 @@ p {
 .hero-lead strong {
   font-weight: 800;
   color: var(--ink);
-  border-bottom: 1.5px solid rgba(112, 216, 208, 0.45);
-  padding-bottom: 1px;
-}
-
-:root.light .hero-lead strong {
-  border-bottom-color: rgba(7, 112, 119, 0.45);
 }
 
 .lead {
@@ -466,6 +460,27 @@ p {
 
 .page-intro h1 {
   max-width: 55rem;
+}
+
+.page-intro-compact {
+  padding-block: clamp(2rem, 4vw, 3rem) 1.5rem;
+}
+
+.page-intro-compact .lead {
+  max-width: 48rem;
+}
+
+.section.section-directory-tools {
+  padding-block: 1.5rem;
+}
+
+#projectResults {
+  scroll-margin-top: 5.5rem;
+}
+
+#projectResults > .section:first-child,
+.page-intro-compact + .section {
+  padding-top: 2rem;
 }
 
 .section {
@@ -897,7 +912,8 @@ p {
   color: var(--accent);
 }
 
-.filter-pill.active {
+.filter-pill.active,
+.filter-pill[aria-pressed="true"] {
   background: var(--accent);
   color: var(--paper);
   border-color: var(--accent);
@@ -1083,6 +1099,13 @@ p {
   margin: 0;
   padding-left: 1.1rem;
   font-size: .85rem;
+  color: var(--muted);
+}
+
+.evidence-node-col p {
+  margin: 0;
+  font-size: .88rem;
+  line-height: 1.5;
   color: var(--muted);
 }
 
