@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Rehan Memon Monogram">
+  <defs>
+    <linearGradient id="rm-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#087b83"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0d171c"/>
+  <rect x="2" y="2" width="60" height="60" rx="12" stroke="url(#rm-cyan)" stroke-width="1.5" stroke-opacity="0.35"/>
+  <path d="M16 46V18H26C29.5 18 31 20 31 24.5C31 29 29.5 31 26 31H16" stroke="url(#rm-cyan)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M23 31L31 46" stroke="url(#rm-cyan)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M36 46V18L43 32L50 18V46" stroke="#f1f5f9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rehanmemon-ai.github.io/rehan-portfolio/sitemap.xml

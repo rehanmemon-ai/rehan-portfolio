@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Offline handwritten signature verification pipeline with morphological preprocessing, 331 contour features, and SVM classification.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rehan Memon | Signature Verification AI">
+  <meta property="og:description" content="Offline handwritten signature verification pipeline with morphological preprocessing, 331 contour features, and SVM classification.">
+  <meta property="og:url" content="https://rehanmemon-ai.github.io/rehan-portfolio/signature-verification.html">
+  <meta property="og:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="canonical" href="https://rehanmemon-ai.github.io/rehan-portfolio/signature-verification.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rehan Memon | Signature Verification AI">
+  <meta name="twitter:description" content="Offline handwritten signature verification pipeline with morphological preprocessing, 331 contour features, and SVM classification.">
+  <meta name="twitter:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta name="theme-color" content="#0d171c">
+  <title>Rehan Memon | Signature Verification AI</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', '#f7f7f2');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Rehan Memon, home"><svg class="brand-monogram" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0b1317"/><rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-opacity="0.85"/><path d="M14 47V17H25C29.5 17 32 19.5 32 24.5C32 29.5 29.5 32 25 32H14" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 32L32 47" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 47V17L44.5 31L52 17V47" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-text">REHAN MEMON</span></a>
+      <nav class="desktop-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions">
+        <a class="button button-small resume-nav-btn" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Switch to light theme"><span id="themeIcon" aria-hidden="true">Light</span></button>
+        <button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button>
+      </div>
+    </div>
+    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden>
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a>
+      <div class="mobile-menu-cta">
+        <a class="button" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">View Resume (Google Doc) ↗</a>
+      </div>
+    </nav>
+  </header>
+  <main id="main"><section class="page-intro container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="projects.html#pillar-ai">← Back to Pillar 1: Applied AI &amp; Machine Learning</a></nav><p class="eyebrow">Pillar 1 · Applied AI &amp; Systems</p><h1>Signature Verification AI</h1><p class="lead">A classical computer vision pipeline engineered to distinguish authentic signatures from skilled forgeries through geometric, statistical, and contour feature extraction.</p></section><section class="section container"><h2>Pipeline Architecture</h2><p class="prose">The verification pipeline executes a multi-stage image processing sequence engineered to standardize scan variations and isolate ink strokes:</p><figure class="diagram"><img src="diagrams/signature-pipeline.svg" width="1000" height="172" loading="lazy" alt="Preprocessing, 331-dimensional feature extraction, SVM classification, prediction with confidence score."><figcaption>End-to-end inference flow: morphological noise reduction, geometric normalization, 331 handcrafted features, and RBF SVM scoring.</figcaption></figure><ol class="flow"><li><div class="flow-step-num">1. Morphological Preprocessing</div><div class="flow-step-body">Converts raw RGB scans to greyscale, applies Otsu dynamic thresholding to binarize ink strokes, and removes high-frequency paper grain noise.</div></li><li><div class="flow-step-num">2. Geometric Normalization</div><div class="flow-step-body">Calculates the signature bounding envelope and resizes the binary mask to standardized dimensions while preserving stroke aspect ratios.</div></li><li><div class="flow-step-num">3. Feature Extraction (331-D)</div><div class="flow-step-body">Extracts 331 handcrafted descriptors: 7 invariant Hu moments, horizontal/vertical projection profiles, pixel density grids, and contour curvature vectors.</div></li><li><div class="flow-step-num">4. SVM Classification</div><div class="flow-step-body">Projects extracted feature vectors into an RBF-kernel Support Vector Machine (SVM) trained under a writer-disjoint split protocol to detect genuine vs forged specimens.</div></li><li><div class="flow-step-num">5. FastAPI &amp; Demo Interface</div><div class="flow-step-body">Wraps the inference pipeline in a lightweight FastAPI microservice connected to an interactive React signature canvas for real-time verification.</div></li></ol></section><section class="section container"><h2>Evaluation &amp; Empirical Results</h2><div class="prose"><p>To prevent data leakage, the model was strictly evaluated under a <strong>writer-disjoint validation protocol</strong>, ensuring the test split contains signatures from individuals never seen during training.</p><p><strong>Observed Performance:</strong> The RBF Support Vector Machine achieved superior discrimination on skilled forgeries compared to linear baselines, demonstrating the discriminative power of combining contour moments with projection density grids.</p></div><div class="actions"><a class="button" href="https://github.com/rehanmemon-ai/signature-verification" target="_blank" rel="noopener noreferrer">View GitHub Repository ↗</a><a class="button button-quiet" href="projects.html#pillar-ai">Explore other AI projects →</a></div></section><nav class="explore-more-nav container" aria-label="Explore Portfolio"><div class="explore-more-card"><p class="eyebrow">Continue Exploring</p><div class="explore-grid"><a href="projects.html" class="explore-link"><span class="explore-title">Technical Projects →</span><span class="explore-desc">Computer Vision, RAG &amp; Full-Stack Systems</span></a><a href="experience.html" class="explore-link"><span class="explore-title">Internship Experience →</span><span class="explore-desc">AwareWolf, Advfiction &amp; AlgoDevOpss</span></a><a href="automation-evidence.html" class="explore-link"><span class="explore-title">Automation Evidence Gallery →</span><span class="explore-desc">8 Documented n8n Systems</span></a><a href="client-work.html" class="explore-link"><span class="explore-title">Client Deployments →</span><span class="explore-desc">LMS, Corporate Portals &amp; Web APIs</span></a></div></div></nav></main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Rehan Juned Memon · Applied AI &amp; Software Engineering</p>
+      <div class="footer-links">
+        <a class="text-link" href="projects.html">Projects</a>
+        <a class="text-link" href="experience.html">Experience</a>
+        <a class="text-link" href="automation-evidence.html">Evidence Gallery</a>
+        <a class="text-link" href="credentials.html">Credentials</a>
+        <a class="text-link" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
