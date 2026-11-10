@@ -255,6 +255,7 @@ if (zoomableFigures.length > 0) {
         triggerElement = img;
         modalImg.src = img.src;
         modalImg.alt = img.alt;
+        modalImg.classList.toggle('workflow-modal-image', fig.classList.contains('workflow-capture'));
         modalImg.style.display = '';
         modalCaption.textContent = caption ? caption.textContent.replace('🔍 Click to expand', '').trim() : img.alt;
 
@@ -262,11 +263,7 @@ if (zoomableFigures.length > 0) {
         modal.classList.add('open');
         priorBodyOverflow = document.body.style.overflow;
         document.body.style.overflow = 'hidden';
-        requestAnimationFrame(() => {
-          if (modal.classList.contains('open')) {
-            closeBtn.focus();
-          }
-        });
+        closeBtn.focus({ preventScroll: true });
       }
 
       img.addEventListener('click', openModal);
