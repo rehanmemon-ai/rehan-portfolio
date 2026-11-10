@@ -156,11 +156,11 @@ PROJECTS = [
         "pillar": "Selected Client Deployments",
         "category": "Full-Stack Web & API Engineering",
         "status": "Live Client Deployment",
-        "summary": "Full-stack lead management system serving marketing operations. Engineered production REST API endpoints, CORS security configurations, input sanitization schemas, and Supabase PostgreSQL persistence connected to a responsive authenticated interface.",
+        "summary": "Collaborative lead management system for marketing operations. Contributed a public Node/Express lead endpoint with required-field and email checks, Supabase PostgreSQL insertion, and an allowed-origin CORS configuration for the website and LMS frontends.",
         "route": "client-work.html#advfiction-lms",
         "repo": "",
         "live": "https://advfiction-lms.vercel.app/pages/login.html",
-        "highlight": "Active production service with live backend health monitoring on Render and client frontend on Vercel.",
+        "highlight": "Public Vercel frontend and Render API are linked; live lead submission and database persistence were not independently tested for this portfolio.",
         "tags": ["Node.js", "Express", "Supabase", "PostgreSQL", "REST API", "Vercel"],
     },
     {
@@ -206,7 +206,7 @@ PROJECTS = [
         "pillar": "AI & Workflow Automation",
         "category": "Map Data Ingestion",
         "status": "Editor Run Shown",
-        "summary": "An n8n canvas connects an Apify map scraper to dataset retrieval, a filter, and Google Sheets row insertion. A private editor capture shows five items at the final append node.",
+        "summary": "An n8n canvas connects an Apify map scraper to dataset retrieval, a filter, and Google Sheets row insertion. The published editor capture shows five items at the final append node.",
         "route": "automation.html#map-lead-capture",
         "repo": "",
         "live": "",
@@ -263,10 +263,10 @@ EXPERIENCE = [
     },
     {
         "name": "Advfiction Private Limited",
-        "role": "Web Development Intern · AI Automation Developer Intern",
+        "role": "Web Developer Intern · AI Automation Workstream",
         "badge": "DUAL TRACK",
         "dates": "Apr–Sep 2026 · Concurrent Tracks",
-        "status_note": "Initial 3-month term: 30 Apr–30 Jul 2026; Extended through 30 Sep 2026",
+        "status_note": "Original offer: 29 Apr 2026 start, 3 months; later work through Sep reported in career records",
         "summary": "Operated across two concurrent engineering workstreams: built full-stack lead intake APIs (Node/Express, Supabase) and responsive interfaces on the web team, while architecting multi-stage n8n workflows for automated lead capture, PostgreSQL research, and document generation.",
         "route": "advfiction.html",
     },
@@ -851,12 +851,12 @@ PAGES = {}
 PAGES["index.html"] = (
     "Home",
     "Rehan Memon | Home",
-    "Applied AI Engineer & Software Developer building production web platforms, vector retrieval systems (RAG), computer vision pipelines, and scalable workflow automations.",
+    "Applied AI and software engineering portfolio featuring computer vision, an in-progress research assistant, collaborative web development and n8n workflow designs.",
     '<section class="hero container">'
     '<div>'
     + eyebrow("Applied AI · Full-Stack Systems · Workflow Automation")
     + '<h1>Rehan Juned Memon<span class="accent">.</span></h1>'
-    '<p class="hero-lead">I engineer <strong>practical machine learning systems</strong>, <strong>vector retrieval architectures (RAG)</strong>, full-stack web platforms, and <strong>autonomous multi-stage workflows</strong>.</p>'
+    '<p class="hero-lead">I build <strong>machine learning projects</strong>, develop <strong>web interfaces and APIs</strong> with teams, and prototype <strong>AI and n8n workflows</strong>. My document research assistant remains in progress.</p>'
     f'<p class="meta">B.Sc. Artificial Intelligence · <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_SHORT}</a>, University of Mumbai · 2024–2027 · Semester IV SGPA: <strong>9.27/10</strong> · CGPA: <strong>8.14/10</strong></p>'
     '<div class="actions">'
     + link("projects.html", "Explore All Work", "button")
@@ -868,7 +868,7 @@ PAGES["index.html"] = (
     '<aside class="hero-aside" aria-label="Work overview">'
     + eyebrow("Core Competencies")
     + '<h2>Three Engineering Pillars</h2>'
-    '<p>Practical systems designed for reliability, scalability, and measurable business utility:</p>'
+    '<p>Explore implemented projects, collaborative web work and evidence-labelled workflow designs:</p>'
     '<div class="pillar-links">'
     + link("projects.html#pillar-ai", "1. Applied AI & Machine Learning →")
     + link("projects.html#pillar-client", "2. Selected Client Deployments →")
@@ -878,7 +878,7 @@ PAGES["index.html"] = (
     '</section>'
     + section(
         "Selected Engineering Work",
-        '<p class="section-lead">Curated highlights representing production web engineering, vector search, computer vision, and autonomous data pipelines.</p>'
+        '<p class="section-lead">Selected computer vision, in-progress document research, collaborative web and editor-tested automation work.</p>'
         '<div class="grid two">'
         + project_card(get_project("Signature Verification AI"))
         + project_card(get_project("AI Research Assistant"))
@@ -898,7 +898,7 @@ PAGES["index.html"] = (
     )
     + section(
         "Commercial & Team Experience",
-        '<p class="section-lead">Documented engineering contributions across high-velocity startups and academic web platforms.</p>'
+        '<p class="section-lead">Engineering contributions across internships and academic web platforms, with individual scope described in each case study.</p>'
         '<div class="grid three">'
         + "".join(experience_card(e) for e in EXPERIENCE)
         + '</div>'
@@ -918,7 +918,7 @@ PAGES["index.html"] = (
         '<article class="card clickable-card">'
         + eyebrow("VESASC (Autonomous) · University of Mumbai")
         + f'<h3><a class="card-main-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_FULL}</a></h3>'
-        '<p>Consistent top-percentile academic performance in <strong>B.Sc. Artificial Intelligence</strong>. <strong>Semester IV SGPA: 9.27/10</strong>, cumulative CGPA: <strong>8.14/10</strong>. Standout coursework: <strong>98% (49/50, Grade O) in AI in IoT</strong> and <strong>94% (47/50, Grade O) in Generative AI & Prompt Engineering</strong>.</p>'
+        '<p><strong>Semester IV SGPA: 9.27/10</strong>, cumulative CGPA: <strong>8.14/10</strong>. The original marksheet records <strong>98% (49/50, Grade O) in AI in IoT</strong> and <strong>94% (47/50, Grade O) in Generative AI & Prompt Engineering</strong>.</p>'
         + '<div class="card-actions">'
         + link("about.html", "Detailed academic background →", "button button-small button-quiet")
         + '</div>'
@@ -1077,7 +1077,7 @@ PAGES["advfiction.html"] = (
     intro(
         "Experience / Advfiction Private Limited",
         "Two Concurrent Engineering Workstreams",
-        "Apr–Sep 2026 · Web Development Intern & AI Automation Developer Intern · Initial 3-month term (30 Apr–30 Jul 2026) extended for two additional months through 30 Sep 2026. Bridging frontend/backend web infrastructure with multi-node workflow orchestration.",
+        "Apr–Sep 2026 · Web Development and AI Automation workstreams. The original Web Developer Internship offer states a 29 Apr 2026 start and a three-month term; later work through September is recorded in the career dossier, while a separate extension letter was not available for this review.",
         "experience.html",
         "Commercial Experience",
     )
@@ -1089,8 +1089,8 @@ PAGES["advfiction.html"] = (
         + '<h3>Interface & API Engineering</h3>'
         '<p>Collaborated with the web engineering team on core platforms:</p>'
         '<ul class="prose-list">'
-        '<li><strong>Advfiction Enterprise Lead LMS (<a class="text-link" href="client-work.html#advfiction-lms">Case Study</a>):</strong> Collaborated on Node/Express REST API endpoints handling public lead ingestion, input validation schemas, and Supabase PostgreSQL insertion.</li>'
-        '<li><strong>CORS & Security Policies:</strong> Configured multi-origin CORS enabling secure communication between Vercel-hosted frontends and Render backend services.</li>'
+        '<li><strong>Advfiction Enterprise Lead LMS (<a class="text-link" href="client-work.html#advfiction-lms">Case Study</a>):</strong> Contributed a Node/Express public lead endpoint with required-field and email-format checks and Supabase PostgreSQL insertion.</li>'
+        '<li><strong>Cross-origin access:</strong> Configured an allowed-origin CORS list for the Vercel-hosted frontends and Render backend. CORS controls browser access; it does not authenticate visitors.</li>'
         '<li><strong>Corporate Website Revamp (<a class="text-link" href="client-work.html#advfiction-website">Live Deployment</a>):</strong> Built responsive UI components and hooked contact forms directly into the backend lead pipeline. Live at <a class="text-link" href="https://advfiction.vercel.app/" target="_blank" rel="noopener noreferrer">advfiction.vercel.app ↗</a>.</li>'
         '</ul>'
         '<div class="card-actions">'
@@ -1106,7 +1106,7 @@ PAGES["advfiction.html"] = (
         '<li><strong>Map-Based Scraping:</strong> An Apify-to-Sheets canvas shows a completed editor run for five items.</li>'
         '<li><strong>Company Research:</strong> A PostgreSQL/search canvas shows partial execution; downstream AI and save steps are not shown completing.</li>'
         '<li><strong>Lead Brief Design:</strong> Sheet-to-Google-Docs/PDF canvases show a configured route, without proof of document delivery.</li>'
-        '<li><strong>Other Designs:</strong> Private canvas views show scheduled publishing, Telegram review and AI-assisted content stages; live use is unverified.</li>'
+        '<li><strong>Other Designs:</strong> Published editor captures show scheduled publishing, Telegram review and AI-assisted content stages; live use is unverified.</li>'
         '</ul>'
         '<div class="card-actions">'
         + link("automation.html", "Featured Automation Workflows →", "button button-small")
@@ -1127,7 +1127,7 @@ PAGES["advfiction.html"] = (
         '</div>',
     )
     + section(
-        "Technical Stack Deployed",
+        "Technologies Across Both Workstreams",
         '<div class="tags-row">'
         + "".join(f'<span class="tag">{escape(t)}</span>' for t in ["Node.js", "Express", "Supabase", "PostgreSQL", "n8n", "Apify Actors", "REST API", "Vercel", "Render", "Google Sheets API"])
         + '</div>',
@@ -1535,6 +1535,16 @@ PAGES["client-work.html"] = (
     + explore_more("client-work.html"),
 )
 
+def workflow_image(filename, width, height, alt, caption):
+    """Show an original editor capture with a caption and the shared lightbox."""
+    return (
+        '<figure class="evidence-figure workflow-capture">'
+        f'<img src="assets/workflows/{escape(filename)}" width="{width}" height="{height}" loading="lazy" decoding="async" alt="{escape(alt)}">'
+        f'<figcaption class="evidence-caption">{escape(caption)}</figcaption>'
+        '</figure>'
+    )
+
+
 # 11. AUTOMATION: automation.html
 PAGES["automation.html"] = (
     "Automation",
@@ -1556,8 +1566,9 @@ PAGES["automation.html"] = (
         + badge("Editor run shown")
         + '</div>'
         '<h3>Apify Map Scraper to Google Sheets</h3>'
-        '<p class="prose">A map-scraping canvas connects an Apify actor to dataset retrieval, a filter and a Google Sheets append step. The private editor capture shows green completion indicators through the final node, with five items displayed as appended.</p>'
-        '<figure class="diagram"><img src="diagrams/automation-map-to-sheet.svg" width="1000" height="172" loading="lazy" alt="Illustrative sequence: map scraper, Apify actor, dataset retrieval, filter and Google Sheets append."><figcaption>Public diagram of the visible node sequence. The original canvas capture remains private.</figcaption></figure>'
+        '<p class="prose">A map-scraping canvas connects an Apify actor to dataset retrieval, a filter and a Google Sheets append step. The editor capture shows green completion indicators through the final node, with five items displayed as appended.</p>'
+        + workflow_image("apify-map-to-sheets.jpeg", 798, 140, "n8n canvas: Maps Scraper, Apify actor, dataset retrieval, filter and Google Sheets append with five final items.", "Original editor capture · five items visible at the final append node.")
+        + '<figure class="diagram"><img src="diagrams/automation-map-to-sheet.svg" width="1000" height="172" loading="lazy" alt="Illustrative sequence: map scraper, Apify actor, dataset retrieval, filter and Google Sheets append."><figcaption>Architecture summary of the visible node sequence.</figcaption></figure>'
         '<p class="card-highlight"><strong>Evidence limit:</strong> The screenshot supports an editor run for this small sample. It does not establish an active schedule, production deployment or a larger lead count.</p>'
         '</article>',
     )
@@ -1570,7 +1581,8 @@ PAGES["automation.html"] = (
         + '</div>'
         '<h3>PostgreSQL Research with Search Fallback</h3>'
         '<p class="prose">The captured canvas fetches company rows from PostgreSQL, splits a batch, checks prior processing and routes a search request toward an AI request and database save step.</p>'
-        '<figure class="diagram"><img src="diagrams/automation-research.svg" width="1000" height="172" loading="lazy" alt="Illustrative sequence: PostgreSQL fetch, batching, deduplication, search fallback, AI request and database save."><figcaption>Illustrative path through the visible canvas; downstream completion is unverified.</figcaption></figure>'
+        + workflow_image("postgres-search-ai-enrichment.jpeg", 1600, 590, "n8n PostgreSQL research canvas with early completed nodes, an AI request warning and an unrun database save node.", "Original editor capture · partial run; AI enrichment and save are unverified.")
+        + '<figure class="diagram"><img src="diagrams/automation-research.svg" width="1000" height="172" loading="lazy" alt="Illustrative sequence: PostgreSQL fetch, batching, deduplication, search fallback, AI request and database save."><figcaption>Illustrative path through the visible canvas; downstream completion is unverified.</figcaption></figure>'
         '<p class="card-highlight"><strong>Evidence limit:</strong> The editor shows early nodes and a search branch completing, followed by a warning at the AI request. It does not prove that the batch was enriched or saved.</p>'
         '</article>',
     )
@@ -1582,8 +1594,9 @@ PAGES["automation.html"] = (
         + badge("Design shown")
         + '</div>'
         '<h3>Google Sheets to PDF Lead Brief</h3>'
-        '<p class="prose">Two private canvas views show a lead-row trigger, data formatting, Google Docs creation and text insertion, PDF export through Drive, and a Gmail notification. The later view adds a filter before document creation.</p>'
-        '<figure class="diagram"><img src="diagrams/automation-report.svg" width="1000" height="172" loading="lazy" alt="Illustrative sequence: spreadsheet row, formatting and filter, document creation, PDF export and email notification."><figcaption>Public abstraction of the captured document workflow.</figcaption></figure>'
+        '<p class="prose">Two canvas views show a lead-row trigger, data formatting, Google Docs creation and text insertion, PDF export through Drive, and a Gmail notification. The later view adds a filter before document creation.</p>'
+        + workflow_image("lead-brief-filtered.jpeg", 1600, 752, "n8n lead brief design with a sheet trigger, filter, Google Docs creation, Drive PDF export and Gmail notification nodes.", "Original editor capture · later design with a filter; delivery is not demonstrated.")
+        + '<figure class="diagram"><img src="diagrams/automation-report.svg" width="1000" height="172" loading="lazy" alt="Illustrative sequence: spreadsheet row, formatting and filter, document creation, PDF export and email notification."><figcaption>Architecture summary of the captured document workflow.</figcaption></figure>'
         '<p class="card-highlight"><strong>Evidence limit:</strong> The screenshots show design/configuration, not a completed PDF or delivered email.</p>'
         '</article>',
     )
@@ -1598,7 +1611,7 @@ PAGES["automation.html"] = (
 )
 
 
-def workflow_example(number, anchor, category, status, title, description, steps, evidence):
+def workflow_example(number, anchor, category, status, title, description, steps, evidence, images):
     step_html = "".join(
         f'<div class="evidence-node-col"><h4>{escape(label)}</h4><p>{escape(value)}</p></div>'
         for label, value in steps
@@ -1608,6 +1621,9 @@ def workflow_example(number, anchor, category, status, title, description, steps
         f'<div class="card-top">{eyebrow(f"Workflow example {number}")}{badge(status)}</div>'
         f'<h3>{escape(title)}</h3>'
         f'<p class="prose">{escape(description)}</p>'
+        '<div class="workflow-captures">'
+        + "".join(workflow_image(*image) for image in images)
+        + '</div>'
         f'<div class="evidence-node-grid">{step_html}</div>'
         f'<p class="card-highlight"><strong>What the evidence shows:</strong> {escape(evidence)}</p>'
         '</article>'
@@ -1615,8 +1631,7 @@ def workflow_example(number, anchor, category, status, title, description, steps
     return section(f'{number}. {category}', body)
 
 
-# Eight selected public descriptions. The count refers to cards, not independently
-# established production systems. Original n8n captures remain outside the build.
+# Ten selected canvas examples; cards and screenshots do not establish production systems.
 PAGES["automation-evidence.html"] = (
     "Automation Evidence Gallery",
     "Rehan Memon | Automation Workflow Gallery",
@@ -1624,7 +1639,7 @@ PAGES["automation-evidence.html"] = (
     intro(
         "Pillar 3 · Workflow Examples",
         "n8n Workflow Gallery",
-        "Selected examples from my Advfiction internship archive. Each card describes visible canvas steps and states the limit of the available evidence; the original screenshots remain private.",
+        "Original n8n editor captures from my Advfiction internship archive, grouped by workflow. Captions distinguish a small editor run, partial runs and unexecuted designs.",
         "automation.html",
         "Workflow Automation Overview",
         "page-intro-compact",
@@ -1635,6 +1650,7 @@ PAGES["automation-evidence.html"] = (
         "A map-scraping flow obtains an Apify dataset, filters items and appends rows to a sheet.",
         [("Start", "Maps Scraper and Apify actor"), ("Transform", "Get dataset items and Filter"), ("Output", "Append row in sheet")],
         "The editor capture shows green indicators through the append node and five output items. Deployment and repeat runs are not established.",
+        [("apify-map-to-sheets.jpeg", 798, 140, "n8n canvas connecting Maps Scraper, Apify actor, dataset retrieval, filter and Google Sheets append; five final items visible.", "Original editor capture · five items at the append node.")],
     )
     + workflow_example(
         2, "wf-postgres-research", "Company Research", "Partial editor run",
@@ -1642,6 +1658,7 @@ PAGES["automation-evidence.html"] = (
         "A company-research canvas fetches database rows, batches them, checks for prior processing and sends a search result toward an AI request.",
         [("Start", "Manual trigger and PostgreSQL fetch"), ("Transform", "Batch, deduplication and search fallback"), ("Output", "AI request followed by PostgreSQL save node")],
         "Early nodes and one search branch show completed indicators; the AI request has a warning and downstream save is not shown as completed.",
+        [("postgres-search-ai-enrichment.jpeg", 1600, 590, "n8n PostgreSQL research canvas: fetched rows, batch, deduplication, search, warning on AI request and unrun save node.", "Original editor capture · partial run; AI enrichment and persistence unverified.")],
     )
     + workflow_example(
         3, "wf-lead-dossier", "Document Automation", "Design shown",
@@ -1649,6 +1666,8 @@ PAGES["automation-evidence.html"] = (
         "Two canvas views show a sheet-triggered lead-report flow; the later view adds a filter before document generation.",
         [("Start", "Sheet row or subworkflow trigger"), ("Transform", "Format lead data and create Google Doc"), ("Output", "Export PDF and Gmail notification nodes")],
         "The screenshots show a configured route, not a generated document, delivered email or production run.",
+        [("lead-brief-initial.jpeg", 1600, 516, "Initial n8n lead brief design from spreadsheet row through Google Docs, Drive PDF export and Gmail notification.", "Initial canvas design · no delivered document shown."),
+         ("lead-brief-filtered.jpeg", 1600, 752, "Later n8n lead brief design adding a filter before Google Docs creation and PDF export.", "Later canvas design · filter added; delivery remains unverified.")],
     )
     + workflow_example(
         4, "wf-instagram-api", "Scheduled Publishing", "Design shown",
@@ -1656,6 +1675,7 @@ PAGES["automation-evidence.html"] = (
         "A publishing design reads approved scheduled posts, checks timing, creates an Instagram media container and routes toward publish and status-update nodes.",
         [("Start", "Schedule or subworkflow trigger"), ("Transform", "Approved-post lookup and eligibility check"), ("Output", "Meta publish, sheet update and notification nodes")],
         "The editor view shows the design and a warning on a notification node. A successful post or connected client account is not established.",
+        [("instagram-scheduling.jpeg", 1600, 639, "n8n daily publishing design with approved-post lookup, timing checks, Instagram container and publish nodes, sheet update and Telegram notice.", "Original editor capture · scheduling design, with a warning on the notification path.")],
     )
     + workflow_example(
         5, "wf-telegram-bot", "Human Approval", "Design shown",
@@ -1663,6 +1683,7 @@ PAGES["automation-evidence.html"] = (
         "A review flow reads candidate items from a sheet, sends a Telegram message, waits for an approval decision and branches to sheet status updates.",
         [("Start", "Schedule or subworkflow trigger"), ("Transform", "Loop, Telegram message and Wait"), ("Output", "Approve/reject branches and confirmation")],
         "Two supplied captures are byte-identical views of this design. Neither proves that a reviewer responded or that a downstream publication occurred.",
+        [("telegram-review-approval.jpeg", 1600, 677, "n8n Telegram approval design with sheet rows, reviewer message, wait node and approve or reject branches.", "Original editor capture · one unique image; its second source file was identical.")],
     )
     + workflow_example(
         6, "wf-news-prompt", "News Processing", "Design shown",
@@ -1670,6 +1691,8 @@ PAGES["automation-evidence.html"] = (
         "A canvas combines two news-search requests, merges results, transforms them with JavaScript and routes an AI-generated result to a sheet.",
         [("Start", "Schedule or subworkflow trigger"), ("Transform", "Two HTTP sources, merge, JavaScript and AI request"), ("Output", "Append row in sheet")],
         "A design view shows the node sequence; there are no visible execution indicators or verified generated outputs.",
+        [("news-ai-summary.jpeg", 1577, 503, "n8n news processing design merging two HTTP sources, JavaScript transformations, an AI request and a sheet append.", "News summary canvas · design shown, execution unverified."),
+         ("news-image-composite.jpeg", 1600, 438, "Composite n8n content design connecting news, AI text, image generation, Drive and Telegram stages.", "Related composite canvas · stages are connected; output is unverified.")],
     )
     + workflow_example(
         7, "wf-social-orchestrator", "Generative Media", "Design shown",
@@ -1677,6 +1700,7 @@ PAGES["automation-evidence.html"] = (
         "A related canvas reads captions from a sheet, calls an image-generation API, uploads the result to Drive and writes its URL back to the sheet.",
         [("Start", "Manual or subworkflow trigger"), ("Transform", "Caption loop and image-generation request"), ("Output", "Drive upload and sheet update nodes")],
         "The design is visible, but successful image generation and asset sharing are not shown. It may be a stage of a larger content workflow.",
+        [("caption-to-image-asset.jpeg", 1600, 527, "n8n caption-to-image design looping over sheet rows, calling an image API, uploading to Drive and updating the sheet.", "Original editor capture · image creation and sharing not demonstrated.")],
     )
     + workflow_example(
         8, "wf-subworkflow-router", "Outreach Prototype", "Test harness design",
@@ -1684,6 +1708,23 @@ PAGES["automation-evidence.html"] = (
         "A mock-lead test canvas branches on qualification and sketches an AI outreach message, email action and team notification.",
         [("Start", "Manual trigger with mock lead data"), ("Transform", "Qualification branch and AI request"), ("Output", "Gmail and Slack nodes")],
         "The canvas labels itself a skeleton; communication nodes show configuration warnings. No live outreach or sent messages are established.",
+        [("outreach-test-harness.jpeg", 1600, 728, "n8n AI outreach skeleton with mock lead data, qualification branch, AI request, Gmail and Slack nodes showing configuration warnings.", "Original editor capture · explicit skeleton; no outreach delivery shown.")],
+    )
+    + workflow_example(
+        9, "wf-social-publisher", "Social Publishing Prototype", "Design shown",
+        "PostgreSQL to AI Social Publisher",
+        "A separate canvas selects scheduled items from PostgreSQL, drafts a caption with an AI request, routes image generation and Telegram review, then sketches a Facebook publish path.",
+        [("Start", "Schedule and PostgreSQL selection"), ("Transform", "AI caption, image and Telegram approval"), ("Output", "Facebook request and status update nodes")],
+        "The editor view shows connected nodes, not a successful approval, generated asset, published post or completed status update.",
+        [("social-publisher-prototype.jpeg", 1600, 681, "n8n social publisher design with PostgreSQL, AI caption, image generation, Telegram review and Facebook request stages.", "Additional original canvas · publication and approvals unverified.")],
+    )
+    + workflow_example(
+        10, "wf-itinerary-proposal", "Proposal Prototype", "Design shown",
+        "AI Itinerary and PDF Proposal",
+        "A distinct design filters spreadsheet leads, builds an AI itinerary prompt, parses the response into HTML, routes PDF creation and sketches an email and sheet update.",
+        [("Start", "Sheet leads and filter"), ("Transform", "Prompt, AI response, merge and HTML"), ("Output", "PDF, Gmail and sheet update nodes")],
+        "The canvas shows configuration only; no generated itinerary, delivered proposal or completed lead update is established.",
+        [("itinerary-pdf-proposal.jpeg", 1593, 472, "n8n itinerary proposal design with sheet filter, Groq AI request, HTML formatting, PDF.co conversion and Gmail route.", "Additional original canvas · proposal delivery unverified.")],
     )
     + explore_more("automation-evidence.html"),
 )

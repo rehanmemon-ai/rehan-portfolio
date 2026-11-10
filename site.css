@@ -1046,6 +1046,24 @@ p {
   justify-content: space-between;
 }
 
+.workflow-captures {
+  display: grid;
+  gap: 1rem;
+  max-width: 1000px;
+}
+
+.workflow-capture {
+  margin: 1rem 0;
+}
+
+@media (max-width: 760px) {
+  .modal-content img.workflow-modal-image {
+    width: max(100%, 900px);
+    max-width: none;
+    max-height: none;
+  }
+}
+
 .evidence-figure img {
   display: block;
   width: 100%;
