@@ -415,6 +415,38 @@ p {
   border-radius: .35rem;
 }
 
+.copy-email-box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+  margin: var(--space-xs) 0;
+}
+
+.copy-email-btn {
+  min-height: 2.2rem;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.copy-email-btn:hover {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.copy-email-btn.copied {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
 .resume-nav-btn {
   display: inline-flex;
   align-items: center;

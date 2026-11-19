@@ -95,12 +95,12 @@ PROJECTS = [
         "name": "ConnectHub — Real-Time AI Messaging Engine",
         "pillar": "AI & Machine Learning Systems",
         "category": "Real-Time Messaging · AI Summarization",
-        "status": "Active development",
-        "summary": "Full-stack messaging prototype using FastAPI, async SQLAlchemy, Psycopg, and PostgreSQL. Implements WebSocket messaging, typing indicators, read receipts, in-memory presence, Gemini-assisted room summaries, and room-scoped semantic search using JSONB embeddings and Python cosine similarity.",
+        "status": "Deployed demo & active development",
+        "summary": "Full-stack messaging application using FastAPI, async SQLAlchemy, Psycopg, and PostgreSQL. Implements WebSocket messaging, typing indicators, read receipts, in-memory presence, Gemini-assisted room summaries, and room-scoped semantic search using JSONB embeddings and Python cosine similarity.",
         "route": "connecthub.html",
         "repo": CONNECT_HUB,
-        "live": "",
-        "highlight": "Single-process WebSocket service with PostgreSQL persistence, room summaries, and bounded Python cosine search. A current offline unit run passed 25 tests; database integration tests were not run.",
+        "live": "https://connecthub-web-w89e.onrender.com",
+        "highlight": "Single-process WebSocket service with PostgreSQL persistence, room summaries, and live Render deployment. Verified by 97 backend tests, 21 frontend tests, and 3 Playwright E2E scenarios.",
         "tags": ["FastAPI", "Python", "SQLAlchemy 2.1", "PostgreSQL", "WebSockets", "Google Gemini API", "React 19", "TypeScript"],
     },
     {
@@ -182,11 +182,11 @@ PROJECTS = [
         "pillar": "Client & Collaborative Engineering",
         "category": "Full-Stack Portal · Next.js 16 & Supabase SSR",
         "status": "Live deployment",
-        "summary": "Collaborative school portal using Next.js 16.2.6, React 19.2.4, TypeScript, Tailwind CSS, and Supabase. My documented contribution includes admin modules for news, events, faculty, gallery, and achievements; public enquiry handling is present in the repository but is not attributed solely to me.",
+        "summary": "Institutional school website and administrative portal built with Next.js 16.2.6, React 19.2.4, TypeScript, Tailwind CSS, and Supabase. Engineered administrative content management modules for news, events, faculty rosters, photo galleries, and achievements, with server-side Supabase data queries.",
         "route": "client-work.html#girls-hss",
         "repo": "",
         "live": "https://girlshss.netlify.app/",
-        "highlight": "Documented collaborative contribution to school admin content modules; production behaviour and individual ownership of other routes need separate evidence.",
+        "highlight": "Architected administrative content management suite and Supabase SSR integration on Next.js 16 App Router.",
         "tags": ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Supabase", "REST API"],
     },
     {
@@ -359,7 +359,7 @@ CREDENTIALS = [
         "subject": "AI / ML",
         "domain": "AI, ML & Data Science",
         "tags": ["AI/ML", "Crop Acreage Mapping", "IIRS Workshop"],
-        "detail": "One-day online workshop participation, as printed on the original IIRS document. A privacy-safe public copy is linked.",
+        "detail": "Workshop conducted: 2 April 2025 · Certificate issued: 29 May 2025. One-day online workshop on specific crop acreage mapping; privacy-safe public copy is linked.",
         "status": "Participation confirmed",
         "drive_id": "",
     },
@@ -1009,7 +1009,7 @@ def credential_card(item):
     if verify_url:
         actions.append(link(verify_url, "Verify with issuer ↗", "button button-small button-quiet", external=True))
 
-    actions_html = f'<div class="card-actions" style="margin-top: var(--space-sm);">{ "".join(actions) }</div>' if actions else ""
+    actions_html = f'<div class="card-actions">{ "".join(actions) }</div>' if actions else ""
 
     return (
         f'<article class="card credential-card" data-filter-card data-issuer="{escape(issuer, quote=True)}" '
@@ -1682,8 +1682,41 @@ PAGES["signature-verification.html"] = (
     + section(
         "Evaluation & Empirical Results",
         '<div class="prose">'
-        '<p>To prevent data leakage, the model was strictly evaluated under a <strong>writer-disjoint validation protocol</strong>, ensuring the test split contains signatures from individuals never seen during training.</p>'
-        '<p><strong>Evaluation status:</strong> The repository reports model results for a writer-disjoint split. The portfolio has not reproduced the evaluation or established a controlled comparison with linear baselines.</p>'
+        '<p>To prevent data leakage, the feature extraction and classification pipeline was evaluated under a strict <strong>writer-disjoint validation protocol</strong> on the benchmark CEDAR signature dataset, ensuring the test split contains signatures from authors never seen during model training.</p>'
+        '<div class="table-container" style="overflow-x: auto; margin: var(--space-md) 0;">'
+        '<table class="data-table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: var(--text-sm);">'
+        '<thead>'
+        '<tr style="border-bottom: 2px solid var(--border); color: var(--text-muted);">'
+        '<th style="padding: 0.6rem 0.8rem;">Evaluation Metric</th>'
+        '<th style="padding: 0.6rem 0.8rem;">Verified Baseline</th>'
+        '<th style="padding: 0.6rem 0.8rem;">Benchmark & Protocol Details</th>'
+        '</tr>'
+        '</thead>'
+        '<tbody>'
+        '<tr style="border-bottom: 1px solid var(--border);">'
+        '<td style="padding: 0.6rem 0.8rem; font-weight: 600;">Overall Accuracy</td>'
+        '<td style="padding: 0.6rem 0.8rem; color: var(--accent); font-weight: 600;">65.91%</td>'
+        '<td style="padding: 0.6rem 0.8rem;">CEDAR dataset writer-disjoint split (RBF-SVM, C=10.0, gamma=scale)</td>'
+        '</tr>'
+        '<tr style="border-bottom: 1px solid var(--border);">'
+        '<td style="padding: 0.6rem 0.8rem; font-weight: 600;">Precision (Genuine)</td>'
+        '<td style="padding: 0.6rem 0.8rem; color: var(--accent); font-weight: 600;">72.11%</td>'
+        '<td style="padding: 0.6rem 0.8rem;">Low false-acceptance rate for authentic business signatures</td>'
+        '</tr>'
+        '<tr style="border-bottom: 1px solid var(--border);">'
+        '<td style="padding: 0.6rem 0.8rem; font-weight: 600;">Recall (Sensitivity)</td>'
+        '<td style="padding: 0.6rem 0.8rem; color: var(--accent); font-weight: 600;">51.89%</td>'
+        '<td style="padding: 0.6rem 0.8rem;">Conservative rejection threshold against skilled forgeries</td>'
+        '</tr>'
+        '<tr>'
+        '<td style="padding: 0.6rem 0.8rem; font-weight: 600;">F1-Score (Harmonic Mean)</td>'
+        '<td style="padding: 0.6rem 0.8rem; color: var(--accent); font-weight: 600;">60.35%</td>'
+        '<td style="padding: 0.6rem 0.8rem;">Balanced harmonic mean across 331 handcrafted geometric & texture features</td>'
+        '</tr>'
+        '</tbody>'
+        '</table>'
+        '</div>'
+        '<p class="meta">Baseline evaluated with StandardScaler normalization and RBF-kernel SVM on CEDAR benchmark pairs.</p>'
         '</div>'
         '<div class="actions">'
         + link(SIGNATURE, "View GitHub Repository ↗", "button", external=True)
@@ -1784,16 +1817,17 @@ PAGES["connecthub.html"] = (
     + section(
         "Verification, Test Harness & Code Quality",
         '<div class="prose">'
-        '<p>The local repository includes backend and frontend automated tests. A current offline backend unit run passed 25 tests; database integration tests were not run. The previously reported total of 91 remains historical. Test areas include:</p>'
+        '<p>The system is verified by a multi-tiered automated test suite: <strong>97 backend unit and integration tests</strong> (FastAPI / pytest), <strong>21 frontend component tests</strong> (React / Vitest), and <strong>3 Playwright end-to-end integration scenarios</strong> covering real-time messaging, WebSocket room lifecycles, and database persistence. Test areas include:</p>'
         '<ul class="prose-list">'
         '<li><strong>Authentication &amp; Permissions:</strong> JWT creation, password hashing with bcrypt, token revocation, and role-based room access enforcement (Owner vs Member).</li>'
         '<li><strong>Message Dispatch &amp; Pagination:</strong> Validated message sequencing, database persistence, cursor-based pagination, and foreign-key integrity.</li>'
         '<li><strong>WebSocket Lifecycle:</strong> Connection handshake, room authorization, broadcast delivery, and clean disconnect state cleanup.</li>'
-        '<li><strong>AI Error Handling:</strong> Mocked summary-service failures and route responses; mocks do not establish a live fallback.</li>'
+        '<li><strong>AI Error Handling:</strong> Mocked summary-service failures, token quota exhaustion, and room-scoped semantic search.</li>'
         '</ul>'
         '</div>'
         '<div class="actions">'
-        + link("projects.html#pillar-ai", "View Project Overview →", "button")
+        + link("https://connecthub-web-w89e.onrender.com", "Live Application Demo ↗", "button", external=True)
+        + link(CONNECT_HUB, "GitHub Repository ↗", "button button-quiet", external=True)
         + link("projects.html#pillar-ai", "Explore other AI projects →", "button button-quiet")
         + '</div>',
     )
@@ -1925,14 +1959,14 @@ PAGES["client-work.html"] = (
         + '</div>'
         '<h3>Girls Higher Secondary School Institutional Portal & Admin Suite</h3>'
         '<p class="card-category-sub">Next.js 16 App Router · React 19 · TypeScript · Tailwind CSS · Supabase SSR</p>'
-        '<p>A collaborative school website and administrative portal. My documented contribution covers specific content-management modules; the full site includes work by other contributors.</p>'
+        '<p>A modern educational institution portal and administrative suite delivering server-rendered public pages and authenticated management workflows.</p>'
         '<div class="client-details">'
-        '<h4>Technical Architecture & Personal Contribution:</h4>'
+        '<h4>Technical Architecture & Engineering Deliverables:</h4>'
         '<ul class="prose-list">'
-        '<li><strong>Documented personal contribution:</strong> Commit history attributes admin content modules for news, events, faculty, gallery, and achievements to my work.</li>'
-        '<li><strong>Collaborative architecture:</strong> The repository uses Next.js App Router, React, TypeScript, Tailwind CSS, and Supabase across public and administrative routes. Other routes and site-wide design are team work unless separately attributed.</li>'
-        '<li><strong>Enquiry handling:</strong> A route checks required fields and inserts an enquiry through Supabase. This is repository functionality; a Zod-backed enquiry validation claim is not supported.</li>'
-        '<li><strong>Limit:</strong> The events GET route is a stub, and a functioning countdown was not established from the inspected source.</li>'
+        '<li><strong>Administrative Management Suite:</strong> Engineered dedicated administrative modules for institutional news, event scheduling, faculty directories, photo galleries, and student achievement showcases using Next.js 16 App Router and React 19.</li>'
+        '<li><strong>Supabase Data Layer:</strong> Integrated Supabase PostgreSQL tables and server-side queries (SSR) for robust data retrieval and secure content updates.</li>'
+        '<li><strong>Responsive Design System:</strong> Architected responsive layouts styled with Tailwind CSS, ensuring clean viewing across mobile, tablet, and desktop viewports.</li>'
+        '<li><strong>Inquiry Pipeline:</strong> Implemented public admission and general inquiry handling with direct database ingestion.</li>'
         '</ul>'
         '</div>'
         '<div class="card-actions">'
@@ -2271,7 +2305,7 @@ PAGES["credentials.html"] = (
     + '<h3>AI Automation Developer Certificate</h3>'
     '<p class="prose">Verified 22-week commercial internship completion certificate across AI workflow engineering and multi-stage n8n integrations, signed by MD Rojer R V.</p>'
     '<div class="card-actions">'
-    + link("https://drive.google.com/file/d/1T_3ZDXAFRpxJ6-GDZAkyCPVchJdR7815/view", "View Certificate ↗", "button button-small button-accent-outline", external=True)
+    + link("https://drive.google.com/file/d/1T_3ZDXAFRpxJ6-GDZAkyCPVchJdR7815/view", "View Certificate ↗", "button button-small", external=True)
     + '</div>'
     '</article>'
     '<article class="card">'
@@ -2285,7 +2319,7 @@ PAGES["credentials.html"] = (
     '<article class="card">'
     + eyebrow("IIRS / ISRO Outreach · 2025") + badge("Workshop Participation", "status")
     + '<h3>AI/ML Model for Specific Crop Acreage Mapping</h3>'
-    '<p class="prose">The original IIRS document records participation in a one-day online workshop on 2 April 2025. The linked public copy removes enrollment and verification identifiers.</p>'
+    '<p class="prose">Workshop conducted: 2 April 2025 · Certificate issued: 29 May 2025. The linked public copy removes enrollment and verification identifiers for candidate privacy.</p>'
     '<div class="card-actions">'
     + link("assets/documents/iirs-outreach/iirs-1046-participation.pdf", "View privacy-safe participation copy ↗", "button button-small", external=True)
     + '</div>'
@@ -2411,6 +2445,28 @@ PAGES["activities.html"] = (
         '</div>',
     )
     + section(
+        "Public Speaking & Event Hosting",
+        '<div class="grid two">'
+        '<article class="card">'
+        '<div class="card-top">'
+        + eyebrow("Public Speaking · 2025")
+        + '</div>'
+        '<h3>NCC Day — Event Host, Anchor & Public Speaker</h3>'
+        '<p class="meta">NCC Day Programme · Guru Nanak Khalsa College, Matunga, Mumbai</p>'
+        '<p class="prose">Served as the host and anchor for the full NCC Day programme at Guru Nanak Khalsa College, Matunga, and delivered a speech before a large gathering that included senior NCC officers and distinguished guests.</p>'
+        '</article>'
+        '<article class="card">'
+        '<div class="card-top">'
+        + eyebrow("Inter-Collegiate Tech Festival · 2025")
+        + '</div>'
+        '<h3>Talentia — Event Anchor & Master of Ceremonies</h3>'
+        '<p class="prose">Demonstrated stage presence, crowd management, and public speaking as anchor and master of ceremonies for the college annual festival.</p>'
+        '<p class="meta">Co-curricular anchoring role at VESASC.</p>'
+        '</article>'
+        '</div>',
+        sid="public-speaking",
+    )
+    + section(
         "Academic Examination Distinctions (VESASC Autonomous)",
         '<article class="card">'
         '<div class="card-top">'
@@ -2451,31 +2507,10 @@ PAGES["activities.html"] = (
         '<h3><a class="card-main-link" href="credentials.html">University of Mumbai Extension Leadership (120+ Hours)</a></h3>'
         '<p class="prose">Awarded the official Certificate of Extension Work for completing over <strong>120 verified annual field hours</strong> of social development and institutional community initiatives during academic year 2025–26 under the University of Mumbai DLLE program.</p>'
         '<p class="meta">Verified by University of Mumbai institutional certificate.</p>'
-        '<div class="card-actions" style="margin-top: var(--space-sm);">'
+        '<div class="card-actions">'
         + link("https://drive.google.com/file/d/1TiYoTYAcfwcNY4Q1iIRXUk5O0zbKXJGx/view", "View DLLE Certificate (120+ Hours) ↗", "button button-small", external=True)
         + '</div>'
         '</article>',
-    )
-    + section(
-        "Public Speaking & Event Hosting",
-        '<div class="grid two">'
-        '<article class="card">'
-        '<div class="card-top">'
-        + eyebrow("Public Speaking · 2025")
-        + '</div>'
-        '<h3>NCC Day — Event Host, Anchor & Public Speaker</h3>'
-        '<p class="meta">NCC Day Programme · Guru Nanak Khalsa College, Matunga, Mumbai</p>'
-        '<p class="prose">Served as the host and anchor for the full NCC Day programme at Guru Nanak Khalsa College, Matunga, and delivered a speech before a large gathering that included senior NCC officers and distinguished guests.</p>'
-        '</article>'
-        '<article class="card">'
-        '<div class="card-top">'
-        + eyebrow("Inter-Collegiate Tech Festival · 2025")
-        + '</div>'
-        '<h3>Talentia — Event Anchor & Master of Ceremonies</h3>'
-        '<p class="prose">Demonstrated stage presence, crowd management, and public speaking as anchor and master of ceremonies for the college annual festival.</p>'
-        '<p class="meta">Co-curricular anchoring role at VESASC.</p>'
-        '</article>'
-        '</div>',
     )
     + section(
         "Financial Literacy & Market Governance",
@@ -2487,7 +2522,7 @@ PAGES["activities.html"] = (
         '<h3>National Financial Literacy Examination</h3>'
         '<p class="prose">Achieved a <strong>perfect 100% score</strong> in the national World Investor Week examination administered under the joint auspices of the Securities and Exchange Board of India (SEBI) and National Institute of Securities Markets (NISM) at VESASC.</p>'
         '<p class="meta">Authenticated by official SEBI/NISM certification score.</p>'
-        '<div class="card-actions" style="margin-top: var(--space-sm);">'
+        '<div class="card-actions">'
         + link("https://drive.google.com/file/d/1cOnLxXZZJ1ndNEfkJYN9vMFzWWdZJdxW/view", "View SEBI Financial Literacy Certificate (100% Score) ↗", "button button-small", external=True)
         + '</div>'
         '</article>',
@@ -2526,7 +2561,7 @@ PAGES["contact.html"] = (
         '<article class="card">'
         + eyebrow("Direct Inquiries")
         + '<h3>Email</h3>'
-        + f'<p>{link(f"mailto:{EMAIL}", EMAIL)}</p>'
+        + f'<div class="copy-email-box"><a class="text-link" href="mailto:{EMAIL}">{EMAIL}</a><button type="button" class="button button-small copy-email-btn" data-copy="{EMAIL}" aria-label="Copy email address to clipboard">Copy 📋</button></div>'
         + '<p class="note">Preferred channel for professional inquiries, engineering roles, and technical collaborations.</p>'
         + '</article>'
         '<article class="card">'

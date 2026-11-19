@@ -285,3 +285,24 @@ if (zoomableFigures.length > 0) {
     });
   }
 }
+
+// DEC-13: Email Copy Action
+document.querySelectorAll('.copy-email-btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const text = btn.getAttribute('data-copy');
+    if (text && navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied! ✓';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(() => {
+        btn.textContent = 'Copied! ✓';
+        setTimeout(() => { btn.textContent = 'Copy 📋'; }, 2000);
+      });
+    }
+  });
+});

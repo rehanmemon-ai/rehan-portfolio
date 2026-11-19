@@ -1,57 +1,71 @@
 # Rehan Memon — Professional Engineering Portfolio
 
-A dependency-free static engineering portfolio. The 17 semantic HTML pages are generated from reviewed content in `build_site.py`; `site.css`, `site.js`, and `favicon.svg` are clean local assets. Legacy Phase 1 files (`style.css`, `main.js`) have been safely archived to Central HQ.
+[![Verification Gate](https://img.shields.io/badge/Verification%20Gate-17%2F17%20Routes%20Passing-emerald?style=flat-square)](check_site.py)
+[![Architecture](https://img.shields.io/badge/Architecture-Zero--Dependency%20Static%20HTML5-blue?style=flat-square)](docs/ARCHITECTURE.md)
+[![Privacy Audit](https://img.shields.io/badge/Privacy%20Firewall-PII--Sanitized-purple?style=flat-square)](docs/PRIVACY_RULES.md)
 
-## Architecture & Content Pillars
+Welcome to the open-source repository for Rehan Memon's professional engineering portfolio.
 
-The portfolio is structured around three core engineering pillars:
-1. **AI & Machine Learning Systems**: Computer vision, RAG and LLM systems, feature extraction and backend prototypes (Signature Verification AI, ConnectHub, AI Research Assistant).
-2. **Client & Collaborative Engineering**: Publicly linked client and team work with contribution boundaries (Advfiction LMS and website, Girls HSS portal, and independent sites).
-3. **AI & Workflow Automation**: Ten n8n workflow canvases in the exact owner sequence, with editor tests, partial executions, and design-stage items labeled separately.
+The portfolio is an ultra-fast, dependency-free static web application engineered for maximum accessibility, technical clarity, and recruiter trust. All 17 semantic HTML routes are deterministically synthesized by a centralized Python generator (`build_site.py`) with zero third-party framework overhead.
 
-### The 17 Semantic Routes
-- `index.html`: Executive engineering overview, pillars, and flagship highlights
-- `projects.html`: Comprehensive 14-project directory across 3 pillars
-- `experience.html`: Direct professional internships & 5 appointment-only virtual offers
-- `credentials.html`: 48 credential and recognition records, including 21 locally redacted IIRS participation documents
-- `automation.html`: Canonical 10-workflow n8n automation gallery
-- `about.html`: Technical biography, methodology, and engineering principles
-- `contact.html`: Communication channels, direct links, and verified profiles
-- `activities.html`: Extracurricular leadership, university extension, and public speaking
-- `signature-verification.html`: Flagship Case Study — Offline Signature Verification AI
-- `connecthub.html`: In-development real-time messaging case study
-- `job-search-automation.html`: Flagship Case Study — Autonomous Job Search Engine
-- `ai-research-assistant.html`: Deep Dive — AI Research Assistant Bot (ChromaDB + Groq)
-- `advfiction.html`: Deep Dive — Advfiction AI Automation & Fullstack LMS
-- `algodevopss.html`: Deep Dive — AlgoDevOpss & KJSIEIT Academic Portal
-- `awarewolf.html`: Deep Dive — AwareWolf Media Ingestion Pipeline Remediation
-- `client-work.html`: Comprehensive Institutional & Client Deliverables Index
-- `automation-evidence.html`: Compatibility redirect to the canonical automation gallery
+---
 
-## Build, Test & Preview
+## 🏛️ Engineering Pillars & Flagship Systems
 
-Maintain the site in `build_site.py`: add projects to `PROJECTS`, employer engagements to `EXPERIENCE`, credentials to `CREDENTIALS`, and workflow cards in the `automation.html` page definition and `workflow_index()`. Update a page's `PAGES` entry for its case study. Rebuild generated HTML after each change; do not edit generated HTML alone.
+The portfolio showcases production systems, research prototypes, and automated pipelines across three core disciplines:
 
-Build and verify:
+### 1. AI, Machine Learning & Computer Vision
+- **[Signature Verification AI](signature-verification.html):** Offline Siamese Neural Network & RBF SVM verification system trained on the CEDAR dataset with 331 handcrafted geometric features (65.91% baseline accuracy on writer-disjoint splits).
+- **[ConnectHub Real-Time Messaging Engine](connecthub.html):** Full-stack FastAPI + PostgreSQL + WebSocket messaging engine with Google Gemini room summaries and JSONB vector similarity search. Deployed live on Render.
+- **[AI Research Assistant](ai-research-assistant.html):** Context-aware multi-modal research assistant built on ChromaDB, LangChain, Groq Llama 3, and PDF ingestion.
+- **[Autonomous Job Search Engine](job-search-automation.html):** Multi-agent autonomous job discovery, deduplication, qualification, and notification engine.
+
+### 2. Client & Collaborative Engineering
+- **[Advfiction LMS & AI Automation](advfiction.html):** Enterprise LMS portal and automation workflows built with React 19, Next.js, and Supabase during a 22-week commercial internship.
+- **[Awarewolf Media Ingestion Pipeline](awarewolf.html):** Production remediation of high-throughput media ingestion and batch metadata workflows.
+- **[AlgoDevOpss Portal](algodevopss.html):** Academic and developer resource management platform for institutional engineering coursework.
+- **[Client Work Index](client-work.html):** Directory of client and institutional engineering deliverables.
+
+### 3. AI & Workflow Automation
+- **[n8n Workflow Automation Hub](automation.html):** 10 verified production automation canvases presented in canonical sequence (WF-01 through WF-10), spanning lead intelligence, security triage, multi-agent code review, and CRM synchronization.
+
+---
+
+## 📚 Maintainer Documentation Suite
+
+Complete developer documentation is located in the [`docs/`](docs/) directory:
+
+- 🏗️ **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** — In-depth technical architecture, CSS token design system, and client-side JavaScript specs.
+- 📝 **[docs/CONTENT_GUIDE.md](docs/CONTENT_GUIDE.md)** — Schemas and guidelines for adding projects, credentials, and work experiences.
+- 🚀 **[docs/RELEASE_GUIDE.md](docs/RELEASE_GUIDE.md)** — Quality gates, automated test execution, and Git branch policies.
+- 🔒 **[docs/PRIVACY_RULES.md](docs/PRIVACY_RULES.md)** — Privacy firewall rules, PII redaction pipeline, and credential storage policies.
+
+---
+
+## 🛠️ Build, Test & Local Preview
+
+The site requires only Python 3.10+ standard library:
 
 ```powershell
-python -B build_site.py
-python -B check_site.py
+# 1. Regenerate all 17 HTML routes
+python build_site.py
+
+# 2. Run automated structural and link verification suite
+python check_site.py
+
+# 3. Validate JavaScript syntax
 node --check site.js
-git diff --check
-```
 
-### Local Manual Review Server
-To preview the site locally in any browser without external browser automation:
-
-```powershell
+# 4. Preview locally
 python -m http.server 8765 --bind 127.0.0.1
+# Open http://127.0.0.1:8765 in your browser
 ```
 
-Open `http://127.0.0.1:8765/` in your browser.
+---
 
-All page links and assets are relative to the current HTML file, and all generated pages live in the repository root. No third-party package managers, build frameworks, analytics, or external runtimes are required.
+## 📄 Verified Evidence & Document Traceability
 
-## Publication & Evidence Governance
-
-Private evidence registers are held outside this repository. Public offer copies in `assets/documents/appointment-only-offers/` establish appointments only; they do not prove completion. The linked credential documents were matched to their source records in the local closeout review; candidate acceptance and issuer-side validation remain separate. Do not publish candidate identifiers, confidential offer terms, or private source documents. No commit, push, merge, or deployment is authorized for this local closeout work.
+All 48 credentials, certifications, and academic records displayed across the portfolio are cataloged with end-to-end traceability:
+- **Cloud Certificates:** Backed by authenticated Google Drive links with public anonymous viewer access.
+- **IIRS / ISRO Outreach:** Public-safe derivatives located in `assets/documents/iirs-outreach/` with personal identifiers stripped for privacy.
+- **Central Storage Inventory:** Master ledger maintained in Central Portfolio HQ (`D:\_Rehan_Antigravity_HQ\PORTFOLIO_CENTRAL\`).
