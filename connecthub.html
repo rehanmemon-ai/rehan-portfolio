@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Messaging prototype using FastAPI, async SQLAlchemy, Psycopg, PostgreSQL, WebSockets, Gemini room summaries, and room-scoped Python cosine search over JSONB embeddings.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rehan Memon | ConnectHub Real-Time AI Messaging Engine">
+  <meta property="og:description" content="Messaging prototype using FastAPI, async SQLAlchemy, Psycopg, PostgreSQL, WebSockets, Gemini room summaries, and room-scoped Python cosine search over JSONB embeddings.">
+  <meta property="og:url" content="https://rehanmemon-ai.github.io/rehan-portfolio/connecthub.html">
+  <meta property="og:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="canonical" href="https://rehanmemon-ai.github.io/rehan-portfolio/connecthub.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rehan Memon | ConnectHub Real-Time AI Messaging Engine">
+  <meta name="twitter:description" content="Messaging prototype using FastAPI, async SQLAlchemy, Psycopg, PostgreSQL, WebSockets, Gemini room summaries, and room-scoped Python cosine search over JSONB embeddings.">
+  <meta name="twitter:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta name="theme-color" content="#0d171c">
+  <title>Rehan Memon | ConnectHub Real-Time AI Messaging Engine</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', '#f7f7f2');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Rehan Memon, home"><svg class="brand-monogram" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0b1317"/><rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-opacity="0.85"/><path d="M14 47V17H25C29.5 17 32 19.5 32 24.5C32 29.5 29.5 32 25 32H14" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 32L32 47" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 47V17L44.5 31L52 17V47" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-text">REHAN MEMON</span></a>
+      <nav class="desktop-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions">
+        <a class="button button-small resume-nav-btn" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Switch to light theme"><span id="themeIcon" aria-hidden="true">Light</span></button>
+        <button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button>
+      </div>
+    </div>
+    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden>
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a>
+      <div class="mobile-menu-cta">
+        <a class="button" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">View Resume (Google Doc) ↗</a>
+      </div>
+    </nav>
+  </header>
+  <main id="main"><section class="page-intro container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="projects.html#pillar-ai">← Back to Pillar 1: AI &amp; Machine Learning Systems</a></nav><p class="eyebrow">Pillar 1 · AI &amp; Machine Learning Systems</p><h1>ConnectHub — Real-Time AI Messaging Engine</h1><p class="lead">An in-development multi-room messaging application with FastAPI, PostgreSQL, WebSockets, Gemini-assisted summaries, and room-scoped semantic search.</p></section><section class="section container"><h2>ASGI &amp; Real-Time Pipeline</h2><p class="prose">ConnectHub combines WebSocket connections, asynchronous relational persistence, AI summaries, and room-scoped semantic search in a modular application:</p><figure class="diagram"><img src="diagrams/connecthub-pipeline.svg" width="1000" height="172" loading="lazy" alt="FastAPI handles room WebSockets and in-memory presence; async SQLAlchemy persists messages to PostgreSQL; Gemini supplies summaries; Python compares JSONB-stored embeddings within a room."><figcaption>Current architecture: FastAPI, in-memory presence, PostgreSQL persistence, Gemini summaries, and room-scoped Python cosine search.</figcaption></figure><ol class="flow"><li><div class="flow-step-num">1. FastAPI ASGI &amp; PostgreSQL</div><div class="flow-step-body">Uses FastAPI, Uvicorn, async SQLAlchemy sessions, Psycopg, and Alembic migrations. PostgreSQL stores the authoritative room and message records.</div></li><li><div class="flow-step-num">2. WebSockets &amp; Ephemeral In-Memory Presence</div><div class="flow-step-body">Features a dedicated <code>/ws/{room_id}</code> connection manager maintaining active client socket sets per chat room. Dispatches real-time broadcast events, ephemeral typing indicators, read receipts, and member join/leave notifications with low-latency local socket dispatch.</div></li><li><div class="flow-step-num">3. Relational Schema &amp; Cascade Integrity</div><div class="flow-step-body">Normalized relational schema modeling Users, Rooms, Memberships, Messages, and AI Summaries. Enforces foreign-key cascade deletes, compound uniqueness constraints, and B-tree compound indexing on <code>(room_id, created_at)</code> for optimized paginated history traversal.</div></li><li><div class="flow-step-num">4. Gemini Room Summaries</div><div class="flow-step-body">A request route gathers room history and calls Gemini to generate a catch-up summary. Embedding generation uses a background task; summary generation is not a separate durable worker.</div></li><li><div class="flow-step-num">5. Room-Scoped Cosine Search</div><div class="flow-step-body">Stores embedding arrays in PostgreSQL JSONB and compares them in Python within a room. No pgvector index or measured search latency is claimed.</div></li></ol></section><section class="section container"><h2>Architectural Trade-offs &amp; Deep Engineering Decisions</h2><div class="prose"><div class="grid two"><div class="card"><h3>Single-Process In-Memory Presence</h3><p><strong>Current design:</strong> Active sockets and presence are tracked in process memory. This supports the current single-process prototype.</p><p><strong>Limit:</strong> A multi-worker deployment would require shared coordination and a separate design and test pass. No Redis adapter is implemented.</p></div><div class="card"><h3>JSONB Storage and Python Cosine Search</h3><p><strong>Current design:</strong> Embedding arrays are stored in PostgreSQL JSONB and compared in Python for room-scoped search.</p><p><strong>Limit:</strong> Search scale and latency have not been independently benchmarked. The implementation does not use pgvector or HNSW.</p></div></div><div class="card" style="margin-top: 1.5rem;"><h3>Async Database Sessions</h3><p>Uses SQLAlchemy <code>AsyncSession</code> for database operations. The project still requires load and failure testing before any concurrency or throughput claim.</p></div></div></section><section class="section container"><h2>Verification, Test Harness &amp; Code Quality</h2><div class="prose"><p>The local repository includes backend and frontend automated tests. A current offline backend unit run passed 25 tests; database integration tests were not run. The previously reported total of 91 remains historical. Test areas include:</p><ul class="prose-list"><li><strong>Authentication &amp; Permissions:</strong> JWT creation, password hashing with bcrypt, token revocation, and role-based room access enforcement (Owner vs Member).</li><li><strong>Message Dispatch &amp; Pagination:</strong> Validated message sequencing, database persistence, cursor-based pagination, and foreign-key integrity.</li><li><strong>WebSocket Lifecycle:</strong> Connection handshake, room authorization, broadcast delivery, and clean disconnect state cleanup.</li><li><strong>AI Error Handling:</strong> Mocked summary-service failures and route responses; mocks do not establish a live fallback.</li></ul></div><div class="actions"><a class="button" href="projects.html#pillar-ai">View Project Overview →</a><a class="button button-quiet" href="projects.html#pillar-ai">Explore other AI projects →</a></div></section><nav class="explore-more-nav container" aria-label="Explore Portfolio"><div class="explore-more-card"><p class="eyebrow">Continue Exploring</p><div class="explore-grid"><a href="projects.html" class="explore-link"><span class="explore-title">Technical Projects →</span><span class="explore-desc">Computer Vision, RAG &amp; Full-Stack Systems</span></a><a href="experience.html" class="explore-link"><span class="explore-title">Internship Experience →</span><span class="explore-desc">AwareWolf, Advfiction &amp; AlgoDevOpss</span></a><a href="automation.html" class="explore-link"><span class="explore-title">AI &amp; Workflow Automation →</span><span class="explore-desc">10 n8n workflow architectures with execution evidence</span></a><a href="client-work.html" class="explore-link"><span class="explore-title">Client Deployments →</span><span class="explore-desc">LMS, Corporate Portals &amp; Web APIs</span></a></div></div></nav></main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Rehan Juned Memon · AI Engineering &amp; Software Systems</p>
+      <div class="footer-links">
+        <a class="text-link" href="projects.html">Projects</a>
+        <a class="text-link" href="experience.html">Experience</a>
+        <a class="text-link" href="automation.html">Workflow Automation</a>
+        <a class="text-link" href="credentials.html">Credentials</a>
+        <a class="text-link" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

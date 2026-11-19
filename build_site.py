@@ -7,6 +7,9 @@ ROOT = Path(__file__).resolve().parent
 GITHUB = "https://github.com/rehanmemon-ai"
 SIGNATURE = f"{GITHUB}/signature-verification"
 RESEARCH = f"{GITHUB}/Assistant_Bot-Research"
+# These projects are local work in progress; public repository destinations are unverified.
+CONNECT_HUB = ""
+JOB_SEARCH = ""
 EMAIL = "memon18rehan@gmail.com"
 LINKEDIN = "https://www.linkedin.com/in/rehan-memon-b1803b334"
 LEETCODE = "https://leetcode.com/u/rehanmemon-ai/"
@@ -14,7 +17,6 @@ KAGGLE = "https://www.kaggle.com/rehanjunedmemon"
 RESUME_DOC_ID = "1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg"
 RESUME_URL = f"https://docs.google.com/document/d/{RESUME_DOC_ID}/edit"
 RESUME_PDF_URL = f"https://docs.google.com/document/d/{RESUME_DOC_ID}/export?format=pdf"
-DRIVE_CREDENTIALS_URL = "https://drive.google.com/drive/folders/11IE6MjLIiwc70rHwgrvSJOeOFZvSw6AM?usp=drive_link"
 SITE_URL = "https://rehanmemon-ai.github.io/rehan-portfolio"
 
 # Official College Affiliation & Identity
@@ -63,7 +65,7 @@ def explore_more(current=""):
     items = [
         ("projects.html", "Technical Projects →", "Computer Vision, RAG & Full-Stack Systems"),
         ("experience.html", "Internship Experience →", "AwareWolf, Advfiction & AlgoDevOpss"),
-        ("automation-evidence.html", "Automation Workflow Gallery →", "Selected n8n canvas examples"),
+        ("automation.html", "AI & Workflow Automation →", "10 n8n workflow architectures with execution evidence"),
         ("client-work.html", "Client Deployments →", "LMS, Corporate Portals & Web APIs"),
         ("credentials.html", "Credential Library →", "ISRO, Nasscom, PW Skills & Academic Certs"),
         ("contact.html", "Get In Touch →", "Direct Email, LinkedIn & GitHub"),
@@ -88,13 +90,25 @@ def explore_more(current=""):
 
 # Comprehensive Project Portfolio across Three Core Pillars
 PROJECTS = [
-    # PILLAR 1: Applied AI & Machine Learning Systems
+    # PILLAR 1: AI & Machine Learning Systems
+    {
+        "name": "ConnectHub — Real-Time AI Messaging Engine",
+        "pillar": "AI & Machine Learning Systems",
+        "category": "Real-Time Messaging · AI Summarization",
+        "status": "Active development",
+        "summary": "Full-stack messaging prototype using FastAPI, async SQLAlchemy, Psycopg, and PostgreSQL. Implements WebSocket messaging, typing indicators, read receipts, in-memory presence, Gemini-assisted room summaries, and room-scoped semantic search using JSONB embeddings and Python cosine similarity.",
+        "route": "connecthub.html",
+        "repo": CONNECT_HUB,
+        "live": "",
+        "highlight": "Single-process WebSocket service with PostgreSQL persistence, room summaries, and bounded Python cosine search. A current offline unit run passed 25 tests; database integration tests were not run.",
+        "tags": ["FastAPI", "Python", "SQLAlchemy 2.1", "PostgreSQL", "WebSockets", "Google Gemini API", "React 19", "TypeScript"],
+    },
     {
         "name": "Signature Verification AI",
-        "pillar": "Applied AI & Machine Learning",
+        "pillar": "AI & Machine Learning Systems",
         "category": "Computer Vision · Machine Learning",
-        "status": "Research Baseline · Verified Implementation",
-        "summary": "Offline handwritten signature verification pipeline engineered with OpenCV morphological preprocessing, extraction of 331 geometric/contour features, and an RBF Support Vector Machine evaluated under a writer-disjoint split protocol.",
+        "status": "Working prototype",
+        "summary": "Offline signature verification prototype using grayscale conversion, Gaussian blur, Otsu thresholding, contour crop, 331 handcrafted features, StandardScaler and an RBF SVM evaluated with writer-disjoint splits.",
         "route": "signature-verification.html",
         "repo": SIGNATURE,
         "live": "",
@@ -103,59 +117,59 @@ PROJECTS = [
     },
     {
         "name": "AI Research Assistant",
-        "pillar": "Applied AI & Machine Learning",
+        "pillar": "AI & Machine Learning Systems",
         "category": "Generative AI · Retrieval-Augmented Generation",
-        "status": "In Progress / Currently Developing",
+        "status": "Currently developing",
         "summary": "Document question-answering prototype featuring token-aware text chunking, dense Chroma vector database indexing, workspace-scoped similarity retrieval, transparent source citation mapping, and a local FastAPI service harness.",
         "route": "ai-research-assistant.html",
         "repo": RESEARCH,
         "live": "",
-        "highlight": "Modular Python ingestion prototype with Chroma dense vector embeddings and citation-grounded retrieval.",
+        "highlight": "Modular Python ingestion prototype with Chroma dense embeddings, workspace-scoped retrieval, and source citation mapping.",
         "tags": ["Python", "ChromaDB", "Vector Search", "FastAPI", "RAG", "Embeddings"],
     },
     {
         "name": "KARIGAR-SETU — Artisan Smart Cataloging",
-        "pillar": "Applied AI & Machine Learning",
+        "pillar": "AI & Machine Learning Systems",
         "category": "Multimodal AI · On-Device Vision",
-        "status": "Selected Architecture · SIH 2026",
-        "summary": "AI-powered mobile cataloging and direct market linkage platform designed for marginalized artisans (Problem Statement SIH26090). Combines on-device MobileNet/TensorFlow.js computer vision for product enhancement, Google Gemini Flash API for automated catalog descriptions, and Web Speech API for multilingual voice interaction.",
+        "status": "Design-stage architecture",
+        "summary": "Team design for an artisan cataloging and market-linkage app (Problem Statement SIH26090). The proposal considers MobileNet/TensorFlow.js, Gemini-generated descriptions, and Web Speech API voice interaction; implementation of those components has not been established.",
         "route": "activities.html#karigar-setu",
         "repo": "",
         "live": "",
-        "highlight": "On-device TensorFlow.js visual preprocessing and multilingual voice interaction tailored for low-digital-literacy artisans.",
-        "tags": ["React 19", "TensorFlow.js", "MobileNet", "Google Gemini API", "Web Speech API", "Vite"],
+        "highlight": "Design-stage team architecture for product imagery, catalog text, and multilingual interaction.",
+        "tags": ["Design Stage", "TensorFlow.js Proposal", "MobileNet Proposal", "Gemini Proposal", "Voice UI Proposal"],
     },
     {
         "name": "National Scholarship Portal AI Assistant",
-        "pillar": "Applied AI & Machine Learning",
-        "category": "Conversational Agent · Knowledge Base RAG",
-        "status": "College Round 1 Winner · SIH 2025",
-        "summary": "Interactive conversational assistant built for the National Scholarship Portal (NSP / DBT scheme). Selected as Round 1 College Winner and formally nominated by Principal (Ref: VC/SFC/2025-26/0604) for national participation. Features guided eligibility query routing and verified knowledge base matching.",
+        "pillar": "AI & Machine Learning Systems",
+        "category": "Conversational AI · Hackathon Proposal",
+        "status": "College-round entry",
+        "summary": "Team DBTDecoders proposed a National Scholarship Portal (NSP / DBT scheme) conversational assistant and received a documented college-round recognition and Principal nomination for SIH 2025. The available deck describes intended eligibility guidance; chatbot implementation has not been independently verified.",
         "route": "activities.html#sih-dbtdecoders",
         "repo": "",
         "live": "",
-        "highlight": "College 1st Round Winner and Principal-nominated hackathon prototype with recorded demonstration.",
-        "tags": ["Conversational AI", "Node.js", "Knowledge Base", "SIH 2025", "NSP DBT"],
+        "highlight": "College-round recognition and Principal nomination; public technical implementation evidence remains limited.",
+        "tags": ["Conversational AI", "Hackathon Proposal", "SIH 2025", "NSP DBT"],
     },
 
-    # PILLAR 2: Selected Client Deployments
+    # PILLAR 2: Client & Collaborative Engineering
     {
         "name": "SAHASH NGO Voice & Conversational Assistant",
-        "pillar": "Selected Client Deployments",
+        "pillar": "Client & Collaborative Engineering",
         "category": "Conversational AI · NGO Community Support",
-        "status": "Completed Deployment Prototype",
-        "summary": "Full-stack conversational assistant engineered for SAHASH India via ConnectFor to assist community members, volunteers, and donors. Built with Node.js, Express, Google Gemini Flash API, an in-memory vector store for verified organizational FAQs, session memory, rate limiting, and a multilingual Web Speech API voice interface.",
+        "status": "Prototype; deployment unverified",
+        "summary": "Conversational assistant developed for SAHASH India via ConnectFor to help visitors find organization information. The Node.js/Express service retrieves FAQ and organization documents using keyword and intent scoring, passes context to Gemini, and supports session history and a Web Speech API voice interface.",
         "route": "client-work.html#sahash-chatbot",
         "repo": "",
         "live": "",
-        "highlight": "Voice-enabled conversational agent with semantic retrieval grounded strictly in verified NGO organization data to prevent hallucinations.",
-        "tags": ["Node.js", "Express", "Google Gemini API", "Vector Store", "Web Speech API", "Voice UI"],
+        "highlight": "Voice-enabled interface with local FAQ/document lookup and Gemini response generation; factual answer faithfulness has not been measured.",
+        "tags": ["Node.js", "Express", "Google Gemini API", "Keyword Retrieval", "Web Speech API", "Voice UI"],
     },
     {
         "name": "Advfiction Enterprise Lead LMS",
-        "pillar": "Selected Client Deployments",
+        "pillar": "Client & Collaborative Engineering",
         "category": "Full-Stack Web & API Engineering",
-        "status": "Live Client Deployment",
+        "status": "Live deployment",
         "summary": "Collaborative lead management system for marketing operations. Contributed a public Node/Express lead endpoint with required-field and email checks, Supabase PostgreSQL insertion, and an allowed-origin CORS configuration for the website and LMS frontends.",
         "route": "client-work.html#advfiction-lms",
         "repo": "",
@@ -165,33 +179,33 @@ PROJECTS = [
     },
     {
         "name": "LMS Girls Higher Secondary School",
-        "pillar": "Selected Client Deployments",
-        "category": "Full-Stack Portal · Next.js & Supabase",
-        "status": "Live Platform Deployment",
-        "summary": "Comprehensive educational web platform built with Next.js 16, React 19, TypeScript, and Supabase. Implemented administrative modules for dynamic event scheduling, student enquiry capture, and automated countdown logic.",
+        "pillar": "Client & Collaborative Engineering",
+        "category": "Full-Stack Portal · Next.js 16 & Supabase SSR",
+        "status": "Live deployment",
+        "summary": "Collaborative school portal using Next.js 16.2.6, React 19.2.4, TypeScript, Tailwind CSS, and Supabase. My documented contribution includes admin modules for news, events, faculty, gallery, and achievements; public enquiry handling is present in the repository but is not attributed solely to me.",
         "route": "client-work.html#girls-hss",
         "repo": "",
         "live": "https://girlshss.netlify.app/",
-        "highlight": "Dynamic administrative dashboard and serverless API routes for school event and enquiry workflows.",
-        "tags": ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Supabase"],
+        "highlight": "Documented collaborative contribution to school admin content modules; production behaviour and individual ownership of other routes need separate evidence.",
+        "tags": ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Supabase", "REST API"],
     },
     {
         "name": "Marthandam Star Honey Platform",
-        "pillar": "Selected Client Deployments",
+        "pillar": "Client & Collaborative Engineering",
         "category": "E-Commerce Showcase & API Integration",
-        "status": "Live Client Deployment",
-        "summary": "Commercial product showcase and inquiry platform engineered with React 19, Vite, Tailwind CSS, and Framer Motion. Built wholesale product catalog modules and an Express backend routing customer inquiries directly into Google Sheets via API.",
+        "status": "Live deployment",
+        "summary": "Commercial product showcase built with React 19, Vite, Tailwind CSS, and Framer Motion. A separate Express-to-Google-Sheets inquiry integration exists in the local source; the deployed form's submission path is not independently verified.",
         "route": "client-work.html#msh-honey",
         "repo": "",
         "live": "https://msh-website.netlify.app/",
-        "highlight": "Interactive product showcase with validated inquiry routing directly into cloud spreadsheets.",
+        "highlight": "Live product showcase; end-to-end inquiry delivery remains unverified.",
         "tags": ["React 19", "Vite", "Tailwind CSS", "Express", "Google Sheets API"],
     },
     {
         "name": "Advfiction Corporate Website Revamp",
-        "pillar": "Selected Client Deployments",
+        "pillar": "Client & Collaborative Engineering",
         "category": "Collaborative Web Engineering",
-        "status": "Live Production Deployment",
+        "status": "Live deployment",
         "summary": "Revamp of the primary corporate web presence for Advfiction Private Limited. Implemented responsive interface layouts, interactive service presentations, and contact form integrations routing inquiries directly to the company's backend lead pipeline.",
         "route": "client-work.html#advfiction-website",
         "repo": "",
@@ -202,15 +216,28 @@ PROJECTS = [
 
     # PILLAR 3: AI & Workflow Automation Systems
     {
+        "name": "Autonomous Job Search Engine",
+        "pillar": "AI & Workflow Automation",
+        "category": "Local-First Automation · Public ATS Ingestion",
+        "status": "Active development",
+        "summary": "Local-first job discovery prototype with Python adapters for Greenhouse, Lever, Ashby, Himalayas, Remotive, and Arbeitnow, plus a Schema.org structured-data parser. Adzuna remains a stub. Streamlit supports review and deterministic matching; a PREPARATION_ONLY hard lock prevents external application submission.",
+        "route": "job-search-automation.html",
+        "repo": JOB_SEARCH,
+        "live": "",
+        "evidence": "job-search-automation.html#verification",
+        "highlight": "Local-first ingestion and deterministic matching with a preparation-only safety boundary. A current offline suite run passed 450 tests, failed one scoring E2E assertion, and skipped one Windows symlink test.",
+        "tags": ["Python", "Streamlit", "Greenhouse API", "Lever API", "Deterministic Matching", "Pytest"],
+    },
+    {
         "name": "Apify-to-Sheets Lead Pipeline",
         "pillar": "AI & Workflow Automation",
         "category": "Map Data Ingestion",
-        "status": "Editor Run Shown",
+        "status": "Editor execution shown",
         "summary": "An n8n canvas connects an Apify map scraper to dataset retrieval, a filter, and Google Sheets row insertion. The published editor capture shows five items at the final append node.",
-        "route": "automation.html#map-lead-capture",
+        "route": "automation.html#wf-maps-scraper",
         "repo": "",
         "live": "",
-        "evidence": "automation-evidence.html#wf-maps-scraper",
+        "evidence": "automation.html#wf-maps-scraper",
         "highlight": "One small editor run is visible; ongoing deployment and larger-scale output are not established.",
         "tags": ["n8n", "Apify Actors", "Google Sheets API", "Data Filtering", "ETL"],
     },
@@ -218,12 +245,12 @@ PROJECTS = [
         "name": "Company Research & AI Enrichment Canvas",
         "pillar": "AI & Workflow Automation",
         "category": "Database Research Canvas",
-        "status": "Partial Editor Run",
+        "status": "Partial execution shown",
         "summary": "A PostgreSQL research canvas fetches rows, batches them, checks prior processing and routes search results toward an AI request and database save step.",
-        "route": "automation.html#company-research",
+        "route": "automation.html#wf-postgres-research",
         "repo": "",
         "live": "",
-        "evidence": "automation-evidence.html#wf-postgres-research",
+        "evidence": "automation.html#wf-postgres-research",
         "highlight": "Early nodes completed in the editor; the AI request shows a warning and the save step is not shown completing.",
         "tags": ["n8n", "PostgreSQL", "AI Prompts", "SerpApi", "Batch Processing"],
     },
@@ -231,16 +258,17 @@ PROJECTS = [
         "name": "Lead Brief & PDF Workflow Design",
         "pillar": "AI & Workflow Automation",
         "category": "Document Automation Design",
-        "status": "Design-Stage Pipeline",
+        "status": "Design-stage architecture",
         "summary": "Two n8n canvas views show a sheet-triggered lead brief: format fields, create a Google Doc, export a PDF and route a Gmail notification. A later view adds a filter.",
-        "route": "automation.html#lead-report",
+        "route": "automation.html#wf-lead-dossier",
         "repo": "",
         "live": "",
-        "evidence": "automation-evidence.html#wf-lead-dossier",
+        "evidence": "automation.html#wf-lead-dossier",
         "highlight": "The captures show design/configuration, without a completed PDF or delivered email.",
         "tags": ["n8n", "Google Sheets", "Google Docs", "PDF Export", "Gmail"],
     },
 ]
+
 
 
 def get_project(name):
@@ -256,26 +284,26 @@ EXPERIENCE = [
         "name": "AwareWolf",
         "role": "Content Operating System Intern",
         "badge": "PAID INTERNSHIP",
-        "dates": "Sep 2026–Present · Offer: Sep 2026–Mar 2027",
-        "status_note": "Workstream paused since November 2026",
+        "dates": "Offer Term: Sep 2026–Mar 2027",
+        "status_note": "Paid Internship · Workstream paused in November 2026",
         "summary": "Engineered media workflow prototyping in React/TypeScript and FastAPI: built five-scene JSONL storyboards (263 backend / 27 frontend tests passing in verified local snapshot), engineered Pillow/SHA-256 image ingestion (7 integration tests), investigated legacy FFmpeg stream drift, and benchmarked generative-video models on Kaggle.",
         "route": "awarewolf.html",
     },
     {
         "name": "Advfiction Private Limited",
-        "role": "Web Developer Intern · AI Automation Workstream",
-        "badge": "DUAL TRACK",
-        "dates": "Apr–Sep 2026 · Concurrent Tracks",
-        "status_note": "Original offer: 29 Apr 2026 start, 3 months; later work through Sep reported in career records",
-        "summary": "Operated across two concurrent engineering workstreams: built full-stack lead intake APIs (Node/Express, Supabase) and responsive interfaces on the web team, while architecting multi-stage n8n workflows for automated lead capture, PostgreSQL research, and document generation.",
+        "role": "Web Developer Intern & AI Automation Developer (Dual Track)",
+        "badge": "DUAL TRACK VERIFIED",
+        "dates": "Apr–Sep 2026 · Extended 22-Week Appointment",
+        "status_note": "Both tracks extended by 2 additional months · 22-week completion certs & joint LOR verified",
+        "summary": "Operated across two concurrent engineering workstreams: built full-stack lead intake APIs (Node/Express, Supabase) and responsive interfaces on the web team, while architecting multi-stage n8n workflows for automated lead capture, PostgreSQL research, and document generation. Both tracks verified by primary offer letters, extension letters, completion certificates, and a joint Letter of Recommendation.",
         "route": "advfiction.html",
     },
     {
         "name": "AlgoDevOpss",
         "role": "Full-Stack Development Intern",
-        "badge": "VERIFIED TERM",
-        "dates": "May–Dec 2026 · Extended Appointment",
-        "status_note": "Appointment letter: May–Oct 2026; Completion certificate: May–Aug 2026; Extension communicated through Dec 2026 (updated extension offer letter pending)",
+        "badge": "DOCUMENTED TERM",
+        "dates": "May–Aug 2026 · Documented Term (Extension Pending)",
+        "status_note": "Documented appointment: May–Aug 2026; informal extension through Dec 2026 (in progress as of November 2026; formal letter pending)",
         "summary": "Collaborated on departmental web modules for the KJSIEIT EXTC website in Next.js and TypeScript, engineering the dedicated Pedagogy showcase route and the typed results-data.ts performance module, alongside database-backed CMS prototyping.",
         "route": "algodevopss.html",
     },
@@ -283,7 +311,8 @@ EXPERIENCE = [
 
 # Full Curated Credential Records across 6 Domains
 CREDENTIALS = [
-    # Domain 1: Generative AI & Automation
+
+    # Domain: Generative AI & Automation
     {
         "title": "GenAI Job Simulation",
         "issuer": "BCG X via Forage",
@@ -292,87 +321,119 @@ CREDENTIALS = [
         "subject": "Generative AI",
         "domain": "Generative AI & Automation",
         "tags": ["Generative AI", "Python", "LLMs", "RAG", "Data Extraction"],
-        "detail": "Enterprise simulation involving automated unstructured data extraction, financial performance modeling in Python, and engineering a conversational AI assistant prototype.",
+        "detail": "BCG X GenAI job simulation completed through Forage. This is a training simulation, not direct BCG X employment.",
+        "status": "Verified Simulation",
+        "drive_id": "1VZPcWKt4f5I_vRD8REPQYADvNDZ_WsIL",
+    },
+    {
+        "title": "AI Automation Developer Internship Certificate",
+        "issuer": "Advfiction Private Limited",
+        "date": "01 Oct 2026",
+        "kind": "Commercial Internship Certificate",
+        "subject": "AI & Automation",
+        "domain": "Generative AI & Automation",
+        "tags": ["AI Automation", "n8n", "Apify", "Workflows", "PostgreSQL"],
+        "detail": "Verified 22-week commercial internship completion certificate across AI workflow engineering, automated scraping pipelines, and multi-stage n8n integrations, signed by Managing Director Rojer R V.",
+        "status": "Verified Commercial Credential",
+        "drive_id": "1T_3ZDXAFRpxJ6-GDZAkyCPVchJdR7815",
+    },
+    {
+        "title": "5-Day AI & Computer Vision Bootcamp: Face Tracking with Cursor.AI",
+        "issuer": "SmartEd Innovations / Tech Partner",
+        "date": "19 Jun 2025",
+        "kind": "Hands-on Bootcamp",
+        "subject": "Computer Vision",
+        "domain": "Generative AI & Automation",
+        "tags": ["Computer Vision", "Face Tracking", "Cursor.AI", "JavaScript"],
+        "detail": "Certificate of attendance and active participation in a five-day bootcamp on building web-based face tracking with Cursor.AI; individual implementation is not established by the certificate.",
         "status": "Verified Credential",
+        "drive_id": "1-LhAUvxdgmSkQXRnxU5B1QlfKnNHK_LW",
     },
 
-    # Domain 2: AI, Machine Learning & Data Science
+    # Domain: AI, ML & Data Science
     {
-        "title": "Application of AI/ML Model for Specific Crop Acreage Mapping (Course 1046)",
+        "title": "Application of AI/ML Model for Specific Crop Acreage Mapping — Workshop",
         "issuer": "IIRS / ISRO Outreach",
         "date": "29 May 2025",
-        "kind": "Government Training",
+        "kind": "Workshop Participation",
         "subject": "AI / ML",
         "domain": "AI, ML & Data Science",
-        "tags": ["AI/ML", "Satellite Data", "Spectral Classification", "Remote Sensing"],
-        "detail": "Government certification on applying supervised machine learning algorithms and spectral index models to multi-spectral satellite datasets for agricultural acreage estimation.",
-        "status": "Government Certified",
+        "tags": ["AI/ML", "Crop Acreage Mapping", "IIRS Workshop"],
+        "detail": "One-day online workshop participation, as printed on the original IIRS document. A privacy-safe public copy is linked.",
+        "status": "Participation confirmed",
+        "drive_id": "",
     },
     {
         "title": "Machine Learning and Image Processing",
-        "issuer": "Zikshaa · Nasscom Foundation Partner",
-        "date": "Academic Year 2024–2025",
-        "kind": "Industry Program",
+        "issuer": "thingQbator / Nasscom Foundation (Zikshaa training partner)",
+        "date": "Academic Year 2024\u20132025",
+        "kind": "Certificate of Excellence",
         "subject": "AI / ML",
         "domain": "AI, ML & Data Science",
         "tags": ["Machine Learning", "Image Processing", "OpenCV", "Scikit-Learn"],
-        "detail": "Comprehensive training in classical machine learning algorithms, image filtering, spatial transformations, feature extraction, and predictive classification models.",
+        "detail": "Certificate of Excellence for completing the Machine Learning and Image Processing program; the document does not verify each individual technique listed in a curriculum.",
         "status": "Verified Credential",
+        "drive_id": "1SmZrm_eHCRN9N_AQEsoNjetVF1_0NfNu",
     },
     {
         "title": "Data Science Career Track Masterclass",
         "issuer": "PW Skills (PhysicsWallah)",
-        "date": "Academic Year 2024–2025",
+        "date": "10 Nov 2024",
         "kind": "Technical Masterclass",
         "subject": "Data Science",
         "domain": "AI, ML & Data Science",
         "tags": ["Data Science", "Python", "Pandas", "EDA", "Statistical Modeling"],
-        "detail": "Intensive coursework on end-to-end data science workflows: exploratory data analysis, feature engineering, statistical hypotheses testing, and model evaluation protocols.",
+        "detail": "Participation in a PW Skills data science career-track masterclass; the certificate does not document practical project outcomes.",
         "status": "Verified Credential",
+        "drive_id": "1ySPaVCsj16lXjWuWlykIet3BGYmspFxZ",
     },
     {
         "title": "Artificial Intelligence Beginner Skill Certification",
         "issuer": "Guru Skill Assessment",
-        "date": "Academic Year 2025",
+        "date": "03 Jun 2025",
         "kind": "Skill Assessment",
         "subject": "AI / ML",
         "domain": "AI, ML & Data Science",
         "tags": ["AI Fundamentals", "Knowledge Representation", "Search Algorithms"],
-        "detail": "Certified proficiency in fundamental AI principles, state-space representations, heuristic search methods, and core machine learning paradigms.",
+        "detail": "Guru beginner-level Artificial Intelligence skill test certificate, issued 3 June 2025; it does not specify the individual topics assessed.",
         "status": "Verified Credential",
+        "drive_id": "1U35ipX3-BdCIUFcU4O92I11Ghy7ZT5oq",
     },
     {
-        "title": "Machine Learning For Health-Care",
+        "title": "Machine learning for Healthcare by MIT (on Cursa)",
         "issuer": "Cursa Educational Platform",
-        "date": "Academic Year 2024–2025",
+        "date": "Academic Year 2024\u20132025",
         "kind": "Course Certification",
         "subject": "AI / ML",
         "domain": "AI, ML & Data Science",
         "tags": ["Machine Learning", "Healthcare Analytics", "Predictive Modeling"],
-        "detail": "Training in applying supervised classification and regression models to clinical tabular datasets, biomedical metrics, and risk stratification workflows.",
+        "detail": "Cursa course certificate for a course labelled as MIT material; MIT is not the credential issuer.",
         "status": "Verified Credential",
+        "drive_id": "1Sx8qfEb64mIzZoclOfvfgZsaSeHj4E9E",
     },
     {
-        "title": "Fundamentals of Artificial Intelligence",
+        "title": "Fundamentals of Artificial Intelligence by NPTEL (on Cursa)",
         "issuer": "Cursa Educational Platform",
-        "date": "Academic Year 2024–2025",
+        "date": "Academic Year 2024\u20132025",
         "kind": "Course Certification",
         "subject": "AI / ML",
         "domain": "AI, ML & Data Science",
         "tags": ["AI Concepts", "Neural Networks", "NLP Basics", "Computer Vision"],
-        "detail": "Foundational study of artificial intelligence architectures, heuristic problem-solving, perceptrons, and neural network fundamentals.",
+        "detail": "Cursa course certificate for a course labelled as NPTEL material; NPTEL is not the credential issuer.",
         "status": "Verified Credential",
+        "drive_id": "1_C0hkI5_jqNVMKQaAsgik5oSqtHqmhb8",
     },
     {
-        "title": "5-Day AI & Computer Vision Bootcamp: Face Tracking with Cursor.AI",
-        "issuer": "Let's Upgrade / Tech Partner",
-        "date": "Academic Year 2024–2025",
-        "kind": "Hands-on Bootcamp",
+        "title": "AI/ML Automation Using Python & ChatGPT",
+        "issuer": "LCM",
+        "date": "07 Jun 2025",
+        "kind": "Workshop Participation",
         "subject": "AI / ML",
         "domain": "AI, ML & Data Science",
-        "tags": ["Computer Vision", "Face Tracking", "Cursor.AI", "JavaScript"],
-        "detail": "Applied workshop building browser-based facial landmark tracking and interaction models integrated with modern AI-assisted engineering environments.",
+        "tags": ["Artificial Intelligence", "Machine Learning", "Python", "Algorithms"],
+        "detail": "Workshop participation, as stated on the original LCM certificate. The document does not establish assessed proficiency.",
         "status": "Verified Credential",
+        "drive_id": "1vSQ93mfl7I1jfTa16_zPKV1xN8_Sas2k",
     },
     {
         "title": "Artificial Intelligence & Deep Learning Workshop",
@@ -382,11 +443,12 @@ CREDENTIALS = [
         "subject": "AI / ML",
         "domain": "AI, ML & Data Science",
         "tags": ["Deep Learning", "Neural Networks", "AI Workshop", "FirstBit Solutions"],
-        "detail": "Hands-on technical workshop on deep neural network architectures, backpropagation algorithms, activation functions, and foundational computer vision concepts.",
+        "detail": "Participation in FirstBit Solutions' AI & Deep Learning workshop conducted 19 July 2025; the certificate does not document an implementation project.",
         "status": "Verified Credential",
+        "drive_id": "1aLkavLeWI0aLzu42KX9ehcM27Tppe27T",
     },
 
-    # Domain 3: Software Engineering & Programming
+    # Domain: Software Engineering
     {
         "title": "Full-Stack Web Development Internship Certification",
         "issuer": "AlgoDevOpss",
@@ -395,334 +457,376 @@ CREDENTIALS = [
         "subject": "Web Development",
         "domain": "Software Engineering",
         "tags": ["Next.js", "TypeScript", "React", "Full-Stack Web", "API Design"],
-        "detail": "Formal internship completion award for engineering departmental Next.js web applications, TypeScript data architectures, and dynamic UI modules for academic portals.",
+        "detail": "AlgoDevOpss certificate confirms a Full-Stack Development Intern term from 1 May to 31 August 2026 and contributions across MERN, Next.js, PHP and machine-learning projects; individual code contributions require repository evidence.",
         "status": "Primary Document Verified",
+        "drive_id": "1yZyBwiDStZatvvD9oj5rlM1WUTBkz9BV",
     },
     {
         "title": "Building E-Commerce Applications with React",
         "issuer": "PW Skills (PhysicsWallah)",
-        "date": "Academic Year 2024–2025",
+        "date": "23 Nov 2024",
         "kind": "Technical Masterclass",
         "subject": "Frontend Engineering",
         "domain": "Software Engineering",
         "tags": ["React", "JavaScript", "State Management", "Component Architecture"],
-        "detail": "Hands-on engineering masterclass focused on developing modular React single-page applications, cart state management, and responsive component libraries.",
+        "detail": "Participation in a PW Skills masterclass about building e-commerce applications with React; an implemented application is not established by the certificate.",
         "status": "Verified Credential",
+        "drive_id": "1rOWubhh80jgrXJtHXP2ArUu2QnBwcqXA",
+    },
+    {
+        "title": "Web Development Internship Completion Certificate",
+        "issuer": "Advfiction Private Limited",
+        "date": "01 Oct 2026",
+        "kind": "Commercial Internship Certificate",
+        "subject": "Software Engineering",
+        "domain": "Software Engineering",
+        "tags": ["Full-Stack", "Node.js", "Express", "Supabase", "REST API", "Vercel"],
+        "detail": "Verified 22-week commercial internship completion certificate for full-stack API engineering, Enterprise LMS development, and corporate platform revamps, signed by Managing Director Rojer R V.",
+        "status": "Verified Commercial Credential",
+        "drive_id": "1Q_zS8HQjH03CE4nwsZyvVjkP3t1EI6hn",
     },
     {
         "title": "Data Structures & Algorithms with C++",
-        "issuer": "Let's Upgrade / Tech Partner",
+        "issuer": "SmartEd Innovations / USNG Learnspace Edtech",
         "date": "10 Jul 2025",
         "kind": "Technical Bootcamp",
         "subject": "Programming",
         "domain": "Software Engineering",
         "tags": ["C++", "DSA", "Algorithms", "Time Complexity", "Memory Management"],
-        "detail": "Bootcamp covering fundamental algorithms: binary search trees, graph traversals, dynamic programming paradigms, and time/space complexity optimization.",
+        "detail": "Data Structures and Algorithms with C++ bootcamp credential; the document does not verify particular algorithms implemented.",
         "status": "Verified Credential",
+        "drive_id": "1sNljgYyn666CdnDucWRL0i__hq5DWQ9W",
     },
     {
-        "title": "Python 3: From Basics to Advanced Engineering",
+        "title": "Python for complete beginners by Corey Schafer (on Cursa)",
         "issuer": "Cursa Educational Platform",
-        "date": "Academic Year 2024–2025",
+        "date": "Academic Year 2024\u20132025",
         "kind": "Course Certification",
         "subject": "Programming",
         "domain": "Software Engineering",
         "tags": ["Python 3", "OOP", "Decorators", "File I/O", "Data Structures"],
-        "detail": "Comprehensive certification in modern Python syntax, object-oriented design, functional programming patterns, exception handling, and standard library modules.",
+        "detail": "Cursa course certificate for beginner Python video material; Corey Schafer is named as the course source, not the credential issuer.",
         "status": "Verified Credential",
+        "drive_id": "1M9pHTaObCq94-pDeeClqlROfzj3No0C9",
     },
     {
-        "title": "Operating Systems & System Programming",
+        "title": "Operating Systems and Systems Programming by John Kubiatowicz (on Cursa)",
         "issuer": "Cursa Educational Platform",
-        "date": "Academic Year 2024–2025",
+        "date": "Academic Year 2024\u20132025",
         "kind": "Course Certification",
         "subject": "Systems Engineering",
         "domain": "Software Engineering",
         "tags": ["Operating Systems", "Process Management", "Concurrency", "Memory Paging"],
-        "detail": "Study of system architectures: kernel process scheduling, virtual memory management, thread synchronization primitives, and POSIX system call interfaces.",
+        "detail": "Cursa course certificate for operating systems video material; it does not document a systems project or assessment.",
         "status": "Verified Credential",
+        "drive_id": "1FAzedgR0ARUsWZJPZUwqrK6QdV_ejUmP",
     },
     {
-        "title": "Advanced Spreadsheet Engineering & Data Analysis",
+        "title": "Excel Skill Certification",
         "issuer": "One Roadmap Skill Certification",
-        "date": "Academic Year 2024–2025",
+        "date": "13 May 2025",
         "kind": "Skill Assessment",
         "subject": "Data Tools",
         "domain": "Software Engineering",
         "tags": ["Excel", "Data Modeling", "Lookup Formulas", "Pivot Tables"],
-        "detail": "Certified proficiency in complex analytical functions, dynamic matrix lookups, data aggregation pipelines, and financial modeling worksheets.",
+        "detail": "One Roadmap Excel skill certification; the certificate does not specify advanced spreadsheet engineering topics.",
         "status": "Verified Credential",
+        "drive_id": "1TMSGrC1wqNXOP72kYDwy9xBZkB-1-4IJ",
     },
     {
-        "title": "Cloud Computing Fundamentals & Architecture",
+        "title": "Cloud computing - beginner to advance by University of Illinois (on Cursa)",
         "issuer": "Cursa Educational Platform",
         "date": "11 Feb 2026",
         "kind": "Course Certification",
         "subject": "Systems Engineering",
         "domain": "Software Engineering",
         "tags": ["Cloud Computing", "Virtualization", "IaaS/PaaS", "Infrastructure"],
-        "detail": "Certification covering cloud deployment models, virtualization hypervisors, serverless architectures, and distributed storage infrastructure.",
+        "detail": "Cursa course certificate for cloud computing video material; University of Illinois is named as the source, not the credential issuer.",
         "status": "Verified Credential",
+        "drive_id": "1QNqhpqt-UUg2Wt07VuncV5uyBPJPqpY0",
     },
     {
-        "title": "Web Development Foundations: HTML, CSS & JavaScript",
+        "title": "Web Development Full course by Edureka (on Cursa)",
         "issuer": "Cursa Educational Platform",
         "date": "11 Feb 2026",
         "kind": "Course Certification",
         "subject": "Web Development",
         "domain": "Software Engineering",
         "tags": ["HTML5", "CSS3", "JavaScript", "DOM Manipulation", "Responsive Design"],
-        "detail": "Core engineering coursework covering semantic HTML5 structures, CSS Flexbox/Grid responsive layouts, and ES6+ DOM manipulation pipelines.",
+        "detail": "Cursa course certificate for web development video material; Edureka is named as the source, not the credential issuer.",
         "status": "Verified Credential",
+        "drive_id": "12id3nL_XH3DHTNrB8ArVvMvLTcJxgb36",
     },
 
-    # Domain 4: Geospatial Analysis & Remote Sensing (ISRO / IIRS)
+    # Domain: Geospatial & Remote Sensing
     {
-        "title": "Advanced Image Analysis for Geospatial Professionals (Course 1048)",
+        "title": "Advanced Image Analysis for Geospatial Professionals — Workshop",
         "issuer": "IIRS / ISRO Outreach",
         "date": "12 Nov 2025",
-        "kind": "Government Training",
+        "kind": "Workshop Participation",
         "subject": "Image Analysis",
         "domain": "Geospatial & Remote Sensing",
-        "tags": ["Image Analysis", "Digital Elevation Models", "Geospatial", "ISRO"],
-        "detail": "Advanced remote-sensing course covering multi-band optical imagery preprocessing, orthorectification, feature segmentation, and radiometric correction.",
-        "status": "Government Certified",
+        "tags": ["Image Analysis", "Geospatial", "IIRS Workshop"],
+        "detail": "One-day online workshop participation, as printed on the original IIRS document. A privacy-safe public copy is linked.",
+        "status": "Participation confirmed",
+        "drive_id": "",
     },
     {
         "title": "Advances in Thermal Infrared Remote Sensing for Ecological Studies (Course 1047)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "3 Nov 2025",
-        "kind": "Government Training",
+        "kind": "Workshop Participation",
         "subject": "Remote Sensing",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Thermal Infrared", "Ecological Modeling", "Surface Temperature", "ISRO"],
-        "detail": "Specialized government training on land surface temperature retrieval algorithms, emissivity estimation, and thermal infrared applications in ecology.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
-        "title": "Aerosols Measurement, Retrieval and Environmental Impacts (Course 1052)",
+        "title": "Aerosols Measurement, Retrieval and Impacts (Course 1052)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "12 Jan 2026",
-        "kind": "Government Training",
+        "kind": "Workshop Participation",
         "subject": "Remote Sensing",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Aerosol Optical Depth", "Atmospheric Remote Sensing", "MODIS", "ISRO"],
-        "detail": "Government workshop on satellite atmospheric retrieval algorithms, optical depth calculation, radiative forcing models, and particulate monitoring.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Basics of Remote Sensing, GIS and Global Navigation Satellite Systems (Course 169)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "7 Feb 2026",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "GIS & Satellite Systems",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Remote Sensing", "GIS", "GNSS", "Coordinate Systems", "ISRO"],
-        "detail": "Comprehensive foundation program in electromagnetic radiation theory, spatial map projections, vector/raster GIS topology, and multi-constellation satellite positioning.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Geospatial Technology for Modelling of Urban Environments (Course 162)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "28 Jun 2025",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "Urban GIS",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Urban Modeling", "3D GIS", "Land Cover Change", "Spatial Planning", "ISRO"],
-        "detail": "Technical training on urban canopy modeling, impervious surface extraction, spatial sprawl metrics, and high-resolution satellite cartography.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Overview of Geocomputation and Geo-Web Services (Course 173)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "12 Jan 2026",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "Spatial Web Services",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Geocomputation", "OGC Web Services", "WMS/WFS", "Spatial Databases", "ISRO"],
-        "detail": "Engineering course on OGC geospatial web protocols (WMS, WFS, WCS), cloud spatial architectures, spatial querying, and web mapping interfaces.",
-        "status": "Government Certified",
-    },
-    {
-        "title": "Overview of Geographical Information Systems (Course 172)",
-        "issuer": "IIRS / ISRO Outreach",
-        "date": "17 Nov 2025",
-        "kind": "Government Training",
-        "subject": "GIS Topology",
-        "domain": "Geospatial & Remote Sensing",
-        "tags": ["GIS", "Spatial Analysis", "Overlay Operations", "Database Design", "ISRO"],
-        "detail": "Training in spatial data structures, topological overlay analysis, proximity buffers, and relational geodatabase schema design.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Overview of Geographical Information Systems (Course 150)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "22 Nov 2024",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "GIS Foundations",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["GIS", "Spatial Projections", "Cartography", "ISRO"],
-        "detail": "Introductory government training in vector cartographic structures, coordinate reference frames, and thematic map production.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
+    },
+    {
+        "title": "Overview of Geographical Information Systems (Course 172)",
+        "issuer": "IIRS / ISRO Outreach",
+        "date": "17 Nov 2025",
+        "kind": "Online Course Participation",
+        "subject": "GIS Topology",
+        "domain": "Geospatial & Remote Sensing",
+        "tags": ["GIS", "Spatial Analysis", "Overlay Operations", "Database Design", "ISRO"],
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Overview of Global Navigation Satellite Systems (Course 170)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "3 Nov 2025",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "GNSS Navigation",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["GNSS", "NavIC", "GPS", "Differential Positioning", "ISRO"],
-        "detail": "Study of satellite constellation signals, pseudorange multilateration, ionospheric error mitigation, and NavIC/GPS dual-frequency positioning architectures.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "RS & GIS Applications in Natural Resource Management (Course 174)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "12 Jan 2026",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "Resource Management",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Natural Resources", "Watershed Delineation", "Forestry", "ISRO"],
-        "detail": "Applied curriculum on hydrological watershed modeling, forest cover change detection, soil erosion vulnerability mapping, and multi-criteria evaluation.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Remote Sensing and Numerical Ocean Modelling for Oceanic Processes",
         "issuer": "IIRS / ISRO Outreach",
         "date": "3 Nov 2025",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "Ocean Remote Sensing",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Oceanography", "Altimetry", "Sea Surface Temperature", "Hydrodynamics", "ISRO"],
-        "detail": "Training on satellite ocean altimetry, chlorophyll-a concentration retrieval, sea surface temperature dynamics, and coastal hydrodynamic simulation.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Remote Sensing Data Analytics for Crop Production Forecasting (Course 168)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "17 Jul 2025",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "Agricultural Analytics",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Crop Forecasting", "NDVI Time Series", "Yield Modeling", "ISRO"],
-        "detail": "Instruction on vegetation indices (NDVI, EVI) time-series analysis, phenological stage tracking, and statistical crop yield prediction equations.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
-        "title": "Remote Sensing Observations for Earth and Planetary Geological Studies (Course 171)",
+        "title": "Advances in Remote Sensing Techniques for Geological Applications (Course 171)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "3 Nov 2025",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "Planetary Geology",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Planetary Geology", "Hyperspectral", "Mineral Mapping", "ISRO"],
-        "detail": "Advanced module on hyperspectral mineral absorption feature analysis, planetary surface crater morphology, and structural geological mapping.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Research and Career Opportunities for Space Science & Technology in India (Course 175)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "12 Jan 2026",
-        "kind": "Government Seminar",
+        "kind": "Online Course Participation",
         "subject": "Space Science",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Space Tech", "Mission Payloads", "Satellite Systems", "ISRO"],
-        "detail": "Overview of Indian space program architectures, payload sensor engineering, deep space ground tracking networks, and scientific data archives.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Space Exploration Technology: An Overview (Course 159)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "1 Jun 2025",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "Space Technology",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Launch Vehicles", "Orbital Mechanics", "Spacecraft Subsystems", "ISRO"],
-        "detail": "Technical training on launch vehicle telemetry, orbital insertion trajectories, spacecraft power subsystems, and deep-space communication protocols.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Space Inputs for Village-Level Crop Assessment (Course 1041)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "26 Mar 2025",
-        "kind": "Government Training",
+        "kind": "Workshop Participation",
         "subject": "Agricultural Remote Sensing",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Cadastral Mapping", "High-Resolution Imagery", "Agritech", "ISRO"],
-        "detail": "Methodology for integrating cadastral parcel boundaries with very-high-resolution multispectral imagery for micro-level agricultural assessment.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Recent Trends in Ecological Modelling & Simulation (Course 161)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "28 Jun 2025",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "Ecological GIS",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Ecological Simulation", "Habitat Suitability", "Biodiversity GIS", "ISRO"],
-        "detail": "Coursework in species distribution modeling, MaxEnt algorithms, landscape fragmentation indices, and conservation geospatial analytics.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Archival and Access of Space Science Data",
         "issuer": "IIRS / ISRO Outreach",
         "date": "17 Jul 2025",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "Space Data Science",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["ISDA Portal", "Data Archival", "PDS4 Standard", "Metadata", "ISRO"],
-        "detail": "Study of planetary and astronomical data archiving standards, PDS4 data models, open-access science repositories, and API query pipelines.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "The Method of Space Science Research (Course 160)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "28 Jun 2025",
-        "kind": "Government Training",
+        "kind": "Online Course Participation",
         "subject": "Research Methodology",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Research Methodology", "Scientific Computing", "Data Calibration", "ISRO"],
-        "detail": "Methodological training on formulating space science research problems, instrumental calibration pipelines, hypothesis testing, and observational telemetry analysis.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
     {
         "title": "Origin of the Universe and Solar System Exploration (Course 1053)",
         "issuer": "IIRS / ISRO Outreach",
         "date": "21 Jan 2026",
-        "kind": "Government Training",
+        "kind": "Workshop Participation",
         "subject": "Astrophysics",
         "domain": "Geospatial & Remote Sensing",
         "tags": ["Astrophysics", "Solar Physics", "Planetary Science", "ISRO"],
-        "detail": "Scientific course on cosmological expansion models, solar wind magnetosphere interactions, planetary accretion dynamics, and lunar/Martian mission data.",
-        "status": "Government Certified",
+        "detail": "IIRS outreach online-course participation document. The linked public copy removes enrollment and verification identifiers.",
+        "status": "Participation documented",
+        "drive_id": "",
     },
 
-    # Domain 5: Professional Development & Job Simulations
+    # Domain: Professional Development
     {
         "title": "Coding-Track Micro-Internship Program",
-        "issuer": "Talerang · Cloudwrk Partner",
+        "issuer": "Talerang \u00b7 Cloudwrk Partner",
         "date": "Academic Year 2025",
         "kind": "Micro-Internship",
         "subject": "Industry Readiness",
         "domain": "Professional Development",
         "tags": ["Software Engineering", "Workplace Readiness", "Code Quality", "Collaboration"],
-        "detail": "Rigorous software engineering readiness and corporate problem-solving program evaluated with a top-bracket PASS distinction across code hygiene, design, and execution standards.",
+        "detail": "Talerang coding-track micro-internship career-readiness program in association with Cloudwrk. The certificate records a PASS grade; it does not document a client software deliverable.",
         "status": "Verified Credential",
+        "drive_id": "1SDGQMPSTE_5jUZa7LCSEt7mX60VeqxhH",
     },
     {
-        "title": "Master Social Media Advertising & Campaign Optimization",
-        "issuer": "Digital Marketing Academy",
-        "date": "Academic Year 2024–2025",
-        "kind": "Professional Course",
+        "title": "Master Social Media Ads webinar",
+        "issuer": "SkillEcted Campus Program",
+        "date": "28 Nov 2024",
+        "kind": "Webinar Participation",
         "subject": "Marketing Tech",
         "domain": "Professional Development",
         "tags": ["Digital Campaigns", "Analytics", "Audience Segmentation", "Optimization"],
-        "detail": "Certification covering digital ad architectures, audience targeting parameters, campaign performance analytics, and conversion funnel optimization.",
+        "detail": "Certificate of participation in the Master Social Media Ads webinar; no campaign results or assessed competency are documented.",
         "status": "Verified Credential",
+        "drive_id": "1fo5fOsJi1Ut5xiPGzZSyBNHMevf-0CzV",
     },
 
-    # Domain 6: Academic & Community Honors
+    # Domain: Academic & Extension Honors
     {
         "title": "Certificate of Extension Work (120+ Documented Field Hours)",
         "issuer": "University of Mumbai DLLE",
@@ -733,17 +837,31 @@ CREDENTIALS = [
         "tags": ["DLLE", "University of Mumbai", "Community Service", "Social Impact"],
         "detail": "Awarded by the Department of Lifelong Learning and Extension (DLLE), University of Mumbai, for completing over 120 verified field hours of institutional outreach and community initiatives.",
         "status": "University Award",
+        "drive_id": "1TiYoTYAcfwcNY4Q1iIRXUk5O0zbKXJGx",
     },
     {
-        "title": "EMSA Technical & Media Committee Recognition",
-        "issuer": "VESASC (Autonomous) EMSA",
-        "date": "Academic Year 2024–2025",
-        "kind": "Institutional Leadership",
-        "subject": "Campus Leadership",
+        "title": "World Sparrow Day 2025 Online Quiz",
+        "issuer": "Indian Biodiversity Conservation Society",
+        "date": "20 Mar 2025",
+        "kind": "Quiz Participation",
+        "subject": "Environmental Science",
         "domain": "Academic & Extension Honors",
-        "tags": ["VESASC", "EMSA", "Leadership", "Technical Operations"],
-        "detail": "Recognition for serving on the Electronics & Media Student Association (EMSA) executive committee at VESASC Autonomous, organizing technical symposiums and academic seminars.",
-        "status": "Institutional Recognition",
+        "tags": ["Biodiversity", "Conservation", "Seminar", "Environmental Science"],
+        "detail": "Participation in an online World Sparrow Day quiz; this document does not establish a seminar or academic distinction.",
+        "status": "Participation",
+        "drive_id": "1VcULmKLt7SwKXghQQ2mHj7gsMjnxjTGB",
+    },
+    {
+        "title": "Environment Management System Audit (EMSA)",
+        "issuer": "SYNERGY Consultants (P) Ltd & Hansraj Jivandas College",
+        "date": "Academic Year 2024\u20132025",
+        "kind": "Certified Course (2 Credits)",
+        "subject": "Environmental Systems & Auditing",
+        "domain": "Academic & Extension Honors",
+        "tags": ["ISO 14001", "EMSA", "Environmental Audit", "Compliance"],
+        "detail": "Completed the two-credit Environment Management System Audit course in 2024–25, as printed on the certificate; specific ISO standards and corporate methods are not documented.",
+        "status": "Certified Course",
+        "drive_id": "1QSQ-c0bWeYErjKTuJ6SFWyr1t2xN-0bG",
     },
     {
         "title": "National Financial Literacy Certification (World Investor Week)",
@@ -754,24 +872,25 @@ CREDENTIALS = [
         "domain": "Academic & Extension Honors",
         "tags": ["SEBI", "NISM", "Financial Literacy", "Regulation"],
         "detail": "Scored a perfect 100% on the national investor financial literacy examination conducted under the auspices of SEBI and the National Institute of Securities Markets (NISM).",
-        "status": "Verified Credential",
+        "status": "100% Score",
+        "drive_id": "1cOnLxXZZJ1ndNEfkJYN9vMFzWWdZJdxW",
     },
     {
         "title": "Smart India Hackathon 2025: Round 1 Winner & Principal Nomination",
         "issuer": "AICTE / Smart India Hackathon & VESASC",
         "date": "23 Sep 2025",
-        "kind": "National Examination",
+        "kind": "College Hackathon Recognition",
         "subject": "AI / ML",
         "domain": "Academic & Extension Honors",
         "tags": ["Smart India Hackathon", "DBTDecoders", "Principal Nomination", "NSP AI"],
-        "detail": "Round 1 College Winner and official Principal nomination (Ref: VC/SFC/2025-26/0604) to represent VESASC at SIH 2025 for engineering the National Scholarship Portal conversational assistant.",
+        "detail": "College Round 1 recognition and official principal nomination (Ref: VC/SFC/2025-26/0604) for the DBTDecoders National Scholarship Portal assistant proposal. The source package does not establish a completed chatbot deployment or national award.",
         "status": "Institutional Recognition",
     },
     {
         "title": "Smart India Hackathon 2026: Team EchoLogic Selected Architecture (PS SIH26090)",
         "issuer": "AICTE / Smart India Hackathon",
         "date": "Academic Year 2026",
-        "kind": "National Examination",
+        "kind": "Hackathon Team Selection",
         "subject": "AI / ML",
         "domain": "Academic & Extension Honors",
         "tags": ["Smart India Hackathon", "EchoLogic", "KARIGAR-SETU", "Multimodal AI"],
@@ -779,6 +898,37 @@ CREDENTIALS = [
         "status": "Institutional Recognition",
     },
 ]
+
+
+# Original IIRS documents are private. These keys point only to separately
+# rendered, identifier-free public participation copies in site assets.
+IIRS_PUBLIC_KEYS = [
+    "1046", "1048", "1047", "1052", "169", "162", "173", "150", "172", "170",
+    "174", "ocean", "168", "171", "175", "159", "1041", "161", "archival", "160", "1053",
+]
+_iirs_records = [c for c in CREDENTIALS if c["issuer"] == "IIRS / ISRO Outreach"]
+assert len(_iirs_records) == len(IIRS_PUBLIC_KEYS) == 21
+for _record, _key in zip(_iirs_records, IIRS_PUBLIC_KEYS):
+    _record["public_pdf"] = f"assets/documents/iirs-outreach/iirs-{_key}-participation.pdf"
+    _record["tags"] = [_record["subject"], _record["kind"], "IIRS Outreach"]
+
+# Certificate tags describe the printed credential, not an inferred syllabus or
+# an independently implemented project.
+for _record in CREDENTIALS:
+    if _record["title"] == "Machine Learning and Image Processing":
+        _record["tags"] = ["Machine Learning", "Image Processing", "thingQbator"]
+    elif _record["title"] == "Data Science Career Track Masterclass":
+        _record["tags"] = ["Data Science", "Masterclass", "Participation"]
+    elif _record["title"] == "Artificial Intelligence Beginner Skill Certification":
+        _record["tags"] = ["Artificial Intelligence", "Beginner Skill Test"]
+    elif _record["title"] == "Excel Skill Certification":
+        _record["tags"] = ["Excel", "Skill Test"]
+    elif _record["title"] == "Master Social Media Ads webinar":
+        _record["tags"] = ["Social Media Ads", "Webinar", "Participation"]
+    elif _record["title"] == "World Sparrow Day 2025 Online Quiz":
+        _record["tags"] = ["World Sparrow Day", "Quiz", "Participation"]
+    elif _record["title"] == "Environment Management System Audit (EMSA)":
+        _record["tags"] = ["EMSA", "Environmental Audit", "Two-Credit Course"]
 
 
 def project_card(item):
@@ -806,6 +956,19 @@ def project_card(item):
 def experience_card(item):
     badge_html = badge(item.get("badge", "VERIFIED"), "status") if "badge" in item else ""
     status_note = f'<p class="card-category-sub"><em>{escape(item["status_note"])}</em></p>' if "status_note" in item else ""
+
+    doc_links = []
+    if item["name"] == "AwareWolf":
+        doc_links.append(link("https://drive.google.com/file/d/1pShS64xWmhduHrJyiORbXDGBBXuKAnjc/view", "Appointment Letter ↗", "button button-small button-quiet", external=True))
+    elif "Advfiction" in item["name"]:
+        doc_links.append(link("https://drive.google.com/file/d/1Q_zS8HQjH03CE4nwsZyvVjkP3t1EI6hn/view", "Web Dev Cert ↗", "button button-small button-quiet", external=True))
+        doc_links.append(link("https://drive.google.com/file/d/1T_3ZDXAFRpxJ6-GDZAkyCPVchJdR7815/view", "AI Automation Cert ↗", "button button-small button-quiet", external=True))
+        doc_links.append(link("https://drive.google.com/file/d/1r2tEKiVldHHaL94S_brIEPRVAwsiNRxM/view", "Executive LOR ↗", "button button-small button-quiet", external=True))
+    elif "AlgoDevOpss" in item["name"]:
+        doc_links.append(link("https://drive.google.com/file/d/1yZyBwiDStZatvvD9oj5rlM1WUTBkz9BV/view", "Full-Stack Cert ↗", "button button-small button-quiet", external=True))
+
+    doc_links_html = f'<div class="doc-links" style="margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">{"".join(doc_links)}</div>' if doc_links else ""
+
     return (
         f'<article class="card experience-card clickable-card">'
         f'<div class="card-top">{eyebrow(item["dates"])}{badge_html}</div>'
@@ -813,7 +976,8 @@ def experience_card(item):
         f'<p class="meta">{escape(item["role"])}</p>'
         f'{status_note}'
         f'<p>{escape(item["summary"])}</p>'
-        f'<div class="card-actions">{link(item["route"], "Explore Engineering Contribution →", "button button-small")}</div>'
+        f'{doc_links_html}'
+        f'<div class="card-actions" style="margin-top: var(--space-sm);">{link(item["route"], "Explore Engineering Contribution →", "button button-small")}</div>'
         f'</article>'
     )
 
@@ -826,21 +990,37 @@ def credential_card(item):
     subject = item["subject"]
     domain = item["domain"]
     detail = item["detail"]
-    status = item.get("status", "Verified Credential")
+    status = item.get("status", "")
     tags = item.get("tags", [])
+    drive_id = item.get("drive_id")
+    public_pdf = item.get("public_pdf")
+    verify_url = item.get("verify_url")
 
     tags_html = "".join(f'<span class="tag">{escape(t)}</span>' for t in tags)
     search = f"{title} {issuer} {kind} {subject} {domain} {detail} {' '.join(tags)}".lower()
 
+    badge_html = badge(status, "status") if status and status not in ("Verified Credential", "Primary Document Verified") else ""
+
+    actions = []
+    if drive_id:
+        actions.append(link(f"https://drive.google.com/file/d/{drive_id}/view", "View original certificate ↗", "button button-small", external=True))
+    if public_pdf:
+        actions.append(link(public_pdf, "View privacy-safe participation copy ↗", "button button-small", external=True))
+    if verify_url:
+        actions.append(link(verify_url, "Verify with issuer ↗", "button button-small button-quiet", external=True))
+
+    actions_html = f'<div class="card-actions" style="margin-top: var(--space-sm);">{ "".join(actions) }</div>' if actions else ""
+
     return (
-        f'<article class="card credential-card clickable-card" data-filter-card data-issuer="{escape(issuer, quote=True)}" '
+        f'<article class="card credential-card" data-filter-card data-issuer="{escape(issuer, quote=True)}" '
         f'data-type="{escape(kind, quote=True)}" data-subject="{escape(subject, quote=True)}" '
         f'data-domain="{escape(domain, quote=True)}" data-search="{escape(search, quote=True)}">'
-        f'<div class="card-top">{eyebrow(kind)}{badge(status, "status")}</div>'
+        f'<div class="card-top">{eyebrow(kind)}{badge_html}</div>'
         f'<h3>{escape(title)}</h3>'
         f'<p class="meta">{escape(issuer)} · {escape(date)}</p>'
         f'<p class="prose-small">{escape(detail)}</p>'
         f'<div class="tags-row">{tags_html}</div>'
+        f'{actions_html}'
         f'</article>'
     )
 
@@ -851,13 +1031,14 @@ PAGES = {}
 PAGES["index.html"] = (
     "Home",
     "Rehan Memon | Home",
-    "Applied AI and software engineering portfolio featuring computer vision, an in-progress research assistant, collaborative web development and n8n workflow designs.",
+    "AI engineering and software systems portfolio featuring computer vision, full-stack real-time collaboration, retrieval-augmented generation, and automated workflows.",
     '<section class="hero container">'
     '<div>'
-    + eyebrow("Applied AI · Full-Stack Systems · Workflow Automation")
+    + eyebrow("AI Engineering · Machine Learning · RAG & LLM Systems · Backend Architecture")
     + '<h1>Rehan Juned Memon<span class="accent">.</span></h1>'
-    '<p class="hero-lead">I build <strong>machine learning projects</strong>, develop <strong>web interfaces and APIs</strong> with teams, and prototype <strong>AI and n8n workflows</strong>. My document research assistant remains in progress.</p>'
-    f'<p class="meta">B.Sc. Artificial Intelligence · <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_SHORT}</a>, University of Mumbai · 2024–2027 · Semester IV SGPA: <strong>9.27/10</strong> · CGPA: <strong>8.14/10</strong></p>'
+    '<p class="hero-lead">I build <strong>intelligent software systems</strong> across machine learning, computer vision, retrieval-augmented generation (RAG), LLM-powered applications, real-time backend services, and workflow automation.</p>'
+    '<p class="hero-sublead" style="color: var(--text-muted); margin-bottom: var(--space-md); font-size: 1.05rem; line-height: 1.5;">My work combines Python, model and data pipelines, LLM integrations, retrieval systems, backend architecture, and full-stack engineering to turn technical ideas into usable software.</p>'
+    f'<p class="meta">B.Sc. Artificial Intelligence · <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_SHORT}</a> (Autonomous), University of Mumbai · 2024–2027 · Semester IV SGPA: <strong>9.27/10</strong> | Cumulative CGPA: <strong>8.14/10</strong> (Semesters I–IV)</p>'
     '<div class="actions">'
     + link("projects.html", "Explore All Work", "button")
     + link(RESUME_URL, "View Resume (Google Doc) ↗", "button button-accent-outline", external=True)
@@ -870,55 +1051,65 @@ PAGES["index.html"] = (
     + '<h2>Three Engineering Pillars</h2>'
     '<p>Explore implemented projects, collaborative web work and evidence-labelled workflow designs:</p>'
     '<div class="pillar-links">'
-    + link("projects.html#pillar-ai", "1. Applied AI & Machine Learning →")
-    + link("projects.html#pillar-client", "2. Selected Client Deployments →")
+    + link("projects.html#pillar-ai", "1. AI & Machine Learning Systems →")
+    + link("projects.html#pillar-client", "2. Client & Collaborative Engineering →")
     + link("projects.html#pillar-automation", "3. AI & Workflow Automation →")
     + '</div>'
     '</aside>'
     '</section>'
     + section(
-        "Selected Engineering Work",
-        '<p class="section-lead">Selected computer vision, in-progress document research, collaborative web and editor-tested automation work.</p>'
+        "Featured AI Engineering Work",
+        '<p class="section-lead">Four flagship software systems demonstrating machine learning, retrieval-augmented AI, real-time backend architecture, and multi-source automation pipelines.</p>'
         '<div class="grid two">'
-        + project_card(get_project("Signature Verification AI"))
+        + project_card(get_project("ConnectHub — Real-Time AI Messaging Engine"))
         + project_card(get_project("AI Research Assistant"))
-        + project_card(get_project("Advfiction Enterprise Lead LMS"))
-        + project_card(get_project("Apify-to-Sheets Lead Pipeline"))
+        + project_card(get_project("Signature Verification AI"))
+        + project_card(get_project("Autonomous Job Search Engine"))
         + '</div>'
-        '<p class="section-end">'
-        + link("projects.html", "View All Projects Across All Pillars →")
-        + ' · '
+        '<div class="section-nav-group">'
+        + link("projects.html", "View All 14 Projects Across Pillars →", "button")
+        + '<div class="sub-nav-links">'
         + link("client-work.html", "Client Deployments →")
-        + ' · '
-        + link("automation.html", "Workflow Automation →")
-        + ' · '
-        + link("automation-evidence.html", "Automation Evidence Gallery →")
-        + '</p>',
-        "selected-work",
+        + link("automation.html", "AI & Workflow Automation Systems →")
+        + link("credentials.html", "Explore Credentials & Achievements (48) →")
+        + '</div>'
+        + '</div>',
+        "featured-ai-work",
+    )
+    + section(
+        "Selected Client Deployments",
+        '<p class="section-lead">Selected client and collaborative systems, with live deployments and prototypes labeled according to their evidence.</p>'
+        '<div class="grid two">'
+        + project_card(get_project("Advfiction Enterprise Lead LMS"))
+        + project_card(get_project("LMS Girls Higher Secondary School"))
+        + '</div>'
+        '<div class="section-nav-group">'
+        + link("client-work.html", "Explore All Client Case Studies →", "button button-small")
+        + '</div>',
+        "selected-client-work",
     )
     + section(
         "Commercial & Team Experience",
-        '<p class="section-lead">Engineering contributions across internships and academic web platforms, with individual scope described in each case study.</p>'
+        '<p class="section-lead">Documented engineering contributions across commercial internships and academic web platforms, with direct verification documents accessible immediately.</p>'
         '<div class="grid three">'
         + "".join(experience_card(e) for e in EXPERIENCE)
         + '</div>'
-        '<p class="section-end">'
-        + link("experience.html", "View Comprehensive Experience →")
-        + ' · '
+        '<div class="section-nav-group">'
+        + link("experience.html", "View Comprehensive Experience →", "button")
+        + '<div class="sub-nav-links">'
         + link("awarewolf.html", "AwareWolf Deep Dive →")
-        + ' · '
         + link("advfiction.html", "Advfiction Deep Dive →")
-        + ' · '
         + link("algodevopss.html", "AlgoDevOpss Deep Dive →")
-        + '</p>',
+        + '</div>'
+        + '</div>',
     )
     + section(
         "Academic Distinction & Verified Honors",
         '<div class="grid two">'
         '<article class="card clickable-card">'
-        + eyebrow("VESASC (Autonomous) · University of Mumbai")
+        + eyebrow("University of Mumbai")
         + f'<h3><a class="card-main-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_FULL}</a></h3>'
-        '<p><strong>Semester IV SGPA: 9.27/10</strong>, cumulative CGPA: <strong>8.14/10</strong>. The original marksheet records <strong>98% (49/50, Grade O) in AI in IoT</strong> and <strong>94% (47/50, Grade O) in Generative AI & Prompt Engineering</strong>.</p>'
+        '<p><strong>Semester IV SGPA: 9.27/10</strong> (Grade O Distinction), cumulative CGPA: <strong>8.14/10</strong> across 88 completed credits in B.Sc. Artificial Intelligence. Examination records confirm top scores in AI in IoT (98%) and Generative AI (94%).</p>'
         + '<div class="card-actions">'
         + link("about.html", "Detailed academic background →", "button button-small button-quiet")
         + '</div>'
@@ -926,16 +1117,15 @@ PAGES["index.html"] = (
         '<article class="card clickable-card">'
         + eyebrow("National Recognition & Verified Certifications")
         + '<h3><a class="card-main-link" href="credentials.html">Competitive Awards & Credentials</a></h3>'
-        '<p>Nominated team member representing VESASC for <strong>Smart India Hackathon 2025</strong> (Team DBTDecoders). Completed <strong>21 ISRO/IIRS geospatial AI</strong> courses, <strong>BCG X GenAI simulation</strong>, and <strong>120+ verified field hours</strong> with University of Mumbai DLLE.</p>'
+        '<p>Nominated team member representing VESASC for <strong>Smart India Hackathon 2025</strong> (Team DBTDecoders). The credential library includes IIRS/ISRO outreach records, a <strong>BCG X GenAI simulation</strong>, and <strong>120+ verified field hours</strong> with University of Mumbai DLLE. IIRS document types are being reconciled individually.</p>'
         + '<div class="card-actions">'
-        + link("credentials.html", "Inspect verified credential archive →", "button button-small button-quiet")
+        + link("credentials.html", "Explore Credentials & Achievements (48) →", "button button-small")
         + '</div>'
         + '</article>'
         '</div>',
     )
     + explore_more("index.html"),
 )
-
 # 2. ABOUT: about.html
 PAGES["about.html"] = (
     "About",
@@ -944,69 +1134,85 @@ PAGES["about.html"] = (
     intro(
         "About Me",
         "Bridging Machine Learning & Usable Systems",
-        f"I am an Artificial Intelligence undergraduate at {COLLEGE_NAME_SHORT}, University of Mumbai, focused on transforming ML models into reliable, production-grade software.",
+        "I am a B.Sc. Artificial Intelligence undergraduate at Vivekanand Education Society's College of Arts, Science & Commerce, University of Mumbai. I am interested in building practical AI applications and reliable software systems, combining machine learning, backend engineering and full-stack development.",
     )
     + section(
         "Academic Foundation",
         '<div class="prose">'
         f'<p>Currently pursuing a <strong>{DEGREE_NAME}</strong> (2024–2027) at <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_FULL}</a>, within the <a class="text-link" href="{AI_DEPT_URL}" target="_blank" rel="noopener noreferrer">Department of Artificial Intelligence</a>, affiliated with the University of Mumbai.</p>'
-        '<p>My March 2026 Semester IV results demonstrate consistent mastery across core disciplines: <strong>9.27/10 SGPA</strong> with an <strong>8.14/10 cumulative CGPA</strong>. Standout subject scores include <strong>98% (49/50, Grade O) in AI in IoT</strong>, <strong>94% (47/50, Grade O) in Generative AI & Prompt Engineering</strong>, <strong>94% (47/50, Grade O) in Data Analytics using Python</strong>, and <strong>92% (46/50, Grade O) in AI in Drone Technology</strong>.</p>'
+        '<p>Academic standing: <strong>9.27/10 SGPA</strong> (Semester IV) with an <strong>8.14/10 cumulative CGPA</strong> across completed coursework.</p>'
+        + '<p>' + link("activities.html#academic-distinctions", "View detailed coursework scores and semester marks →") + '</p>'
         '</div>',
     )
     + section(
         "Technical Focus & Skills Matrix",
-        '<p class="section-lead">Core engineering proficiencies mapped directly to verified project implementations and institutional certifications:</p>'
+        '<p class="section-lead">Selected technical skills mapped to relevant projects, case studies and credentials.</p>'
         '<div class="skills-matrix">'
         '<div class="skill-card">'
         + eyebrow("Core Discipline 1")
-        + '<h3>Applied AI & Machine Learning</h3>'
+        + '<h3>AI & Machine Learning Systems</h3>'
         '<p>Classical machine learning, computer vision feature engineering, and retrieval-augmented generation.</p>'
-        '<div class="skill-chips">'
-        + link("signature-verification.html", "OpenCV", "skill-chip")
-        + link("signature-verification.html", "Scikit-Learn / SVM", "skill-chip")
-        + link("ai-research-assistant.html", "ChromaDB", "skill-chip")
-        + link("ai-research-assistant.html", "RAG & Embeddings", "skill-chip")
-        + link("signature-verification.html", "FastAPI Inference", "skill-chip")
-        + link("credentials.html", "ISRO Geospatial AI", "skill-chip")
-        + '</div>'
+        '<div class="skill-chips">\n'
+        + '\n'.join([
+            link("signature-verification.html", "OpenCV Image Pipelines", "skill-chip"),
+            link("signature-verification.html", "Scikit-Learn / SVM", "skill-chip"),
+            link("ai-research-assistant.html", "ChromaDB Vector Store", "skill-chip"),
+            link("ai-research-assistant.html", "RAG & Embeddings", "skill-chip"),
+            link("signature-verification.html", "FastAPI Inference", "skill-chip"),
+            link("connecthub.html", "Gemini AI Summarization", "skill-chip"),
+            link("connecthub.html", "JSONB Vector Similarity", "skill-chip"),
+            link("credentials.html", "ISRO Geospatial AI", "skill-chip"),
+        ])
+        + '\n</div>'
         '</div>'
         '<div class="skill-card">'
         + eyebrow("Core Discipline 2")
         + '<h3>Full-Stack Software Engineering</h3>'
         '<p>Robust frontend architectures, typed REST API services, and relational persistence.</p>'
-        '<div class="skill-chips">'
-        + link("awarewolf.html", "React 19 & TypeScript", "skill-chip")
-        + link("algodevopss.html", "Next.js 16", "skill-chip")
-        + link("client-work.html#advfiction-lms", "Node.js & Express", "skill-chip")
-        + link("client-work.html#advfiction-lms", "Supabase / PostgreSQL", "skill-chip")
-        + link("awarewolf.html", "Pillow Validation", "skill-chip")
-        + link("client-work.html", "Vercel / Render", "skill-chip")
-        + '</div>'
+        '<div class="skill-chips">\n'
+        + '\n'.join([
+            link("awarewolf.html", "React 19 & TypeScript", "skill-chip"),
+            link("algodevopss.html", "Next.js 16 Portal", "skill-chip"),
+            link("connecthub.html", "FastAPI & WebSockets", "skill-chip"),
+            link("connecthub.html", "Async SQLAlchemy 2.1", "skill-chip"),
+            link("client-work.html#advfiction-lms", "Node.js & Express APIs", "skill-chip"),
+            link("client-work.html#advfiction-lms", "Supabase / PostgreSQL", "skill-chip"),
+            link("client-work.html#girls-hss", "Responsive Web Architecture", "skill-chip"),
+            link("client-work.html", "Production Deployments", "skill-chip"),
+        ])
+        + '\n</div>'
         '</div>'
         '<div class="skill-card">'
         + eyebrow("Core Discipline 3")
         + '<h3>AI & Workflow Automation</h3>'
         '<p>Multi-stage autonomous pipelines, API integrations, and event-driven document generation.</p>'
-        '<div class="skill-chips">'
-        + link("automation.html#map-lead-capture", "n8n Orchestration", "skill-chip")
-        + link("automation.html#map-lead-capture", "Apify Actors", "skill-chip")
-        + link("automation.html#company-research", "PostgreSQL Batch ETL", "skill-chip")
-        + link("automation.html#lead-report", "PDF Compilation", "skill-chip")
-        + link("automation-evidence.html", "Webhook Handlers", "skill-chip")
-        + link("automation-evidence.html", "n8n Canvas Examples", "skill-chip")
-        + '</div>'
+        '<div class="skill-chips">\n'
+        + '\n'.join([
+            link("job-search-automation.html", "Autonomous Job Search Engine", "skill-chip"),
+            link("job-search-automation.html", "Keyless ATS Ingestion", "skill-chip"),
+            link("job-search-automation.html", "Streamlit Analytics UI", "skill-chip"),
+            link("automation.html#wf-maps-scraper", "n8n Orchestration", "skill-chip"),
+            link("automation.html#wf-maps-scraper", "Apify Actor Scrapers", "skill-chip"),
+            link("automation.html#wf-postgres-research", "PostgreSQL Batch ETL", "skill-chip"),
+            link("automation.html#wf-lead-dossier", "PDF Document Compilation", "skill-chip"),
+            link("automation.html#wf-subworkflow-router", "Webhook Handlers", "skill-chip"),
+            link("automation.html", "10 n8n Canvas Architectures", "skill-chip"),
+        ])
+        + '\n</div>'
         '</div>'
         '<div class="skill-card">'
         + eyebrow("Core Discipline 4")
         + '<h3>Data Science & Geospatial Analysis</h3>'
         '<p>Remote-sensing satellite data processing, digital elevation modeling, and spectral indices.</p>'
-        '<div class="skill-chips">'
-        + link("credentials.html", "Satellite Image Analysis", "skill-chip")
-        + link("credentials.html", "ISRO / IIRS Programs", "skill-chip")
-        + link("credentials.html", "Spectral Classification", "skill-chip")
-        + link("credentials.html", "Pandas / NumPy", "skill-chip")
-        + link("credentials.html", "GIS Topology", "skill-chip")
-        + '</div>'
+        '<div class="skill-chips">\n'
+        + '\n'.join([
+            link("credentials.html", "Satellite Image Analysis", "skill-chip"),
+            link("credentials.html", "ISRO / IIRS Programs", "skill-chip"),
+            link("credentials.html", "Spectral Classification", "skill-chip"),
+            link("credentials.html", "Pandas & NumPy EDA", "skill-chip"),
+            link("credentials.html", "GIS Topology & GNSS", "skill-chip"),
+        ])
+        + '\n</div>'
         '</div>'
         '</div>',
     )
@@ -1015,9 +1221,9 @@ PAGES["about.html"] = (
         '<div class="prose">'
         '<p>I prioritize software clarity, deterministic reproducibility, and evidence-grounded engineering over hype:</p>'
         '<ul class="prose-list">'
-        '<li><strong>Deterministic Retrieval:</strong> When building RAG pipelines, I enforce explicit source citation mapping, cosine similarity thresholds, and lexical fallback checks.</li>'
+        '<li><strong>Deterministic Retrieval:</strong> When building RAG pipelines, I enforce explicit source citation mapping, cosine similarity thresholds, and chunk-level metadata tracking.</li>'
         '<li><strong>Defensive Persistence:</strong> Concurrency issues and race conditions must be resolved through content-addressed storage (SHA-256), atomic write protocols, and revision tokens.</li>'
-        '<li><strong>Empirical Validation:</strong> I verify system capabilities through automated test suites (pytest, jest) and objective benchmarks rather than anecdotal impressions.</li>'
+        '<li><strong>Empirical Validation:</strong> I verify system capabilities through automated test suites (pytest, vitest) and objective benchmarks rather than anecdotal impressions.</li>'
         '</ul>'
         '</div>',
     )
@@ -1032,37 +1238,96 @@ PAGES["experience.html"] = (
     intro(
         "Experience",
         "Commercial & Team Engineering",
-        "Three documented internship engagements demonstrating full-stack engineering, API architecture, and enterprise workflow orchestration.",
+        "Three documented internship engagements demonstrating full-stack engineering, API architecture, media validation pipelines, and enterprise workflow orchestration. Primary verification credentials and appointment documents are linked directly on each card.",
     )
     + section(
-        "Internship Timeline",
+        "Commercial & Team Engagements",
         '<div class="grid three">'
         + "".join(experience_card(e) for e in EXPERIENCE)
         + '</div>',
     )
     + section(
-        "Engineering Scope & Highlights",
-        '<div class="grid three">'
-        '<article class="card clickable-card">'
-        + eyebrow("AwareWolf · Sep 2026–Present (Paused)")
-        + badge("PAID INTERNSHIP", "status")
-        + '<h3><a class="card-main-link" href="awarewolf.html">Media Systems Prototyping</a></h3>'
-        '<p>Engineered full-stack five-scene JSONL storyboards (263 backend / 27 frontend tests passing in local verification snapshot), Pillow/SHA-256 ingestion, FFmpeg sync fixes, and generative-video benchmarks on Kaggle.</p>'
-        + link("awarewolf.html", "View AwareWolf deep dive →", "button button-small button-quiet")
+        "Completed Enterprise Simulations & Micro-Internships",
+        '<div class="grid two">'
+        '<article class="card">'
+        '<div class="card-top">'
+        + eyebrow("BCG X via Forage · Sep 2025")
+        + badge("Completed Simulation", "status")
+        + '</div>'
+        '<h3>GenAI Enterprise Simulation</h3>'
+        '<p class="prose">Completed practical corporate simulation covering automated financial data extraction, Python data modeling, and conversational assistant prototyping with LLMs.</p>'
+        '<p class="meta">Forage job simulation certificate; this does not represent direct employment with BCG X.</p>'
+        '<div class="card-actions">'
+        + link("https://drive.google.com/file/d/1VZPcWKt4f5I_vRD8REPQYADvNDZ_WsIL/view", "View Forage Certificate ↗", "button button-small", external=True)
+        + '</div>'
+        '</article>'
+        '<article class="card">'
+        '<div class="card-top">'
+        + eyebrow("Talerang & Cloudwrk · 2025")
+        + badge("Completed Program", "status")
+        + '</div>'
+        '<h3>Coding-Track Micro-Internship</h3>'
+        '<p class="prose">Completed the Talerang coding-track career-readiness micro-internship in association with Cloudwrk. The certificate records a PASS grade and does not establish direct Cloudwrk employment or a delivered client software project.</p>'
+        '<p class="meta">Verified by Talerang Certificate of Completion (Grade: PASS).</p>'
+        '<div class="card-actions">'
+        + link("https://drive.google.com/file/d/1SDGQMPSTE_5jUZa7LCSEt7mX60VeqxhH/view", "View Completion Certificate ↗", "button button-small", external=True)
+        + '</div>'
         + '</article>'
-        '<article class="card clickable-card">'
-        + eyebrow("Advfiction Private Limited · Apr–Sep 2026")
-        + badge("DUAL TRACK", "status")
-        + '<h3><a class="card-main-link" href="advfiction.html">Dual-Track Web & AI Automation</a></h3>'
-        '<p>Simultaneously supported client-facing web development (LMS backend APIs, responsive layouts) and internal AI automation initiatives (n8n lead scrapers, company research pipelines).</p>'
-        + link("advfiction.html", "View Advfiction deep dive →", "button button-small button-quiet")
+        + '</div>',
+    )
+    + section(
+        "Additional Appointment-Only Virtual Offers",
+        '<p class="section-lead">These records document appointment offers for exploratory or virtual learning programs. They are not represented as completed commercial internships, and no completion certificate is claimed.</p>'
+        '<div class="grid three appointment-offers-grid">'
+        '<article class="card offer-card">'
+        + eyebrow("Zaalima Development · Jun 2025")
+        + badge("Appointment Offer Only", "status")
+        + '<h3>Data Science &amp; Machine Learning</h3>'
+        '<p class="meta">Offer Date: 24 Jun 2025 · Term: 25 Jun–25 Sep 2025</p>'
+        '<p class="prose-small">Virtual program appointment offer for data science and machine learning tasks. Preserved as an appointment record; commercial completion certificate not claimed.</p>'
+        '<div class="card-actions">'
+        + link("assets/documents/appointment-only-offers/zaalima-development-offer.pdf", "View Appointment Offer ↗", "button button-small button-quiet", external=True)
+        + '</div>'
         + '</article>'
-        '<article class="card clickable-card">'
-        + eyebrow("AlgoDevOpss · May–Dec 2026")
-        + badge("EXTENDED APPOINTMENT", "status")
-        + '<h3><a class="card-main-link" href="algodevopss.html">Academic Web Portal</a></h3>'
-        '<p>Appointment letter: May–October 2026. Completion certificate: May–August 2026. Extension communicated through December 2026; updated extension offer letter pending. Developed production TypeScript routes and data modules for the KJSIEIT EXTC website.</p>'
-        + link("algodevopss.html", "View AlgoDevOpss deep dive →", "button button-small button-quiet")
+        '<article class="card offer-card">'
+        + eyebrow("CodSoft · Nov 2024")
+        + badge("Appointment Offer Only", "status")
+        + '<h3>Artificial Intelligence Virtual Intern</h3>'
+        '<p class="meta">Offer Date: 18 Nov 2024</p>'
+        '<p class="prose-small">Virtual educational internship offer letter covering foundational AI tasks (4 weeks, Nov–Dec 2024). Preserved as an exploratory appointment record.</p>'
+        '<div class="card-actions">'
+        + link("assets/documents/appointment-only-offers/codsoft-ai-internship-offer.pdf", "View Appointment Offer ↗", "button button-small button-quiet", external=True)
+        + '</div>'
+        + '</article>'
+        '<article class="card offer-card">'
+        + eyebrow("CodeAlpha · Nov 2024")
+        + badge("Appointment Offer Only", "status")
+        + '<h3>Artificial Intelligence Internship</h3>'
+        '<p class="meta">Offer Date: 15 Nov 2024</p>'
+        '<p class="prose-small">Selection and offer confirmation for a 1-month virtual AI learning track (Dec 2024). Maintained as an exploratory learning appointment record.</p>'
+        '<div class="card-actions">'
+        + link("assets/documents/appointment-only-offers/codealpha-ai-internship-offer.pdf", "View Appointment Offer ↗", "button button-small button-quiet", external=True)
+        + '</div>'
+        + '</article>'
+        '<article class="card offer-card">'
+        + eyebrow("TechnoHacks Solutions · Aug 2025")
+        + badge("Appointment Offer Only", "status")
+        + '<h3>Machine Learning Intern</h3>'
+        '<p class="meta">Offer Date: 07 Aug 2025</p>'
+        '<p class="prose-small">Offer letter for a 1-month remote Machine Learning virtual program. Documented as an appointment offer only; completion certificate not claimed.</p>'
+        '<div class="card-actions">'
+        + link("assets/documents/appointment-only-offers/technohacks-ml-internship-offer.pdf", "View Appointment Offer ↗", "button button-small button-quiet", external=True)
+        + '</div>'
+        + '</article>'
+        '<article class="card offer-card">'
+        + eyebrow("Prodigy InfoTech · Aug 2026")
+        + badge("Appointment Offer Only", "status")
+        + '<h3>Generative AI Intern</h3>'
+        '<p class="meta">Offer Date: 14 Aug 2026</p>'
+        '<p class="prose-small">Educational virtual internship appointment offer (1-month term: Aug–Sep 2026). Documented strictly as an appointment offer only.</p>'
+        '<div class="card-actions">'
+        + link("assets/documents/appointment-only-offers/prodigy-infotech-generative-ai-offer.pdf", "View Appointment Offer ↗", "button button-small button-quiet", external=True)
+        + '</div>'
         + '</article>'
         '</div>',
     )
@@ -1077,7 +1342,7 @@ PAGES["advfiction.html"] = (
     intro(
         "Experience / Advfiction Private Limited",
         "Two Concurrent Engineering Workstreams",
-        "Apr–Sep 2026 · Web Development and AI Automation workstreams. The original Web Developer Internship offer states a 29 Apr 2026 start and a three-month term; later work through September is recorded in the career dossier, while a separate extension letter was not available for this review.",
+        "Apr–Sep 2026 · Two concurrent engineering workstreams across Web Development and AI Automation. Fully verified by primary documents: original offer letters (28 & 29 Apr 2026), official 2-month extension letters (27 Jul 2026 extending appointment through 30 Sep 2026), 22-week completion certificates (issued 1 Oct 2026), and a joint Letter of Recommendation (issued 6 Oct 2026 by MD Rojer R V).",
         "experience.html",
         "Commercial Experience",
     )
@@ -1094,7 +1359,8 @@ PAGES["advfiction.html"] = (
         '<li><strong>Corporate Website Revamp (<a class="text-link" href="client-work.html#advfiction-website">Live Deployment</a>):</strong> Built responsive UI components and hooked contact forms directly into the backend lead pipeline. Live at <a class="text-link" href="https://advfiction.vercel.app/" target="_blank" rel="noopener noreferrer">advfiction.vercel.app ↗</a>.</li>'
         '</ul>'
         '<div class="card-actions">'
-        + link("client-work.html#advfiction-lms", "Inspect LMS Client Deployment →", "button button-small")
+        + link("https://drive.google.com/file/d/1Q_zS8HQjH03CE4nwsZyvVjkP3t1EI6hn/view", "View Web Dev Certificate (PDF) ↗", "button button-small", external=True)
+        + link("client-work.html#advfiction-lms", "Inspect LMS Client Deployment →", "button button-small button-quiet")
         + link("https://advfiction.vercel.app/", "Corporate Site ↗", "button button-small button-quiet", external=True)
         + '</div>'
         '</article>'
@@ -1109,9 +1375,33 @@ PAGES["advfiction.html"] = (
         '<li><strong>Other Designs:</strong> Published editor captures show scheduled publishing, Telegram review and AI-assisted content stages; live use is unverified.</li>'
         '</ul>'
         '<div class="card-actions">'
-        + link("automation.html", "Featured Automation Workflows →", "button button-small")
-        + link("automation-evidence.html", "View Workflow Gallery →", "button button-small button-accent-outline")
+        + link("https://drive.google.com/file/d/1T_3ZDXAFRpxJ6-GDZAkyCPVchJdR7815/view", "View AI Automation Certificate (PDF) ↗", "button button-small", external=True)
+        + link("automation.html", "Explore All 10 Workflow Architectures →", "button button-small button-quiet")
+        + link("automation.html#wf-maps-scraper", "View Editor Execution Evidence →", "button button-small button-quiet")
         + '</div>'
+        '</article>'
+        '</div>',
+    )
+    + section(
+        "Executive Recommendation & Formal Extensions",
+        '<div class="grid two track-comparison">'
+        '<article class="card track-card" id="adv-lor">'
+        + eyebrow("Executive Recommendation")
+        + '<h3>Joint Letter of Recommendation</h3>'
+        '<p>Official executive recommendation issued on 6 October 2026 by Managing Director Rojer R V, commending performance, technical adaptability, and collaborative contributions across both AI Automation and Web Development.</p>'
+        '<div class="card-actions">'
+        + link("https://drive.google.com/file/d/1r2tEKiVldHHaL94S_brIEPRVAwsiNRxM/view", "Inspect Joint Executive LOR ↗", "button button-small", external=True)
+        + '</div>'
+        '</article>'
+        '<article class="card track-card" id="adv-extensions">'
+        + eyebrow("Appointment & Extension Records")
+        + '<h3>Documented Contract Extensions</h3>'
+        '<p>Both original appointments were formally extended by 2 additional months via official extension letters dated 27 July 2026:</p>'
+        '<div class="card-actions">'
+        + link("https://drive.google.com/file/d/1MYa4I3-lCY0-il1lshM9f4XZnYcYDNHZ/view", "Web Dev Extension Letter ↗", "button button-small button-quiet", external=True)
+        + link("https://drive.google.com/file/d/1U4sEjk5fpLDao0W--VYgmBtSW0bC__VT/view", "AI Extension Letter ↗", "button button-small button-quiet", external=True)
+        + '</div>'
+        '<p class="meta" style="margin-top: 0.75rem;">Original AI Automation offer letter (<code>19y3Fa9zD8zqbLnZPS86rt8R5bQopky8A</code>) is safely withheld from public links under formal confidentiality obligations.</p>'
         '</article>'
         '</div>',
     )
@@ -1143,9 +1433,28 @@ PAGES["algodevopss.html"] = (
     intro(
         "Experience / AlgoDevOpss",
         "Departmental Web Portal Engineering",
-        "Full-Stack Development Intern · May–December 2026. Appointment letter: May–October 2026. Completion certificate: May–August 2026. Extension communicated through December 2026; updated extension offer letter pending. Developing production routes for the KJSIEIT EXTC academic platform.",
+        "Full-Stack Development Intern · May–August 2026 (Certified Term). Certified appointment: 01 May 2026 to 31 August 2026; informal extension through December 2026 (in progress as of November 2026; formal extension letter pending). Engineering production routes and data modules for the KJSIEIT EXTC academic platform.",
         "experience.html",
         "Commercial Experience",
+    )
+    + section(
+        "Verified Primary Credential & Governance",
+        '<div class="grid two track-comparison">'
+        '<article class="card track-card" id="algo-completion-certs">'
+        + eyebrow("Official Completion Certificate")
+        + '<h3>Full-Stack Development Certification</h3>'
+        '<p>Certified completion record issued on 31 August 2026 by Founder Yash Balotiya (Udyam: UDYAM-MH-18-0511641) covering Full-Stack Web Development (MERN / Next.js / Machine Learning):</p>'
+        '<div class="card-actions">'
+        + link("https://drive.google.com/file/d/1yZyBwiDStZatvvD9oj5rlM1WUTBkz9BV/view", "View Full-Stack Certificate (PDF) ↗", "button button-small", external=True)
+        + '</div>'
+        '<p class="meta" style="margin-top: 0.75rem;">Documented term: 01 May 2026 – 31 August 2026. Continuation communicated through December 2026 (in progress as of November 2026; formal extension letter pending from employer).</p>'
+        '</article>'
+        '<article class="card track-card" id="algo-privacy-governance">'
+        + eyebrow("Document Privacy Governance")
+        + '<h3>Sensitive Data Protection Notice</h3>'
+        '<p>The original appointment letter (dated 26 April 2026) is withheld from public web links to protect sensitive personal Government identification (Aadhaar number). Certified completion credentials and documented project modules are provided as public proof.</p>'
+        '</article>'
+        '</div>',
     )
     + section(
         "KJSIEIT EXTC Platform Engineering",
@@ -1178,13 +1487,31 @@ PAGES["algodevopss.html"] = (
 PAGES["awarewolf.html"] = (
     "AwareWolf",
     "Rehan Memon | AwareWolf Experience",
-    "Software engineering and applied AI evaluation for media workflows at AwareWolf: React/FastAPI storyboards, image ingestion, FFmpeg diagnostics, and video model evaluation.",
+    "Software engineering and generative AI evaluation for media workflows at AwareWolf: React/FastAPI storyboards, image ingestion, FFmpeg diagnostics, and video model evaluation.",
     intro(
         "Experience / AwareWolf",
         "Media Workflows, Persistence & AI Evaluation",
-        "Content Operating System Intern · Sep 2026–Present (Engineering Pause Reported Nov 2026) · Offer: 17 Sep 2026–16 Mar 2027 · Remote · Paid Internship. Software development for media workflow prototyping and applied AI evaluation, spanning interactive React/TypeScript storyboards, FastAPI APIs, media validation pipelines, FFmpeg stream diagnostics, and generative-video benchmarking.",
+        "Content Operating System Intern · Sep 2026–Present (Engineering Pause Reported Nov 2026) · Offer Term: 17 Sep 2026–16 Mar 2027 · Remote · Paid Internship. Software development for media workflow prototyping and generative-video evaluation, spanning interactive React/TypeScript storyboards, FastAPI APIs, media validation pipelines, FFmpeg stream diagnostics, and video model benchmarking.",
         "experience.html",
         "Commercial Experience",
+    )
+    + section(
+        "Appointment Verification & Status",
+        '<div class="grid two track-comparison">'
+        '<article class="card track-card" id="awarewolf-offer">'
+        + eyebrow("Official Appointment Document")
+        + '<h3>Appointment Offer Letter</h3>'
+        '<p>Formal appointment offer letter for the 6-month Content Operating System internship (Term: 17 September 2026 to 16 March 2027):</p>'
+        '<div class="card-actions">'
+        + link("https://drive.google.com/file/d/1pShS64xWmhduHrJyiORbXDGBBXuKAnjc/view", "View Appointment Offer Letter (PDF) ↗", "button button-small", external=True)
+        + '</div>'
+        '</article>'
+        '<article class="card track-card" id="awarewolf-status">'
+        + eyebrow("Engagement Status & Confidentiality")
+        + '<h3>Confidentiality & Workstream Status</h3>'
+        '<p>Operated under formal Non-Disclosure Agreement (NDA) and Information Security obligations. Active development sprints were paused in November 2026.</p>'
+        '</article>'
+        '</div>',
     )
     + section(
         "Media Library & Five-Scene Storyboard Pilot",
@@ -1222,7 +1549,7 @@ PAGES["awarewolf.html"] = (
         '</div>',
     )
     + section(
-        "Applied Generative-Video Evaluation",
+        "Generative-Video Evaluation",
         '<div class="prose">'
         '<p>Conducted a controlled, objective benchmark of six generative-video routes using a unified visual brief to evaluate technical delivery, motion quality, hardware constraints, and production economics:</p>'
         '<ul class="prose-list">'
@@ -1258,48 +1585,48 @@ PAGES["awarewolf.html"] = (
 # 7. PROJECTS: projects.html
 PAGES["projects.html"] = (
     "Projects",
-    "Rehan Memon | Projects",
-    "Comprehensive technical catalog across Applied AI & ML, Selected Client Deployments, and AI Workflow Automation.",
+    "Rehan Memon | Projects & Case Studies",
+    "A curated portfolio of 14 projects spanning AI engineering, client systems, and workflow automation.",
     intro(
-        "Projects",
-        "Selected Projects",
-        "Explore 12 projects across applied AI, client deployments and workflow automation.",
+        "Selected Work",
+        "Projects & Case Studies",
+        "A curated portfolio of 14 projects spanning AI engineering, client systems, and workflow automation.",
         css_class="page-intro-compact",
     )
     + '<section class="section section-directory-tools container">'
     '<div class="filter-pills" role="group" aria-label="Filter projects by engineering pillar">'
-    '<button type="button" class="filter-pill" data-filter-pillar-button="Applied AI & Machine Learning" aria-pressed="false" aria-controls="projectResults">1. Applied AI & Machine Learning (4)</button>'
-    '<button type="button" class="filter-pill" data-filter-pillar-button="Selected Client Deployments" aria-pressed="false" aria-controls="projectResults">2. Selected Client Deployments (5)</button>'
-    '<button type="button" class="filter-pill" data-filter-pillar-button="AI & Workflow Automation" aria-pressed="false" aria-controls="projectResults">3. AI & Workflow Automation (3)</button>'
+    '<button type="button" class="filter-pill" data-filter-pillar-button="AI & Machine Learning Systems" aria-pressed="false" aria-controls="projectResults">1. AI & Machine Learning Systems (5)</button>'
+    '<button type="button" class="filter-pill" data-filter-pillar-button="Client & Collaborative Engineering" aria-pressed="false" aria-controls="projectResults">2. Client & Collaborative Engineering (5)</button>'
+    '<button type="button" class="filter-pill" data-filter-pillar-button="AI & Workflow Automation" aria-pressed="false" aria-controls="projectResults">3. AI & Workflow Automation (4)</button>'
     '</div>'
     '<div class="filter-bar">'
-    '<label for="projectSearch">Search all 12 projects</label>'
+    '<label for="projectSearch">Search all 14 projects</label>'
     '<input id="projectSearch" type="search" placeholder="Search by name, technique, tool..." data-filter-search>'
     '<label for="projectPillar">Filter by Pillar</label>'
     '<select id="projectPillar" data-filter-pillar>'
-    '<option value="">All Pillars (12 Projects)</option>'
-    '<option>Applied AI & Machine Learning</option>'
-    '<option>Selected Client Deployments</option>'
+    '<option value="">All Pillars (14 Projects)</option>'
+    '<option>AI & Machine Learning Systems</option>'
+    '<option>Client & Collaborative Engineering</option>'
     '<option>AI & Workflow Automation</option>'
     '</select>'
     '</div>'
-    '<p class="filter-count" data-filter-count role="status" aria-live="polite" aria-atomic="true">12 projects shown</p>'
+    '<p class="filter-count" data-filter-count role="status" aria-live="polite" aria-atomic="true">14 projects shown</p>'
     '</section>'
     '<div id="projectResults" data-filter-list data-noun-singular="project" data-noun-plural="projects">'
     + section(
-        "Pillar 1: Applied AI & Machine Learning Systems",
-        '<p class="section-lead">Algorithmic baselines evaluated under rigorous evaluation protocols and reproducible benchmarks.</p>'
+        "Pillar 1: AI & Machine Learning Systems",
+        '<p class="section-lead">Algorithmic baselines evaluated under rigorous evaluation protocols, real-time ASGI distributed architectures, and reproducible benchmarks.</p>'
         '<div class="grid two">'
-        + "".join(project_card(p) for p in PROJECTS if p["pillar"] == "Applied AI & Machine Learning")
+        + "".join(project_card(p) for p in PROJECTS if p["pillar"] == "AI & Machine Learning Systems")
         + '</div>',
         "pillar-ai",
         'data-pillar-section',
     )
     + section(
-        "Pillar 2: Selected Client Deployments",
-        '<p class="section-lead">Production web platforms, administrative portals, and authenticated API services serving real operational teams.</p>'
+        "Pillar 2: Client & Collaborative Engineering",
+        '<p class="section-lead">Client platforms, interactive web interfaces, and collaborative API endpoints developed for organizations and educational partners.</p>'
         '<div class="grid two">'
-        + "".join(project_card(p) for p in PROJECTS if p["pillar"] == "Selected Client Deployments")
+        + "".join(project_card(p) for p in PROJECTS if p["pillar"] == "Client & Collaborative Engineering")
         + '</div>'
         '<p class="section-end">' + link("client-work.html", "Explore In-Depth Client Deployments & Architecture →") + '</p>',
         "pillar-client",
@@ -1307,15 +1634,16 @@ PAGES["projects.html"] = (
     )
     + section(
         "Pillar 3: AI & Workflow Automation Systems",
-        '<p class="section-lead">Selected n8n canvases covering map-data capture, company research and document automation. Editor-test and design status are shown on each card.</p>'
+        '<p class="section-lead">Autonomous local-first Python job discovery alongside 10 selected n8n workflow architectures covering map data capture, research enrichment, and document generation.</p>'
         '<div class="grid two">'
         + "".join(project_card(p) for p in PROJECTS if p["pillar"] == "AI & Workflow Automation")
         + '</div>'
-        '<p class="section-end">'
-        + link("automation.html", "Explore Featured Automation Case Studies →")
-        + ' · '
-        + link("automation-evidence.html", "View Selected Workflow Examples →")
-        + '</p>',
+        '<div class="section-nav-group">'
+        + link("automation.html", "Explore All 10 Workflow Architectures →", "button")
+        + '<div class="sub-nav-links">'
+        + link("automation.html#wf-maps-scraper", "View Editor Execution Evidence →")
+        + '</div>'
+        + '</div>',
         "pillar-automation",
         'data-pillar-section',
     )
@@ -1328,34 +1656,34 @@ PAGES["projects.html"] = (
 PAGES["signature-verification.html"] = (
     "Signature Verification AI",
     "Rehan Memon | Signature Verification AI",
-    "Offline handwritten signature verification pipeline with morphological preprocessing, 331 contour features, and SVM classification.",
+    "Offline handwritten signature verification with OpenCV preprocessing, 331 handcrafted features, and RBF SVM classification.",
     intro(
-        "Pillar 1 · Applied AI & Systems",
+        "Pillar 1 · AI & Machine Learning Systems",
         "Signature Verification AI",
         "A classical computer vision pipeline engineered to distinguish authentic signatures from skilled forgeries through geometric, statistical, and contour feature extraction.",
         "projects.html#pillar-ai",
-        "Pillar 1: Applied AI & Machine Learning",
+        "Pillar 1: AI & Machine Learning Systems",
     )
     + section(
         "Pipeline Architecture",
         '<p class="prose">The verification pipeline executes a multi-stage image processing sequence engineered to standardize scan variations and isolate ink strokes:</p>'
         '<figure class="diagram">'
-        '<img src="diagrams/signature-pipeline.svg" width="1000" height="172" loading="lazy" alt="Preprocessing, 331-dimensional feature extraction, SVM classification, prediction with confidence score.">'
-        '<figcaption>End-to-end inference flow: morphological noise reduction, geometric normalization, 331 handcrafted features, and RBF SVM scoring.</figcaption>'
+        '<img src="diagrams/signature-pipeline.svg" width="1000" height="172" loading="lazy" alt="Preprocessing, 331-dimensional feature extraction, and SVM classification. The API does not return a probability score.">'
+        '<figcaption>Inference flow: grayscale conversion, Gaussian denoising, Otsu thresholding, contour cropping, 331 handcrafted features, and RBF SVM classification.</figcaption>'
         '</figure>'
         '<ol class="flow">'
-        + case_row("1. Morphological Preprocessing", "Converts raw RGB scans to greyscale, applies Otsu dynamic thresholding to binarize ink strokes, and removes high-frequency paper grain noise.")
+        + case_row("1. OpenCV Preprocessing", "Converts images to grayscale, applies Gaussian blur and Otsu thresholding, then finds contours to crop the signature area.")
         + case_row("2. Geometric Normalization", "Calculates the signature bounding envelope and resizes the binary mask to standardized dimensions while preserving stroke aspect ratios.")
-        + case_row("3. Feature Extraction (331-D)", "Extracts 331 handcrafted descriptors: 7 invariant Hu moments, horizontal/vertical projection profiles, pixel density grids, and contour curvature vectors.")
+        + case_row("3. Feature Extraction (331-D)", "Combines aspect ratio, normalized bounding-box area and global ink density (3), a 16×16 local density grid (256), horizontal and vertical projections (64), contour count (1), and Hu moments (7).")
         + case_row("4. SVM Classification", "Projects extracted feature vectors into an RBF-kernel Support Vector Machine (SVM) trained under a writer-disjoint split protocol to detect genuine vs forged specimens.")
-        + case_row("5. FastAPI & Demo Interface", "Wraps the inference pipeline in a lightweight FastAPI microservice connected to an interactive React signature canvas for real-time verification.")
+        + case_row("5. FastAPI & Demo Interface", "Exposes inference through FastAPI and a React interface for image upload, preview, and preprocessing visualization. The API returns a class label without a calibrated confidence probability.")
         + '</ol>',
     )
     + section(
         "Evaluation & Empirical Results",
         '<div class="prose">'
         '<p>To prevent data leakage, the model was strictly evaluated under a <strong>writer-disjoint validation protocol</strong>, ensuring the test split contains signatures from individuals never seen during training.</p>'
-        '<p><strong>Observed Performance:</strong> The RBF Support Vector Machine achieved superior discrimination on skilled forgeries compared to linear baselines, demonstrating the discriminative power of combining contour moments with projection density grids.</p>'
+        '<p><strong>Evaluation status:</strong> The repository reports model results for a writer-disjoint split. The portfolio has not reproduced the evaluation or established a controlled comparison with linear baselines.</p>'
         '</div>'
         '<div class="actions">'
         + link(SIGNATURE, "View GitHub Repository ↗", "button", external=True)
@@ -1369,27 +1697,27 @@ PAGES["signature-verification.html"] = (
 PAGES["ai-research-assistant.html"] = (
     "AI Research Assistant",
     "Rehan Memon | AI Research Assistant",
-    "Document question-answering prototype featuring token-aware text chunking, Chroma dense vector indexing, and grounded retrieval.",
+    "Document question-answering prototype featuring token-aware chunking, Chroma dense indexing, retrieval, and source citation mapping.",
     intro(
-        "Pillar 1 · Applied AI & Systems",
+        "Pillar 1 · AI & Machine Learning Systems",
         "AI Research Assistant",
-        "A modular retrieval-augmented generation (RAG) prototype engineered to index large document collections into a dense vector database and generate citation-grounded answers.",
+        "An in-development retrieval-augmented generation (RAG) prototype that indexes documents in Chroma and maps answer citations to retrieved source metadata. Answer faithfulness has not been independently evaluated.",
         "projects.html#pillar-ai",
-        "Pillar 1: Applied AI & Machine Learning",
+        "Pillar 1: AI & Machine Learning Systems",
     )
     + section(
         "RAG Ingestion & Retrieval Pipeline",
         '<p class="prose">The system operates as an end-to-end Python microservice orchestrating document parsing, token-aware chunking, vector embedding, and similarity search:</p>'
         '<figure class="diagram">'
         '<img src="diagrams/research-pipeline.svg" width="1000" height="172" loading="lazy" alt="Document ingestion, token-aware chunking, Chroma vector embedding, similarity search, prompt synthesis with source citations.">'
-        '<figcaption>RAG processing sequence: document ingestion, token-aware chunking, dense vector embedding in Chroma, and citation-grounded synthesis.</figcaption>'
+        '<figcaption>RAG processing sequence: document ingestion, token-aware chunking, dense vector indexing in Chroma, retrieval, and answer generation with source citation mapping.</figcaption>'
         '</figure>'
         '<ol class="flow">'
-        + case_row("1. Document Ingestion", "Parses raw PDF, Markdown, and text files, stripping formatting noise and extracting structured section hierarchies.")
-        + case_row("2. Token-Aware Chunking", "Splits long-form documents into semantically coherent chunks (500 tokens with 50-token overlap) to prevent boundary context clipping.")
+        + case_row("1. Document Ingestion", "Parses PDF, DOCX, and TXT documents and records source location metadata for retrieval.")
+        + case_row("2. Token-Aware Chunking", "Uses token-aware chunks with a configured default of 700 tokens and 15% overlap; boundaries and metadata are preserved where available.")
         + case_row("3. Chroma Dense Indexing", "Generates dense mathematical embeddings for each chunk and indexes them into a persistent Chroma vector database collection.")
         + case_row("4. Similarity Retrieval", "Executes cosine distance search against indexed embeddings to retrieve the top-k most relevant text chunks for a given query.")
-        + case_row("5. Grounded Prompt Synthesis", "Structures the retrieved context chunks into an augmented prompt harness, enforcing explicit inline source citations to prevent hallucinations.")
+        + case_row("5. Answer and Citation Mapping", "Passes retrieved context to the answer generator and maps citation markers back to source metadata. Citation presence alone does not verify factual faithfulness.")
         + '</ol>',
     )
     + section(
@@ -1405,17 +1733,139 @@ PAGES["ai-research-assistant.html"] = (
     + explore_more("ai-research-assistant.html"),
 )
 
+# 10. CONNECTHUB: connecthub.html
+PAGES["connecthub.html"] = (
+    "ConnectHub Messaging Engine",
+    "Rehan Memon | ConnectHub Real-Time AI Messaging Engine",
+    "Messaging prototype using FastAPI, async SQLAlchemy, Psycopg, PostgreSQL, WebSockets, Gemini room summaries, and room-scoped Python cosine search over JSONB embeddings.",
+    intro(
+        "Pillar 1 · AI & Machine Learning Systems",
+        "ConnectHub — Real-Time AI Messaging Engine",
+        "An in-development multi-room messaging application with FastAPI, PostgreSQL, WebSockets, Gemini-assisted summaries, and room-scoped semantic search.",
+        "projects.html#pillar-ai",
+        "Pillar 1: AI & Machine Learning Systems",
+    )
+    + section(
+        "ASGI & Real-Time Pipeline",
+        '<p class="prose">ConnectHub combines WebSocket connections, asynchronous relational persistence, AI summaries, and room-scoped semantic search in a modular application:</p>'
+        '<figure class="diagram">'
+        '<img src="diagrams/connecthub-pipeline.svg" width="1000" height="172" loading="lazy" alt="FastAPI handles room WebSockets and in-memory presence; async SQLAlchemy persists messages to PostgreSQL; Gemini supplies summaries; Python compares JSONB-stored embeddings within a room.">'
+        '<figcaption>Current architecture: FastAPI, in-memory presence, PostgreSQL persistence, Gemini summaries, and room-scoped Python cosine search.</figcaption>'
+        '</figure>'
+        '<ol class="flow">'
+        + case_row("1. FastAPI ASGI & PostgreSQL", "Uses FastAPI, Uvicorn, async SQLAlchemy sessions, Psycopg, and Alembic migrations. PostgreSQL stores the authoritative room and message records.")
+        + case_row("2. WebSockets & Ephemeral In-Memory Presence", "Features a dedicated <code>/ws/{room_id}</code> connection manager maintaining active client socket sets per chat room. Dispatches real-time broadcast events, ephemeral typing indicators, read receipts, and member join/leave notifications with low-latency local socket dispatch.")
+        + case_row("3. Relational Schema & Cascade Integrity", "Normalized relational schema modeling Users, Rooms, Memberships, Messages, and AI Summaries. Enforces foreign-key cascade deletes, compound uniqueness constraints, and B-tree compound indexing on <code>(room_id, created_at)</code> for optimized paginated history traversal.")
+        + case_row("4. Gemini Room Summaries", "A request route gathers room history and calls Gemini to generate a catch-up summary. Embedding generation uses a background task; summary generation is not a separate durable worker.")
+        + case_row("5. Room-Scoped Cosine Search", "Stores embedding arrays in PostgreSQL JSONB and compares them in Python within a room. No pgvector index or measured search latency is claimed.")
+        + '</ol>',
+    )
+    + section(
+        "Architectural Trade-offs & Deep Engineering Decisions",
+        '<div class="prose">'
+        '<div class="grid two">'
+        '<div class="card">'
+        '<h3>Single-Process In-Memory Presence</h3>'
+        '<p><strong>Current design:</strong> Active sockets and presence are tracked in process memory. This supports the current single-process prototype.</p>'
+        '<p><strong>Limit:</strong> A multi-worker deployment would require shared coordination and a separate design and test pass. No Redis adapter is implemented.</p>'
+        '</div>'
+        '<div class="card">'
+        '<h3>JSONB Storage and Python Cosine Search</h3>'
+        '<p><strong>Current design:</strong> Embedding arrays are stored in PostgreSQL JSONB and compared in Python for room-scoped search.</p>'
+        '<p><strong>Limit:</strong> Search scale and latency have not been independently benchmarked. The implementation does not use pgvector or HNSW.</p>'
+        '</div>'
+        '</div>'
+        '<div class="card" style="margin-top: 1.5rem;">'
+        '<h3>Async Database Sessions</h3>'
+        '<p>Uses SQLAlchemy <code>AsyncSession</code> for database operations. The project still requires load and failure testing before any concurrency or throughput claim.</p>'
+        '</div>'
+        '</div>',
+    )
+    + section(
+        "Verification, Test Harness & Code Quality",
+        '<div class="prose">'
+        '<p>The local repository includes backend and frontend automated tests. A current offline backend unit run passed 25 tests; database integration tests were not run. The previously reported total of 91 remains historical. Test areas include:</p>'
+        '<ul class="prose-list">'
+        '<li><strong>Authentication &amp; Permissions:</strong> JWT creation, password hashing with bcrypt, token revocation, and role-based room access enforcement (Owner vs Member).</li>'
+        '<li><strong>Message Dispatch &amp; Pagination:</strong> Validated message sequencing, database persistence, cursor-based pagination, and foreign-key integrity.</li>'
+        '<li><strong>WebSocket Lifecycle:</strong> Connection handshake, room authorization, broadcast delivery, and clean disconnect state cleanup.</li>'
+        '<li><strong>AI Error Handling:</strong> Mocked summary-service failures and route responses; mocks do not establish a live fallback.</li>'
+        '</ul>'
+        '</div>'
+        '<div class="actions">'
+        + link("projects.html#pillar-ai", "View Project Overview →", "button")
+        + link("projects.html#pillar-ai", "Explore other AI projects →", "button button-quiet")
+        + '</div>',
+    )
+    + explore_more("connecthub.html"),
+)
+
+# 11. AUTONOMOUS JOB SEARCH ENGINE: job-search-automation.html
+PAGES["job-search-automation.html"] = (
+    "Job Search Automation",
+    "Rehan Memon | Autonomous Job Search Engine",
+    "Local-first job discovery prototype with public-source adapters, a Schema.org parser, deterministic matching, Streamlit review, and a preparation-only safety boundary.",
+    intro(
+        "Pillar 3 · Workflow Automation",
+        "Autonomous Job Search Engine",
+        "A local-first job discovery prototype built with Python source adapters, deterministic matching, a Streamlit review interface, and preparation-only safety controls. Final applications remain manual.",
+        "projects.html#pillar-automation",
+        "Pillar 3: AI & Workflow Automation",
+    )
+    + section(
+        "Autonomous Discovery & Ingestion Pipeline",
+        '<p class="prose">The local pipeline can retrieve supported public listings, normalize and deduplicate them, score matches, and present opportunities for manual review. Scheduled unattended operation is not independently verified:</p>'
+        '<figure class="diagram">'
+        '<img src="diagrams/job-search-pipeline.svg" width="1000" height="172" loading="lazy" alt="Keyless public ATS collectors ingest job postings, deduplicate and normalize schemas, execute deterministic multi-criteria scoring, present ranked feeds in Streamlit, with strict preparation-only safety guardrails.">'
+        '<figcaption>End-to-end automation sequence: keyless ATS ingestion, schema normalization, deterministic multi-factor scoring, Streamlit dashboard review, and preparation safety locks.</figcaption>'
+        '</figure>'
+        '<ol class="flow">'
+        + case_row("1. Public-Source Ingestion", "Registered adapters cover Greenhouse, Lever, Ashby, Himalayas, Remotive, and Arbeitnow; a separate parser reads Schema.org structured data. Adzuna is a stub, not an operational connector. Live reliability varies by source and has not been established here.")
+        + case_row("2. Schema Normalization & Deduplication", "Ingestion pipelines normalize disparate JSON response payloads into strongly-typed Python dataclasses. Generates deterministic SHA-256 fingerprint hashes across company, title, and location attributes to prevent duplicate records across recurring runs.")
+        + case_row("3. Deterministic Multi-Factor Scoring", "Evaluates candidate resumes against normalized job requirements using rule-based algorithmic scoring: job title similarity, technical skill taxonomy extraction, minimum years of experience checks, and negative keyword filtering (security clearance, visa sponsorship exclusions).")
+        + case_row("4. Streamlit Interactive Analytics Dashboard", "Rich, locally-hosted web interface providing real-time feed exploration, score threshold filters, keyword search, match score distribution histograms, and direct application preparation toolkits.")
+        + case_row("5. Safety Guardrails & Preparation Hard-Lock", "Architecturally enforces a strict <code>PREPARATION_ONLY</code> boundary. Generates tailored cover letter drafts, interview talking points, and direct portal links, but explicitly forbids autonomous submission or bot-driven form filling, keeping human judgment in control.")
+        + '</ol>',
+    )
+    + section(
+        "Engineering Philosophy & Architectural Trade-offs",
+        '<div class="prose">'
+        '<div class="grid two">'
+        '<div class="card">'
+        '<h3>Source Adapters and Structured Data</h3>'
+        '<p><strong>Current design:</strong> Source-specific adapters parse supported public feeds, while a separate Schema.org parser reads structured job data. Adzuna is present as a stub.</p>'
+        '<p><strong>Limit:</strong> Connector registration and mocked tests do not establish live reliability, throughput, or support for every employer board.</p>'
+        '</div>'
+        '<div class="card">'
+        '<h3>Deterministic Matching</h3>'
+        '<p><strong>Decision:</strong> Built a multi-criteria deterministic scoring matrix in pure Python rather than passing every job description to an external commercial LLM.</p>'
+        '<p><strong>Rationale:</strong> Rule-based scores can be inspected and tested without an external model call. Processing speed and live-source coverage require separate measurement.</p>'
+        '</div>'
+        '</div>'
+        '<div class="card" style="margin-top: 1.5rem;" id="verification">'
+        '<h3>Test Evidence and Operational Status</h3>'
+        '<p>A current offline suite run collected 452 tests: <strong>450 passed, 1 failed, 1 skipped</strong>. The failure is an end-to-end deterministic-score threshold assertion (31.2 versus expected 50.0), which needs correction in that project before claiming a clean suite. The skipped test requires Windows symlink privilege. Mocked connector checks do not verify live scheduled ingestion.</p>'
+        '</div>'
+        '</div>'
+        '<div class="actions">'
+        + link("projects.html#pillar-automation", "View Project Overview →", "button")
+        + link("projects.html#pillar-automation", "Explore Workflow Automation →", "button button-quiet")
+        + '</div>',
+    )
+    + explore_more("job-search-automation.html"),
+)
+
 # 10. CLIENT WORK: client-work.html
 PAGES["client-work.html"] = (
     "Client work",
     "Rehan Memon | Client Work",
-    "Production client websites, administrative portals, and backend API services.",
+    "Client and collaborative websites, administrative portals, API services, and labeled prototypes.",
     intro(
-        "Pillar 2 · Client Deployments",
-        "Selected Client Deployments",
-        "A showcase of live, production web applications, educational portals, and backend API services built for real-world client operations.",
+        "Pillar 2 · Client & Collaborative Engineering",
+        "Client & Collaborative Engineering",
+        "Selected websites, educational portals, API services, and prototypes. Each entry distinguishes a working public deployment from local source evidence and identifies the supported personal contribution.",
         "projects.html#pillar-client",
-        "Pillar 2: Selected Client Deployments",
+        "Pillar 2: Client & Collaborative Engineering",
     )
     + section(
         "Advfiction LMS (Lead Management System)",
@@ -1473,15 +1923,16 @@ PAGES["client-work.html"] = (
         + eyebrow("Educational Web Platform · Independent Client")
         + badge("Live Platform Deployment")
         + '</div>'
-        '<h3>Girls Higher Secondary School Institutional Portal</h3>'
-        '<p class="card-category-sub">Next.js 16 · React 19 · TypeScript · Supabase</p>'
-        '<p>A modern educational institution platform providing academic program directories, event calendars, dynamic notices, and administrative management tools.</p>'
+        '<h3>Girls Higher Secondary School Institutional Portal & Admin Suite</h3>'
+        '<p class="card-category-sub">Next.js 16 App Router · React 19 · TypeScript · Tailwind CSS · Supabase SSR</p>'
+        '<p>A collaborative school website and administrative portal. My documented contribution covers specific content-management modules; the full site includes work by other contributors.</p>'
         '<div class="client-details">'
         '<h4>Technical Architecture & Personal Contribution:</h4>'
         '<ul class="prose-list">'
-        '<li><strong>Administrative Routes:</strong> Implemented administrative pages under <code>src/app/admin</code> for dynamic management of events, notices, and student enquiries.</li>'
-        '<li><strong>Serverless API Endpoints:</strong> Built Next.js Route Handlers (<code>/api/events</code>, <code>/api/enquiries</code>) backed by Supabase client querying.</li>'
-        '<li><strong>Interactive UI Components:</strong> Engineered dynamic event countdown timers, responsive faculty directories, and accessible enquiry submission forms.</li>'
+        '<li><strong>Documented personal contribution:</strong> Commit history attributes admin content modules for news, events, faculty, gallery, and achievements to my work.</li>'
+        '<li><strong>Collaborative architecture:</strong> The repository uses Next.js App Router, React, TypeScript, Tailwind CSS, and Supabase across public and administrative routes. Other routes and site-wide design are team work unless separately attributed.</li>'
+        '<li><strong>Enquiry handling:</strong> A route checks required fields and inserts an enquiry through Supabase. This is repository functionality; a Zod-backed enquiry validation claim is not supported.</li>'
+        '<li><strong>Limit:</strong> The events GET route is a stub, and a functioning countdown was not established from the inspected source.</li>'
         '</ul>'
         '</div>'
         '<div class="card-actions">'
@@ -1503,8 +1954,8 @@ PAGES["client-work.html"] = (
         '<h4>Technical Architecture & Personal Contribution:</h4>'
         '<ul class="prose-list">'
         '<li><strong>Interactive Product Catalog:</strong> Built animated product showcase components with Framer Motion and Tailwind CSS, presenting product variants and nutritional profiles.</li>'
-        '<li><strong>Enquiry Routing Service:</strong> Engineered an Express backend integration (<code>contactRoutes.js</code>, <code>contactController.js</code>) that receives customer inquiries and automatically appends rows into Google Sheets via the Google Sheets API.</li>'
-        '<li><strong>Validation & Feedback:</strong> Implemented client-side phone/email input validation with instant visual submission feedback.</li>'
+        '<li><strong>Enquiry Routing Service:</strong> The local source contains Express routes and a Google Sheets API controller for customer inquiries. The frontend source targets a localhost API; delivery from the public site has not been verified.</li>'
+        '<li><strong>Validation & Feedback:</strong> Client-side phone/email checks are implemented; a successful live submission is not established.</li>'
         '</ul>'
         '</div>'
         '<div class="card-actions">'
@@ -1516,20 +1967,24 @@ PAGES["client-work.html"] = (
         "SAHASH NGO Conversational Assistant",
         '<article class="card client-card" id="sahash-chatbot">'
         '<div class="card-top">'
-        + eyebrow("Non-Profit Deployment · ConnectFor / SAHASH India")
-        + badge("Completed Deployment Prototype")
+        + eyebrow("NGO Assistant Prototype · ConnectFor / SAHASH India")
+        + badge("Deployment Unverified")
         + '</div>'
         '<h3>SAHASH NGO Voice & Conversational Assistant</h3>'
-        '<p class="card-category-sub">Node.js · Express · Google Gemini API · Vector Store · Web Speech API</p>'
-        '<p>A specialized conversational AI assistant engineered for SAHASH India via ConnectFor to assist community members, volunteers, and donors with verified organization details, programs, and social impact queries.</p>'
+        '<p class="card-category-sub">Node.js · Express · Google Gemini API · Keyword Retrieval · Web Speech API</p>'
+        '<p>A conversational assistant prototype developed in the SAHASH India / ConnectFor context. Its local source contains FAQ and organization-data lookup, but production content and deployment have not been verified.</p>'
         '<div class="client-details">'
         '<h4>Technical Architecture & Personal Contribution:</h4>'
         '<ul class="prose-list">'
-        '<li><strong>Grounded Semantic Matching:</strong> Engineered an in-memory vector store matching user queries against verified organization documents and FAQs, with intentional safe fallback preventing out-of-domain hallucinations.</li>'
+        '<li><strong>FAQ and Document Lookup:</strong> An in-memory cache scores organization documents by tokens and intents, then passes selected context to Gemini. The prompt includes cautious fallback instructions; factual faithfulness has not been evaluated.</li>'
         '<li><strong>Multimodal Voice & Text UI:</strong> Implemented a floating launcher with bidirectional speech synthesis and voice recognition via the browser Web Speech API.</li>'
         '<li><strong>Express Backend & Session Memory:</strong> Built modular API controllers with conversational context buffers and express rate-limiting middleware for abuse prevention.</li>'
         '</ul>'
         '</div>'
+        '<div class="card-actions">'
+        + link("projects.html#pillar-client", "View in Projects Catalog →", "button button-small button-quiet")
+        + link("about.html", "Technical Skills Matrix →", "button button-small button-quiet")
+        + '</div>'
         '</article>',
     )
     + explore_more("client-work.html"),
@@ -1539,194 +1994,248 @@ def workflow_image(filename, width, height, alt, caption):
     """Show an original editor capture with a caption and the shared lightbox."""
     return (
         '<figure class="evidence-figure workflow-capture">'
+        f'<button type="button" class="image-zoom-trigger" aria-haspopup="dialog" aria-label="Enlarge image: {escape(alt)}">'
         f'<img src="assets/workflows/{escape(filename)}" width="{width}" height="{height}" loading="lazy" decoding="async" alt="{escape(alt)}">'
+        '</button>'
         f'<figcaption class="evidence-caption">{escape(caption)}</figcaption>'
         '</figure>'
     )
 
 
-# 11. AUTOMATION: automation.html
+# 11. AUTOMATION: automation.html (Unified Canonical n8n Architecture Page)
+
+def workflow_index():
+    return (
+        '<section class="section section-directory-tools container" style="margin-bottom: var(--space-md);">'
+        '<div class="workflow-index-box">'
+        '<div class="workflow-index-header">'
+        '<h2 class="workflow-index-heading">Workflow Architecture Index</h2>'
+        '<p class="workflow-index-sub">Jump directly to any workflow architecture below:</p>'
+        '</div>'
+        '<div class="workflow-index-grid" role="navigation" aria-label="Workflow quick navigation">'
+        '<div class="workflow-index-col">'
+        '<a href="#wf-instagram-api" class="workflow-index-link"><span class="wf-num">01</span> Instagram Scheduled Publishing <span class="wf-status">Design</span></a>'
+        '<a href="#wf-news-prompt" class="workflow-index-link"><span class="wf-num">02</span> News Sources to AI Summary <span class="wf-status">Design</span></a>'
+        '<a href="#wf-social-publisher" class="workflow-index-link"><span class="wf-num">03</span> PostgreSQL to AI Social Publisher <span class="wf-status">Design</span></a>'
+        '<a href="#wf-subworkflow-router" class="workflow-index-link"><span class="wf-num">04</span> AI Outreach &amp; Team Notification <span class="wf-status">Skeleton</span></a>'
+        '<a href="#wf-social-orchestrator" class="workflow-index-link"><span class="wf-num">05</span> Caption to Image Asset <span class="wf-status">Design</span></a>'
+        '</div>'
+        '<div class="workflow-index-col">'
+        '<a href="#wf-itinerary-proposal" class="workflow-index-link"><span class="wf-num">06</span> AI Itinerary &amp; PDF Proposal <span class="wf-status">Design</span></a>'
+        '<a href="#wf-maps-scraper" class="workflow-index-link"><span class="wf-num">07</span> Apify Maps to Google Sheets <span class="wf-status">Editor run</span></a>'
+        '<a href="#wf-lead-dossier" class="workflow-index-link"><span class="wf-num">08</span> Lead Row to PDF Brief <span class="wf-status">Design</span></a>'
+        '<a href="#wf-postgres-research" class="workflow-index-link"><span class="wf-num">09</span> PostgreSQL Search &amp; AI Enrichment <span class="wf-status">Partial run</span></a>'
+        '<a href="#wf-telegram-bot" class="workflow-index-link"><span class="wf-num">10</span> Telegram Review &amp; Approval <span class="wf-status">Design</span></a>'
+        '</div>'
+        '</div>'
+        '</div>'
+        '</section>'
+    )
+
+
+def evidence_status_legend():
+    return (
+        '<section class="section container" style="margin-bottom: var(--space-md);">'
+        '<div class="workflow-index-box" style="padding: 1.25rem 1.5rem;">'
+        '<h3 style="font-size: 1.05rem; margin: 0 0 0.5rem 0; color: var(--ink);">Evidence &amp; Verification Status Legend</h3>'
+        '<p class="prose" style="font-size: 0.88rem; margin: 0 0 0.85rem 0; color: var(--muted);">'
+        'Each architecture below reflects authentic internship engineering work and is classified by its verified evidence maturity:'
+        '</p>'
+        '<div class="workflow-index-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem;">'
+        '<div class="workflow-index-col" style="padding: 0.75rem;">'
+        '<div style="margin-bottom: 0.35rem;">' + badge("Editor execution shown") + '</div>'
+        '<p style="font-size: 0.82rem; margin: 0; color: var(--muted);">Live canvas runtime data flow with completed node execution indicators.</p>'
+        '</div>'
+        '<div class="workflow-index-col" style="padding: 0.75rem;">'
+        '<div style="margin-bottom: 0.35rem;">' + badge("Partial execution shown") + '</div>'
+        '<p style="font-size: 0.82rem; margin: 0; color: var(--muted);">Verified initial pipeline stages; downstream enrichment/persistence unrun.</p>'
+        '</div>'
+        '<div class="workflow-index-col" style="padding: 0.75rem;">'
+        '<div style="margin-bottom: 0.35rem;">' + badge("Design/configuration only") + '</div>'
+        '<p style="font-size: 0.82rem; margin: 0; color: var(--muted);">Complete node logic and schema configuration awaiting credentials/deployment.</p>'
+        '</div>'
+        '<div class="workflow-index-col" style="padding: 0.75rem;">'
+        '<div style="margin-bottom: 0.35rem;">' + badge("Test harness or skeleton") + '</div>'
+        '<p style="font-size: 0.82rem; margin: 0; color: var(--muted);">Validation harness engineered with mock lead payloads and routing templates.</p>'
+        '</div>'
+        '</div>'
+        '</div>'
+        '</section>'
+    )
+
+
+def workflow_example(number, anchor, category, status, title, purpose, business_value, engineering, tech_tags, evidence, images):
+    tags_html = "".join(f'<span class="tag">{escape(t)}</span>' for t in tech_tags)
+    body = (
+        f'<article class="card evidence-card" id="{anchor}">'
+        f'<div class="card-top">{eyebrow(f"Portfolio Order {number:02d} · {category}")}{badge(status)}</div>'
+        f'<h3>{escape(title)}</h3>'
+        f'<div class="workflow-story">'
+        f'<p><strong>Operational Purpose:</strong> {escape(purpose)}</p>'
+        f'<p><strong>Intended Business Value:</strong> {escape(business_value)}</p>'
+        f'<p><strong>Engineering Contribution:</strong> {escape(engineering)}</p>'
+        f'</div>'
+        f'<div class="tags-row" style="margin: var(--space-xs) 0 var(--space-sm);">{tags_html}</div>'
+        '<div class="workflow-captures">'
+        + "".join(workflow_image(*image) for image in images)
+        + '</div>'
+        f'<p class="card-highlight"><strong>Evidence Verification Status:</strong> {escape(evidence)}</p>'
+        '</article>'
+    )
+    return section(f"{number:02d}. {title}", body)
+
+
 PAGES["automation.html"] = (
     "Automation",
-    "Rehan Memon | Automation Systems",
-    "Selected n8n workflow examples from lead capture, research, and document automation.",
+    "Rehan Memon | AI & Workflow Automation",
+    "Selected n8n workflow architectures developed during my Advfiction internship, with original editor captures, technical contributions and clearly stated execution evidence.",
     intro(
         "Pillar 3 · Workflow Automation",
-        "n8n Automation Work",
-        "Editor-tested and design-stage n8n examples from my Advfiction internship archive, with execution limits stated for each.",
+        "AI & Workflow Automation",
+        "Selected n8n workflow architectures developed during my Advfiction internship, with original editor captures, technical contributions and clearly stated execution evidence.",
         "projects.html#pillar-automation",
         "Pillar 3: AI & Workflow Automation",
         "page-intro-compact",
     )
-    + section(
-        "Map-based lead capture",
-        '<article class="card" id="map-lead-capture">'
-        '<div class="card-top">'
-        + eyebrow("01 / Lead Capture")
-        + badge("Editor run shown")
-        + '</div>'
-        '<h3>Apify Map Scraper to Google Sheets</h3>'
-        '<p class="prose">A map-scraping canvas connects an Apify actor to dataset retrieval, a filter and a Google Sheets append step. The editor capture shows green completion indicators through the final node, with five items displayed as appended.</p>'
-        + workflow_image("apify-map-to-sheets.jpeg", 798, 140, "n8n canvas: Maps Scraper, Apify actor, dataset retrieval, filter and Google Sheets append with five final items.", "Original editor capture · five items visible at the final append node.")
-        + '<figure class="diagram"><img src="diagrams/automation-map-to-sheet.svg" width="1000" height="172" loading="lazy" alt="Illustrative sequence: map scraper, Apify actor, dataset retrieval, filter and Google Sheets append."><figcaption>Architecture summary of the visible node sequence.</figcaption></figure>'
-        '<p class="card-highlight"><strong>Evidence limit:</strong> The screenshot supports an editor run for this small sample. It does not establish an active schedule, production deployment or a larger lead count.</p>'
-        '</article>',
+    + workflow_index()
+    + evidence_status_legend()
+    + workflow_example(
+        1, "wf-instagram-api", "Scheduled Publishing", "Design/configuration only",
+        "Instagram Scheduled Publishing",
+        "Automate scheduled social marketing publication by querying approved content assets from a spreadsheet, verifying publication time windows, and uploading media via the Instagram Graph API.",
+        "Configured to support scheduled social publishing without manual posting during scheduled time slots.",
+        "Implemented cron schedule triggering, status filtering for approved posts, Meta Graph API media container creation, publication polling, and post-publish Telegram alerts.",
+        ["n8n", "Instagram Graph API", "Cron Scheduler", "Meta API", "Social Media Automation"],
+        "The editor view shows the design and a warning on a notification node. A successful post or connected client account is not established.",
+        [("instagram-scheduling.jpeg", 1600, 639, "n8n daily publishing design with approved-post lookup, timing checks, Instagram container and publish nodes, sheet update and Telegram notice.", "Original editor capture · scheduling design, with a warning on the notification path.")],
+    )
+    + workflow_example(
+        2, "wf-news-prompt", "News Processing", "Design/configuration only",
+        "News Sources to AI Summary",
+        "Fetch articles from multiple news feeds, deduplicate headlines, request an LLM summary, and append curated briefs into spreadsheets.",
+        "Designed to assist research teams by aggregating public news sources into structured summaries.",
+        "Configured concurrent HTTP Request nodes, JavaScript array aggregation routines, JSON prompt formatting, and spreadsheet append nodes.",
+        ["n8n", "HTTP Request Nodes", "JavaScript Transform", "LLM Summarization", "Competitive Intelligence"],
+        "A design view shows the node sequence; there are no visible execution indicators or verified generated outputs.",
+        [("news-ai-summary.jpeg", 1577, 503, "n8n news processing design merging two HTTP sources, JavaScript transformations, an AI request and a sheet append.", "News summary canvas · design shown, execution unverified."),
+         ("news-image-composite.jpeg", 1600, 438, "Composite n8n content design connecting news, AI text, image generation, Drive and Telegram stages.", "Related composite canvas · stages are connected; output is unverified.")],
+    )
+    + workflow_example(
+        3, "wf-social-publisher", "Social Publishing Prototype", "Design/configuration only",
+        "PostgreSQL to AI Social Publisher",
+        "Select records from PostgreSQL, prompt an LLM for social copy, trigger an image generation API, submit the draft to Telegram for review, and route approved posts to Facebook.",
+        "Prototyped to coordinate multi-channel publishing from internal database records to social channels through a single canvas.",
+        "Configured relational database queries, multi-modal generative prompts, supervisory Telegram notifications, and Facebook Graph API endpoints into a unified sequence.",
+        ["n8n", "PostgreSQL", "Facebook Graph API", "Telegram Bot API", "Multi-modal AI", "Content Pipeline"],
+        "The editor view shows connected nodes, not a successful approval, generated asset, published post or completed status update.",
+        [("social-publisher-prototype.jpeg", 1600, 681, "n8n social publisher design with PostgreSQL, AI caption, image generation, Telegram review and Facebook request stages.", "Additional original canvas · publication and approvals unverified.")],
+    )
+    + workflow_example(
+        4, "wf-subworkflow-router", "Outreach Prototype", "Test harness or skeleton",
+        "AI Outreach and Team Notification Skeleton",
+        "Provide a testing harness to evaluate lead qualification rules against simulated webhook payloads and route alerts to communication channels.",
+        "Serves as a prototype skeleton to test lead routing logic before connecting live CRM accounts.",
+        "Constructed mock lead test harnesses, conditional qualification decision trees, AI response synthesis, and multi-channel communication node templates.",
+        ["n8n", "Lead Qualification", "Slack API", "Gmail API", "Test Harness", "Webhook Routing"],
+        "The canvas labels itself a skeleton; communication nodes show configuration warnings. No live outreach or sent messages are established.",
+        [("outreach-test-harness.jpeg", 1600, 728, "n8n AI outreach skeleton with mock lead data, qualification branch, AI request, Gmail and Slack nodes showing configuration warnings.", "Original editor capture · explicit skeleton; no outreach delivery shown.")],
+    )
+    + workflow_example(
+        5, "wf-social-orchestrator", "Generative Media", "Design/configuration only",
+        "Caption to Image Asset",
+        "Read approved marketing copy from a spreadsheet, call a generative image API, store image assets in Google Drive, and log file URLs.",
+        "Prototyped to assist digital marketing campaigns by pairing copy with AI-generated visual drafts.",
+        "Built row-by-row iteration loops, dynamic prompt parameter injection, binary payload retrieval from image generation endpoints, Google Drive file upload, and spreadsheet URL updates.",
+        ["n8n", "Generative AI Images", "Google Drive API", "Binary Data Handling", "Asset Pipeline"],
+        "The design is visible, but successful image generation and asset sharing are not shown. It may be a stage of a larger content workflow.",
+        [("caption-to-image-asset.jpeg", 1600, 527, "n8n caption-to-image design looping over sheet rows, calling an image API, uploading to Drive and updating the sheet.", "Original editor capture · image creation and sharing not demonstrated.")],
+    )
+    + workflow_example(
+        6, "wf-itinerary-proposal", "Proposal Prototype", "Design/configuration only",
+        "AI Itinerary and PDF Proposal",
+        "Process incoming travel specifications, synthesize a multi-day itinerary using an LLM, convert styled HTML into a PDF proposal, and notify sales staff.",
+        "Designed to expedite client proposal drafting by producing structured, branded itinerary documents from intake parameters.",
+        "Configured prompt construction with client variable injection, JSON/HTML template structuring, PDF.co API conversion nodes, and status write-back to CRM tables.",
+        ["n8n", "Groq AI / LLM", "HTML-to-PDF", "PDF.co API", "Spreadsheet ETL", "Sales Automation"],
+        "The canvas shows configuration only; no generated itinerary, delivered proposal or completed lead update is established.",
+        [("itinerary-pdf-proposal.jpeg", 1593, 472, "n8n itinerary proposal design with sheet filter, Groq AI request, HTML formatting, PDF.co conversion and Gmail route.", "Additional original canvas · proposal delivery unverified.")],
+    )
+    + workflow_example(
+        7, "wf-maps-scraper", "Lead Capture", "Editor execution shown",
+        "Apify Maps to Google Sheets",
+        "Ingest local business and map listings from Apify scrapers, sanitize and filter dataset records, and append structured leads into Google Sheets for sales outreach.",
+        "Designed to accelerate prospect list generation by transforming raw geocoded scraper datasets into spreadsheet-ready prospect tables for outbound sales teams.",
+        "Configured webhook-triggered Apify actor execution, dataset pagination retrieval, conditional schema validation filtering, and idempotent Google Sheets append nodes.",
+        ["n8n", "Apify Actor API", "Google Sheets API", "Data Filtering", "Lead Generation"],
+        "Original editor capture demonstrates green indicators through the append node and five output items. Deployment and repeat runs are not established.",
+        [("apify-map-to-sheets.jpeg", 798, 140, "n8n canvas connecting Maps Scraper, Apify actor, dataset retrieval, filter and Google Sheets append; five final items visible.", "Original editor capture · five items at the append node.")],
+    )
+    + workflow_example(
+        8, "wf-lead-dossier", "Document Automation", "Design/configuration only",
+        "Lead Row to PDF Brief",
+        "Generate customized PDF prospect dossiers and executive briefing documents whenever a qualifying prospect record is logged or updated in a spreadsheet.",
+        "Reduces repetitive sales preparation by assembling structured prospect information into printable summary documents.",
+        "Built Google Sheets row change detection, template data formatting, programmatic Google Docs creation with text token replacement, Google Drive PDF export, and Gmail notification delivery.",
+        ["n8n", "Google Docs API", "Google Drive API", "PDF Generation", "Gmail Automation", "Document Workflows"],
+        "Two canvas views show initial and filtered pipeline configurations; document creation and email delivery are not shown completed.",
+        [("lead-brief-initial.jpeg", 1600, 516, "Initial n8n lead brief design from spreadsheet row through Google Docs, Drive PDF export and Gmail notification.", "Initial canvas design · no delivered document shown."),
+         ("lead-brief-filtered.jpeg", 1600, 752, "Later n8n lead brief design adding a filter before Google Docs creation and PDF export.", "Later canvas design · filter added; delivery remains unverified.")],
+    )
+    + workflow_example(
+        9, "wf-postgres-research", "Company Research", "Partial execution shown",
+        "PostgreSQL Search and AI Enrichment",
+        "Query un-enriched company records from PostgreSQL, batch process candidate rows, and execute fallback search queries to discover missing firmographic context prior to LLM synthesis.",
+        "Streamlines corporate intelligence gathering by automatically discovering company domains and firmographic data directly within relational records.",
+        "Configured batched database cursor reads, duplicate detection logic, SerpApi/Google Search fallback nodes, and prompt formatting for AI summarization.",
+        ["n8n", "PostgreSQL", "Batch Processing", "SerpApi", "LLM Prompting", "Data Enrichment"],
+        "Early nodes and search branch show completed execution indicators; the downstream AI request has a warning indicator and final persistence is not shown completed.",
+        [("postgres-search-ai-enrichment.jpeg", 1600, 590, "n8n PostgreSQL research canvas: fetched rows, batch, deduplication, search, warning on AI request and unrun save node.", "Original editor capture · partial run; AI enrichment and persistence unverified.")],
+    )
+    + workflow_example(
+        10, "wf-telegram-bot", "Human Approval", "Design/configuration only",
+        "Telegram Review and Approval",
+        "Implement an asynchronous governance gate where pending marketing drafts or automated actions pause until a human supervisor clicks Approve or Reject via an interactive Telegram message.",
+        "Helps prevent automated content delivery errors by introducing human verification before external publication.",
+        "Configured n8n Wait-for-Webhook patterns, interactive inline Telegram bot callback query buttons, and conditional state branching to update master spreadsheets.",
+        ["n8n", "Telegram Bot API", "Human-in-the-Loop", "Webhook Wait Node", "Approval Workflows"],
+        "Original canvas displays wait node and conditional approval branches; reviewer responses and downstream triggers are not shown completed.",
+        [("telegram-review-approval.jpeg", 1600, 677, "n8n Telegram approval design with sheet rows, reviewer message, wait node and approve or reject branches.", "Original editor capture · one unique image; second source file was identical.")],
     )
     + section(
-        "Company research and enrichment",
-        '<article class="card" id="company-research">'
-        '<div class="card-top">'
-        + eyebrow("02 / Research Pipeline")
-        + badge("Partial editor run")
+        "Explore More Engineering Work",
+        '<p class="prose">Explore other systems, client deliverables, and verified credentials across my engineering portfolio.</p>'
+        '<div class="section-nav-group">'
+        + link("projects.html", "Projects & Case Studies →", "button")
+        + '<div class="sub-nav-links">'
+        + link("experience.html", "Internship Experience →")
+        + link("client-work.html", "Client Work & Deployments →")
+        + link("credentials.html", "Credentials & Certifications →")
+        + link("contact.html", "Get in Touch →")
         + '</div>'
-        '<h3>PostgreSQL Research with Search Fallback</h3>'
-        '<p class="prose">The captured canvas fetches company rows from PostgreSQL, splits a batch, checks prior processing and routes a search request toward an AI request and database save step.</p>'
-        + workflow_image("postgres-search-ai-enrichment.jpeg", 1600, 590, "n8n PostgreSQL research canvas with early completed nodes, an AI request warning and an unrun database save node.", "Original editor capture · partial run; AI enrichment and save are unverified.")
-        + '<figure class="diagram"><img src="diagrams/automation-research.svg" width="1000" height="172" loading="lazy" alt="Illustrative sequence: PostgreSQL fetch, batching, deduplication, search fallback, AI request and database save."><figcaption>Illustrative path through the visible canvas; downstream completion is unverified.</figcaption></figure>'
-        '<p class="card-highlight"><strong>Evidence limit:</strong> The editor shows early nodes and a search branch completing, followed by a warning at the AI request. It does not prove that the batch was enriched or saved.</p>'
-        '</article>',
-    )
-    + section(
-        "Lead report generation",
-        '<article class="card" id="lead-report">'
-        '<div class="card-top">'
-        + eyebrow("03 / Document Automation")
-        + badge("Design shown")
-        + '</div>'
-        '<h3>Google Sheets to PDF Lead Brief</h3>'
-        '<p class="prose">Two canvas views show a lead-row trigger, data formatting, Google Docs creation and text insertion, PDF export through Drive, and a Gmail notification. The later view adds a filter before document creation.</p>'
-        + workflow_image("lead-brief-filtered.jpeg", 1600, 752, "n8n lead brief design with a sheet trigger, filter, Google Docs creation, Drive PDF export and Gmail notification nodes.", "Original editor capture · later design with a filter; delivery is not demonstrated.")
-        + '<figure class="diagram"><img src="diagrams/automation-report.svg" width="1000" height="172" loading="lazy" alt="Illustrative sequence: spreadsheet row, formatting and filter, document creation, PDF export and email notification."><figcaption>Architecture summary of the captured document workflow.</figcaption></figure>'
-        '<p class="card-highlight"><strong>Evidence limit:</strong> The screenshots show design/configuration, not a completed PDF or delivered email.</p>'
-        '</article>',
-    )
-    + section(
-        "More workflow examples",
-        '<p class="prose">The accompanying gallery documents other visible canvas designs, including scheduled publishing, human approval, news processing, image creation and an outreach test harness. Related views are grouped rather than counted as separate deployments.</p>'
-        '<div class="card-actions">'
-        + link("automation-evidence.html", "Explore the Workflow Gallery →", "button")
         + '</div>',
     )
     + explore_more("automation.html"),
 )
 
 
-def workflow_example(number, anchor, category, status, title, description, steps, evidence, images):
-    step_html = "".join(
-        f'<div class="evidence-node-col"><h4>{escape(label)}</h4><p>{escape(value)}</p></div>'
-        for label, value in steps
-    )
-    body = (
-        f'<article class="card evidence-card" id="{anchor}">'
-        f'<div class="card-top">{eyebrow(f"Workflow example {number}")}{badge(status)}</div>'
-        f'<h3>{escape(title)}</h3>'
-        f'<p class="prose">{escape(description)}</p>'
-        '<div class="workflow-captures">'
-        + "".join(workflow_image(*image) for image in images)
-        + '</div>'
-        f'<div class="evidence-node-grid">{step_html}</div>'
-        f'<p class="card-highlight"><strong>What the evidence shows:</strong> {escape(evidence)}</p>'
-        '</article>'
-    )
-    return section(f'{number}. {category}', body)
-
-
-# Ten selected canvas examples; cards and screenshots do not establish production systems.
+# 12. AUTOMATION EVIDENCE COMPATIBILITY REDIRECT: automation-evidence.html
 PAGES["automation-evidence.html"] = (
     "Automation Evidence Gallery",
     "Rehan Memon | Automation Workflow Gallery",
-    "Selected n8n canvas examples, with editor-test and design status kept distinct.",
-    intro(
-        "Pillar 3 · Workflow Examples",
-        "n8n Workflow Gallery",
-        "Original n8n editor captures from my Advfiction internship archive, grouped by workflow. Captions distinguish a small editor run, partial runs and unexecuted designs.",
-        "automation.html",
-        "Workflow Automation Overview",
-        "page-intro-compact",
-    )
-    + workflow_example(
-        1, "wf-maps-scraper", "Lead Capture", "Editor run shown",
-        "Apify Maps to Google Sheets",
-        "A map-scraping flow obtains an Apify dataset, filters items and appends rows to a sheet.",
-        [("Start", "Maps Scraper and Apify actor"), ("Transform", "Get dataset items and Filter"), ("Output", "Append row in sheet")],
-        "The editor capture shows green indicators through the append node and five output items. Deployment and repeat runs are not established.",
-        [("apify-map-to-sheets.jpeg", 798, 140, "n8n canvas connecting Maps Scraper, Apify actor, dataset retrieval, filter and Google Sheets append; five final items visible.", "Original editor capture · five items at the append node.")],
-    )
-    + workflow_example(
-        2, "wf-postgres-research", "Company Research", "Partial editor run",
-        "PostgreSQL Search and AI Enrichment",
-        "A company-research canvas fetches database rows, batches them, checks for prior processing and sends a search result toward an AI request.",
-        [("Start", "Manual trigger and PostgreSQL fetch"), ("Transform", "Batch, deduplication and search fallback"), ("Output", "AI request followed by PostgreSQL save node")],
-        "Early nodes and one search branch show completed indicators; the AI request has a warning and downstream save is not shown as completed.",
-        [("postgres-search-ai-enrichment.jpeg", 1600, 590, "n8n PostgreSQL research canvas: fetched rows, batch, deduplication, search, warning on AI request and unrun save node.", "Original editor capture · partial run; AI enrichment and persistence unverified.")],
-    )
-    + workflow_example(
-        3, "wf-lead-dossier", "Document Automation", "Design shown",
-        "Lead Row to PDF Brief",
-        "Two canvas views show a sheet-triggered lead-report flow; the later view adds a filter before document generation.",
-        [("Start", "Sheet row or subworkflow trigger"), ("Transform", "Format lead data and create Google Doc"), ("Output", "Export PDF and Gmail notification nodes")],
-        "The screenshots show a configured route, not a generated document, delivered email or production run.",
-        [("lead-brief-initial.jpeg", 1600, 516, "Initial n8n lead brief design from spreadsheet row through Google Docs, Drive PDF export and Gmail notification.", "Initial canvas design · no delivered document shown."),
-         ("lead-brief-filtered.jpeg", 1600, 752, "Later n8n lead brief design adding a filter before Google Docs creation and PDF export.", "Later canvas design · filter added; delivery remains unverified.")],
-    )
-    + workflow_example(
-        4, "wf-instagram-api", "Scheduled Publishing", "Design shown",
-        "Instagram Scheduling Canvas",
-        "A publishing design reads approved scheduled posts, checks timing, creates an Instagram media container and routes toward publish and status-update nodes.",
-        [("Start", "Schedule or subworkflow trigger"), ("Transform", "Approved-post lookup and eligibility check"), ("Output", "Meta publish, sheet update and notification nodes")],
-        "The editor view shows the design and a warning on a notification node. A successful post or connected client account is not established.",
-        [("instagram-scheduling.jpeg", 1600, 639, "n8n daily publishing design with approved-post lookup, timing checks, Instagram container and publish nodes, sheet update and Telegram notice.", "Original editor capture · scheduling design, with a warning on the notification path.")],
-    )
-    + workflow_example(
-        5, "wf-telegram-bot", "Human Approval", "Design shown",
-        "Telegram Review and Approval",
-        "A review flow reads candidate items from a sheet, sends a Telegram message, waits for an approval decision and branches to sheet status updates.",
-        [("Start", "Schedule or subworkflow trigger"), ("Transform", "Loop, Telegram message and Wait"), ("Output", "Approve/reject branches and confirmation")],
-        "Two supplied captures are byte-identical views of this design. Neither proves that a reviewer responded or that a downstream publication occurred.",
-        [("telegram-review-approval.jpeg", 1600, 677, "n8n Telegram approval design with sheet rows, reviewer message, wait node and approve or reject branches.", "Original editor capture · one unique image; its second source file was identical.")],
-    )
-    + workflow_example(
-        6, "wf-news-prompt", "News Processing", "Design shown",
-        "News Sources to AI Summary",
-        "A canvas combines two news-search requests, merges results, transforms them with JavaScript and routes an AI-generated result to a sheet.",
-        [("Start", "Schedule or subworkflow trigger"), ("Transform", "Two HTTP sources, merge, JavaScript and AI request"), ("Output", "Append row in sheet")],
-        "A design view shows the node sequence; there are no visible execution indicators or verified generated outputs.",
-        [("news-ai-summary.jpeg", 1577, 503, "n8n news processing design merging two HTTP sources, JavaScript transformations, an AI request and a sheet append.", "News summary canvas · design shown, execution unverified."),
-         ("news-image-composite.jpeg", 1600, 438, "Composite n8n content design connecting news, AI text, image generation, Drive and Telegram stages.", "Related composite canvas · stages are connected; output is unverified.")],
-    )
-    + workflow_example(
-        7, "wf-social-orchestrator", "Generative Media", "Design shown",
-        "Caption to Image Asset",
-        "A related canvas reads captions from a sheet, calls an image-generation API, uploads the result to Drive and writes its URL back to the sheet.",
-        [("Start", "Manual or subworkflow trigger"), ("Transform", "Caption loop and image-generation request"), ("Output", "Drive upload and sheet update nodes")],
-        "The design is visible, but successful image generation and asset sharing are not shown. It may be a stage of a larger content workflow.",
-        [("caption-to-image-asset.jpeg", 1600, 527, "n8n caption-to-image design looping over sheet rows, calling an image API, uploading to Drive and updating the sheet.", "Original editor capture · image creation and sharing not demonstrated.")],
-    )
-    + workflow_example(
-        8, "wf-subworkflow-router", "Outreach Prototype", "Test harness design",
-        "AI Outreach and Team Notification Skeleton",
-        "A mock-lead test canvas branches on qualification and sketches an AI outreach message, email action and team notification.",
-        [("Start", "Manual trigger with mock lead data"), ("Transform", "Qualification branch and AI request"), ("Output", "Gmail and Slack nodes")],
-        "The canvas labels itself a skeleton; communication nodes show configuration warnings. No live outreach or sent messages are established.",
-        [("outreach-test-harness.jpeg", 1600, 728, "n8n AI outreach skeleton with mock lead data, qualification branch, AI request, Gmail and Slack nodes showing configuration warnings.", "Original editor capture · explicit skeleton; no outreach delivery shown.")],
-    )
-    + workflow_example(
-        9, "wf-social-publisher", "Social Publishing Prototype", "Design shown",
-        "PostgreSQL to AI Social Publisher",
-        "A separate canvas selects scheduled items from PostgreSQL, drafts a caption with an AI request, routes image generation and Telegram review, then sketches a Facebook publish path.",
-        [("Start", "Schedule and PostgreSQL selection"), ("Transform", "AI caption, image and Telegram approval"), ("Output", "Facebook request and status update nodes")],
-        "The editor view shows connected nodes, not a successful approval, generated asset, published post or completed status update.",
-        [("social-publisher-prototype.jpeg", 1600, 681, "n8n social publisher design with PostgreSQL, AI caption, image generation, Telegram review and Facebook request stages.", "Additional original canvas · publication and approvals unverified.")],
-    )
-    + workflow_example(
-        10, "wf-itinerary-proposal", "Proposal Prototype", "Design shown",
-        "AI Itinerary and PDF Proposal",
-        "A distinct design filters spreadsheet leads, builds an AI itinerary prompt, parses the response into HTML, routes PDF creation and sketches an email and sheet update.",
-        [("Start", "Sheet leads and filter"), ("Transform", "Prompt, AI response, merge and HTML"), ("Output", "PDF, Gmail and sheet update nodes")],
-        "The canvas shows configuration only; no generated itinerary, delivered proposal or completed lead update is established.",
-        [("itinerary-pdf-proposal.jpeg", 1593, 472, "n8n itinerary proposal design with sheet filter, Groq AI request, HTML formatting, PDF.co conversion and Gmail route.", "Additional original canvas · proposal delivery unverified.")],
-    )
-    + explore_more("automation-evidence.html"),
+    "The n8n workflow gallery has been consolidated into the unified AI & Workflow Automation systems page.",
+    '<section class="container" style="padding: 4rem 1rem; text-align: center;">'
+    '<div class="card" style="max-width: 680px; margin: 2rem auto; padding: 2.5rem 2rem;">'
+    '<div class="card-top" style="justify-content: center; margin-bottom: 1rem;">'
+    + badge("Consolidated Architecture")
+    + '</div>'
+    '<h1>AI &amp; Workflow Automation</h1>'
+    '<p class="prose" style="margin: 1.5rem 0;">The complete 10-workflow gallery has been consolidated directly into our primary <strong>AI &amp; Workflow Automation</strong> systems page.</p>'
+    '<script>window.location.replace("automation.html"+window.location.hash);</script>'
+    '<div class="card-actions" style="justify-content: center;">'
+    + link("automation.html", "Explore All 10 Workflow Architectures →", "button")
+    + '</div>'
+    '</div>'
+    '</section>'
 )
 
 # 13. CREDENTIALS: credentials.html
@@ -1741,22 +2250,73 @@ PAGES["credentials.html"] = (
     )
     + '<section class="section container">'
     '<div class="status-banner">'
-    '<p class="eyebrow">Official Verification Archive</p>'
-    '<h2>Google Drive Certificate Archive</h2>'
-    '<p class="status-desc">Records in this library comprise primary-document verified government certifications (ISRO/IIRS), university extension awards (DLLE, EMSA), and accredited course completions, alongside enterprise job simulations and competitive nominations.</p>'
-    '<div class="card-actions" style="margin-top: 1rem;">'
-    + link(DRIVE_CREDENTIALS_URL, "Open Google Drive Verification Archive ↗", "button", external=True)
-    + '</div>'
+    '<p class="eyebrow">Evidence Traceability & Verification</p>'
+    '<h2>Credential Evidence and Document Status</h2>'
+    '<p class="status-desc">This registry contains 48 credential and recognition records. The 21 IIRS/ISRO outreach entries distinguish six workshop participations from fifteen online-course participations and link to separate privacy-safe copies. Other linked certificates require individual source and sharing review. Institutional nominations are documented privately.</p>'
     '</div>'
-    '<h2>Browse Credential Records</h2>'
-    '<div class="filter-pills" role="tablist" aria-label="Credential Domain Filter">'
-    '<button type="button" class="filter-pill active" data-filter-domain="all">All Records</button>'
-    '<button type="button" class="filter-pill" data-filter-domain="geospatial & remote sensing">Geospatial & Remote Sensing</button>'
-    '<button type="button" class="filter-pill" data-filter-domain="ai, ml & data science">AI, ML & Data Science</button>'
-    '<button type="button" class="filter-pill" data-filter-domain="generative ai & automation">Generative AI & Automation</button>'
-    '<button type="button" class="filter-pill" data-filter-domain="software engineering">Software Engineering</button>'
-    '<button type="button" class="filter-pill" data-filter-domain="professional development">Professional Development</button>'
-    '<button type="button" class="filter-pill" data-filter-domain="academic & extension honors">Academic Honors & DLLE</button>'
+    '<div class="featured-credentials" style="margin-bottom: var(--space-xl);">'
+    '<h2>Curated Featured Credentials</h2>'
+    '<p class="section-lead">Selected institutional, government and commercial learning records across software engineering, AI systems, remote sensing, and university activities; document and classification evidence varies by entry.</p>'
+    '<div class="grid three">'
+    '<article class="card">'
+    + eyebrow("AlgoDevOpss · Aug 2026") + badge("Commercial Internship", "status")
+    + '<h3>Full-Stack Development Certification</h3>'
+    '<p class="prose">Commercial internship completion certificate for departmental Next.js/TypeScript portal engineering, signed by Founder Yash Balotiya (Udyam: UDYAM-MH-18-0511641).</p>'
+    '<div class="card-actions">'
+    + link("https://drive.google.com/file/d/1yZyBwiDStZatvvD9oj5rlM1WUTBkz9BV/view", "View Certificate ↗", "button button-small", external=True)
+    + '</div>'
+    '</article>'
+    '<article class="card">'
+    + eyebrow("Advfiction · Oct 2026") + badge("Dual-Track Verified", "status")
+    + '<h3>AI Automation Developer Certificate</h3>'
+    '<p class="prose">Verified 22-week commercial internship completion certificate across AI workflow engineering and multi-stage n8n integrations, signed by MD Rojer R V.</p>'
+    '<div class="card-actions">'
+    + link("https://drive.google.com/file/d/1T_3ZDXAFRpxJ6-GDZAkyCPVchJdR7815/view", "View Certificate ↗", "button button-small button-accent-outline", external=True)
+    + '</div>'
+    '</article>'
+    '<article class="card">'
+    + eyebrow("BCG X via Forage · Sep 2025") + badge("Enterprise Simulation", "status")
+    + '<h3>GenAI Job Simulation Certificate</h3>'
+    '<p class="prose">BCG X GenAI job simulation completed through Forage. This is a training simulation rather than employment with BCG X.</p>'
+    '<div class="card-actions">'
+    + link("https://drive.google.com/file/d/1VZPcWKt4f5I_vRD8REPQYADvNDZ_WsIL/view", "View Certificate ↗", "button button-small", external=True)
+    + '</div>'
+    '</article>'
+    '<article class="card">'
+    + eyebrow("IIRS / ISRO Outreach · 2025") + badge("Workshop Participation", "status")
+    + '<h3>AI/ML Model for Specific Crop Acreage Mapping</h3>'
+    '<p class="prose">The original IIRS document records participation in a one-day online workshop on 2 April 2025. The linked public copy removes enrollment and verification identifiers.</p>'
+    '<div class="card-actions">'
+    + link("assets/documents/iirs-outreach/iirs-1046-participation.pdf", "View privacy-safe participation copy ↗", "button button-small", external=True)
+    + '</div>'
+    '</article>'
+    '<article class="card">'
+    + eyebrow("University of Mumbai DLLE · Apr 2026") + badge("University Award", "status")
+    + '<h3>Certificate of Extension Work (120+ Hours)</h3>'
+    '<p class="prose">Official University of Mumbai institutional award for completing over 120 verified field hours in Information Technology & community orientation.</p>'
+    '<div class="card-actions">'
+    + link("https://drive.google.com/file/d/1TiYoTYAcfwcNY4Q1iIRXUk5O0zbKXJGx/view", "View Certificate ↗", "button button-small", external=True)
+    + '</div>'
+    '</article>'
+    '<article class="card">'
+    + eyebrow("NISM / SEBI · Oct 2024") + badge("100% Score", "status")
+    + '<h3>National Financial Literacy Examination</h3>'
+    '<p class="prose">Perfect 100% score certification in the national World Investor Week examination administered by NISM and SEBI at VESASC.</p>'
+    '<div class="card-actions">'
+    + link("https://drive.google.com/file/d/1cOnLxXZZJ1ndNEfkJYN9vMFzWWdZJdxW/view", "View Certificate ↗", "button button-small", external=True)
+    + '</div>'
+    '</article>'
+    '</div>'
+    '</div>'
+    '<h2>Browse All 48 Credential Records</h2>'
+    '<div class="filter-pills" role="group" aria-label="Credential Domain Filter">'
+    '<button type="button" class="filter-pill active" data-filter-domain="all" aria-pressed="true">All Records</button>'
+    '<button type="button" class="filter-pill" data-filter-domain="geospatial & remote sensing" aria-pressed="false">Geospatial & Remote Sensing</button>'
+    '<button type="button" class="filter-pill" data-filter-domain="ai, ml & data science" aria-pressed="false">AI, ML & Data Science</button>'
+    '<button type="button" class="filter-pill" data-filter-domain="generative ai & automation" aria-pressed="false">Generative AI & Automation</button>'
+    '<button type="button" class="filter-pill" data-filter-domain="software engineering" aria-pressed="false">Software Engineering</button>'
+    '<button type="button" class="filter-pill" data-filter-domain="professional development" aria-pressed="false">Professional Development</button>'
+    '<button type="button" class="filter-pill" data-filter-domain="academic & extension honors" aria-pressed="false">Academic Honors & DLLE</button>'
     '</div>'
     '<div class="filter-bar">'
     '<label for="credentialSearch">Search credentials</label>'
@@ -1764,17 +2324,8 @@ PAGES["credentials.html"] = (
     '<label for="credentialType">Type</label>'
     '<select id="credentialType" data-filter-type>'
     '<option value="">All Types</option>'
-    '<option>Government Training</option>'
-    '<option>Industry Program</option>'
-    '<option>Enterprise Simulation</option>'
-    '<option>Technical Masterclass</option>'
-    '<option>Course Certification</option>'
-    '<option>Hands-on Bootcamp</option>'
-    '<option>Internship Credential</option>'
-    '<option>University Extension Award</option>'
-    '<option>Institutional Leadership</option>'
-    '<option>National Examination</option>'
-    '</select>'
+    + "".join(f'<option>{escape(kind)}</option>' for kind in sorted({c["kind"] for c in CREDENTIALS}))
+    + '</select>'
     '<label for="credentialSubject">Subject</label>'
     '<select id="credentialSubject" data-filter-subject>'
     '<option value="">All Subjects</option>'
@@ -1801,12 +2352,12 @@ PAGES["credentials.html"] = (
     + section(
         "Verification & Institutional Integrity",
         '<div class="prose">'
-        '<p>All listed credentials are authenticated by verified government certificates, official institutional letters, or digital verification IDs from:</p>'
+        '<p>This library combines original documents, institutional records, and entries still under source review. A document link appears only where its current public destination is retained; its presence does not imply that every title, classification, privacy detail, or sharing permission has been independently verified. Sources represented include:</p>'
         '<ul class="prose-list">'
         '<li><strong>ISRO / IIRS Outreach:</strong> Indian Institute of Remote Sensing (Dehradun), Department of Space, Government of India.</li>'
         '<li><strong>BCG X via Forage:</strong> Boston Consulting Group enterprise simulation verification.</li>'
         '<li><strong>University of Mumbai DLLE:</strong> Department of Lifelong Learning and Extension formal certification.</li>'
-        '<li><strong>Nasscom Foundation & Zikshaa:</strong> Industry partner machine learning certification.</li>'
+        '<li><strong>thingQbator / Nasscom Foundation:</strong> Machine Learning and Image Processing certificate with Zikshaa listed as training partner.</li>'
         '<li><strong>NISM / SEBI:</strong> National Institute of Securities Markets financial literacy assessment.</li>'
         f'<li><strong>Academic Institution:</strong> <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_FULL}</a>.</li>'
         '</ul>'
@@ -1828,25 +2379,34 @@ PAGES["activities.html"] = (
     + section(
         "Smart India Hackathons (National Pipeline)",
         '<div class="grid two">'
-        '<article class="card clickable-card" id="sih-dbtdecoders">'
+        '<article class="card" id="sih-dbtdecoders">'
         '<div class="card-top">'
         + eyebrow("SIH 2025 · Team DBTDecoders")
         + badge("Round 1 Winner & Nominee")
         + '</div>'
-        '<h3><a class="card-main-link" href="#sih-dbtdecoders">SIH 2025: Round 1 College Winner & Principal Nomination</a></h3>'
+        '<h3>SIH 2025: Round 1 College Winner & Principal Nomination</h3>'
         f'<p class="prose">Selected as the internal college round winner and officially nominated by the Principal of <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_SHORT}</a> on 23 September 2025 (Ref: <code>VC/SFC/2025-26/0604</code>) as a core member of Team DBTDecoders representing the institution at <strong>Smart India Hackathon 2025</strong>.</p>'
-        '<p class="prose">Engineered a conversational AI assistant for the National Scholarship Portal (NSP / DBT scheme) providing automated eligibility guidance and verified compliance retrieval.</p>'
-        '<p class="meta">Verified by official Principal-signed nomination letter and demonstration video.</p>'
+        '<p class="prose">The team submission proposed conversational eligibility guidance for the National Scholarship Portal. The available deck and report describe a planned architecture; chatbot source and runtime behaviour were not established in this review.</p>'
+        '<p class="meta">College recognition and nomination are documented separately from implementation and national-level results.</p>'
+        '<div class="card-actions">'
+        + link("https://drive.google.com/file/d/1q4Q5FpiPAZm-irxqMFRu3pySTRTiIZjr/view", "View Submission Deck ↗", "button button-small", external=True)
+        + link("https://drive.google.com/file/d/1jsAe9UTxFwLhNVxKxh53FTQ4VVbICB4A/view", "View Project Report ↗", "button button-small button-quiet", external=True)
+        + link("https://drive.google.com/file/d/1zqPoTyExGU_E8ShO77lAc91TT8BJ5Bg-/view", "View Demonstration Video ↗", "button button-small button-quiet", external=True)
+        + link("projects.html#pillar-ai", "Explore Related AI Architecture →", "button button-small button-quiet")
+        + '</div>'
         '</article>'
-        '<article class="card clickable-card" id="karigar-setu">'
+        '<article class="card" id="karigar-setu">'
         '<div class="card-top">'
         + eyebrow("SIH 2026 · Team Echo Logic")
         + badge("Selected Architecture")
         + '</div>'
-        '<h3><a class="card-main-link" href="#karigar-setu">SIH 2026: KARIGAR-SETU Artisan Platform (PS SIH26090)</a></h3>'
+        '<h3>SIH 2026: KARIGAR-SETU Artisan Platform (PS SIH26090)</h3>'
         '<p class="prose">Selected team architecture for Problem Statement SIH26090 (Heritage & Culture theme). Designed an AI-powered smart cataloging and direct marketplace mobile application for marginalized artisans.</p>'
         '<p class="prose">Engineered the technical blueprint incorporating on-device MobileNet/TensorFlow.js computer vision for product image enhancement, Google Gemini Flash API for catalog generation, and Web Speech API multilingual voice assistance.</p>'
         '<p class="meta">Verified by official SIH idea submission presentation and architecture blueprint.</p>'
+        '<div class="card-actions">'
+        + link("projects.html#pillar-ai", "Explore Related AI Architecture →", "button button-small button-quiet")
+        + '</div>'
         '</article>'
         '</div>',
     )
@@ -1855,33 +2415,31 @@ PAGES["activities.html"] = (
         '<article class="card">'
         '<div class="card-top">'
         + eyebrow("B.Sc. Artificial Intelligence · University of Mumbai")
-        + badge("Official ERP Marksheet Verified")
+        + badge("Academic Results")
         + '</div>'
-        '<h3>Consistent High-Honors Academic Performance (Semesters I–IV)</h3>'
-        '<p class="prose">Cumulative academic performance across 88 completed credits at Vivekanand Education Society\'s College of Arts, Science & Commerce (Autonomous):</p>'
+        '<h3>Academic Examination Standing (Semesters I–IV)</h3>'
         '<div class="grid two" style="margin-top: 1rem;">'
         '<div class="evidence-node-col">'
-        '<h4>Aggregated Degree Standing</h4>'
+        '<h4>Aggregated Degree Performance</h4>'
         '<ul>'
-        '<li><strong>Cumulative CGPA:</strong> 8.14 / 10.0 (Across Semesters I–IV)</li>'
         '<li><strong>Semester IV SGPA:</strong> 9.27 / 10.0 (Grade O Distinction)</li>'
+        '<li><strong>Cumulative CGPA:</strong> 8.14 / 10.0 (Across Semesters I–IV)</li>'
         '<li><strong>Semester III SGPA:</strong> 8.18 / 10.0 (Grade A+ Standing)</li>'
         '<li><strong>Total Earned Credits:</strong> 88.00 / 88.00 Completed</li>'
         '</ul>'
         '</div>'
         '<div class="evidence-node-col">'
-        '<h4>Verified Coursework Scores (Out of 50)</h4>'
+        '<h4>Institutional Information</h4>'
         '<ul>'
-        '<li><strong>AI in IoT:</strong> 49/50 (98.00%, Grade O)</li>'
-        '<li><strong>Web Programming (React & Angular):</strong> 49/50 (98.00%, Grade O)</li>'
-        '<li><strong>GenAI & Prompt Engineering:</strong> 47/50 (94.00%, Grade O)</li>'
-        '<li><strong>Data Analytics using Python:</strong> 47/50 (94.00%, Grade O)</li>'
-        '<li><strong>AI in Drone Technology:</strong> 46/50 (92.00%, Grade O)</li>'
+        f'<li><strong>Institution:</strong> <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_SHORT}</a></li>'
+        '<li><strong>Affiliation:</strong> University of Mumbai</li>'
+        '<li><strong>Degree Program:</strong> B.Sc. Artificial Intelligence (2024–2027)</li>'
+        '<li><strong>Examination Verification:</strong> Authenticated by official college examination marksheets.</li>'
         '</ul>'
         '</div>'
         '</div>'
-        '<p class="meta" style="margin-top: 1rem;">Authenticated by official college ERP examination marksheets (Seat: 24FA128 & 25SA134).</p>'
         '</article>',
+        sid="academic-distinctions",
     )
     + section(
         "University Extension Work",
@@ -1893,22 +2451,46 @@ PAGES["activities.html"] = (
         '<h3><a class="card-main-link" href="credentials.html">University of Mumbai Extension Leadership (120+ Hours)</a></h3>'
         '<p class="prose">Awarded the official Certificate of Extension Work for completing over <strong>120 verified annual field hours</strong> of social development and institutional community initiatives during academic year 2025–26 under the University of Mumbai DLLE program.</p>'
         '<p class="meta">Verified by University of Mumbai institutional certificate.</p>'
+        '<div class="card-actions" style="margin-top: var(--space-sm);">'
+        + link("https://drive.google.com/file/d/1TiYoTYAcfwcNY4Q1iIRXUk5O0zbKXJGx/view", "View DLLE Certificate (120+ Hours) ↗", "button button-small", external=True)
+        + '</div>'
         '</article>',
     )
     + section(
-        "Institutional Governance & Leadership",
+        "Public Speaking & Event Hosting",
         '<div class="grid two">'
         '<article class="card">'
-        + eyebrow("VESASC (Autonomous) · 2024–2025")
-        + '<h3>EMSA Technical & Media Committee</h3>'
-        '<p class="prose">Elected member of the Electronics & Media Student Association (EMSA) executive committee. Organized technical workshops, managed digital media broadcasting, and coordinated inter-collegiate student events.</p>'
+        '<div class="card-top">'
+        + eyebrow("Public Speaking · 2025")
+        + '</div>'
+        '<h3>NCC Day — Event Host, Anchor & Public Speaker</h3>'
+        '<p class="meta">NCC Day Programme · Guru Nanak Khalsa College, Matunga, Mumbai</p>'
+        '<p class="prose">Served as the host and anchor for the full NCC Day programme at Guru Nanak Khalsa College, Matunga, and delivered a speech before a large gathering that included senior NCC officers and distinguished guests.</p>'
         '</article>'
         '<article class="card">'
-        + eyebrow("SEBI & NISM · October 2024")
-        + '<h3>National Financial Literacy Examination</h3>'
-        '<p class="prose">Achieved a <strong>perfect 100% score</strong> in the national World Investor Week examination administered under the joint auspices of the Securities and Exchange Board of India (SEBI) and NISM at VESASC.</p>'
+        '<div class="card-top">'
+        + eyebrow("Inter-Collegiate Tech Festival · 2025")
+        + '</div>'
+        '<h3>Talentia — Event Anchor & Master of Ceremonies</h3>'
+        '<p class="prose">Demonstrated stage presence, crowd management, and public speaking as anchor and master of ceremonies for the college annual festival.</p>'
+        '<p class="meta">Co-curricular anchoring role at VESASC.</p>'
         '</article>'
         '</div>',
+    )
+    + section(
+        "Financial Literacy & Market Governance",
+        '<article class="card">'
+        '<div class="card-top">'
+        + eyebrow("SEBI & NISM · October 2024")
+        + badge("100% Score")
+        + '</div>'
+        '<h3>National Financial Literacy Examination</h3>'
+        '<p class="prose">Achieved a <strong>perfect 100% score</strong> in the national World Investor Week examination administered under the joint auspices of the Securities and Exchange Board of India (SEBI) and National Institute of Securities Markets (NISM) at VESASC.</p>'
+        '<p class="meta">Authenticated by official SEBI/NISM certification score.</p>'
+        '<div class="card-actions" style="margin-top: var(--space-sm);">'
+        + link("https://drive.google.com/file/d/1cOnLxXZZJ1ndNEfkJYN9vMFzWWdZJdxW/view", "View SEBI Financial Literacy Certificate (100% Score) ↗", "button button-small", external=True)
+        + '</div>'
+        '</article>',
     )
     + explore_more("activities.html"),
 )
@@ -1917,11 +2499,11 @@ PAGES["activities.html"] = (
 PAGES["contact.html"] = (
     "Contact",
     "Rehan Memon | Contact",
-    "Get in touch for Applied AI, full-stack development, and workflow automation opportunities.",
+    "Get in touch for AI engineering, backend systems, and workflow automation opportunities.",
     intro(
         "Contact",
         "Let's Build Together",
-        "I am actively exploring opportunities in Applied AI Engineering, Machine Learning, Full-Stack Backend Development, and Workflow Automation. Reach out through any of the direct channels below.",
+        "I am actively exploring opportunities in AI Engineering, Machine Learning, Backend Systems Architecture, and Workflow Automation. Reach out through any of the direct channels below.",
     )
     + section(
         "Curriculum Vitae",
@@ -1931,7 +2513,7 @@ PAGES["contact.html"] = (
         + badge("Available Online & PDF")
         + '</div>'
         '<h3>Professional Resume</h3>'
-        f'<p class="prose">Authoritative technical resume personally maintained by Rehan in Google Docs, detailing engineering projects, commercial client deployments, n8n automations, academic honors at <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_SHORT}</a> (9.27 SGPA), and verified skill sets.</p>'
+        f'<p class="prose">The linked Google Docs resume remains a candidate version until Rehan confirms it is the latest approved public document. The portfolio case studies contain the current project detail; academic records include a 9.27 Semester IV SGPA at <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_SHORT}</a>.</p>'
         '<div class="card-actions">'
         + link(RESUME_URL, "View Live Resume (Google Doc) ↗", "button", external=True)
         + link(RESUME_PDF_URL, "Download PDF Export ↗", "button button-accent-outline", external=True)
@@ -2005,7 +2587,7 @@ SCHEMA_JSON_LD = f"""  <script type="application/ld+json">
     "@type": "Person",
     "name": "Rehan Juned Memon",
     "url": "{SITE_URL}/",
-    "jobTitle": "Applied AI Engineer & Software Developer",
+    "jobTitle": "AI Engineer & Software Systems Developer",
     "alumniOf": {{
       "@type": "EducationalOrganization",
       "name": "{COLLEGE_NAME_FULL}",
@@ -2036,6 +2618,8 @@ SCHEMA_JSON_LD = f"""  <script type="application/ld+json">
 def generate_sitemap():
     urls = []
     for filename in PAGES:
+        if filename == "automation-evidence.html":
+            continue  # Compatibility redirect; the consolidated page is canonical.
         urls.append(f"  <url>\n    <loc>{SITE_URL}/{filename}</loc>\n    <changefreq>weekly</changefreq>\n  </url>")
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + "\n</urlset>\n"
     (ROOT / "sitemap.xml").write_text(xml, encoding="utf-8", newline="\n")
@@ -2058,6 +2642,8 @@ def render(filename, item):
     )
     resume_btn = f'<a class="button button-small resume-nav-btn" href="{RESUME_URL}" target="_blank" rel="noopener noreferrer">Resume ↗</a>'
     schema_script = f"\n{SCHEMA_JSON_LD}" if filename == "index.html" else ""
+    redirect_meta = ""
+    canonical_path = "automation.html" if filename == "automation-evidence.html" else ("" if filename == "index.html" else filename)
 
     brand_mark = (
         '<a class="brand" href="index.html" aria-label="Rehan Memon, home">'
@@ -2076,16 +2662,16 @@ def render(filename, item):
 <html lang="en" class="dark">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">{redirect_meta}
   <meta name="description" content="{escape(description, quote=True)}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="{escape(title, quote=True)}">
   <meta property="og:description" content="{escape(description, quote=True)}">
-  <meta property="og:url" content="{SITE_URL}/{filename}">
+  <meta property="og:url" content="{SITE_URL}/{canonical_path}">
   <meta property="og:image" content="{SITE_URL}/assets/social-card.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <link rel="canonical" href="{SITE_URL}/{filename}">
+  <link rel="canonical" href="{SITE_URL}/{canonical_path}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{escape(title, quote=True)}">
   <meta name="twitter:description" content="{escape(description, quote=True)}">
@@ -2133,11 +2719,11 @@ def render(filename, item):
   <main id="main">{body}</main>
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>Rehan Juned Memon · Applied AI &amp; Software Engineering</p>
+      <p>Rehan Juned Memon · AI Engineering &amp; Software Systems</p>
       <div class="footer-links">
         {link('projects.html', 'Projects')}
         {link('experience.html', 'Experience')}
-        {link('automation-evidence.html', 'Evidence Gallery')}
+        {link('automation.html', 'Workflow Automation')}
         {link('credentials.html', 'Credentials')}
         {link(RESUME_URL, 'Resume ↗', external=True)}
         {link(f'mailto:{EMAIL}', 'Email')}

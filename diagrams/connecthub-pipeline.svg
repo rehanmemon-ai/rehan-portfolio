@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="172" viewBox="0 0 1000 172" role="img" aria-labelledby="title desc">
-  <title id="title">Map-Based Lead Capture to Google Sheets Flow</title>
-  <desc id="desc">Map scraper start, Apify actor, dataset items retrieval, filter, then Google Sheets append node. An editor capture shows five items at the final node.</desc>
+  <title id="title">ConnectHub Real-Time Architecture &amp; AI Processing Pipeline</title>
+  <desc id="desc">FastAPI ASGI service manages WebSocket streaming and presence, persists room state via async SQLAlchemy to PostgreSQL, triggers durable Gemini AI room summarization, and performs JSONB cosine vector search.</desc>
   <style>
     .bg { fill: #f1f7f4; }
     .box { fill: #ffffff; stroke: #8ab6b2; stroke-width: 2px; }
@@ -22,11 +22,11 @@
     <rect x="818" y="48" width="164" height="76" rx="10"/>
   </g>
   <g class="label">
-    <text x="95" y="79">Map scraper</text><text x="95" y="103">trigger</text>
-    <text x="295" y="79">Execute Apify</text><text x="295" y="103">actor</text>
-    <text x="495" y="79">Get dataset</text><text x="495" y="103">records</text>
-    <text x="695" y="90">Filter items</text>
-    <text x="900" y="79">Append to</text><text x="900" y="103">Google Sheets</text>
+    <text x="95" y="79">FastAPI &amp;</text><text x="95" y="103">WebSockets</text>
+    <text x="295" y="79">In-memory</text><text x="295" y="103">presence</text>
+    <text x="495" y="79">Async</text><text x="495" y="103">SQLAlchemy 2.1</text>
+    <text x="695" y="79">Gemini AI</text><text x="695" y="103">summaries</text>
+    <text x="900" y="79">JSONB cosine</text><text x="900" y="103">vector search</text>
   </g>
   <g class="arrow">
     <path d="M180 86h28m-9-9 9 9-9 9"/>

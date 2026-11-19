@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Local-first job discovery prototype with public-source adapters, a Schema.org parser, deterministic matching, Streamlit review, and a preparation-only safety boundary.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rehan Memon | Autonomous Job Search Engine">
+  <meta property="og:description" content="Local-first job discovery prototype with public-source adapters, a Schema.org parser, deterministic matching, Streamlit review, and a preparation-only safety boundary.">
+  <meta property="og:url" content="https://rehanmemon-ai.github.io/rehan-portfolio/job-search-automation.html">
+  <meta property="og:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="canonical" href="https://rehanmemon-ai.github.io/rehan-portfolio/job-search-automation.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rehan Memon | Autonomous Job Search Engine">
+  <meta name="twitter:description" content="Local-first job discovery prototype with public-source adapters, a Schema.org parser, deterministic matching, Streamlit review, and a preparation-only safety boundary.">
+  <meta name="twitter:image" content="https://rehanmemon-ai.github.io/rehan-portfolio/assets/social-card.png">
+  <meta name="theme-color" content="#0d171c">
+  <title>Rehan Memon | Autonomous Job Search Engine</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', '#f7f7f2');
+        }
+      } catch(e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Rehan Memon, home"><svg class="brand-monogram" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#0b1317"/><rect x="1.5" y="1.5" width="61" height="61" rx="12.5" fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-opacity="0.85"/><path d="M14 47V17H25C29.5 17 32 19.5 32 24.5C32 29.5 29.5 32 25 32H14" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 32L32 47" fill="none" stroke="#22d3ee" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M37 47V17L44.5 31L52 17V47" fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="brand-text">REHAN MEMON</span></a>
+      <nav class="desktop-nav" aria-label="Primary"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a></nav>
+      <div class="header-actions">
+        <a class="button button-small resume-nav-btn" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="Switch to light theme"><span id="themeIcon" aria-hidden="true">Light</span></button>
+        <button id="mobileMenuBtn" class="icon-button menu-button" type="button" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">Menu</button>
+      </div>
+    </div>
+    <nav id="mobileMenu" class="mobile-nav" aria-label="Mobile primary" hidden>
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="projects.html">Projects</a><a href="client-work.html">Client Work</a><a href="automation.html">Automation</a><a href="credentials.html">Credentials</a><a href="activities.html">Activities</a><a href="contact.html">Contact</a>
+      <div class="mobile-menu-cta">
+        <a class="button" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">View Resume (Google Doc) ↗</a>
+      </div>
+    </nav>
+  </header>
+  <main id="main"><section class="page-intro container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="projects.html#pillar-automation">← Back to Pillar 3: AI &amp; Workflow Automation</a></nav><p class="eyebrow">Pillar 3 · Workflow Automation</p><h1>Autonomous Job Search Engine</h1><p class="lead">A local-first job discovery prototype built with Python source adapters, deterministic matching, a Streamlit review interface, and preparation-only safety controls. Final applications remain manual.</p></section><section class="section container"><h2>Autonomous Discovery &amp; Ingestion Pipeline</h2><p class="prose">The local pipeline can retrieve supported public listings, normalize and deduplicate them, score matches, and present opportunities for manual review. Scheduled unattended operation is not independently verified:</p><figure class="diagram"><img src="diagrams/job-search-pipeline.svg" width="1000" height="172" loading="lazy" alt="Keyless public ATS collectors ingest job postings, deduplicate and normalize schemas, execute deterministic multi-criteria scoring, present ranked feeds in Streamlit, with strict preparation-only safety guardrails."><figcaption>End-to-end automation sequence: keyless ATS ingestion, schema normalization, deterministic multi-factor scoring, Streamlit dashboard review, and preparation safety locks.</figcaption></figure><ol class="flow"><li><div class="flow-step-num">1. Public-Source Ingestion</div><div class="flow-step-body">Registered adapters cover Greenhouse, Lever, Ashby, Himalayas, Remotive, and Arbeitnow; a separate parser reads Schema.org structured data. Adzuna is a stub, not an operational connector. Live reliability varies by source and has not been established here.</div></li><li><div class="flow-step-num">2. Schema Normalization &amp; Deduplication</div><div class="flow-step-body">Ingestion pipelines normalize disparate JSON response payloads into strongly-typed Python dataclasses. Generates deterministic SHA-256 fingerprint hashes across company, title, and location attributes to prevent duplicate records across recurring runs.</div></li><li><div class="flow-step-num">3. Deterministic Multi-Factor Scoring</div><div class="flow-step-body">Evaluates candidate resumes against normalized job requirements using rule-based algorithmic scoring: job title similarity, technical skill taxonomy extraction, minimum years of experience checks, and negative keyword filtering (security clearance, visa sponsorship exclusions).</div></li><li><div class="flow-step-num">4. Streamlit Interactive Analytics Dashboard</div><div class="flow-step-body">Rich, locally-hosted web interface providing real-time feed exploration, score threshold filters, keyword search, match score distribution histograms, and direct application preparation toolkits.</div></li><li><div class="flow-step-num">5. Safety Guardrails &amp; Preparation Hard-Lock</div><div class="flow-step-body">Architecturally enforces a strict <code>PREPARATION_ONLY</code> boundary. Generates tailored cover letter drafts, interview talking points, and direct portal links, but explicitly forbids autonomous submission or bot-driven form filling, keeping human judgment in control.</div></li></ol></section><section class="section container"><h2>Engineering Philosophy &amp; Architectural Trade-offs</h2><div class="prose"><div class="grid two"><div class="card"><h3>Source Adapters and Structured Data</h3><p><strong>Current design:</strong> Source-specific adapters parse supported public feeds, while a separate Schema.org parser reads structured job data. Adzuna is present as a stub.</p><p><strong>Limit:</strong> Connector registration and mocked tests do not establish live reliability, throughput, or support for every employer board.</p></div><div class="card"><h3>Deterministic Matching</h3><p><strong>Decision:</strong> Built a multi-criteria deterministic scoring matrix in pure Python rather than passing every job description to an external commercial LLM.</p><p><strong>Rationale:</strong> Rule-based scores can be inspected and tested without an external model call. Processing speed and live-source coverage require separate measurement.</p></div></div><div class="card" style="margin-top: 1.5rem;" id="verification"><h3>Test Evidence and Operational Status</h3><p>A current offline suite run collected 452 tests: <strong>450 passed, 1 failed, 1 skipped</strong>. The failure is an end-to-end deterministic-score threshold assertion (31.2 versus expected 50.0), which needs correction in that project before claiming a clean suite. The skipped test requires Windows symlink privilege. Mocked connector checks do not verify live scheduled ingestion.</p></div></div><div class="actions"><a class="button" href="projects.html#pillar-automation">View Project Overview →</a><a class="button button-quiet" href="projects.html#pillar-automation">Explore Workflow Automation →</a></div></section><nav class="explore-more-nav container" aria-label="Explore Portfolio"><div class="explore-more-card"><p class="eyebrow">Continue Exploring</p><div class="explore-grid"><a href="projects.html" class="explore-link"><span class="explore-title">Technical Projects →</span><span class="explore-desc">Computer Vision, RAG &amp; Full-Stack Systems</span></a><a href="experience.html" class="explore-link"><span class="explore-title">Internship Experience →</span><span class="explore-desc">AwareWolf, Advfiction &amp; AlgoDevOpss</span></a><a href="automation.html" class="explore-link"><span class="explore-title">AI &amp; Workflow Automation →</span><span class="explore-desc">10 n8n workflow architectures with execution evidence</span></a><a href="client-work.html" class="explore-link"><span class="explore-title">Client Deployments →</span><span class="explore-desc">LMS, Corporate Portals &amp; Web APIs</span></a></div></div></nav></main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Rehan Juned Memon · AI Engineering &amp; Software Systems</p>
+      <div class="footer-links">
+        <a class="text-link" href="projects.html">Projects</a>
+        <a class="text-link" href="experience.html">Experience</a>
+        <a class="text-link" href="automation.html">Workflow Automation</a>
+        <a class="text-link" href="credentials.html">Credentials</a>
+        <a class="text-link" href="https://docs.google.com/document/d/1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg/edit" target="_blank" rel="noopener noreferrer">Resume ↗</a>
+        <a class="text-link" href="mailto:memon18rehan@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

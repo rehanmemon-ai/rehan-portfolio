@@ -74,8 +74,6 @@ if (filterList) {
 
   pills.forEach((pill) => {
     pill.addEventListener('click', () => {
-      pills.forEach((p) => p.classList.remove('active'));
-      pill.classList.add('active');
       activeDomain = (pill.dataset.filterDomain || '').trim().toLowerCase();
       updateFilters();
     });
@@ -83,6 +81,11 @@ if (filterList) {
 
   function updateFilters() {
     syncPillarButtons();
+    pills.forEach((pill) => {
+      const selected = (pill.dataset.filterDomain || '').trim().toLowerCase() === (activeDomain || 'all');
+      pill.classList.toggle('active', selected);
+      pill.setAttribute('aria-pressed', String(selected));
+    });
     const value = (name) => document.querySelector(`[data-filter-${name}]`)?.value.trim().toLowerCase() || '';
     const query = value('search');
     let shown = 0;
@@ -134,14 +137,14 @@ if (zoomableFigures.length > 0) {
       <div class="modal-content">
         <button type="button" class="modal-close" aria-label="Close image preview">&times;</button>
         <img alt="" style="display:none">
-        <figcaption></figcaption>
+        <p class="modal-caption"></p>
       </div>
     `;
     document.body.appendChild(modal);
 
     const closeBtn = modal.querySelector('.modal-close');
     const modalImg = modal.querySelector('img');
-    const modalCaption = modal.querySelector('figcaption');
+    const modalCaption = modal.querySelector('.modal-caption');
     let triggerElement = null;
     const priorInertStates = new Map();
     let priorBodyOverflow = null;
@@ -235,29 +238,33 @@ if (zoomableFigures.length > 0) {
     });
 
     zoomableFigures.forEach((fig) => {
+      const trigger = fig.querySelector('.image-zoom-trigger') || fig.querySelector('img');
       const img = fig.querySelector('img');
       const caption = fig.querySelector('figcaption') || fig.querySelector('.evidence-caption');
-      if (!img) return;
+      if (!img || !trigger) return;
 
-      if (caption && !caption.querySelector('.diagram-hint')) {
-        const hint = document.createElement('span');
-        hint.className = 'diagram-hint';
-        hint.textContent = '🔍 Click to expand';
-        caption.appendChild(hint);
+      if (!fig.querySelector('.image-zoom-trigger')) {
+        img.setAttribute('tabindex', '0');
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-haspopup', 'dialog');
+        img.setAttribute('aria-label', `Enlarge preview: ${img.alt || 'Detailed visual'}`);
       }
 
-      img.setAttribute('tabindex', '0');
-      img.setAttribute('role', 'button');
-      img.setAttribute('aria-haspopup', 'dialog');
-      img.setAttribute('aria-label', `Enlarge preview: ${img.alt || 'Detailed visual'}`);
-
-      function openModal() {
-        triggerElement = img;
+      function openModal(invoker) {
+        triggerElement = invoker || trigger || img;
         modalImg.src = img.src;
         modalImg.alt = img.alt;
         modalImg.classList.toggle('workflow-modal-image', fig.classList.contains('workflow-capture'));
         modalImg.style.display = '';
-        modalCaption.textContent = caption ? caption.textContent.replace('🔍 Click to expand', '').trim() : img.alt;
+
+        let captionText = img.alt;
+        if (caption) {
+          const clone = caption.cloneNode(true);
+          const oldBtn = clone.querySelector('.diagram-expand-btn');
+          if (oldBtn) oldBtn.remove();
+          captionText = clone.textContent.trim();
+        }
+        modalCaption.textContent = captionText;
 
         setBackgroundInert(true);
         modal.classList.add('open');
@@ -266,13 +273,15 @@ if (zoomableFigures.length > 0) {
         closeBtn.focus({ preventScroll: true });
       }
 
-      img.addEventListener('click', openModal);
-      img.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openModal();
-        }
-      });
+      trigger.addEventListener('click', () => openModal(trigger));
+      if (trigger.tagName !== 'BUTTON') {
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(trigger);
+          }
+        });
+      }
     });
   }
 }
