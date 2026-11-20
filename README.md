@@ -15,10 +15,10 @@ The portfolio is an ultra-fast, dependency-free static web application engineere
 The portfolio showcases production systems, research prototypes, and automated pipelines across three core disciplines:
 
 ### 1. AI, Machine Learning & Computer Vision
-- **[Signature Verification AI](signature-verification.html):** Offline Siamese Neural Network & RBF SVM verification system trained on the CEDAR dataset with 331 handcrafted geometric features (65.91% baseline accuracy on writer-disjoint splits).
+- **[Signature Verification AI](signature-verification.html):** Offline handwritten signature verification system trained on the CEDAR dataset with OpenCV preprocessing, 331 handcrafted geometric and texture features, and RBF SVM classification (65.91% baseline accuracy on writer-disjoint splits).
 - **[ConnectHub Real-Time Messaging Engine](connecthub.html):** Full-stack FastAPI + PostgreSQL + WebSocket messaging engine with Google Gemini room summaries and JSONB vector similarity search. Deployed live on Render.
 - **[AI Research Assistant](ai-research-assistant.html):** Context-aware multi-modal research assistant built on ChromaDB, LangChain, Groq Llama 3, and PDF ingestion.
-- **[Autonomous Job Search Engine](job-search-automation.html):** Multi-agent autonomous job discovery, deduplication, qualification, and notification engine.
+- **[Autonomous Job Search Engine](job-search-automation.html):** Local-first multi-agent job discovery, qualification, and notification engine with local Ollama evaluation.
 
 ### 2. Client & Collaborative Engineering
 - **[Advfiction LMS & AI Automation](advfiction.html):** Enterprise LMS portal and automation workflows built with React 19, Next.js, and Supabase during a 22-week commercial internship.
@@ -27,7 +27,7 @@ The portfolio showcases production systems, research prototypes, and automated p
 - **[Client Work Index](client-work.html):** Directory of client and institutional engineering deliverables.
 
 ### 3. AI & Workflow Automation
-- **[n8n Workflow Automation Hub](automation.html):** 10 verified production automation canvases presented in canonical sequence (WF-01 through WF-10), spanning lead intelligence, security triage, multi-agent code review, and CRM synchronization.
+- **[n8n Workflow Automation Hub](automation.html):** 10 n8n workflow architectures presented in canonical sequence (WF-01 through WF-10), covering lead intelligence, social distribution, multi-agent routing, and CRM synchronization, with verified editor execution evidence for Apify Maps scraper (#wf-maps-scraper).
 
 ---
 
@@ -53,10 +53,20 @@ python build_site.py
 # 2. Run automated structural and link verification suite
 python check_site.py
 
-# 3. Validate JavaScript syntax
+# 3. Run regression unit test suite
+python -m pytest tests/
+
+# 4. Validate W3C HTML5 compliance across all 17 routes
+npx html-validate *.html
+
+# 5. Run Python linter & security scans
+python -m ruff check build_site.py check_site.py tests/
+python -m bandit -r build_site.py check_site.py tests/ -ll -q
+
+# 6. Validate JavaScript syntax
 node --check site.js
 
-# 4. Preview locally
+# 7. Preview locally
 python -m http.server 8765 --bind 127.0.0.1
 # Open http://127.0.0.1:8765 in your browser
 ```

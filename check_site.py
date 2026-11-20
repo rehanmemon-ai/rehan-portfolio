@@ -1,13 +1,11 @@
 """Dependency-free structural checks for generated static pages."""
 
+import re
 from collections import Counter
 from html.parser import HTMLParser
-from pathlib import Path
-import re
 from urllib.parse import urlsplit
 
 from build_site import CREDENTIALS, IIRS_PUBLIC_KEYS, PAGES, PROJECTS, ROOT, SITE_URL
-
 
 EXPECTED_WORKFLOWS = [
     "wf-instagram-api", "wf-news-prompt", "wf-social-publisher",

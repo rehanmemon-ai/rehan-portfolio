@@ -427,24 +427,30 @@ p {
   min-height: 2.2rem;
   padding: 0.3rem 0.75rem;
   font-size: 0.8rem;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--input-border);
+  color: var(--ink);
   cursor: pointer;
   border-radius: var(--radius-sm);
-  transition: all var(--transition);
+  transition: all 0.15s ease;
 }
 
 .copy-email-btn:hover {
-  background: var(--accent-subtle);
+  background: var(--soft);
   border-color: var(--accent);
   color: var(--accent);
 }
 
 .copy-email-btn.copied {
   background: var(--accent);
-  color: var(--bg);
+  color: var(--paper);
   border-color: var(--accent);
+}
+
+.copy-email-btn.copy-failed {
+  background: #e05252;
+  color: #ffffff;
+  border-color: #c93b3b;
 }
 
 .resume-nav-btn {

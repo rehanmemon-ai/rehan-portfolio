@@ -286,23 +286,58 @@ if (zoomableFigures.length > 0) {
   }
 }
 
-// DEC-13: Email Copy Action
+// DEC-13: Email Copy Action with Robust Fallback and Honest Status
+function copyTextToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
+  }
+  return new Promise((resolve, reject) => {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      const successful = document.execCommand('copy');
+      document.body.removeChild(textArea);
+      if (successful) {
+        resolve();
+      } else {
+        reject(new Error('execCommand copy returned false'));
+      }
+    } catch (err) {
+      document.body.removeChild(textArea);
+      reject(err);
+    }
+  });
+}
+
 document.querySelectorAll('.copy-email-btn').forEach((btn) => {
   btn.addEventListener('click', () => {
     const text = btn.getAttribute('data-copy');
-    if (text && navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        const originalText = btn.textContent;
-        btn.textContent = 'Copied! ✓';
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.classList.remove('copied');
-        }, 2000);
-      }).catch(() => {
-        btn.textContent = 'Copied! ✓';
-        setTimeout(() => { btn.textContent = 'Copy 📋'; }, 2000);
-      });
-    }
+    if (!text) return;
+    const originalText = btn.textContent;
+    copyTextToClipboard(text).then(() => {
+      btn.textContent = 'Copied! ✓';
+      btn.classList.add('copied');
+      btn.setAttribute('aria-label', 'Email address copied to clipboard');
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.classList.remove('copied');
+        btn.setAttribute('aria-label', 'Copy email address');
+      }, 2000);
+    }).catch(() => {
+      btn.textContent = 'Copy failed ✗';
+      btn.classList.add('copy-failed');
+      btn.setAttribute('aria-label', 'Failed to copy email address');
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.classList.remove('copy-failed');
+        btn.setAttribute('aria-label', 'Copy email address');
+      }, 2500);
+    });
   });
 });

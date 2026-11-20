@@ -1067,12 +1067,12 @@ PAGES["index.html"] = (
         + project_card(get_project("Autonomous Job Search Engine"))
         + '</div>'
         '<div class="section-nav-group">'
-        + link("projects.html", "View All 14 Projects Across Pillars →", "button")
         + '<div class="sub-nav-links">'
         + link("client-work.html", "Client Deployments →")
         + link("automation.html", "AI & Workflow Automation Systems →")
         + link("credentials.html", "Explore Credentials & Achievements (48) →")
         + '</div>'
+        + link("projects.html", "View All 14 Projects Across Pillars →", "button")
         + '</div>',
         "featured-ai-work",
     )
@@ -1095,12 +1095,12 @@ PAGES["index.html"] = (
         + "".join(experience_card(e) for e in EXPERIENCE)
         + '</div>'
         '<div class="section-nav-group">'
-        + link("experience.html", "View Comprehensive Experience →", "button")
         + '<div class="sub-nav-links">'
         + link("awarewolf.html", "AwareWolf Deep Dive →")
         + link("advfiction.html", "Advfiction Deep Dive →")
         + link("algodevopss.html", "AlgoDevOpss Deep Dive →")
         + '</div>'
+        + link("experience.html", "View Comprehensive Experience →", "button")
         + '</div>',
     )
     + section(
@@ -1108,7 +1108,7 @@ PAGES["index.html"] = (
         '<div class="grid two">'
         '<article class="card clickable-card">'
         + eyebrow("University of Mumbai")
-        + f'<h3><a class="card-main-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_FULL}</a></h3>'
+        + f'<h3><a class="card-main-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{escape(COLLEGE_NAME_FULL)}</a></h3>'
         '<p><strong>Semester IV SGPA: 9.27/10</strong> (Grade O Distinction), cumulative CGPA: <strong>8.14/10</strong> across 88 completed credits in B.Sc. Artificial Intelligence. Examination records confirm top scores in AI in IoT (98%) and Generative AI (94%).</p>'
         + '<div class="card-actions">'
         + link("about.html", "Detailed academic background →", "button button-small button-quiet")
@@ -1116,7 +1116,7 @@ PAGES["index.html"] = (
         + '</article>'
         '<article class="card clickable-card">'
         + eyebrow("National Recognition & Verified Certifications")
-        + '<h3><a class="card-main-link" href="credentials.html">Competitive Awards & Credentials</a></h3>'
+        + '<h3><a class="card-main-link" href="credentials.html">Competitive Awards &amp; Credentials</a></h3>'
         '<p>Nominated team member representing VESASC for <strong>Smart India Hackathon 2025</strong> (Team DBTDecoders). The credential library includes IIRS/ISRO outreach records, a <strong>BCG X GenAI simulation</strong>, and <strong>120+ verified field hours</strong> with University of Mumbai DLLE. IIRS document types are being reconciled individually.</p>'
         + '<div class="card-actions">'
         + link("credentials.html", "Explore Credentials & Achievements (48) →", "button button-small")
@@ -1139,7 +1139,7 @@ PAGES["about.html"] = (
     + section(
         "Academic Foundation",
         '<div class="prose">'
-        f'<p>Currently pursuing a <strong>{DEGREE_NAME}</strong> (2024–2027) at <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_FULL}</a>, within the <a class="text-link" href="{AI_DEPT_URL}" target="_blank" rel="noopener noreferrer">Department of Artificial Intelligence</a>, affiliated with the University of Mumbai.</p>'
+        f'<p>Currently pursuing a <strong>{DEGREE_NAME}</strong> (2024–2027) at <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{escape(COLLEGE_NAME_FULL)}</a>, within the <a class="text-link" href="{AI_DEPT_URL}" target="_blank" rel="noopener noreferrer">Department of Artificial Intelligence</a>, affiliated with the University of Mumbai.</p>'
         '<p>Academic standing: <strong>9.27/10 SGPA</strong> (Semester IV) with an <strong>8.14/10 cumulative CGPA</strong> across completed coursework.</p>'
         + '<p>' + link("activities.html#academic-distinctions", "View detailed coursework scores and semester marks →") + '</p>'
         '</div>',
@@ -1150,7 +1150,7 @@ PAGES["about.html"] = (
         '<div class="skills-matrix">'
         '<div class="skill-card">'
         + eyebrow("Core Discipline 1")
-        + '<h3>AI & Machine Learning Systems</h3>'
+        + '<h3>AI &amp; Machine Learning Systems</h3>'
         '<p>Classical machine learning, computer vision feature engineering, and retrieval-augmented generation.</p>'
         '<div class="skill-chips">\n'
         + '\n'.join([
@@ -1184,7 +1184,7 @@ PAGES["about.html"] = (
         '</div>'
         '<div class="skill-card">'
         + eyebrow("Core Discipline 3")
-        + '<h3>AI & Workflow Automation</h3>'
+        + '<h3>AI &amp; Workflow Automation</h3>'
         '<p>Multi-stage autonomous pipelines, API integrations, and event-driven document generation.</p>'
         '<div class="skill-chips">\n'
         + '\n'.join([
@@ -1202,7 +1202,7 @@ PAGES["about.html"] = (
         '</div>'
         '<div class="skill-card">'
         + eyebrow("Core Discipline 4")
-        + '<h3>Data Science & Geospatial Analysis</h3>'
+        + '<h3>Data Science &amp; Geospatial Analysis</h3>'
         '<p>Remote-sensing satellite data processing, digital elevation modeling, and spectral indices.</p>'
         '<div class="skill-chips">\n'
         + '\n'.join([
@@ -1351,7 +1351,7 @@ PAGES["advfiction.html"] = (
         '<div class="grid two track-comparison">'
         '<article class="card track-card" id="web-track">'
         + eyebrow("Track 1 · Web Development")
-        + '<h3>Interface & API Engineering</h3>'
+        + '<h3>Interface &amp; API Engineering</h3>'
         '<p>Collaborated with the web engineering team on core platforms:</p>'
         '<ul class="prose-list">'
         '<li><strong>Advfiction Enterprise Lead LMS (<a class="text-link" href="client-work.html#advfiction-lms">Case Study</a>):</strong> Contributed a Node/Express public lead endpoint with required-field and email-format checks and Supabase PostgreSQL insertion.</li>'
@@ -1459,7 +1459,7 @@ PAGES["algodevopss.html"] = (
     + section(
         "KJSIEIT EXTC Platform Engineering",
         '<div class="prose">'
-        '<p>Contributed as part of a collaborative engineering team to the departmental web portal for the Electronics & Telecommunication Engineering (EXTC) department at K. J. Somaiya Institute of Engineering & Information Technology (KJSIEIT).</p>'
+        '<p>Contributed as part of a collaborative engineering team to the departmental web portal for the Electronics &amp; Telecommunication Engineering (EXTC) department at K. J. Somaiya Institute of Engineering &amp; Information Technology (KJSIEIT).</p>'
         '<p><strong>Key Technical Contributions:</strong></p>'
         '<ul class="prose-list">'
         '<li><strong>Pedagogy Route:</strong> Developed the dedicated departmental pedagogy showcase route in Next.js and TypeScript, presenting instructional frameworks and lab coursework.</li>'
@@ -1508,7 +1508,7 @@ PAGES["awarewolf.html"] = (
         '</article>'
         '<article class="card track-card" id="awarewolf-status">'
         + eyebrow("Engagement Status & Confidentiality")
-        + '<h3>Confidentiality & Workstream Status</h3>'
+        + '<h3>Confidentiality &amp; Workstream Status</h3>'
         '<p>Operated under formal Non-Disclosure Agreement (NDA) and Information Security obligations. Active development sprints were paused in November 2026.</p>'
         '</article>'
         '</div>',
@@ -1518,7 +1518,7 @@ PAGES["awarewolf.html"] = (
         '<div class="prose">'
         '<p>Contributed to development and validation of a full-stack media management pilot built with <strong>React, TypeScript, and FastAPI</strong>, designed to help content teams organize approved media and prepare editable storyboards:</p>'
         '<ul class="prose-list">'
-        '<li><strong>Deterministic Retrieval & Browsing:</strong> Connected immutable metadata catalogs with deterministic lexical search, category browsing, and explicit asset selection across approved media units.</li>'
+        '<li><strong>Deterministic Retrieval &amp; Browsing:</strong> Connected immutable metadata catalogs with deterministic lexical search, category browsing, and explicit asset selection across approved media units.</li>'
         '<li><strong>Authenticated Media Previews:</strong> Engineered browser video and photo preview handlers decoding 7 photo previews and 3 distinct video streams returning HTTP 206 Partial Content byte-range responses for smooth timeline scrubbing.</li>'
         '<li><strong>Five-Scene Storyboard Editor:</strong> Implemented responsive scene organization allowing real-time timeline sequencing, media replacement, and bounded start/end trimming.</li>'
         '<li><strong>Revisioned Atomic Persistence:</strong> Built owner-scoped JSON board persistence with revision tokens and atomic write guarantees, verified through save/refresh/reopen cycles and two-tab HTTP 409 conflict detection protecting unsaved local edits.</li>'
@@ -1531,9 +1531,9 @@ PAGES["awarewolf.html"] = (
         '<div class="prose">'
         '<p>Engineered a reusable, resilient image-import service ensuring incoming JPEG and PNG assets comply with strict platform specifications:</p>'
         '<ul class="prose-list">'
-        '<li><strong>Pillow Format & Geometry Validation:</strong> Enforced file integrity checks, format verification, and safety limits (10 MiB file cap, 40 million decoded pixels, and 8,192-pixel edge maximum).</li>'
+        '<li><strong>Pillow Format &amp; Geometry Validation:</strong> Enforced file integrity checks, format verification, and safety limits (10 MiB file cap, 40 million decoded pixels, and 8,192-pixel edge maximum).</li>'
         '<li><strong>Content-Addressed Identity:</strong> Derived unique asset identities from SHA-256 byte hashes, using exclusive file destination creation to prevent filesystem races.</li>'
-        '<li><strong>Concurrency & Duplicate Protection:</strong> Implemented database integrity constraints to handle duplicate uploads. Verified through <strong>7 focused integration tests</strong>, including three simultaneous identical uploads resolving cleanly to a single unique database record.</li>'
+        '<li><strong>Concurrency &amp; Duplicate Protection:</strong> Implemented database integrity constraints to handle duplicate uploads. Verified through <strong>7 focused integration tests</strong>, including three simultaneous identical uploads resolving cleanly to a single unique database record.</li>'
         '</ul>'
         '</div>',
     )
@@ -1544,7 +1544,7 @@ PAGES["awarewolf.html"] = (
         '<ul class="prose-list">'
         '<li><strong>Audio/Video Stream Synchronization:</strong> Traced a critical rendering defect where an exported MP4 showed a 15-second video stream alongside a 38.5-second audio track. Root-caused the mismatch to incorrect catalog durations and harness trim field discrepancies.</li>'
         '<li><strong>Targeted Remediation:</strong> Authored targeted fixes and validation checks resulting in a corrected 5-scene, 29-second reproduction verified with matching streams and clean decoder exit.</li>'
-        '<li><strong>API & Persistence Reconciliation:</strong> Traced UI polling failures, missing route handlers, and stale process port conflicts, verifying stability across a 57-test regression snapshot.</li>'
+        '<li><strong>API &amp; Persistence Reconciliation:</strong> Traced UI polling failures, missing route handlers, and stale process port conflicts, verifying stability across a 57-test regression snapshot.</li>'
         '</ul>'
         '</div>',
     )
@@ -1595,9 +1595,9 @@ PAGES["projects.html"] = (
     )
     + '<section class="section section-directory-tools container">'
     '<div class="filter-pills" role="group" aria-label="Filter projects by engineering pillar">'
-    '<button type="button" class="filter-pill" data-filter-pillar-button="AI & Machine Learning Systems" aria-pressed="false" aria-controls="projectResults">1. AI & Machine Learning Systems (5)</button>'
-    '<button type="button" class="filter-pill" data-filter-pillar-button="Client & Collaborative Engineering" aria-pressed="false" aria-controls="projectResults">2. Client & Collaborative Engineering (5)</button>'
-    '<button type="button" class="filter-pill" data-filter-pillar-button="AI & Workflow Automation" aria-pressed="false" aria-controls="projectResults">3. AI & Workflow Automation (4)</button>'
+    '<button type="button" class="filter-pill" data-filter-pillar-button="AI &amp; Machine Learning Systems" aria-pressed="false" aria-controls="projectResults">1. AI &amp; Machine Learning Systems (5)</button>'
+    '<button type="button" class="filter-pill" data-filter-pillar-button="Client &amp; Collaborative Engineering" aria-pressed="false" aria-controls="projectResults">2. Client &amp; Collaborative Engineering (5)</button>'
+    '<button type="button" class="filter-pill" data-filter-pillar-button="AI &amp; Workflow Automation" aria-pressed="false" aria-controls="projectResults">3. AI &amp; Workflow Automation (4)</button>'
     '</div>'
     '<div class="filter-bar">'
     '<label for="projectSearch">Search all 14 projects</label>'
@@ -1605,9 +1605,9 @@ PAGES["projects.html"] = (
     '<label for="projectPillar">Filter by Pillar</label>'
     '<select id="projectPillar" data-filter-pillar>'
     '<option value="">All Pillars (14 Projects)</option>'
-    '<option>AI & Machine Learning Systems</option>'
-    '<option>Client & Collaborative Engineering</option>'
-    '<option>AI & Workflow Automation</option>'
+    '<option>AI &amp; Machine Learning Systems</option>'
+    '<option>Client &amp; Collaborative Engineering</option>'
+    '<option>AI &amp; Workflow Automation</option>'
     '</select>'
     '</div>'
     '<p class="filter-count" data-filter-count role="status" aria-live="polite" aria-atomic="true">14 projects shown</p>'
@@ -1641,7 +1641,7 @@ PAGES["projects.html"] = (
         '<div class="section-nav-group">'
         + link("automation.html", "Explore All 10 Workflow Architectures →", "button")
         + '<div class="sub-nav-links">'
-        + link("automation.html#wf-maps-scraper", "View Editor Execution Evidence →")
+        + link("automation.html#wf-maps-scraper", "View Editor Execution Evidence →", "button button-small button-quiet")
         + '</div>'
         + '</div>',
         "pillar-automation",
@@ -1689,7 +1689,7 @@ PAGES["signature-verification.html"] = (
         '<tr style="border-bottom: 2px solid var(--border); color: var(--text-muted);">'
         '<th style="padding: 0.6rem 0.8rem;">Evaluation Metric</th>'
         '<th style="padding: 0.6rem 0.8rem;">Verified Baseline</th>'
-        '<th style="padding: 0.6rem 0.8rem;">Benchmark & Protocol Details</th>'
+        '<th style="padding: 0.6rem 0.8rem;">Benchmark &amp; Protocol Details</th>'
         '</tr>'
         '</thead>'
         '<tbody>'
@@ -1711,7 +1711,7 @@ PAGES["signature-verification.html"] = (
         '<tr>'
         '<td style="padding: 0.6rem 0.8rem; font-weight: 600;">F1-Score (Harmonic Mean)</td>'
         '<td style="padding: 0.6rem 0.8rem; color: var(--accent); font-weight: 600;">60.35%</td>'
-        '<td style="padding: 0.6rem 0.8rem;">Balanced harmonic mean across 331 handcrafted geometric & texture features</td>'
+        '<td style="padding: 0.6rem 0.8rem;">Balanced harmonic mean across 331 handcrafted geometric &amp; texture features</td>'
         '</tr>'
         '</tbody>'
         '</table>'
@@ -1827,7 +1827,7 @@ PAGES["connecthub.html"] = (
         '</div>'
         '<div class="actions">'
         + link("https://connecthub-web-w89e.onrender.com", "Live Application Demo ↗", "button", external=True)
-        + link(CONNECT_HUB, "GitHub Repository ↗", "button button-quiet", external=True)
+        + (link(CONNECT_HUB, "GitHub Repository ↗", "button button-quiet", external=True) if CONNECT_HUB else '<span class="button button-quiet" title="Active local engineering development; public repository unverified">Repository: Local Active Development</span>')
         + link("projects.html#pillar-ai", "Explore other AI projects →", "button button-quiet")
         + '</div>',
     )
@@ -1909,13 +1909,13 @@ PAGES["client-work.html"] = (
         + badge("Live Production Deployment")
         + '</div>'
         '<h3>Enterprise Lead Management System</h3>'
-        '<p class="card-category-sub">Frontend Dashboard & Production REST API Service</p>'
+        '<p class="card-category-sub">Frontend Dashboard &amp; Production REST API Service</p>'
         '<p>A complete full-stack lead management platform serving sales operations. Designed to intake, validate, and route candidate leads from public marketing channels into secure operational dashboards.</p>'
         '<div class="client-details">'
-        '<h4>Technical Architecture & Personal Contribution:</h4>'
+        '<h4>Technical Architecture &amp; Personal Contribution:</h4>'
         '<ul class="prose-list">'
         '<li><strong>Production REST API:</strong> Collaborated on the Express/Node.js backend API hosted on Render, developing route input validation schemas and Supabase insertion routines for public lead capture.</li>'
-        '<li><strong>CORS & Security Policies:</strong> Implemented multi-origin CORS configurations ensuring seamless communication between the Vercel-hosted frontend and Render backend services.</li>'
+        '<li><strong>CORS &amp; Security Policies:</strong> Implemented multi-origin CORS configurations ensuring seamless communication between the Vercel-hosted frontend and Render backend services.</li>'
         '<li><strong>Supabase Integration:</strong> Structured database tables, foreign-key relationships, and service-role API queries.</li>'
         '<li><strong>Frontend Client:</strong> Built authenticated dashboard views with clean error handling and session validation.</li>'
         '</ul>'
@@ -1938,7 +1938,7 @@ PAGES["client-work.html"] = (
         '<p class="card-category-sub">Collaborative Corporate Web Platform · Vercel Deployment</p>'
         '<p>The primary digital front for Advfiction Private Limited, highlighting corporate consulting, engineering solutions, and client engagement tracks.</p>'
         '<div class="client-details">'
-        '<h4>Technical Architecture & Personal Contribution:</h4>'
+        '<h4>Technical Architecture &amp; Personal Contribution:</h4>'
         '<ul class="prose-list">'
         '<li><strong>Responsive Design:</strong> Built cross-device responsive page layouts ensuring seamless presentation across desktop and mobile.</li>'
         '<li><strong>Contact Integration:</strong> Integrated frontend contact submission mechanisms with the central lead-intake infrastructure.</li>'
@@ -1957,11 +1957,11 @@ PAGES["client-work.html"] = (
         + eyebrow("Educational Web Platform · Independent Client")
         + badge("Live Platform Deployment")
         + '</div>'
-        '<h3>Girls Higher Secondary School Institutional Portal & Admin Suite</h3>'
+        '<h3>Girls Higher Secondary School Institutional Portal &amp; Admin Suite</h3>'
         '<p class="card-category-sub">Next.js 16 App Router · React 19 · TypeScript · Tailwind CSS · Supabase SSR</p>'
         '<p>A modern educational institution portal and administrative suite delivering server-rendered public pages and authenticated management workflows.</p>'
         '<div class="client-details">'
-        '<h4>Technical Architecture & Engineering Deliverables:</h4>'
+        '<h4>Technical Architecture &amp; Engineering Deliverables:</h4>'
         '<ul class="prose-list">'
         '<li><strong>Administrative Management Suite:</strong> Engineered dedicated administrative modules for institutional news, event scheduling, faculty directories, photo galleries, and student achievement showcases using Next.js 16 App Router and React 19.</li>'
         '<li><strong>Supabase Data Layer:</strong> Integrated Supabase PostgreSQL tables and server-side queries (SSR) for robust data retrieval and secure content updates.</li>'
@@ -1985,11 +1985,11 @@ PAGES["client-work.html"] = (
         '<p class="card-category-sub">React 19 · Vite · Tailwind CSS · Express Backend · Google Sheets API</p>'
         '<p>A specialized commercial e-commerce showcase and wholesale enquiry portal designed for honey product distribution.</p>'
         '<div class="client-details">'
-        '<h4>Technical Architecture & Personal Contribution:</h4>'
+        '<h4>Technical Architecture &amp; Personal Contribution:</h4>'
         '<ul class="prose-list">'
         '<li><strong>Interactive Product Catalog:</strong> Built animated product showcase components with Framer Motion and Tailwind CSS, presenting product variants and nutritional profiles.</li>'
         '<li><strong>Enquiry Routing Service:</strong> The local source contains Express routes and a Google Sheets API controller for customer inquiries. The frontend source targets a localhost API; delivery from the public site has not been verified.</li>'
-        '<li><strong>Validation & Feedback:</strong> Client-side phone/email checks are implemented; a successful live submission is not established.</li>'
+        '<li><strong>Validation &amp; Feedback:</strong> Client-side phone/email checks are implemented; a successful live submission is not established.</li>'
         '</ul>'
         '</div>'
         '<div class="card-actions">'
@@ -2004,15 +2004,15 @@ PAGES["client-work.html"] = (
         + eyebrow("NGO Assistant Prototype · ConnectFor / SAHASH India")
         + badge("Deployment Unverified")
         + '</div>'
-        '<h3>SAHASH NGO Voice & Conversational Assistant</h3>'
+        '<h3>SAHASH NGO Voice &amp; Conversational Assistant</h3>'
         '<p class="card-category-sub">Node.js · Express · Google Gemini API · Keyword Retrieval · Web Speech API</p>'
         '<p>A conversational assistant prototype developed in the SAHASH India / ConnectFor context. Its local source contains FAQ and organization-data lookup, but production content and deployment have not been verified.</p>'
         '<div class="client-details">'
-        '<h4>Technical Architecture & Personal Contribution:</h4>'
+        '<h4>Technical Architecture &amp; Personal Contribution:</h4>'
         '<ul class="prose-list">'
         '<li><strong>FAQ and Document Lookup:</strong> An in-memory cache scores organization documents by tokens and intents, then passes selected context to Gemini. The prompt includes cautious fallback instructions; factual faithfulness has not been evaluated.</li>'
-        '<li><strong>Multimodal Voice & Text UI:</strong> Implemented a floating launcher with bidirectional speech synthesis and voice recognition via the browser Web Speech API.</li>'
-        '<li><strong>Express Backend & Session Memory:</strong> Built modular API controllers with conversational context buffers and express rate-limiting middleware for abuse prevention.</li>'
+        '<li><strong>Multimodal Voice &amp; Text UI:</strong> Implemented a floating launcher with bidirectional speech synthesis and voice recognition via the browser Web Speech API.</li>'
+        '<li><strong>Express Backend &amp; Session Memory:</strong> Built modular API controllers with conversational context buffers and express rate-limiting middleware for abuse prevention.</li>'
         '</ul>'
         '</div>'
         '<div class="card-actions">'
@@ -2046,7 +2046,7 @@ def workflow_index():
         '<h2 class="workflow-index-heading">Workflow Architecture Index</h2>'
         '<p class="workflow-index-sub">Jump directly to any workflow architecture below:</p>'
         '</div>'
-        '<div class="workflow-index-grid" role="navigation" aria-label="Workflow quick navigation">'
+        '<nav class="workflow-index-grid" aria-label="Workflow quick navigation">'
         '<div class="workflow-index-col">'
         '<a href="#wf-instagram-api" class="workflow-index-link"><span class="wf-num">01</span> Instagram Scheduled Publishing <span class="wf-status">Design</span></a>'
         '<a href="#wf-news-prompt" class="workflow-index-link"><span class="wf-num">02</span> News Sources to AI Summary <span class="wf-status">Design</span></a>'
@@ -2061,7 +2061,7 @@ def workflow_index():
         '<a href="#wf-postgres-research" class="workflow-index-link"><span class="wf-num">09</span> PostgreSQL Search &amp; AI Enrichment <span class="wf-status">Partial run</span></a>'
         '<a href="#wf-telegram-bot" class="workflow-index-link"><span class="wf-num">10</span> Telegram Review &amp; Approval <span class="wf-status">Design</span></a>'
         '</div>'
-        '</div>'
+        '</nav>'
         '</div>'
         '</section>'
     )
@@ -2264,7 +2264,6 @@ PAGES["automation-evidence.html"] = (
     + '</div>'
     '<h1>AI &amp; Workflow Automation</h1>'
     '<p class="prose" style="margin: 1.5rem 0;">The complete 10-workflow gallery has been consolidated directly into our primary <strong>AI &amp; Workflow Automation</strong> systems page.</p>'
-    '<script>window.location.replace("automation.html"+window.location.hash);</script>'
     '<div class="card-actions" style="justify-content: center;">'
     + link("automation.html", "Explore All 10 Workflow Architectures →", "button")
     + '</div>'
@@ -2284,7 +2283,7 @@ PAGES["credentials.html"] = (
     )
     + '<section class="section container">'
     '<div class="status-banner">'
-    '<p class="eyebrow">Evidence Traceability & Verification</p>'
+    '<p class="eyebrow">Evidence Traceability &amp; Verification</p>'
     '<h2>Credential Evidence and Document Status</h2>'
     '<p class="status-desc">This registry contains 48 credential and recognition records. The 21 IIRS/ISRO outreach entries distinguish six workshop participations from fifteen online-course participations and link to separate privacy-safe copies. Other linked certificates require individual source and sharing review. Institutional nominations are documented privately.</p>'
     '</div>'
@@ -2327,7 +2326,7 @@ PAGES["credentials.html"] = (
     '<article class="card">'
     + eyebrow("University of Mumbai DLLE · Apr 2026") + badge("University Award", "status")
     + '<h3>Certificate of Extension Work (120+ Hours)</h3>'
-    '<p class="prose">Official University of Mumbai institutional award for completing over 120 verified field hours in Information Technology & community orientation.</p>'
+    '<p class="prose">Official University of Mumbai institutional award for completing over 120 verified field hours in Information Technology &amp; community orientation.</p>'
     '<div class="card-actions">'
     + link("https://drive.google.com/file/d/1TiYoTYAcfwcNY4Q1iIRXUk5O0zbKXJGx/view", "View Certificate ↗", "button button-small", external=True)
     + '</div>'
@@ -2345,12 +2344,12 @@ PAGES["credentials.html"] = (
     '<h2>Browse All 48 Credential Records</h2>'
     '<div class="filter-pills" role="group" aria-label="Credential Domain Filter">'
     '<button type="button" class="filter-pill active" data-filter-domain="all" aria-pressed="true">All Records</button>'
-    '<button type="button" class="filter-pill" data-filter-domain="geospatial & remote sensing" aria-pressed="false">Geospatial & Remote Sensing</button>'
-    '<button type="button" class="filter-pill" data-filter-domain="ai, ml & data science" aria-pressed="false">AI, ML & Data Science</button>'
-    '<button type="button" class="filter-pill" data-filter-domain="generative ai & automation" aria-pressed="false">Generative AI & Automation</button>'
+    '<button type="button" class="filter-pill" data-filter-domain="geospatial &amp; remote sensing" aria-pressed="false">Geospatial &amp; Remote Sensing</button>'
+    '<button type="button" class="filter-pill" data-filter-domain="ai, ml &amp; data science" aria-pressed="false">AI, ML &amp; Data Science</button>'
+    '<button type="button" class="filter-pill" data-filter-domain="generative ai &amp; automation" aria-pressed="false">Generative AI &amp; Automation</button>'
     '<button type="button" class="filter-pill" data-filter-domain="software engineering" aria-pressed="false">Software Engineering</button>'
     '<button type="button" class="filter-pill" data-filter-domain="professional development" aria-pressed="false">Professional Development</button>'
-    '<button type="button" class="filter-pill" data-filter-domain="academic & extension honors" aria-pressed="false">Academic Honors & DLLE</button>'
+    '<button type="button" class="filter-pill" data-filter-domain="academic &amp; extension honors" aria-pressed="false">Academic Honors &amp; DLLE</button>'
     '</div>'
     '<div class="filter-bar">'
     '<label for="credentialSearch">Search credentials</label>'
@@ -2372,7 +2371,7 @@ PAGES["credentials.html"] = (
     '<option>Systems Engineering</option>'
     '<option>Image Analysis</option>'
     '<option>Remote Sensing</option>'
-    '<option>GIS & Satellite Systems</option>'
+    '<option>GIS &amp; Satellite Systems</option>'
     '<option>Community Leadership</option>'
     '<option>Financial Literacy</option>'
     '</select>'
@@ -2393,7 +2392,7 @@ PAGES["credentials.html"] = (
         '<li><strong>University of Mumbai DLLE:</strong> Department of Lifelong Learning and Extension formal certification.</li>'
         '<li><strong>thingQbator / Nasscom Foundation:</strong> Machine Learning and Image Processing certificate with Zikshaa listed as training partner.</li>'
         '<li><strong>NISM / SEBI:</strong> National Institute of Securities Markets financial literacy assessment.</li>'
-        f'<li><strong>Academic Institution:</strong> <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_FULL}</a>.</li>'
+        f'<li><strong>Academic Institution:</strong> <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{escape(COLLEGE_NAME_FULL)}</a>.</li>'
         '</ul>'
         '</div>',
     )
@@ -2418,7 +2417,7 @@ PAGES["activities.html"] = (
         + eyebrow("SIH 2025 · Team DBTDecoders")
         + badge("Round 1 Winner & Nominee")
         + '</div>'
-        '<h3>SIH 2025: Round 1 College Winner & Principal Nomination</h3>'
+        '<h3>SIH 2025: Round 1 College Winner &amp; Principal Nomination</h3>'
         f'<p class="prose">Selected as the internal college round winner and officially nominated by the Principal of <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_SHORT}</a> on 23 September 2025 (Ref: <code>VC/SFC/2025-26/0604</code>) as a core member of Team DBTDecoders representing the institution at <strong>Smart India Hackathon 2025</strong>.</p>'
         '<p class="prose">The team submission proposed conversational eligibility guidance for the National Scholarship Portal. The available deck and report describe a planned architecture; chatbot source and runtime behaviour were not established in this review.</p>'
         '<p class="meta">College recognition and nomination are documented separately from implementation and national-level results.</p>'
@@ -2435,7 +2434,7 @@ PAGES["activities.html"] = (
         + badge("Selected Architecture")
         + '</div>'
         '<h3>SIH 2026: KARIGAR-SETU Artisan Platform (PS SIH26090)</h3>'
-        '<p class="prose">Selected team architecture for Problem Statement SIH26090 (Heritage & Culture theme). Designed an AI-powered smart cataloging and direct marketplace mobile application for marginalized artisans.</p>'
+        '<p class="prose">Selected team architecture for Problem Statement SIH26090 (Heritage &amp; Culture theme). Designed an AI-powered smart cataloging and direct marketplace mobile application for marginalized artisans.</p>'
         '<p class="prose">Engineered the technical blueprint incorporating on-device MobileNet/TensorFlow.js computer vision for product image enhancement, Google Gemini Flash API for catalog generation, and Web Speech API multilingual voice assistance.</p>'
         '<p class="meta">Verified by official SIH idea submission presentation and architecture blueprint.</p>'
         '<div class="card-actions">'
@@ -2451,7 +2450,7 @@ PAGES["activities.html"] = (
         '<div class="card-top">'
         + eyebrow("Public Speaking · 2025")
         + '</div>'
-        '<h3>NCC Day — Event Host, Anchor & Public Speaker</h3>'
+        '<h3>NCC Day — Event Host, Anchor &amp; Public Speaker</h3>'
         '<p class="meta">NCC Day Programme · Guru Nanak Khalsa College, Matunga, Mumbai</p>'
         '<p class="prose">Served as the host and anchor for the full NCC Day programme at Guru Nanak Khalsa College, Matunga, and delivered a speech before a large gathering that included senior NCC officers and distinguished guests.</p>'
         '</article>'
@@ -2459,7 +2458,7 @@ PAGES["activities.html"] = (
         '<div class="card-top">'
         + eyebrow("Inter-Collegiate Tech Festival · 2025")
         + '</div>'
-        '<h3>Talentia — Event Anchor & Master of Ceremonies</h3>'
+        '<h3>Talentia — Event Anchor &amp; Master of Ceremonies</h3>'
         '<p class="prose">Demonstrated stage presence, crowd management, and public speaking as anchor and master of ceremonies for the college annual festival.</p>'
         '<p class="meta">Co-curricular anchoring role at VESASC.</p>'
         '</article>'
@@ -2666,7 +2665,7 @@ def generate_robots():
 
 
 def render(filename, item):
-    label, title, description, body = item
+    _label, title, description, body = item
     nav_desktop = "".join(
         f'<a href="{href}"' + (' aria-current="page"' if filename == href else "") + f'>{name}</a>'
         for href, name in NAV
@@ -2693,7 +2692,7 @@ def render(filename, item):
         '</a>'
     )
 
-    return f'''<!doctype html>
+    return f'''<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
   <meta charset="utf-8">
