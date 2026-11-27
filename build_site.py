@@ -1,14 +1,16 @@
 """Render the static portfolio pages from reviewed, evidence-backed content. Dependency-free."""
 
+import json
 from html import escape
 from pathlib import Path
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parent
 GITHUB = "https://github.com/rehanmemon-ai"
 SIGNATURE = f"{GITHUB}/signature-verification"
 RESEARCH = f"{GITHUB}/Assistant_Bot-Research"
-# These projects are local work in progress; public repository destinations are unverified.
-CONNECT_HUB = ""
+CONNECT_HUB = f"{GITHUB}/ConnectHub-Messaging_Platform"
+# Job Search repository remains local / unpublished until prepared for public release.
 JOB_SEARCH = ""
 EMAIL = "memon18rehan@gmail.com"
 LINKEDIN = "https://www.linkedin.com/in/rehan-memon-b1803b334"
@@ -18,18 +20,28 @@ RESUME_DOC_ID = "1aXDe4hqYjGSrUSUdmjhXPUbHVSO_6Em_5VP4u_72Kfg"
 RESUME_URL = f"https://docs.google.com/document/d/{RESUME_DOC_ID}/edit"
 RESUME_PDF_URL = f"https://docs.google.com/document/d/{RESUME_DOC_ID}/export?format=pdf"
 SITE_URL = "https://rehanmemon-ai.github.io/rehan-portfolio"
+SAFE_URI_SCHEMES = {"", "https", "http", "mailto"}
 
 # Official College Affiliation & Identity
 COLLEGE_NAME_FULL = "Vivekanand Education Society’s College of Arts, Science & Commerce (Autonomous)"
-COLLEGE_NAME_SHORT = "VESASC (Autonomous)"
+COLLEGE_NAME_SHORT = "VESASC"
 COLLEGE_URL = "https://ves.ac.in/vesasc/"
 AI_DEPT_URL = "https://ves.ac.in/vesasc/department-of-ai/"
 DEGREE_NAME = "B.Sc. in Artificial Intelligence"
 
 
+def validate_href(href):
+    """Reject unsafe URI schemes such as javascript:, data:, or vbscript:."""
+    parts = urlsplit(href.strip())
+    if parts.scheme.lower() not in SAFE_URI_SCHEMES:
+        raise ValueError(f"Unsafe URI scheme rejected in href: {href!r}")
+    return href
+
+
 def link(href, label, css="text-link", external=False):
+    safe_href = validate_href(href)
     extra = ' target="_blank" rel="noopener noreferrer"' if external else ""
-    return f'<a class="{css}" href="{escape(href, quote=True)}"{extra}>{escape(label)}</a>'
+    return f'<a class="{escape(css, quote=True)}" href="{escape(safe_href, quote=True)}"{extra}>{escape(label)}</a>'
 
 
 def eyebrow(label):
@@ -42,19 +54,20 @@ def badge(text, kind="status"):
 
 
 def breadcrumb(href, label):
-    return f'<nav class="breadcrumb" aria-label="Breadcrumb"><a href="{escape(href, quote=True)}">← Back to {escape(label)}</a></nav>'
+    safe_href = validate_href(href)
+    return f'<nav class="breadcrumb" aria-label="Breadcrumb"><a href="{escape(safe_href, quote=True)}">← Back to {escape(label)}</a></nav>'
 
 
 def intro(label, title, summary, back_href="", back_label="", css_class=""):
     back_html = breadcrumb(back_href, back_label) if back_href and back_label else ""
     classes = f"page-intro container {css_class}".strip()
-    return f'<section class="{classes}">{back_html}{eyebrow(label)}<h1>{escape(title)}</h1><p class="lead">{escape(summary)}</p></section>'
+    return f'<section class="{escape(classes, quote=True)}">{back_html}{eyebrow(label)}<h1>{escape(title)}</h1><p class="lead">{escape(summary)}</p></section>'
 
 
-def section(title, body, sid="", extra_attrs=""):
-    ident = f' id="{sid}"' if sid else ""
+def section(title, body, sid="", extra_attrs="", css_class="section container"):
+    ident = f' id="{escape(sid, quote=True)}"' if sid else ""
     extra = f' {extra_attrs}' if extra_attrs else ""
-    return f'<section class="section container"{ident}{extra}><h2>{escape(title)}</h2>{body}</section>'
+    return f'<section class="{escape(css_class, quote=True)}"{ident}{extra}><h2>{escape(title)}</h2>{body}</section>'
 
 
 def case_row(step, text):
@@ -72,7 +85,7 @@ def explore_more(current=""):
     ]
     selected = [item for item in items if item[0] != current][:4]
     grid_html = "".join(
-        f'<a href="{href}" class="explore-link">'
+        f'<a href="{escape(href, quote=True)}" class="explore-link">'
         f'<span class="explore-title">{escape(title)}</span>'
         f'<span class="explore-desc">{escape(desc)}</span>'
         f'</a>'
@@ -225,7 +238,8 @@ PROJECTS = [
         "repo": JOB_SEARCH,
         "live": "",
         "evidence": "job-search-automation.html#verification",
-        "highlight": "Local-first ingestion and deterministic matching with a preparation-only safety boundary. A current offline suite run passed 450 tests, failed one scoring E2E assertion, and skipped one Windows symlink test.",
+        "evidence_label": "Test Evidence →",
+        "highlight": "Local-first ingestion and deterministic matching with a preparation-only safety boundary. Offline pytest run (junit-v7-acceptance): 525 tests collected (524 passed, 0 failed, 1 skipped Windows symlink test).",
         "tags": ["Python", "Streamlit", "Greenhouse API", "Lever API", "Deterministic Matching", "Pytest"],
     },
     {
@@ -907,8 +921,9 @@ IIRS_PUBLIC_KEYS = [
     "174", "ocean", "168", "171", "175", "159", "1041", "161", "archival", "160", "1053",
 ]
 _iirs_records = [c for c in CREDENTIALS if c["issuer"] == "IIRS / ISRO Outreach"]
-assert len(_iirs_records) == len(IIRS_PUBLIC_KEYS) == 21
-for _record, _key in zip(_iirs_records, IIRS_PUBLIC_KEYS):
+if len(_iirs_records) != len(IIRS_PUBLIC_KEYS) or len(_iirs_records) != 21:
+    raise ValueError(f"Expected 21 IIRS records/keys, found {len(_iirs_records)}/{len(IIRS_PUBLIC_KEYS)}")
+for _record, _key in zip(_iirs_records, IIRS_PUBLIC_KEYS, strict=True):
     _record["public_pdf"] = f"assets/documents/iirs-outreach/iirs-{_key}-participation.pdf"
     _record["tags"] = [_record["subject"], _record["kind"], "IIRS Outreach"]
 
@@ -931,11 +946,26 @@ for _record in CREDENTIALS:
         _record["tags"] = ["EMSA", "Environmental Audit", "Two-Credit Course"]
 
 
+N8N_AUTOMATION_FEATURED = {
+    "name": "n8n Workflow Automation",
+    "pillar": "AI & Workflow Automation",
+    "category": "Workflow Engineering · API Integrations",
+    "status": "Designs & partial runs",
+    "summary": "Ten documented n8n workflow architectures spanning social publishing, news synthesis, PostgreSQL enrichment, PDF compilation, and Telegram review—labeled honestly across 1 editor execution capture, 1 partial run, 1 skeleton harness, and 7 configuration designs.",
+    "route": "automation.html",
+    "repo": "",
+    "live": "",
+    "evidence": "automation.html#wf-maps-scraper",
+    "highlight": "Twelve original n8n editor captures connecting PostgreSQL, Gemini prompts, Apify, Google Workspace, and Telegram with explicit per-workflow evidence status.",
+    "tags": ["n8n", "PostgreSQL", "Google Gemini API", "Apify", "Webhooks", "ETL"],
+}
+
+
 def project_card(item):
     repo_btn = link(item["repo"], "GitHub Repository ↗", "button button-small button-quiet", external=True) if item.get("repo") else ""
     live_btn = link(item["live"], "Live Deployment ↗", "button button-small button-quiet", external=True) if item.get("live") else ""
-    evidence_btn = link(item["evidence"], "Workflow Canvas →", "button button-small button-quiet") if item.get("evidence") else ""
-    detail_btn = link(item["route"], "Read Case Study →", "button button-small card-main-link")
+    evidence_btn = link(item["evidence"], item.get("evidence_label", "Workflow Canvas →"), "button button-small button-quiet") if item.get("evidence") else ""
+    detail_cta = '<span class="button button-small card-cta-pill" aria-hidden="true">Read Case Study →</span>'
 
     tags_html = "".join(f'<span class="tag">{escape(t)}</span>' for t in item.get("tags", []))
     highlight = f'<p class="card-highlight">{escape(item["highlight"])}</p>' if item.get("highlight") else ""
@@ -943,12 +973,12 @@ def project_card(item):
     return (
         f'<article class="card project-card clickable-card" data-filter-card data-pillar="{escape(item["pillar"], quote=True)}" data-category="{escape(item["category"], quote=True)}">'
         f'<div class="card-top">{eyebrow(item["pillar"])}{badge(item["status"])}</div>'
-        f'<h3><a class="card-main-link" href="{escape(item["route"], quote=True)}">{escape(item["name"])}</a></h3>'
+        f'<h3><a class="card-main-link" href="{escape(validate_href(item["route"]), quote=True)}">{escape(item["name"])}</a></h3>'
         f'<p class="card-category-sub">{escape(item["category"])}</p>'
         f'<p>{escape(item["summary"])}</p>'
         f'{highlight}'
         f'<div class="tags-row">{tags_html}</div>'
-        f'<div class="card-actions">{detail_btn}{live_btn}{repo_btn}{evidence_btn}</div>'
+        f'<div class="card-actions">{detail_cta}{live_btn}{repo_btn}{evidence_btn}</div>'
         f'</article>'
     )
 
@@ -967,17 +997,17 @@ def experience_card(item):
     elif "AlgoDevOpss" in item["name"]:
         doc_links.append(link("https://drive.google.com/file/d/1yZyBwiDStZatvvD9oj5rlM1WUTBkz9BV/view", "Full-Stack Cert ↗", "button button-small button-quiet", external=True))
 
-    doc_links_html = f'<div class="doc-links" style="margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">{"".join(doc_links)}</div>' if doc_links else ""
+    doc_links_html = f'<div class="doc-links">{"".join(doc_links)}</div>' if doc_links else ""
 
     return (
         f'<article class="card experience-card clickable-card">'
         f'<div class="card-top">{eyebrow(item["dates"])}{badge_html}</div>'
-        f'<h3><a class="card-main-link" href="{escape(item["route"], quote=True)}">{escape(item["name"])}</a></h3>'
+        f'<h3><a class="card-main-link" href="{escape(validate_href(item["route"]), quote=True)}">{escape(item["name"])}</a></h3>'
         f'<p class="meta">{escape(item["role"])}</p>'
         f'{status_note}'
         f'<p>{escape(item["summary"])}</p>'
         f'{doc_links_html}'
-        f'<div class="card-actions" style="margin-top: var(--space-sm);">{link(item["route"], "Explore Engineering Contribution →", "button button-small")}</div>'
+        '<div class="card-actions"><span class="button button-small card-cta-pill" aria-hidden="true">Explore Engineering Contribution →</span></div>'
         f'</article>'
     )
 
@@ -1034,11 +1064,11 @@ PAGES["index.html"] = (
     "AI engineering and software systems portfolio featuring computer vision, full-stack real-time collaboration, retrieval-augmented generation, and automated workflows.",
     '<section class="hero container">'
     '<div>'
-    + eyebrow("AI Engineering · Machine Learning · RAG & LLM Systems · Backend Architecture")
-    + '<h1>Rehan Juned Memon<span class="accent">.</span></h1>'
+    + eyebrow("AI & Software Developer")
+    + '<h1>Rehan Memon<span class="accent">.</span></h1>'
     '<p class="hero-lead">I build <strong>intelligent software systems</strong> across machine learning, computer vision, retrieval-augmented generation (RAG), LLM-powered applications, real-time backend services, and workflow automation.</p>'
-    '<p class="hero-sublead" style="color: var(--text-muted); margin-bottom: var(--space-md); font-size: 1.05rem; line-height: 1.5;">My work combines Python, model and data pipelines, LLM integrations, retrieval systems, backend architecture, and full-stack engineering to turn technical ideas into usable software.</p>'
-    f'<p class="meta">B.Sc. Artificial Intelligence · <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_SHORT}</a> (Autonomous), University of Mumbai · 2024–2027 · Semester IV SGPA: <strong>9.27/10</strong> | Cumulative CGPA: <strong>8.14/10</strong> (Semesters I–IV)</p>'
+    '<p class="hero-sublead">Reproducible engineering—combining typed APIs, accessible interfaces, automated test suites, and transparent evidence reporting.</p>'
+    f'<p class="meta">B.Sc. Artificial Intelligence · {link(COLLEGE_URL, COLLEGE_NAME_SHORT, external=True)} · University of Mumbai · 2024–2027 · Semester IV SGPA: <strong>9.27/10</strong> | Cumulative CGPA: <strong>8.14/10</strong> (Semesters I–IV)</p>'
     '<div class="actions">'
     + link("projects.html", "Explore All Work", "button")
     + link(RESUME_URL, "View Resume (Google Doc) ↗", "button button-accent-outline", external=True)
@@ -1058,19 +1088,18 @@ PAGES["index.html"] = (
     '</aside>'
     '</section>'
     + section(
-        "Featured AI Engineering Work",
-        '<p class="section-lead">Four flagship software systems demonstrating machine learning, retrieval-augmented AI, real-time backend architecture, and multi-source automation pipelines.</p>'
+        "Featured Engineering Systems",
+        '<p class="section-lead">Four representative software systems demonstrating full-stack real-time collaboration, machine learning computer vision, institutional web architecture, and multi-source workflow automation.</p>'
         '<div class="grid two">'
         + project_card(get_project("ConnectHub — Real-Time AI Messaging Engine"))
-        + project_card(get_project("AI Research Assistant"))
         + project_card(get_project("Signature Verification AI"))
-        + project_card(get_project("Autonomous Job Search Engine"))
+        + project_card(get_project("LMS Girls Higher Secondary School"))
+        + project_card(N8N_AUTOMATION_FEATURED)
         + '</div>'
         '<div class="section-nav-group">'
         + '<div class="sub-nav-links">'
         + link("client-work.html", "Client Deployments →")
         + link("automation.html", "AI & Workflow Automation Systems →")
-        + link("credentials.html", "Explore Credentials & Achievements (48) →")
         + '</div>'
         + link("projects.html", "View All 14 Projects Across Pillars →", "button")
         + '</div>',
@@ -1081,7 +1110,7 @@ PAGES["index.html"] = (
         '<p class="section-lead">Selected client and collaborative systems, with live deployments and prototypes labeled according to their evidence.</p>'
         '<div class="grid two">'
         + project_card(get_project("Advfiction Enterprise Lead LMS"))
-        + project_card(get_project("LMS Girls Higher Secondary School"))
+        + project_card(get_project("Marthandam Star Honey Platform"))
         + '</div>'
         '<div class="section-nav-group">'
         + link("client-work.html", "Explore All Client Case Studies →", "button button-small")
@@ -1117,7 +1146,7 @@ PAGES["index.html"] = (
         '<article class="card clickable-card">'
         + eyebrow("National Recognition & Verified Certifications")
         + '<h3><a class="card-main-link" href="credentials.html">Competitive Awards &amp; Credentials</a></h3>'
-        '<p>Nominated team member representing VESASC for <strong>Smart India Hackathon 2025</strong> (Team DBTDecoders). The credential library includes IIRS/ISRO outreach records, a <strong>BCG X GenAI simulation</strong>, and <strong>120+ verified field hours</strong> with University of Mumbai DLLE. IIRS document types are being reconciled individually.</p>'
+        '<p>Nominated team member representing VESASC for <strong>Smart India Hackathon 2025</strong> (Team DBTDecoders). The credential library includes 21 verified IIRS/ISRO outreach certificates, a <strong>BCG X GenAI simulation</strong>, and <strong>120+ verified field hours</strong> with University of Mumbai DLLE.</p>'
         + '<div class="card-actions">'
         + link("credentials.html", "Explore Credentials & Achievements (48) →", "button button-small")
         + '</div>'
@@ -1139,7 +1168,7 @@ PAGES["about.html"] = (
     + section(
         "Academic Foundation",
         '<div class="prose">'
-        f'<p>Currently pursuing a <strong>{DEGREE_NAME}</strong> (2024–2027) at <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{escape(COLLEGE_NAME_FULL)}</a>, within the <a class="text-link" href="{AI_DEPT_URL}" target="_blank" rel="noopener noreferrer">Department of Artificial Intelligence</a>, affiliated with the University of Mumbai.</p>'
+        f'<p>Currently pursuing a <strong>{escape(DEGREE_NAME)}</strong> (2024–2027) at {link(COLLEGE_URL, COLLEGE_NAME_FULL, external=True)}, within the {link(AI_DEPT_URL, "Department of Artificial Intelligence", external=True)}, affiliated with the University of Mumbai.</p>'
         '<p>Academic standing: <strong>9.27/10 SGPA</strong> (Semester IV) with an <strong>8.14/10 cumulative CGPA</strong> across completed coursework.</p>'
         + '<p>' + link("activities.html#academic-distinctions", "View detailed coursework scores and semester marks →") + '</p>'
         '</div>',
@@ -1401,7 +1430,7 @@ PAGES["advfiction.html"] = (
         + link("https://drive.google.com/file/d/1MYa4I3-lCY0-il1lshM9f4XZnYcYDNHZ/view", "Web Dev Extension Letter ↗", "button button-small button-quiet", external=True)
         + link("https://drive.google.com/file/d/1U4sEjk5fpLDao0W--VYgmBtSW0bC__VT/view", "AI Extension Letter ↗", "button button-small button-quiet", external=True)
         + '</div>'
-        '<p class="meta" style="margin-top: 0.75rem;">Original AI Automation offer letter (<code>19y3Fa9zD8zqbLnZPS86rt8R5bQopky8A</code>) is safely withheld from public links under formal confidentiality obligations.</p>'
+        '<p class="meta meta-spaced">Original AI Automation offer letter is withheld from public links under formal confidentiality obligations.</p>'
         '</article>'
         '</div>',
     )
@@ -1447,7 +1476,7 @@ PAGES["algodevopss.html"] = (
         '<div class="card-actions">'
         + link("https://drive.google.com/file/d/1yZyBwiDStZatvvD9oj5rlM1WUTBkz9BV/view", "View Full-Stack Certificate (PDF) ↗", "button button-small", external=True)
         + '</div>'
-        '<p class="meta" style="margin-top: 0.75rem;">Documented term: 01 May 2026 – 31 August 2026. Continuation communicated through December 2026 (in progress as of November 2026; formal extension letter pending from employer).</p>'
+        '<p class="meta meta-spaced">Documented term: 01 May 2026 – 31 August 2026. Continuation communicated through December 2026 (in progress as of November 2026; formal extension letter pending from employer).</p>'
         '</article>'
         '<article class="card track-card" id="algo-privacy-governance">'
         + eyebrow("Document Privacy Governance")
@@ -1491,7 +1520,7 @@ PAGES["awarewolf.html"] = (
     intro(
         "Experience / AwareWolf",
         "Media Workflows, Persistence & AI Evaluation",
-        "Content Operating System Intern · Sep 2026–Present (Engineering Pause Reported Nov 2026) · Offer Term: 17 Sep 2026–16 Mar 2027 · Remote · Paid Internship. Software development for media workflow prototyping and generative-video evaluation, spanning interactive React/TypeScript storyboards, FastAPI APIs, media validation pipelines, FFmpeg stream diagnostics, and video model benchmarking.",
+        "Content Operating System Intern · Sep–Nov 2026 (Active Engineering Pause · Offer Term: 17 Sep 2026–16 Mar 2027) · Remote · Paid Internship. Software development for media workflow prototyping and generative-video evaluation, spanning interactive React/TypeScript storyboards, FastAPI APIs, media validation pipelines, FFmpeg stream diagnostics, and video model benchmarking.",
         "experience.html",
         "Commercial Experience",
     )
@@ -1595,6 +1624,7 @@ PAGES["projects.html"] = (
     )
     + '<section class="section section-directory-tools container">'
     '<div class="filter-pills" role="group" aria-label="Filter projects by engineering pillar">'
+    '<button type="button" class="filter-pill active" data-filter-pillar-button="" aria-pressed="true" aria-controls="projectResults">All Pillars (14)</button>'
     '<button type="button" class="filter-pill" data-filter-pillar-button="AI &amp; Machine Learning Systems" aria-pressed="false" aria-controls="projectResults">1. AI &amp; Machine Learning Systems (5)</button>'
     '<button type="button" class="filter-pill" data-filter-pillar-button="Client &amp; Collaborative Engineering" aria-pressed="false" aria-controls="projectResults">2. Client &amp; Collaborative Engineering (5)</button>'
     '<button type="button" class="filter-pill" data-filter-pillar-button="AI &amp; Workflow Automation" aria-pressed="false" aria-controls="projectResults">3. AI &amp; Workflow Automation (4)</button>'
@@ -1683,35 +1713,36 @@ PAGES["signature-verification.html"] = (
         "Evaluation & Empirical Results",
         '<div class="prose">'
         '<p>To prevent data leakage, the feature extraction and classification pipeline was evaluated under a strict <strong>writer-disjoint validation protocol</strong> on the benchmark CEDAR signature dataset, ensuring the test split contains signatures from authors never seen during model training.</p>'
-        '<div class="table-container" style="overflow-x: auto; margin: var(--space-md) 0;">'
-        '<table class="data-table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: var(--text-sm);">'
+        '<div class="table-container">'
+        '<table class="data-table">'
+        '<caption class="sr-only">Reported CEDAR writer-disjoint RBF-SVM baseline evaluation metrics</caption>'
         '<thead>'
-        '<tr style="border-bottom: 2px solid var(--border); color: var(--text-muted);">'
-        '<th style="padding: 0.6rem 0.8rem;">Evaluation Metric</th>'
-        '<th style="padding: 0.6rem 0.8rem;">Verified Baseline</th>'
-        '<th style="padding: 0.6rem 0.8rem;">Benchmark &amp; Protocol Details</th>'
+        '<tr>'
+        '<th scope="col">Evaluation Metric</th>'
+        '<th scope="col">Reported Prototype Baseline</th>'
+        '<th scope="col">Benchmark &amp; Protocol Details</th>'
         '</tr>'
         '</thead>'
         '<tbody>'
-        '<tr style="border-bottom: 1px solid var(--border);">'
-        '<td style="padding: 0.6rem 0.8rem; font-weight: 600;">Overall Accuracy</td>'
-        '<td style="padding: 0.6rem 0.8rem; color: var(--accent); font-weight: 600;">65.91%</td>'
-        '<td style="padding: 0.6rem 0.8rem;">CEDAR dataset writer-disjoint split (RBF-SVM, C=10.0, gamma=scale)</td>'
-        '</tr>'
-        '<tr style="border-bottom: 1px solid var(--border);">'
-        '<td style="padding: 0.6rem 0.8rem; font-weight: 600;">Precision (Genuine)</td>'
-        '<td style="padding: 0.6rem 0.8rem; color: var(--accent); font-weight: 600;">72.11%</td>'
-        '<td style="padding: 0.6rem 0.8rem;">Low false-acceptance rate for authentic business signatures</td>'
-        '</tr>'
-        '<tr style="border-bottom: 1px solid var(--border);">'
-        '<td style="padding: 0.6rem 0.8rem; font-weight: 600;">Recall (Sensitivity)</td>'
-        '<td style="padding: 0.6rem 0.8rem; color: var(--accent); font-weight: 600;">51.89%</td>'
-        '<td style="padding: 0.6rem 0.8rem;">Conservative rejection threshold against skilled forgeries</td>'
+        '<tr>'
+        '<td class="data-table-metric">Overall Accuracy</td>'
+        '<td class="data-table-value">65.91%</td>'
+        '<td>CEDAR dataset writer-disjoint split (RBF-SVM, C=1.0, gamma=scale)</td>'
         '</tr>'
         '<tr>'
-        '<td style="padding: 0.6rem 0.8rem; font-weight: 600;">F1-Score (Harmonic Mean)</td>'
-        '<td style="padding: 0.6rem 0.8rem; color: var(--accent); font-weight: 600;">60.35%</td>'
-        '<td style="padding: 0.6rem 0.8rem;">Balanced harmonic mean across 331 handcrafted geometric &amp; texture features</td>'
+        '<td class="data-table-metric">Precision (Genuine)</td>'
+        '<td class="data-table-value">72.11%</td>'
+        '<td>Share of predicted-genuine samples that were authentic signatures (TP / (TP + FP))</td>'
+        '</tr>'
+        '<tr>'
+        '<td class="data-table-metric">Recall (Sensitivity)</td>'
+        '<td class="data-table-value">51.89%</td>'
+        '<td>Share of authentic genuine signatures correctly accepted under writer-disjoint testing (TP / (TP + FN))</td>'
+        '</tr>'
+        '<tr>'
+        '<td class="data-table-metric">F1-Score (Harmonic Mean)</td>'
+        '<td class="data-table-value">60.35%</td>'
+        '<td>Harmonic mean balancing genuine precision and recall across 331 handcrafted features</td>'
         '</tr>'
         '</tbody>'
         '</table>'
@@ -1795,7 +1826,6 @@ PAGES["connecthub.html"] = (
     )
     + section(
         "Architectural Trade-offs & Deep Engineering Decisions",
-        '<div class="prose">'
         '<div class="grid two">'
         '<div class="card">'
         '<h3>Single-Process In-Memory Presence</h3>'
@@ -1808,10 +1838,9 @@ PAGES["connecthub.html"] = (
         '<p><strong>Limit:</strong> Search scale and latency have not been independently benchmarked. The implementation does not use pgvector or HNSW.</p>'
         '</div>'
         '</div>'
-        '<div class="card" style="margin-top: 1.5rem;">'
+        '<div class="card card-spaced">'
         '<h3>Async Database Sessions</h3>'
         '<p>Uses SQLAlchemy <code>AsyncSession</code> for database operations. The project still requires load and failure testing before any concurrency or throughput claim.</p>'
-        '</div>'
         '</div>',
     )
     + section(
@@ -1863,7 +1892,6 @@ PAGES["job-search-automation.html"] = (
     )
     + section(
         "Engineering Philosophy & Architectural Trade-offs",
-        '<div class="prose">'
         '<div class="grid two">'
         '<div class="card">'
         '<h3>Source Adapters and Structured Data</h3>'
@@ -1876,14 +1904,13 @@ PAGES["job-search-automation.html"] = (
         '<p><strong>Rationale:</strong> Rule-based scores can be inspected and tested without an external model call. Processing speed and live-source coverage require separate measurement.</p>'
         '</div>'
         '</div>'
-        '<div class="card" style="margin-top: 1.5rem;" id="verification">'
+        '<div class="card card-spaced" id="verification">'
         '<h3>Test Evidence and Operational Status</h3>'
-        '<p>A current offline suite run collected 452 tests: <strong>450 passed, 1 failed, 1 skipped</strong>. The failure is an end-to-end deterministic-score threshold assertion (31.2 versus expected 50.0), which needs correction in that project before claiming a clean suite. The skipped test requires Windows symlink privilege. Mocked connector checks do not verify live scheduled ingestion.</p>'
-        '</div>'
+        '<p>Offline acceptance run (<code>junit-v7-acceptance.xml</code>) collected 525 tests: <strong>524 passed, 0 failed, 1 skipped</strong> (Windows symlink privilege check). Mocked connector and SSF/SSRF checks verify offline deterministic scoring and safety boundaries; live unattended scheduling is not claimed.</p>'
         '</div>'
         '<div class="actions">'
         + link("projects.html#pillar-automation", "View Project Overview →", "button")
-        + link("projects.html#pillar-automation", "Explore Workflow Automation →", "button button-quiet")
+        + link("automation.html", "Explore Workflow Automation →", "button button-quiet")
         + '</div>',
     )
     + explore_more("job-search-automation.html"),
@@ -1906,18 +1933,17 @@ PAGES["client-work.html"] = (
         '<article class="card client-card" id="advfiction-lms">'
         '<div class="card-top">'
         + eyebrow("Advfiction Private Limited")
-        + badge("Live Production Deployment")
+        + badge("Live Deployment")
         + '</div>'
-        '<h3>Enterprise Lead Management System</h3>'
-        '<p class="card-category-sub">Frontend Dashboard &amp; Production REST API Service</p>'
-        '<p>A complete full-stack lead management platform serving sales operations. Designed to intake, validate, and route candidate leads from public marketing channels into secure operational dashboards.</p>'
+        '<p class="card-category-sub">Public REST Lead Endpoint &amp; Collaborative LMS Frontend</p>'
+        '<p>Collaborative lead management system supporting public marketing lead intake. My verified source contribution focused on the public Express lead endpoint, input checks, Supabase persistence helpers, and allowed-origin CORS policy.</p>'
         '<div class="client-details">'
-        '<h4>Technical Architecture &amp; Personal Contribution:</h4>'
+        '<h3>Verified Backend &amp; API Scope</h3>'
         '<ul class="prose-list">'
-        '<li><strong>Production REST API:</strong> Collaborated on the Express/Node.js backend API hosted on Render, developing route input validation schemas and Supabase insertion routines for public lead capture.</li>'
-        '<li><strong>CORS &amp; Security Policies:</strong> Implemented multi-origin CORS configurations ensuring seamless communication between the Vercel-hosted frontend and Render backend services.</li>'
-        '<li><strong>Supabase Integration:</strong> Structured database tables, foreign-key relationships, and service-role API queries.</li>'
-        '<li><strong>Frontend Client:</strong> Built authenticated dashboard views with clean error handling and session validation.</li>'
+        '<li><strong>Public Lead Endpoint:</strong> Implemented Node.js/Express route handlers with required-field and email validation before database insertion.</li>'
+        '<li><strong>Supabase Persistence Helper:</strong> Added lead insertion queries targeting the configured Supabase table structure.</li>'
+        '<li><strong>Allowed-Origin CORS:</strong> Configured explicit origin allowlists connecting the Vercel LMS/website frontends with the Render API service.</li>'
+        '<li><strong>Verification Note:</strong> Live frontend login and API health routes are linked below; unauthenticated live DB submission was not tested against production data.</li>'
         '</ul>'
         '</div>'
         '<div class="card-actions">'
@@ -2040,7 +2066,7 @@ def workflow_image(filename, width, height, alt, caption):
 
 def workflow_index():
     return (
-        '<section class="section section-directory-tools container" style="margin-bottom: var(--space-md);">'
+        '<section class="section section-directory-tools section-compact-gap container">'
         '<div class="workflow-index-box">'
         '<div class="workflow-index-header">'
         '<h2 class="workflow-index-heading">Workflow Architecture Index</h2>'
@@ -2069,28 +2095,28 @@ def workflow_index():
 
 def evidence_status_legend():
     return (
-        '<section class="section container" style="margin-bottom: var(--space-md);">'
-        '<div class="workflow-index-box" style="padding: 1.25rem 1.5rem;">'
-        '<h3 style="font-size: 1.05rem; margin: 0 0 0.5rem 0; color: var(--ink);">Evidence &amp; Verification Status Legend</h3>'
-        '<p class="prose" style="font-size: 0.88rem; margin: 0 0 0.85rem 0; color: var(--muted);">'
-        'Each architecture below reflects authentic internship engineering work and is classified by its verified evidence maturity:'
+        '<section class="section section-compact-gap container">'
+        '<div class="workflow-index-box workflow-legend-box">'
+        '<h2 class="workflow-index-heading">Evidence &amp; Verification Status Legend</h2>'
+        '<p class="prose workflow-legend-lead">'
+        'Each architecture below reflects documented internship engineering work and is labeled by its verified evidence maturity:'
         '</p>'
-        '<div class="workflow-index-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem;">'
-        '<div class="workflow-index-col" style="padding: 0.75rem;">'
-        '<div style="margin-bottom: 0.35rem;">' + badge("Editor execution shown") + '</div>'
-        '<p style="font-size: 0.82rem; margin: 0; color: var(--muted);">Live canvas runtime data flow with completed node execution indicators.</p>'
+        '<div class="workflow-index-grid workflow-legend-grid">'
+        '<div class="workflow-index-col workflow-legend-col">'
+        '<div class="workflow-legend-badge">' + badge("Editor execution shown") + '</div>'
+        '<p class="workflow-legend-desc">Live canvas runtime data flow with completed node execution indicators.</p>'
         '</div>'
-        '<div class="workflow-index-col" style="padding: 0.75rem;">'
-        '<div style="margin-bottom: 0.35rem;">' + badge("Partial execution shown") + '</div>'
-        '<p style="font-size: 0.82rem; margin: 0; color: var(--muted);">Verified initial pipeline stages; downstream enrichment/persistence unrun.</p>'
+        '<div class="workflow-index-col workflow-legend-col">'
+        '<div class="workflow-legend-badge">' + badge("Partial execution shown") + '</div>'
+        '<p class="workflow-legend-desc">Verified initial pipeline stages; downstream enrichment/persistence unrun.</p>'
         '</div>'
-        '<div class="workflow-index-col" style="padding: 0.75rem;">'
-        '<div style="margin-bottom: 0.35rem;">' + badge("Design/configuration only") + '</div>'
-        '<p style="font-size: 0.82rem; margin: 0; color: var(--muted);">Complete node logic and schema configuration awaiting credentials/deployment.</p>'
+        '<div class="workflow-index-col workflow-legend-col">'
+        '<div class="workflow-legend-badge">' + badge("Design/configuration only") + '</div>'
+        '<p class="workflow-legend-desc">Complete node logic and schema configuration awaiting credentials/deployment.</p>'
         '</div>'
-        '<div class="workflow-index-col" style="padding: 0.75rem;">'
-        '<div style="margin-bottom: 0.35rem;">' + badge("Test harness or skeleton") + '</div>'
-        '<p style="font-size: 0.82rem; margin: 0; color: var(--muted);">Validation harness engineered with mock lead payloads and routing templates.</p>'
+        '<div class="workflow-index-col workflow-legend-col">'
+        '<div class="workflow-legend-badge">' + badge("Test harness or skeleton") + '</div>'
+        '<p class="workflow-legend-desc">Validation harness engineered with mock lead payloads and routing templates.</p>'
         '</div>'
         '</div>'
         '</div>'
@@ -2101,22 +2127,21 @@ def evidence_status_legend():
 def workflow_example(number, anchor, category, status, title, purpose, business_value, engineering, tech_tags, evidence, images):
     tags_html = "".join(f'<span class="tag">{escape(t)}</span>' for t in tech_tags)
     body = (
-        f'<article class="card evidence-card" id="{anchor}">'
+        '<article class="card evidence-card">'
         f'<div class="card-top">{eyebrow(f"Portfolio Order {number:02d} · {category}")}{badge(status)}</div>'
-        f'<h3>{escape(title)}</h3>'
-        f'<div class="workflow-story">'
+        '<div class="workflow-story">'
         f'<p><strong>Operational Purpose:</strong> {escape(purpose)}</p>'
         f'<p><strong>Intended Business Value:</strong> {escape(business_value)}</p>'
         f'<p><strong>Engineering Contribution:</strong> {escape(engineering)}</p>'
-        f'</div>'
-        f'<div class="tags-row" style="margin: var(--space-xs) 0 var(--space-sm);">{tags_html}</div>'
+        '</div>'
+        f'<div class="tags-row tags-row-spaced">{tags_html}</div>'
         '<div class="workflow-captures">'
         + "".join(workflow_image(*image) for image in images)
         + '</div>'
         f'<p class="card-highlight"><strong>Evidence Verification Status:</strong> {escape(evidence)}</p>'
         '</article>'
     )
-    return section(f"{number:02d}. {title}", body)
+    return section(f"{number:02d}. {title}", body, sid=anchor)
 
 
 PAGES["automation.html"] = (
@@ -2235,19 +2260,6 @@ PAGES["automation.html"] = (
         "Original canvas displays wait node and conditional approval branches; reviewer responses and downstream triggers are not shown completed.",
         [("telegram-review-approval.jpeg", 1600, 677, "n8n Telegram approval design with sheet rows, reviewer message, wait node and approve or reject branches.", "Original editor capture · one unique image; second source file was identical.")],
     )
-    + section(
-        "Explore More Engineering Work",
-        '<p class="prose">Explore other systems, client deliverables, and verified credentials across my engineering portfolio.</p>'
-        '<div class="section-nav-group">'
-        + link("projects.html", "Projects & Case Studies →", "button")
-        + '<div class="sub-nav-links">'
-        + link("experience.html", "Internship Experience →")
-        + link("client-work.html", "Client Work & Deployments →")
-        + link("credentials.html", "Credentials & Certifications →")
-        + link("contact.html", "Get in Touch →")
-        + '</div>'
-        + '</div>',
-    )
     + explore_more("automation.html"),
 )
 
@@ -2257,14 +2269,14 @@ PAGES["automation-evidence.html"] = (
     "Automation Evidence Gallery",
     "Rehan Memon | Automation Workflow Gallery",
     "The n8n workflow gallery has been consolidated into the unified AI & Workflow Automation systems page.",
-    '<section class="container" style="padding: 4rem 1rem; text-align: center;">'
-    '<div class="card" style="max-width: 680px; margin: 2rem auto; padding: 2.5rem 2rem;">'
-    '<div class="card-top" style="justify-content: center; margin-bottom: 1rem;">'
+    '<section class="container redirect-section">'
+    '<div class="card redirect-card">'
+    '<div class="card-top redirect-top">'
     + badge("Consolidated Architecture")
     + '</div>'
     '<h1>AI &amp; Workflow Automation</h1>'
-    '<p class="prose" style="margin: 1.5rem 0;">The complete 10-workflow gallery has been consolidated directly into our primary <strong>AI &amp; Workflow Automation</strong> systems page.</p>'
-    '<div class="card-actions" style="justify-content: center;">'
+    '<p class="prose redirect-prose">The complete 10-workflow gallery has been consolidated directly into the primary <strong>AI &amp; Workflow Automation</strong> systems page.</p>'
+    '<div class="card-actions redirect-actions">'
     + link("automation.html", "Explore All 10 Workflow Architectures →", "button")
     + '</div>'
     '</div>'
@@ -2285,9 +2297,9 @@ PAGES["credentials.html"] = (
     '<div class="status-banner">'
     '<p class="eyebrow">Evidence Traceability &amp; Verification</p>'
     '<h2>Credential Evidence and Document Status</h2>'
-    '<p class="status-desc">This registry contains 48 credential and recognition records. The 21 IIRS/ISRO outreach entries distinguish six workshop participations from fifteen online-course participations and link to separate privacy-safe copies. Other linked certificates require individual source and sharing review. Institutional nominations are documented privately.</p>'
+    '<p class="status-desc">This registry catalogs 48 credentials and recognition records. The 21 IIRS/ISRO outreach entries distinguish 6 workshop participations from 15 online-course participations and link to privacy-safe local PDF copies with enrollment codes removed; commercial, simulation, and academic records link directly to read-only reference files.</p>'
     '</div>'
-    '<div class="featured-credentials" style="margin-bottom: var(--space-xl);">'
+    '<div class="featured-credentials">'
     '<h2>Curated Featured Credentials</h2>'
     '<p class="section-lead">Selected institutional, government and commercial learning records across software engineering, AI systems, remote sensing, and university activities; document and classification evidence varies by entry.</p>'
     '<div class="grid three">'
@@ -2352,40 +2364,35 @@ PAGES["credentials.html"] = (
     '<button type="button" class="filter-pill" data-filter-domain="academic &amp; extension honors" aria-pressed="false">Academic Honors &amp; DLLE</button>'
     '</div>'
     '<div class="filter-bar">'
+    '<div class="filter-field filter-field-search">'
     '<label for="credentialSearch">Search credentials</label>'
     '<input id="credentialSearch" type="search" placeholder="Search by title, issuer, keyword..." data-filter-search>'
+    '</div>'
+    '<div class="filter-field">'
     '<label for="credentialType">Type</label>'
     '<select id="credentialType" data-filter-type>'
     '<option value="">All Types</option>'
     + "".join(f'<option>{escape(kind)}</option>' for kind in sorted({c["kind"] for c in CREDENTIALS}))
     + '</select>'
+    '</div>'
+    '<div class="filter-field">'
     '<label for="credentialSubject">Subject</label>'
     '<select id="credentialSubject" data-filter-subject>'
     '<option value="">All Subjects</option>'
-    '<option>AI / ML</option>'
-    '<option>Generative AI</option>'
-    '<option>Data Science</option>'
-    '<option>Web Development</option>'
-    '<option>Frontend Engineering</option>'
-    '<option>Programming</option>'
-    '<option>Systems Engineering</option>'
-    '<option>Image Analysis</option>'
-    '<option>Remote Sensing</option>'
-    '<option>GIS &amp; Satellite Systems</option>'
-    '<option>Community Leadership</option>'
-    '<option>Financial Literacy</option>'
-    '</select>'
+    + "".join(f'<option>{escape(subject)}</option>' for subject in sorted({c["subject"] for c in CREDENTIALS}))
+    + '</select>'
     '</div>'
-    '<p class="filter-count" data-filter-count aria-live="polite"></p>'
+    '</div>'
+    f'<p class="filter-count" data-filter-count role="status" aria-live="polite" aria-atomic="true">{len(CREDENTIALS)} credentials shown</p>'
     '<div class="grid two" data-filter-list data-noun-singular="credential" data-noun-plural="credentials">'
     + "".join(credential_card(c) for c in CREDENTIALS)
     + '</div>'
-    '<p class="no-results" data-no-results hidden>No credentials match these filter criteria.</p>'
+    '<p class="no-results" data-no-results role="status" aria-live="polite" hidden>No credentials match these filter criteria.</p>'
     '</section>'
     + section(
         "Verification & Institutional Integrity",
         '<div class="prose">'
-        '<p>This library combines original documents, institutional records, and entries still under source review. A document link appears only where its current public destination is retained; its presence does not imply that every title, classification, privacy detail, or sharing permission has been independently verified. Sources represented include:</p>'
+        '<p>This library documents educational certificates, technical simulations, and institutional recognition records with direct links to public-safe or read-only reference files. Sources represented include:</p>'
         '<ul class="prose-list">'
         '<li><strong>ISRO / IIRS Outreach:</strong> Indian Institute of Remote Sensing (Dehradun), Department of Space, Government of India.</li>'
         '<li><strong>BCG X via Forage:</strong> Boston Consulting Group enterprise simulation verification.</li>'
@@ -2430,7 +2437,7 @@ PAGES["activities.html"] = (
         '</article>'
         '<article class="card" id="karigar-setu">'
         '<div class="card-top">'
-        + eyebrow("SIH 2026 · Team Echo Logic")
+        + eyebrow("SIH 2026 · Team EchoLogic")
         + badge("Selected Architecture")
         + '</div>'
         '<h3>SIH 2026: KARIGAR-SETU Artisan Platform (PS SIH26090)</h3>'
@@ -2473,14 +2480,15 @@ PAGES["activities.html"] = (
         + badge("Academic Results")
         + '</div>'
         '<h3>Academic Examination Standing (Semesters I–IV)</h3>'
-        '<div class="grid two" style="margin-top: 1rem;">'
+        '<div class="grid two grid-spaced">'
         '<div class="evidence-node-col">'
-        '<h4>Aggregated Degree Performance</h4>'
+        '<h4>Aggregated Degree &amp; Subject Performance</h4>'
         '<ul>'
         '<li><strong>Semester IV SGPA:</strong> 9.27 / 10.0 (Grade O Distinction)</li>'
         '<li><strong>Cumulative CGPA:</strong> 8.14 / 10.0 (Across Semesters I–IV)</li>'
         '<li><strong>Semester III SGPA:</strong> 8.18 / 10.0 (Grade A+ Standing)</li>'
         '<li><strong>Total Earned Credits:</strong> 88.00 / 88.00 Completed</li>'
+        '<li><strong>Highlighted Coursework:</strong> AI in IoT (98%), Generative AI (94%)</li>'
         '</ul>'
         '</div>'
         '<div class="evidence-node-col">'
@@ -2547,7 +2555,7 @@ PAGES["contact.html"] = (
         + badge("Available Online & PDF")
         + '</div>'
         '<h3>Professional Resume</h3>'
-        f'<p class="prose">The linked Google Docs resume remains a candidate version until Rehan confirms it is the latest approved public document. The portfolio case studies contain the current project detail; academic records include a 9.27 Semester IV SGPA at <a class="text-link" href="{COLLEGE_URL}" target="_blank" rel="noopener noreferrer">{COLLEGE_NAME_SHORT}</a>.</p>'
+        f'<p class="prose">Review my current Google Docs resume or export a PDF copy directly. Architectural case studies across this portfolio contain full implementation notes alongside verified academic standing (9.27/10 Semester IV SGPA at {link(COLLEGE_URL, COLLEGE_NAME_SHORT, external=True)}).</p>'
         '<div class="card-actions">'
         + link(RESUME_URL, "View Live Resume (Google Doc) ↗", "button", external=True)
         + link(RESUME_PDF_URL, "Download PDF Export ↗", "button button-accent-outline", external=True)
@@ -2560,19 +2568,19 @@ PAGES["contact.html"] = (
         '<article class="card">'
         + eyebrow("Direct Inquiries")
         + '<h3>Email</h3>'
-        + f'<div class="copy-email-box"><a class="text-link" href="mailto:{EMAIL}">{EMAIL}</a><button type="button" class="button button-small copy-email-btn" data-copy="{EMAIL}" aria-label="Copy email address to clipboard">Copy 📋</button></div>'
+        + f'<div class="copy-email-box"><a class="text-link" href="mailto:{EMAIL}">{EMAIL}</a><button type="button" class="button button-small copy-email-btn" data-copy="{EMAIL}" aria-label="Copy email address to clipboard">Copy <span aria-hidden="true">📋</span></button><span class="sr-only copy-email-status" role="status" aria-live="polite" aria-atomic="true"></span></div>'
         + '<p class="note">Preferred channel for professional inquiries, engineering roles, and technical collaborations.</p>'
         + '</article>'
         '<article class="card">'
         + eyebrow("Professional Network")
         + '<h3>LinkedIn</h3>'
-        + f'<p>{link(LINKEDIN, "linkedin.com/in/rehan-memon-b1803b334 ↗", external=True)}</p>'
+        + "<p>" + link(LINKEDIN, "linkedin.com/in/rehan-memon-b1803b334\u00a0↗", external=True) + "</p>"
         + '<p class="note">Connect for industry updates, professional discussions, and networking.</p>'
         + '</article>'
         '<article class="card">'
         + eyebrow("Open Source & Code")
         + '<h3>GitHub</h3>'
-        + f'<p>{link(GITHUB, "github.com/rehanmemon-ai ↗", external=True)}</p>'
+        + "<p>" + link(GITHUB, "github.com/rehanmemon-ai\u00a0↗", external=True) + "</p>"
         + '<p class="note">Source code for public projects, machine learning baselines, and web repositories.</p>'
         + '</article>'
         '</div>',
@@ -2583,19 +2591,19 @@ PAGES["contact.html"] = (
         '<article class="card">'
         + eyebrow("Competitive Programming")
         + '<h3>LeetCode</h3>'
-        + f'<p>{link(LEETCODE, "leetcode.com/u/rehanmemon-ai ↗", external=True)}</p>'
+        + "<p>" + link(LEETCODE, "leetcode.com/u/rehanmemon-ai\u00a0↗", external=True) + "</p>"
         + '<p class="note">Algorithms, data structures, and problem-solving practice.</p>'
         + '</article>'
         '<article class="card">'
         + eyebrow("Machine Learning")
         + '<h3>Kaggle</h3>'
-        + f'<p>{link(KAGGLE, "kaggle.com/rehanjunedmemon ↗", external=True)}</p>'
+        + "<p>" + link(KAGGLE, "kaggle.com/rehanjunedmemon\u00a0↗", external=True) + "</p>"
         + '<p class="note">Data science notebooks, generative-video model benchmarks, and datasets.</p>'
         + '</article>'
         '<article class="card">'
         + eyebrow("Institutional Affiliation")
         + f'<h3>{COLLEGE_NAME_SHORT}</h3>'
-        + f'<p>{link(COLLEGE_URL, "ves.ac.in/vesasc ↗", external=True)}</p>'
+        + "<p>" + link(COLLEGE_URL, "ves.ac.in/vesasc\u00a0↗", external=True) + "</p>"
         + '<p class="note">Department of Artificial Intelligence, University of Mumbai.</p>'
         + '</article>'
         '</div>',
@@ -2615,46 +2623,43 @@ NAV = [
     ("contact.html", "Contact"),
 ]
 
-SCHEMA_JSON_LD = f"""  <script type="application/ld+json">
-  {{
+_SCHEMA_PAYLOAD = {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Rehan Juned Memon",
-    "url": "{SITE_URL}/",
-    "jobTitle": "AI Engineer & Software Systems Developer",
-    "alumniOf": {{
-      "@type": "EducationalOrganization",
-      "name": "{COLLEGE_NAME_FULL}",
-      "url": "{COLLEGE_URL}"
-    }},
+    "url": f"{SITE_URL}/",
+    "image": f"{SITE_URL}/assets/social-card.png",
+    "jobTitle": "AI & Software Developer",
+    "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": COLLEGE_NAME_FULL,
+        "url": COLLEGE_URL,
+    },
     "knowsAbout": [
-      "Machine Learning",
-      "Computer Vision",
-      "Retrieval-Augmented Generation",
-      "Full-Stack Web Development",
-      "Workflow Automation",
-      "FastAPI",
-      "Next.js",
-      "Python",
-      "TypeScript",
-      "n8n"
+        "Machine Learning",
+        "Computer Vision",
+        "Retrieval-Augmented Generation",
+        "Full-Stack Web Development",
+        "Workflow Automation",
+        "FastAPI",
+        "Next.js",
+        "Python",
+        "TypeScript",
+        "n8n",
     ],
-    "sameAs": [
-      "{GITHUB}",
-      "{LINKEDIN}",
-      "{LEETCODE}",
-      "{KAGGLE}"
-    ]
-  }}
-  </script>"""
+    "sameAs": [GITHUB, LINKEDIN, LEETCODE, KAGGLE],
+}
+_SCHEMA_JSON = json.dumps(_SCHEMA_PAYLOAD, ensure_ascii=False, indent=2).replace("</", "<\\/")
+SCHEMA_JSON_LD = "  <script type=\"application/ld+json\">\n" + "\n".join(f"  {line}" for line in _SCHEMA_JSON.splitlines()) + "\n  </script>"
 
 
 def generate_sitemap():
     urls = []
     for filename in PAGES:
         if filename == "automation-evidence.html":
-            continue  # Compatibility redirect; the consolidated page is canonical.
-        urls.append(f"  <url>\n    <loc>{SITE_URL}/{filename}</loc>\n    <changefreq>weekly</changefreq>\n  </url>")
+            continue  # Consolidated page is canonical.
+        loc = f"{SITE_URL}/" if filename == "index.html" else f"{SITE_URL}/{filename}"
+        urls.append(f"  <url>\n    <loc>{loc}</loc>\n    <changefreq>weekly</changefreq>\n  </url>")
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + "\n</urlset>\n"
     (ROOT / "sitemap.xml").write_text(xml, encoding="utf-8", newline="\n")
 
@@ -2667,17 +2672,22 @@ def generate_robots():
 def render(filename, item):
     _label, title, description, body = item
     nav_desktop = "".join(
-        f'<a href="{href}"' + (' aria-current="page"' if filename == href else "") + f'>{name}</a>'
+        f'<a href="{escape(validate_href(href), quote=True)}"'
+        + (' aria-current="page"' if filename == href else "")
+        + f'>{escape(name)}</a>'
         for href, name in NAV
     )
     nav_mobile = "".join(
-        f'<a href="{href}"' + (' aria-current="page"' if filename == href else "") + f'>{name}</a>'
+        f'<a href="{escape(validate_href(href), quote=True)}"'
+        + (' aria-current="page"' if filename == href else "")
+        + f'>{escape(name)}</a>'
         for href, name in NAV
     )
-    resume_btn = f'<a class="button button-small resume-nav-btn" href="{RESUME_URL}" target="_blank" rel="noopener noreferrer">Resume ↗</a>'
+    resume_btn = f'<a class="button button-small resume-nav-btn" href="{escape(validate_href(RESUME_URL), quote=True)}" target="_blank" rel="noopener noreferrer">Resume ↗</a>'
     schema_script = f"\n{SCHEMA_JSON_LD}" if filename == "index.html" else ""
-    redirect_meta = ""
+    robots_meta = '\n  <meta name="robots" content="noindex, follow">' if filename == "automation-evidence.html" else ""
     canonical_path = "automation.html" if filename == "automation-evidence.html" else ("" if filename == "index.html" else filename)
+    csp_policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'"
 
     brand_mark = (
         '<a class="brand" href="index.html" aria-label="Rehan Memon, home">'
@@ -2696,7 +2706,9 @@ def render(filename, item):
 <html lang="en" class="dark">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">{redirect_meta}
+  <meta name="viewport" content="width=device-width, initial-scale=1">{robots_meta}
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="{escape(csp_policy, quote=True)}">
   <meta name="description" content="{escape(description, quote=True)}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="{escape(title, quote=True)}">
@@ -2715,19 +2727,7 @@ def render(filename, item):
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <script>
-    (function(){{
-      try {{
-        var t = localStorage.getItem('theme');
-        if (t === 'light') {{
-          document.documentElement.classList.remove('dark');
-          document.documentElement.classList.add('light');
-          var m = document.querySelector('meta[name="theme-color"]');
-          if (m) m.setAttribute('content', '#f7f7f2');
-        }}
-      }} catch(e) {{}}
-    }})();
-  </script>
+  <script src="theme-init.js"></script>
   <link rel="stylesheet" href="site.css">{schema_script}
   <script src="site.js" defer></script>
 </head>
@@ -2750,7 +2750,7 @@ def render(filename, item):
       </div>
     </nav>
   </header>
-  <main id="main">{body}</main>
+  <main id="main" tabindex="-1">{body}</main>
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>Rehan Juned Memon · AI Engineering &amp; Software Systems</p>

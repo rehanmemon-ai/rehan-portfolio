@@ -1,46 +1,48 @@
 # Rehan Memon Portfolio — Maintainer & Architecture Documentation
 
-Welcome to the internal engineering and maintenance documentation for Rehan Memon's professional engineering portfolio.
+Internal engineering and maintenance documentation for Rehan Juned Memon's static portfolio repository.
 
 ## Documentation Suite
 
-This folder provides a complete reference for managing, extending, building, and deploying the portfolio:
-
 | Document | Purpose |
 | :--- | :--- |
-| **[ARCHITECTURE.md](ARCHITECTURE.md)** | Technical design, static generation engine (`build_site.py`), CSS design system, typography, accessibility, and client-side JavaScript architecture. |
-| **[CONTENT_GUIDE.md](CONTENT_GUIDE.md)** | Schema definitions and step-by-step instructions for adding new projects, commercial internships, certifications, university coursework, and activities. |
-| **[RELEASE_GUIDE.md](RELEASE_GUIDE.md)** | Pre-flight release verification checklists, automated integrity tests (`check_site.py`), Git branch protection policies, and deployment workflows. |
-| **[PRIVACY_RULES.md](PRIVACY_RULES.md)** | Candidate privacy firewall, mandatory PII exclusions (Aadhaar, PAN, registration/roll numbers), and the public-safe document sanitization pipeline. |
-| **[CONNECTHUB_DEMO_SCRIPT.md](CONNECTHUB_DEMO_SCRIPT.md)** | 3-minute technical walkthrough presentation script and demonstration shot list for recruiter showcases. |
+| **[ARCHITECTURE.md](ARCHITECTURE.md)** | Static generation engine (`build_site.py`), CSS design tokens, host security header guidance, and vanilla JavaScript modules (`site.js`, `theme-init.js`). |
+| **[CONTENT_GUIDE.md](CONTENT_GUIDE.md)** | Exact Python dictionary schemas for `PROJECTS`, `EXPERIENCE`, `CREDENTIALS`, and canonical `WF-01..WF-10` order. |
+| **[RELEASE_GUIDE.md](RELEASE_GUIDE.md)** | CI quality gates (`check_site.py`, `pytest`, `ruff`, `bandit`, `html-validate`), Git branch policies, and release verification steps. |
+| **[PRIVACY_RULES.md](PRIVACY_RULES.md)** | Candidate privacy firewall, PII exclusions, withheld-ID rules, and the public-safe derivative PDF pipeline. |
+| **[CONNECTHUB_DEMO_SCRIPT.md](CONNECTHUB_DEMO_SCRIPT.md)** | 3-minute ConnectHub walkthrough script and shot list for live demonstrations. |
 
 ---
 
 ## Quick Start for Maintainers
 
 ### Prerequisites
-- Python 3.10+ (standard library only; no third-party package dependencies required for core build)
-- Node.js 18+ (for JavaScript syntax validation)
+- Python 3.11 (standard library only for `build_site.py` and `check_site.py`; optional pinned dev packages in `.github/requirements-ci.txt` for `pytest`, `ruff`, and `bandit`)
+- Node.js 24+ (or `>=22.22.0`) and npm (for `node --check` and pinned `html-validate` via `package-lock.json`)
 - Git
 
 ### Build and Verify Commands
 ```bash
-# 1. Regenerate all 17 portfolio routes and sitemap
-python build_site.py
+# 1. Regenerate all 17 routes, sitemap.xml, and robots.txt
+python -B build_site.py
 
-# 2. Run automated structural, route, anchor, asset, and accessibility checks
-python check_site.py
+# 2. Run structural, link, CSS token, SEO, and privacy checks
+python -B check_site.py
 
-# 3. Validate client-side JavaScript syntax
-node --check site.js
+# 3. Run unit and determinism tests
+python -m pytest tests/
 
-# 4. Preview the local site
-python -m http.server 8765
-# Open http://127.0.0.1:8765 in your browser
+# 4. Lint Python & check HTML5/JS syntax
+python -m ruff check build_site.py check_site.py tests/
+node --check site.js && node --check theme-init.js
+npx --no-install html-validate *.html
+
+# 5. Preview locally on loopback only
+python -m http.server 8765 --bind 127.0.0.1
 ```
 
 ---
 
 ## Governance & Safety Guarantees
-- **Branch Protection:** Never push directly to `main`. All releases must be developed on feature branches, pass `check_site.py` with zero errors, and undergo explicit review.
-- **Privacy Firewall:** Never commit raw, unredacted government identification, university roll/seat numbers, or private offer compensation letters to the public repository. Consult [PRIVACY_RULES.md](PRIVACY_RULES.md).
+- **Branch Protection:** Never push directly to `main`. Develop on feature branches, pass all automated checks, and pause for review before committing or merging.
+- **Privacy Firewall:** Never commit unredacted government identification, university roll/seat numbers, withheld Drive IDs, or private compensation details. See [PRIVACY_RULES.md](PRIVACY_RULES.md).

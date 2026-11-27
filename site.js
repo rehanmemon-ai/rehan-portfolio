@@ -35,7 +35,15 @@ if (mobileMenuBtn) {
   mobileMenuBtn.addEventListener('click', () => setMenuOpen(mobileMenu.hidden));
 }
 if (mobileMenu) {
+  const siteHeader = document.querySelector('.site-header');
   mobileMenu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuOpen(false)));
+  if (siteHeader) {
+    siteHeader.addEventListener('focusout', (event) => {
+      if (!mobileMenu.hidden && (!event.relatedTarget || !siteHeader.contains(event.relatedTarget))) {
+        setMenuOpen(false);
+      }
+    });
+  }
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !mobileMenu.hidden) {
       setMenuOpen(false);
@@ -47,7 +55,7 @@ if (mobileMenu) {
 const filterList = document.querySelector('[data-filter-list]');
 if (filterList) {
   const cards = [...filterList.querySelectorAll('[data-filter-card]')];
-  const controls = [...document.querySelectorAll('[data-filter-search],[data-filter-pillar],[data-filter-category],[data-filter-type],[data-filter-issuer],[data-filter-subject]')];
+  const controls = [...document.querySelectorAll('[data-filter-search],[data-filter-pillar],[data-filter-type],[data-filter-subject]')];
   const projectPillar = document.querySelector('[data-filter-pillar]');
   const pillarButtons = [...document.querySelectorAll('[data-filter-pillar-button]')];
   const pills = [...document.querySelectorAll('.filter-pill[data-filter-domain]')];
@@ -59,7 +67,11 @@ if (filterList) {
 
   function syncPillarButtons() {
     pillarButtons.forEach((button) => {
-      button.setAttribute('aria-pressed', String(button.dataset.filterPillarButton === projectPillar?.value));
+      const target = button.dataset.filterPillarButton || '';
+      const current = projectPillar?.value || '';
+      const active = target === current;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
     });
   }
 
@@ -68,9 +80,12 @@ if (filterList) {
       if (!projectPillar) return;
       projectPillar.value = button.dataset.filterPillarButton || '';
       updateFilters();
-      filterList.scrollIntoView({ block: 'start', behavior: 'auto' });
     });
   });
+
+  if (projectPillar) {
+    projectPillar.addEventListener('change', syncPillarButtons);
+  }
 
   pills.forEach((pill) => {
     pill.addEventListener('click', () => {
@@ -95,9 +110,7 @@ if (filterList) {
       const matches = (!query || searchable.includes(query)) &&
         (!activeDomain || cardDomain === activeDomain || (activeDomain === 'all')) &&
         (!value('pillar') || card.dataset.pillar?.toLowerCase() === value('pillar')) &&
-        (!value('category') || card.dataset.category?.toLowerCase() === value('category')) &&
         (!value('type') || card.dataset.type?.toLowerCase() === value('type')) &&
-        (!value('issuer') || card.dataset.issuer?.toLowerCase() === value('issuer')) &&
         (!value('subject') || card.dataset.subject?.toLowerCase() === value('subject'));
       card.hidden = !matches;
       if (matches) shown += 1;
@@ -111,7 +124,10 @@ if (filterList) {
       }
     });
     if (count) {
-      count.textContent = `${shown} ${shown === 1 ? nounSingular : nounPlural} shown`;
+      const nextCount = `${shown} ${shown === 1 ? nounSingular : nounPlural} shown`;
+      if (count.textContent.trim() !== nextCount) {
+        count.textContent = nextCount;
+      }
     }
     if (noResults) {
       noResults.hidden = shown !== 0;
@@ -123,7 +139,7 @@ if (filterList) {
 }
 
 // Diagram & Evidence Screenshot Lightbox Modal
-const zoomableFigures = document.querySelectorAll('.diagram, .evidence-figure, [data-lightbox]');
+const zoomableFigures = document.querySelectorAll('.diagram, .evidence-figure');
 if (zoomableFigures.length > 0) {
   let modal = document.getElementById('diagramModal');
   if (!modal) {
@@ -136,7 +152,7 @@ if (zoomableFigures.length > 0) {
     modal.innerHTML = `
       <div class="modal-content">
         <button type="button" class="modal-close" aria-label="Close image preview">&times;</button>
-        <img alt="" style="display:none">
+        <img alt="" hidden>
         <p class="modal-caption"></p>
       </div>
     `;
@@ -193,7 +209,7 @@ if (zoomableFigures.length > 0) {
       setBackgroundInert(false);
       modalImg.removeAttribute('src');
       modalImg.alt = '';
-      modalImg.style.display = 'none';
+      modalImg.hidden = true;
       modalCaption.textContent = '';
       if (triggerElement) {
         triggerElement.focus();
@@ -254,16 +270,9 @@ if (zoomableFigures.length > 0) {
         triggerElement = invoker || trigger || img;
         modalImg.src = img.src;
         modalImg.alt = img.alt;
-        modalImg.classList.toggle('workflow-modal-image', fig.classList.contains('workflow-capture'));
-        modalImg.style.display = '';
+        modalImg.hidden = false;
 
-        let captionText = img.alt;
-        if (caption) {
-          const clone = caption.cloneNode(true);
-          const oldBtn = clone.querySelector('.diagram-expand-btn');
-          if (oldBtn) oldBtn.remove();
-          captionText = clone.textContent.trim();
-        }
+        const captionText = caption ? caption.textContent.trim() : img.alt;
         modalCaption.textContent = captionText;
 
         setBackgroundInert(true);
@@ -286,23 +295,27 @@ if (zoomableFigures.length > 0) {
   }
 }
 
-// DEC-13: Email Copy Action with Robust Fallback and Honest Status
+// DEC-13: Email Copy Action with Robust Fallback, Timer Safety, and Accessible Live Status
 function copyTextToClipboard(text) {
   if (navigator.clipboard && window.isSecureContext) {
     return navigator.clipboard.writeText(text);
   }
   return new Promise((resolve, reject) => {
+    const prevFocus = document.activeElement;
     const textArea = document.createElement('textarea');
     textArea.value = text;
     textArea.style.position = 'fixed';
     textArea.style.left = '-999999px';
     textArea.style.top = '-999999px';
     document.body.appendChild(textArea);
-    textArea.focus();
+    textArea.focus({ preventScroll: true });
     textArea.select();
     try {
       const successful = document.execCommand('copy');
       document.body.removeChild(textArea);
+      if (prevFocus && typeof prevFocus.focus === 'function') {
+        prevFocus.focus({ preventScroll: true });
+      }
       if (successful) {
         resolve();
       } else {
@@ -310,34 +323,50 @@ function copyTextToClipboard(text) {
       }
     } catch (err) {
       document.body.removeChild(textArea);
+      if (prevFocus && typeof prevFocus.focus === 'function') {
+        prevFocus.focus({ preventScroll: true });
+      }
       reject(err);
     }
   });
 }
 
 document.querySelectorAll('.copy-email-btn').forEach((btn) => {
+  const defaultHtml = btn.innerHTML;
+  const defaultAriaLabel = btn.getAttribute('aria-label') || 'Copy email address to clipboard';
+  const statusEl = btn.closest('.copy-email-box')?.querySelector('.copy-email-status') || null;
+  let resetTimerId = null;
+
+  function scheduleReset(delayMs) {
+    if (resetTimerId !== null) {
+      clearTimeout(resetTimerId);
+    }
+    resetTimerId = setTimeout(() => {
+      btn.innerHTML = defaultHtml;
+      btn.classList.remove('copied', 'copy-failed');
+      btn.setAttribute('aria-label', defaultAriaLabel);
+      if (statusEl) statusEl.textContent = '';
+      resetTimerId = null;
+    }, delayMs);
+  }
+
   btn.addEventListener('click', () => {
     const text = btn.getAttribute('data-copy');
     if (!text) return;
-    const originalText = btn.textContent;
     copyTextToClipboard(text).then(() => {
+      btn.classList.remove('copy-failed');
       btn.textContent = 'Copied! ✓';
       btn.classList.add('copied');
-      btn.setAttribute('aria-label', 'Email address copied to clipboard');
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.classList.remove('copied');
-        btn.setAttribute('aria-label', 'Copy email address');
-      }, 2000);
+      btn.setAttribute('aria-label', 'Copied: email address copied to clipboard');
+      if (statusEl) statusEl.textContent = `Copied ${text} to clipboard.`;
+      scheduleReset(2000);
     }).catch(() => {
+      btn.classList.remove('copied');
       btn.textContent = 'Copy failed ✗';
       btn.classList.add('copy-failed');
-      btn.setAttribute('aria-label', 'Failed to copy email address');
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.classList.remove('copy-failed');
-        btn.setAttribute('aria-label', 'Copy email address');
-      }, 2500);
+      btn.setAttribute('aria-label', 'Copy failed: unable to copy email address to clipboard');
+      if (statusEl) statusEl.textContent = `Copy failed. Email address is ${text}.`;
+      scheduleReset(2500);
     });
   });
 });

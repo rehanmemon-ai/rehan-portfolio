@@ -1,7 +1,7 @@
 {
   "extends": ["html-validate:recommended"],
   "rules": {
-    "no-inline-style": "off",
+    "no-inline-style": "error",
     "no-trailing-whitespace": "off"
   }
 }

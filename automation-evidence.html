@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src &#x27;self&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27; data:; object-src &#x27;none&#x27;; base-uri &#x27;self&#x27;; form-action &#x27;none&#x27;">
   <meta name="description" content="The n8n workflow gallery has been consolidated into the unified AI &amp; Workflow Automation systems page.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Rehan Memon | Automation Workflow Gallery">
@@ -21,19 +24,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <script>
-    (function(){
-      try {
-        var t = localStorage.getItem('theme');
-        if (t === 'light') {
-          document.documentElement.classList.remove('dark');
-          document.documentElement.classList.add('light');
-          var m = document.querySelector('meta[name="theme-color"]');
-          if (m) m.setAttribute('content', '#f7f7f2');
-        }
-      } catch(e) {}
-    })();
-  </script>
+  <script src="theme-init.js"></script>
   <link rel="stylesheet" href="site.css">
   <script src="site.js" defer></script>
 </head>
@@ -56,7 +47,7 @@
       </div>
     </nav>
   </header>
-  <main id="main"><section class="container" style="padding: 4rem 1rem; text-align: center;"><div class="card" style="max-width: 680px; margin: 2rem auto; padding: 2.5rem 2rem;"><div class="card-top" style="justify-content: center; margin-bottom: 1rem;"><span class="badge badge-status">Consolidated Architecture</span></div><h1>AI &amp; Workflow Automation</h1><p class="prose" style="margin: 1.5rem 0;">The complete 10-workflow gallery has been consolidated directly into our primary <strong>AI &amp; Workflow Automation</strong> systems page.</p><div class="card-actions" style="justify-content: center;"><a class="button" href="automation.html">Explore All 10 Workflow Architectures →</a></div></div></section></main>
+  <main id="main" tabindex="-1"><section class="container redirect-section"><div class="card redirect-card"><div class="card-top redirect-top"><span class="badge badge-status">Consolidated Architecture</span></div><h1>AI &amp; Workflow Automation</h1><p class="prose redirect-prose">The complete 10-workflow gallery has been consolidated directly into the primary <strong>AI &amp; Workflow Automation</strong> systems page.</p><div class="card-actions redirect-actions"><a class="button" href="automation.html">Explore All 10 Workflow Architectures →</a></div></div></section></main>
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>Rehan Juned Memon · AI Engineering &amp; Software Systems</p>
