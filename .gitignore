@@ -4,6 +4,11 @@ __pycache__/
 *$py.class
 .pytest_cache/
 .ruff_cache/
+.coverage
+
+# Virtual environments
+.venv/
+venv/
 
 # GSD Planning & Agent Orchestration Files
 .planning/
@@ -14,6 +19,13 @@ assets/n8n/
 
 # Quarantined / Third-party clones
 modern-web-guidance/
+
+# Node CI dependencies
+node_modules/
+
+# Logs and local environment files
+*.log
+.env*
 
 # Operating System files
 .DS_Store

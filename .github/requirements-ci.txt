@@ -1,0 +1,13 @@
+bandit==1.9.4
+colorama==0.4.6; platform_system == "Windows"
+iniconfig==2.3.1
+markdown-it-py==4.3.0
+mdurl==0.1.2
+packaging==26.4
+pluggy==1.7.0
+Pygments==2.21.0
+pytest==9.1.1
+PyYAML==6.0.4
+rich==15.0.0
+ruff==0.17.6
+stevedore==5.10.0
